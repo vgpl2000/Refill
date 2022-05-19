@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "640960335565",
+    "project_id": "project-refill",
+    "storage_bucket": "project-refill.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640960335565:android:2ede97cc87c8757c382384",
+        "android_client_info": {
+          "package_name": "com.example.projectrefill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640960335565-h0k31l4u1lsf1mos0i96fhfhogcggh8a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqn3NkLTkGyym29qqANlvnAULXS7f3y0A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640960335565-h0k31l4u1lsf1mos0i96fhfhogcggh8a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
