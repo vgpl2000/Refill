@@ -22,7 +22,7 @@ public class splash_screen extends AppCompatActivity {
                 Animation animation= AnimationUtils.loadAnimation(splash_screen.this,R.anim.anim);
                 title_text.startAnimation(animation);
                 try{
-                    sleep(5000);
+                    sleep(3000);
 
 
                     }
