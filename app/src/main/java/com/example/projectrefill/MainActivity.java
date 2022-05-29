@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
     TextView forgot;
-    DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
+    DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReferenceFromUrl("https://project-refill-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
