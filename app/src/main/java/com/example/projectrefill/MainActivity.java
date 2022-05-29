@@ -2,37 +2,41 @@ package com.example.projectrefill;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.telephony.gsm.SmsManager;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.auth.User;
 
 public class MainActivity extends AppCompatActivity {
     TextView forgot;
     DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReferenceFromUrl("https://project-refill-default-rtdb.asia-southeast1.firebasedatabase.app/");
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mAuth = FirebaseAuth.getInstance();
+
         Button login=findViewById(R.id.btn_login);
         EditText txtUser=findViewById(R.id.txtUser);
+        EditText txtEmail=findViewById(R.id.txtMail);
         EditText txtPassword=findViewById(R.id.txtPassword);
         TextView forgot=findViewById(R.id.textView6);
         
@@ -47,10 +51,48 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String eUser = txtUser.getText().toString();
+                final String eEmail = txtEmail.getText().toString();
                 final String ePassword = txtPassword.getText().toString();
+                final String eUser = txtUser.getText().toString();
 
-                if (eUser.isEmpty() || ePassword.isEmpty()) {
+                if(!Patterns.EMAIL_ADDRESS.matcher(eEmail).matches()){
+                    txtEmail.setError("Please enter a valid Email Address!");
+                    txtEmail.requestFocus();
+                }
+                if(txtPassword.length()<6){
+                    txtPassword.setError("Enter a valid password containing at least 6 characters");
+                    txtPassword.requestFocus();
+                }
+
+
+                mAuth.signInWithEmailAndPassword(eEmail,ePassword)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+
+
+                                    //User user=new User(eEmail,ePassword);
+                                    //FirebaseDatabase.getInstance().getReference("Retailer").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+
+                                    Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+
+
+
+
+
+
+
+
+                /* if (eUser.isEmpty() || ePassword.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Enter the credentials", Toast.LENGTH_LONG).show();
                 }
                 else {
@@ -78,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
-                }
+                }*/
             }
         });
     }
