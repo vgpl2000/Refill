@@ -21,7 +21,17 @@ public class splash_screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        videoView=findViewById(R.id.videoView);
 
+        String videopath="android.resource://com.example.projectrefill/"+R.raw.splash;
+        Uri uri=Uri.parse(videopath);
+        videoView.setVideoURI(uri);
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mediaPlayer.start();
+            }
+        });
 
         Thread thread=new Thread(){
             public void run(){
