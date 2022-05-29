@@ -4,11 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/activity_main.xml" value="0.209375" />
-        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/activity_splash_screen.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/activity_splash_screen.xml" value="0.19429347826086957" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/welcome_page.xml" value="0.14" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/background_button.xml" value="0.2985" />
-        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/activity_splash_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/activity_splash_screen.xml" value="0.33" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/activity_splash_try.xml" value="0.33" />
       </map>
     </option>
   </component>
