@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -18,6 +19,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
+    TextView forgot;
     DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
 
     @Override
@@ -28,6 +30,15 @@ public class MainActivity extends AppCompatActivity {
         Button login=findViewById(R.id.btn_login);
         EditText txtUser=findViewById(R.id.txtUser);
         EditText txtPassword=findViewById(R.id.txtPassword);
+        TextView forgot=findViewById(R.id.textView6);
+        
+        forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Never forget your password again!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                             //check data exist in firebase
                             if(snapshot.hasChild(eUser)){
                                 //match data
-                                final String getPassword=snapshot.child("eUSer").child("password").getValue(String.class);
+                                final String getPassword=snapshot.child(eUser).child("password").getValue(String.class);
                                 if(getPassword.equals("password")){
                                     Toast.makeText(MainActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
                                 }else{
@@ -58,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
 
                         }
                     });
