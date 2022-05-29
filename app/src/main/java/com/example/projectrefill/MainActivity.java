@@ -40,32 +40,33 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "Forget", Toast.LENGTH_SHORT).show();
-
+            }
+        });
 
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String eUser=txtUser.getText().toString();
-                final String ePassword=txtPassword.getText().toString();
+                final String eUser = txtUser.getText().toString();
+                final String ePassword = txtPassword.getText().toString();
 
-                if(eUser.isEmpty()||ePassword.isEmpty()){
+                if (eUser.isEmpty() || ePassword.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Enter the credentials", Toast.LENGTH_LONG).show();
                 }
-                else{
+                else {
                     databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             //check data exist in firebase
-                            if(snapshot.hasChild(eUser)){
+                            if (snapshot.hasChild(eUser)) {
                                 //match data
-                                final String getPassword=snapshot.child(eUser).child("password").getValue(String.class);
-                                if(getPassword.equals("password")){
+                                final String getPassword = snapshot.child(eUser).child("password").getValue(String.class);
+                                if (getPassword.equals("password")) {
                                     Toast.makeText(MainActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
-                                }else{
+                                } else {
                                     Toast.makeText(MainActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
                                 }
-                            }else{
+                            } else {
                                 Toast.makeText(MainActivity.this, "Wrong Username", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -76,14 +77,17 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     });
-                }
 
+                }
             }
         });
-
     }
-
-
-
-
 }
+
+
+
+
+
+
+
+
