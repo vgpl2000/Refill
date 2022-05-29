@@ -25,6 +25,7 @@ import com.google.firebase.firestore.auth.User;
 public class MainActivity extends AppCompatActivity {
     TextView forgot;
     DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReferenceFromUrl("https://project-refill-default-rtdb.asia-southeast1.firebasedatabase.app/");
+
     private FirebaseAuth mAuth;
 
     @Override
