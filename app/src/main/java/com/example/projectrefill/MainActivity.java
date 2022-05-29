@@ -18,7 +18,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
-    DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReferenceFromUrl("https://project-refill-default-rtdb.asia-southeast1.firebasedatabase.app/");
+    DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
