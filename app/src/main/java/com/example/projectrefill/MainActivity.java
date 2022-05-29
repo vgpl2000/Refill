@@ -2,8 +2,12 @@ package com.example.projectrefill;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.telephony.gsm.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,9 +39,8 @@ public class MainActivity extends AppCompatActivity {
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Never forget your password again!", Toast.LENGTH_SHORT).show();
-            }
-        });
+                Toast.makeText(MainActivity.this, "Forget", Toast.LENGTH_SHORT).show();
+
 
 
         login.setOnClickListener(new View.OnClickListener() {
