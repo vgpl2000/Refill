@@ -8,6 +8,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,8 @@ import com.google.firebase.firestore.auth.User;
 
 public class MainActivity extends AppCompatActivity {
     TextView forgot;
+    ProgressBar progressBar;
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         EditText txtUser = findViewById(R.id.txtUser);
         EditText txtPassword = findViewById(R.id.txtPassword);
         TextView forgot = findViewById(R.id.textView6);
+        progressBar=findViewById(R.id.progressBar);
 
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Enter the credentials", Toast.LENGTH_LONG).show();
 
                 }else if(eUser.equals("akashadeepa")){
+                    progressBar.setVisibility(View.VISIBLE);
                     databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -71,17 +76,22 @@ public class MainActivity extends AppCompatActivity {
 
 
                             if (snapshot.hasChild(eUser)) {
+
                                 //match data
                                 final String getPassword = snapshot.child(eUser).child("password").getValue(String.class);
 
                                 if (ePassword.equals(getPassword)) {
                                     Toast.makeText(MainActivity.this, "Client Logged In", Toast.LENGTH_SHORT).show();
+                                    progressBar.setVisibility(View.GONE);
                                 } else {
                                     Toast.makeText(MainActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                    progressBar.setVisibility(View.GONE);
                                 }
                             } else {
                                 Toast.makeText(MainActivity.this, "Wrong Username", Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
                             }
+
                         }
 
                         @Override
@@ -93,23 +103,29 @@ public class MainActivity extends AppCompatActivity {
 
 
                 } else {
+                    progressBar.setVisibility(View.VISIBLE);
 
                     databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             //check data exist in firebase
                             if (snapshot.hasChild(eUser)) {
+
                                 //match data
                                 final String getPassword = snapshot.child(eUser).child("password").getValue(String.class);
 
                                 if (ePassword.equals(getPassword)) {
                                     Toast.makeText(MainActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
+                                    progressBar.setVisibility(View.GONE);
                                 } else {
                                     Toast.makeText(MainActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                    progressBar.setVisibility(View.GONE);
                                 }
                             } else {
                                 Toast.makeText(MainActivity.this, "Wrong Username", Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
                             }
+
                         }
 
                         @Override
@@ -119,45 +135,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
-                //}else{
-
-
-
-
-
-
-
-
-                /*if (eUser.isEmpty() || ePassword.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Enter the credentials", Toast.LENGTH_LONG).show();
-                } else {
-
-                    databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            //check data exist in firebase
-                            if (snapshot.child("username").hasChild(eUser)) {
-                                //match data
-                                final String getPassword = snapshot.child("password").getValue(String.class);
-
-                                if (ePassword.equals(getPassword)) {
-                                    Toast.makeText(MainActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(MainActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                Toast.makeText(MainActivity.this, "Wrong Username", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-
-                }*/
 
 
             }
