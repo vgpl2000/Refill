@@ -1,6 +1,16 @@
 buildscript {
+    repositories {
+        // Check that you have the following line (if not, add it):
+        google()  // Google's Maven repository
+    }
+
     dependencies {
-        classpath 'com.google.gms:google-services:4.3.10'
+        // ...
+
+        // Add the following line:
+        classpath 'com.google.gms:google-services:4.3.10'  // Google Services plugin
+    }
+
 
 
         // Import the BoM for the Firebase platform
@@ -9,7 +19,7 @@ buildscript {
             // Declare the dependency for the Realtime Database library
             // When using the BoM, you don't specify versions in Firebase library dependencies
 
-        }
+
 
 
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
