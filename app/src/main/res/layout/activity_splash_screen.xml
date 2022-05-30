@@ -13,6 +13,7 @@
         android:layout_width="179dp"
         android:layout_height="88dp"
         android:fontFamily="@font/poppins_medium"
+        android:gravity="center|center_horizontal|center_vertical"
         android:text="Refill"
         android:textColor="#FBFBFB"
         android:textSize="70sp"
@@ -27,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
+        android:gravity="center|center_horizontal|center_vertical"
         android:text="AkashDeepa Home Products"
         android:textColor="#737373"
         android:textSize="16sp"
@@ -35,13 +37,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.58" />
+        app:layout_constraintVertical_bias="0.568" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
+        android:gravity="center|center_horizontal|center_vertical"
         android:text="Copyright Reserved"
         android:textColor="#808080"
         android:visibility="visible"
@@ -55,6 +58,7 @@
         android:id="@+id/imageView2"
         android:layout_width="57dp"
         android:layout_height="50dp"
+        android:foregroundGravity="center_vertical|center_horizontal"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,6 +72,7 @@
         android:id="@+id/imageView4"
         android:layout_width="103dp"
         android:layout_height="76dp"
+        android:foregroundGravity="center_vertical|clip_horizontal"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
