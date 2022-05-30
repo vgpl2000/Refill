@@ -59,10 +59,11 @@ public class MainActivity extends AppCompatActivity {
                 final String ePassword = txtPassword.getText().toString();
                 final String eUser = txtUser.getText().toString();
 
-
+                //Login for Retailer
                 if (eUser.isEmpty() || ePassword.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Enter the credentials", Toast.LENGTH_LONG).show();
                 } else {
+
                     databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
