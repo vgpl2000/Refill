@@ -62,6 +62,36 @@ public class MainActivity extends AppCompatActivity {
                 //Login for Retailer
                 if (eUser.isEmpty() || ePassword.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Enter the credentials", Toast.LENGTH_LONG).show();
+
+                }else if(eUser.equals("akashadeepa")){
+                    databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            //check data exist in firebase
+
+
+                            if (snapshot.hasChild(eUser)) {
+                                //match data
+                                final String getPassword = snapshot.child(eUser).child("password").getValue(String.class);
+
+                                if (ePassword.equals(getPassword)) {
+                                    Toast.makeText(MainActivity.this, "Client Logged In", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(MainActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(MainActivity.this, "Wrong Username", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+
                 } else {
 
                     databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -88,8 +118,46 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     });
-
                 }
+                //}else{
+
+
+
+
+
+
+
+
+                /*if (eUser.isEmpty() || ePassword.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Enter the credentials", Toast.LENGTH_LONG).show();
+                } else {
+
+                    databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            //check data exist in firebase
+                            if (snapshot.child("username").hasChild(eUser)) {
+                                //match data
+                                final String getPassword = snapshot.child("password").getValue(String.class);
+
+                                if (ePassword.equals(getPassword)) {
+                                    Toast.makeText(MainActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(MainActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(MainActivity.this, "Wrong Username", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+                }*/
 
 
             }
