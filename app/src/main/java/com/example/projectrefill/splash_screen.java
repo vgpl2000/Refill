@@ -24,8 +24,7 @@ ImageView imageView,imageView2;
         setContentView(R.layout.activity_splash_screen);
         title_text=findViewById(R.id.textView);
         textView2=findViewById(R.id.textView2);
-        imageView=findViewById(R.id.imageView6);
-        imageView2=findViewById(R.id.imageView5);
+
 
         Thread thread=new Thread(){
             public void run(){
@@ -33,8 +32,7 @@ ImageView imageView,imageView2;
                 Animation animation2= AnimationUtils.loadAnimation(splash_screen.this,R.anim.fade_in);
                 title_text.startAnimation(animation);
                 textView2.startAnimation(animation2);
-                imageView2.startAnimation(animation2);
-                imageView.startAnimation(animation2);
+
 
                 try{
                     sleep(3000);
