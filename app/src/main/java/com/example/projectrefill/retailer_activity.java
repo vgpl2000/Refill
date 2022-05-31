@@ -18,21 +18,21 @@ ActivityRetailerBinding binding;
         super.onCreate(savedInstanceState);
         binding= ActivityRetailerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replacefragment(new HomeFragment());
+        replacefragment(new Home_Retailer_Fragment());
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.home:
-                    replacefragment(new HomeFragment());
+                    replacefragment(new Home_Retailer_Fragment());
                     break;
                 case R.id.cart:
-                    replacefragment(new ItemFragment());
+                    replacefragment(new Cart_Retailer_Fragment());
                     break;
                 case R.id.info:
-                    replacefragment(new RetailerFragment());
+                    replacefragment(new Info_Retailer_Fragment());
                     break;
                 case R.id.settings:
-                    replacefragment(new SettingsFragment());
+                    replacefragment(new Settings_Retailer_Fragment());
                     break;
             }
 
@@ -43,7 +43,7 @@ ActivityRetailerBinding binding;
     private void replacefragment(Fragment fragment){
         FragmentManager fragmentManager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framel,fragment);
+        fragmentTransaction.replace(R.id.framel2,fragment);
         fragmentTransaction.commit();
     }
 }
