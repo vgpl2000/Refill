@@ -111,7 +111,10 @@ public class MainActivity extends AppCompatActivity {
 
                                 if (ePassword.equals(getPassword)) {
                                     Toast.makeText(MainActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
+
                                     progressBar.setVisibility(View.GONE);
+                                    Intent intent=new Intent(MainActivity.this,retailer_activity.class);
+                                    startActivity(intent);
                                 } else {
                                     Toast.makeText(MainActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
                                     progressBar.setVisibility(View.GONE);
