@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,7 +30,7 @@ import com.google.firebase.firestore.auth.User;
 
 public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
-
+    CheckBox showPassword;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
@@ -46,6 +50,19 @@ public class MainActivity extends AppCompatActivity {
         EditText txtUser = findViewById(R.id.txtUser);
         EditText txtPassword = findViewById(R.id.txtPassword);
         progressBar=findViewById(R.id.progressBar);
+        showPassword=findViewById(R.id.checkBox);
+
+        showPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    txtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else{
+                    txtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
+
 
 
 
