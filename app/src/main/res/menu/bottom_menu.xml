@@ -5,13 +5,13 @@
         android:icon="@drawable/ic_baseline_home_24"/>
     <item android:title="Item"
         android:id="@+id/item"
-        android:icon="@drawable/ic_baseline_library_add_24"/>
+        android:icon="@drawable/ic_baseline_library_add_24" />
 
     <item android:title="Retailers"
         android:id="@+id/retailer"
-        android:icon="@drawable/ic_baseline_person_outline_24"/>
+        android:icon="@drawable/ic_baseline_person_outline_24" />
 
     <item android:title="Settings"
         android:id="@+id/settings"
-        android:icon="@drawable/ic_baseline_settings_24"/>
+        android:icon="@drawable/ic_baseline_settings_24" />
 </menu>
