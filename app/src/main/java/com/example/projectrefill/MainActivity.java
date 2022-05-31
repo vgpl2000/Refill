@@ -3,6 +3,7 @@ package com.example.projectrefill;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -24,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.auth.User;
 
 public class MainActivity extends AppCompatActivity {
-    TextView forgot;
     ProgressBar progressBar;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -45,15 +45,8 @@ public class MainActivity extends AppCompatActivity {
         Button login = findViewById(R.id.btn_login);
         EditText txtUser = findViewById(R.id.txtUser);
         EditText txtPassword = findViewById(R.id.txtPassword);
-        TextView forgot = findViewById(R.id.textView6);
         progressBar=findViewById(R.id.progressBar);
 
-        forgot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Forget", Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
                                 if (ePassword.equals(getPassword)) {
                                     Toast.makeText(MainActivity.this, "Client Logged In", Toast.LENGTH_SHORT).show();
+                                    Intent intent=new Intent(MainActivity.this,client_activity.class);
+                                    startActivity(intent);
                                     progressBar.setVisibility(View.GONE);
                                 } else {
                                     Toast.makeText(MainActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
