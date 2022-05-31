@@ -74,8 +74,9 @@ public class MainActivity extends AppCompatActivity {
                 final String eUser = txtUser.getText().toString();
 
                 //Login for Retailer
-                if (eUser.isEmpty() || ePassword.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Enter the credentials", Toast.LENGTH_LONG).show();
+                if (eUser.isEmpty() && ePassword.isEmpty()) {
+                    txtUser.setError("Username cannot be empty");
+                    txtPassword.setError("Password cannot be empty");
 
                 }else if(eUser.equals("akashadeepa")){
                     progressBar.setVisibility(View.VISIBLE);
@@ -96,11 +97,11 @@ public class MainActivity extends AppCompatActivity {
                                     startActivity(intent);
                                     progressBar.setVisibility(View.GONE);
                                 } else {
-                                    Toast.makeText(MainActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                    txtPassword.setError("Credentials do not match");
                                     progressBar.setVisibility(View.GONE);
                                 }
                             } else {
-                                Toast.makeText(MainActivity.this, "Wrong Username", Toast.LENGTH_SHORT).show();
+                                txtUser.setError("Credentials do not match");
                                 progressBar.setVisibility(View.GONE);
                             }
 
@@ -133,11 +134,11 @@ public class MainActivity extends AppCompatActivity {
                                     Intent intent=new Intent(MainActivity.this,retailer_activity.class);
                                     startActivity(intent);
                                 } else {
-                                    Toast.makeText(MainActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                    txtPassword.setError("Credentials do not match");
                                     progressBar.setVisibility(View.GONE);
                                 }
                             } else {
-                                Toast.makeText(MainActivity.this, "Wrong Username", Toast.LENGTH_SHORT).show();
+                                txtUser.setError("Credentials do not match");
                                 progressBar.setVisibility(View.GONE);
                             }
 
@@ -145,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-                            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
 
                         }
                     });
