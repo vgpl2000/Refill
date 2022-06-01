@@ -1,5 +1,6 @@
 package com.example.projectrefill;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,12 +8,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SettingsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
+
 public class SettingsFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -20,12 +26,20 @@ public class SettingsFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+
+    Button logout;
+    ImageView client_profile;
+
+
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public SettingsFragment() {
         // Required empty public constructor
+
+
     }
 
     /**
@@ -37,6 +51,12 @@ public class SettingsFragment extends Fragment {
      * @return A new instance of fragment SettingsFragment.
      */
     // TODO: Rename and change types and number of parameters
+
+
+
+
+
+
     public static SettingsFragment newInstance(String param1, String param2) {
         SettingsFragment fragment = new SettingsFragment();
         Bundle args = new Bundle();
@@ -55,10 +75,42 @@ public class SettingsFragment extends Fragment {
         }
     }
 
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        View v= inflater.inflate(R.layout.fragment_settings, container, false);
+
+
+        //To click and change Profile Image
+        
+        client_profile=v.findViewById(R.id.client_profile);
+        client_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Profile Image goes here...", Toast.LENGTH_SHORT).show();
+            }
+        });
+        
+        
+        //To logout from client
+
+        logout=v.findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Logging Out...", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getActivity(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        return v;
     }
 }
+
+
+

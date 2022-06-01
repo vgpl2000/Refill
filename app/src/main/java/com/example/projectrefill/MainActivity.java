@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         EditText txtPassword = findViewById(R.id.txtPassword);
         progressBar=findViewById(R.id.progressBar);
         showPassword=findViewById(R.id.checkBox);
+
+
 
         showPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -157,7 +160,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
     }
+
 }
 
 
