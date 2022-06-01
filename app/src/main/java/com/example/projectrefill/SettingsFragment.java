@@ -130,6 +130,7 @@ public class SettingsFragment extends Fragment {
 
                 Toast.makeText(getActivity(), "Logging Out...", Toast.LENGTH_SHORT).show();
 
+                
                 editor.clear();
                 editor.commit();
 

@@ -69,10 +69,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Check user already logged in or not
-        if(preferences.contains("username")){
-            Intent intent=new Intent(MainActivity.this,client_activity.class);
-            startActivity(intent);
-        }
+
+                if (preferences.contains("username")) {
+                    Intent intent = new Intent(MainActivity.this, client_activity.class);
+                    startActivity(intent);
+                }
+
+
 
 
         showPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
