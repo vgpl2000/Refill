@@ -134,6 +134,7 @@ public class SettingsFragment extends Fragment {
                 editor.clear();
                 editor.commit();
 
+
                 Intent intent=new Intent(getActivity(),MainActivity.class);
                 startActivity(intent);
             }
