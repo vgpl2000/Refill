@@ -136,7 +136,7 @@ public class Settings_Retailer_Fragment extends Fragment {
                 editor.clear();
                 editor.commit();
 
-                Intent intent=new Intent(getActivity(),MainActivity.class);
+                Intent intent=new Intent(getActivity(),splash_screen.class);
                 startActivity(intent);
             }
         });

@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         //Check user already logged in or not
 
                 if (preferences.contains("username")) {
+                    Toast.makeText(this, "Preference checking...", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(MainActivity.this, client_activity.class);
                     startActivity(intent);
                 }

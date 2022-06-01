@@ -135,13 +135,16 @@ public class SettingsFragment extends Fragment {
                 editor.commit();
 
 
-                Intent intent=new Intent(getActivity(),MainActivity.class);
+                Intent intent=new Intent(getActivity(),splash_screen.class);
                 startActivity(intent);
+
             }
+
         });
 
         return v;
     }
+
 }
 
 
