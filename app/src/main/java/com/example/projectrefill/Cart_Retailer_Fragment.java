@@ -62,7 +62,7 @@ public class Cart_Retailer_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_cart__retailer_, container, false);
 
-        v.setFocusableInTouchMode(true);
+        /*v.setFocusableInTouchMode(true);
         v.requestFocus();
         v.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -74,7 +74,7 @@ public class Cart_Retailer_Fragment extends Fragment {
                 }
                 return false;
             }
-        });
+        });*/
 
         return v;
     }

@@ -89,7 +89,7 @@ public class Settings_Retailer_Fragment extends Fragment {
         View v=inflater.inflate(R.layout.fragment_settings__retailer_, container, false);
 
         //Disable back button for this fragment
-        v.setFocusableInTouchMode(true);
+        /*v.setFocusableInTouchMode(true);
         v.requestFocus();
         v.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -101,7 +101,7 @@ public class Settings_Retailer_Fragment extends Fragment {
                 }
                 return false;
             }
-        });
+        });*/
 
         //setting retailer name form database
 

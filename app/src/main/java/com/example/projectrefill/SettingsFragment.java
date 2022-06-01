@@ -90,7 +90,7 @@ public class SettingsFragment extends Fragment {
 
 
         //Disable back button for this fragment
-        v.setFocusableInTouchMode(true);
+        /*v.setFocusableInTouchMode(true);
         v.requestFocus();
         v.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -102,7 +102,7 @@ public class SettingsFragment extends Fragment {
                 }
                 return false;
             }
-        });
+        });*/
 
 
 

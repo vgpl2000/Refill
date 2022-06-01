@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_home, container, false);
 
-        v.setFocusableInTouchMode(true);
+        /*v.setFocusableInTouchMode(true);
         v.requestFocus();
         v.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -74,7 +74,7 @@ public class HomeFragment extends Fragment {
                 }
                 return false;
             }
-        });
+        });*/
 
 
         return v;
