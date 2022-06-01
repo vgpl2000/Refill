@@ -7,11 +7,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Button;
 
 import com.example.projectrefill.databinding.ActivityClientBinding;
 
 public class client_activity extends AppCompatActivity {
 ActivityClientBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,5 +51,10 @@ ActivityClientBinding binding;
         fragmentTransaction.commit();
     }
 
+/*Button logout=findViewById(R.id.logout);
+
+    public void setLogout(Button logout) {
+        this.logout = logout;
+    }*/
 
 }

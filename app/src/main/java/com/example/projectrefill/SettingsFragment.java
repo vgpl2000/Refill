@@ -81,7 +81,6 @@ public class SettingsFragment extends Fragment {
 
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -133,12 +132,14 @@ public class SettingsFragment extends Fragment {
                 
                 editor.clear();
                 editor.commit();
+                Button logout=v.findViewById(R.id.logout);
 
 
                 Intent intent=new Intent(getActivity(),splash_screen.class);
                 startActivity(intent);
 
             }
+
 
         });
 
