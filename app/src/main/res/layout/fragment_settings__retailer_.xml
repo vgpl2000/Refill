@@ -1,18 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Settings_Retailer_Fragment"
-    android:background="@color/white">
+    android:background="#000000"
+    tools:context=".Settings_Retailer_Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello_settings"
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:textSize="28dp"/>
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/retailer_profile"
+            android:layout_width="131dp"
+            android:layout_height="119dp"
+            android:clickable="true"
+            android:scaleType="center"
+            android:scaleX="6"
+            android:scaleY="6"
+            android:soundEffectsEnabled="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.14"
+            app:srcCompat="@drawable/ic_baseline_person_outline_24"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Retailer"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.318" />
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="103dp"
+            android:layout_height="51dp"
+            android:background="@drawable/background_button"
+            android:fontFamily="@font/poppins_medium"
+            android:onClick="logout"
+            android:text="Log Out"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <Button
+            android:id="@+id/btn_accepted"
+            android:layout_width="245dp"
+            android:layout_height="75dp"
+            android:background="@drawable/entry_fields"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Accepted Orders"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.533" />
+
+        <Button
+            android:id="@+id/btn_cancelled"
+            android:layout_width="245dp"
+            android:layout_height="75dp"
+            android:background="@drawable/entry_fields"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Cancelled Orders"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.681" />
+
+        <Button
+            android:id="@+id/btn_delivered"
+            android:layout_width="245dp"
+            android:layout_height="75dp"
+            android:background="@drawable/entry_fields"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Delivered Orders"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.83" />
+
+        <TextView
+            android:id="@+id/version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Refill-Version 1.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.917" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

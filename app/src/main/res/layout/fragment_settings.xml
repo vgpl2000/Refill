@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/client_profile"
+            android:id="@+id/retailer_profile"
             android:layout_width="131dp"
             android:layout_height="119dp"
             android:clickable="true"

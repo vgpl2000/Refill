@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     CheckBox showPassword;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
 
     DatabaseReference databaseReference = database.getInstance().getReference();
@@ -47,12 +49,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
+        preferences=getSharedPreferences("MyPreferences",MODE_PRIVATE);
+        editor=preferences.edit();
         Button login = findViewById(R.id.btn_login);
         EditText txtUser = findViewById(R.id.txtUser);
         EditText txtPassword = findViewById(R.id.txtPassword);
         progressBar=findViewById(R.id.progressBar);
         showPassword=findViewById(R.id.checkBox);
 
+
+        //Check user already logged in or not
+        if(preferences.contains("username")){
+            Intent intent=new Intent(MainActivity.this,client_activity.class);
+            startActivity(intent);
+        }
 
 
         showPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -76,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
                 final String ePassword = txtPassword.getText().toString();
                 final String eUser = txtUser.getText().toString();
 
+
+
+
                 //Login for Retailer
                 if (eUser.isEmpty() && ePassword.isEmpty()) {
                     txtUser.setError("Username cannot be empty");
@@ -95,6 +109,13 @@ public class MainActivity extends AppCompatActivity {
                                 final String getPassword = snapshot.child(eUser).child("password").getValue(String.class);
 
                                 if (ePassword.equals(getPassword)) {
+
+                                    //save to shared preferences
+
+                                    editor.putString("username",eUser);
+                                    editor.putString("password",ePassword);
+                                    editor.commit();
+
                                     Toast.makeText(MainActivity.this, "Client Logged In", Toast.LENGTH_SHORT).show();
                                     Intent intent=new Intent(MainActivity.this,client_activity.class);
                                     startActivity(intent);
@@ -132,6 +153,10 @@ public class MainActivity extends AppCompatActivity {
 
                                 if (ePassword.equals(getPassword)) {
                                     Toast.makeText(MainActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
+                                    //shared preferences
+                                    editor.putString("username",eUser);
+                                    editor.putString("password",ePassword);
+                                    editor.commit();
 
                                     progressBar.setVisibility(View.GONE);
                                     Intent intent=new Intent(MainActivity.this,retailer_activity.class);

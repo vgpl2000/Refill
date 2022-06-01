@@ -1,10 +1,13 @@
 package com.example.projectrefill;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +32,8 @@ public class SettingsFragment extends Fragment {
 
     Button logout;
     ImageView client_profile;
-
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
 
     // TODO: Rename and change types of parameters
@@ -85,24 +89,50 @@ public class SettingsFragment extends Fragment {
         View v= inflater.inflate(R.layout.fragment_settings, container, false);
 
 
+        //Disable back button for this fragment
+        v.setFocusableInTouchMode(true);
+        v.requestFocus();
+        v.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                return true;
+            }
+                }
+                return false;
+            }
+        });
+
+
+
+
         //To click and change Profile Image
         
-        client_profile=v.findViewById(R.id.client_profile);
+        client_profile=v.findViewById(R.id.retailer_profile);
         client_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Profile Image goes here...", Toast.LENGTH_SHORT).show();
             }
         });
-        
-        
+        //Shared preferences
+        preferences=this.getActivity().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        editor=preferences.edit();
+
         //To logout from client
+
 
         logout=v.findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Toast.makeText(getActivity(), "Logging Out...", Toast.LENGTH_SHORT).show();
+
+                editor.clear();
+                editor.commit();
+
                 Intent intent=new Intent(getActivity(),MainActivity.class);
                 startActivity(intent);
             }

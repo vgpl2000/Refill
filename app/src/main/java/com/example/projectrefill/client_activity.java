@@ -48,4 +48,5 @@ ActivityClientBinding binding;
         fragmentTransaction.replace(R.id.framel,fragment);
         fragmentTransaction.commit();
     }
+
 }
