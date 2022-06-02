@@ -58,6 +58,8 @@ public class HomeFragment extends Fragment {
         View v= inflater.inflate(R.layout.fragment_home, container, false);
 //recycler added
         //just for github purpose
+        //just for github purpose2
+
         recyclerView1=(RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
 
