@@ -8,7 +8,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +40,7 @@ public class Settings_Retailer_Fragment extends Fragment {
     SharedPreferences.Editor editor;
     TextView retailer_name;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = database.getInstance().getReference();
 
 
 
@@ -103,9 +103,28 @@ public class Settings_Retailer_Fragment extends Fragment {
             }
         });*/
 
+
+
+
         //setting retailer name form database
 
-        retailer_name=v.findViewById(R.id.textView6);
+        retailer_name=v.findViewById(R.id.txtrname);
+        databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String name = preferences.getString("username", "");
+                if(snapshot.hasChild(name)){
+                    retailer_name.setText(name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(), "Error in setting name of retailer", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
 
