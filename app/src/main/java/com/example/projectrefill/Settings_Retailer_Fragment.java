@@ -115,7 +115,8 @@ public class Settings_Retailer_Fragment extends Fragment {
 
                 String name = preferences.getString("username", "");
                 if(snapshot.hasChild(name)){
-                    retailer_name.setText(name);
+                    final String r_name=snapshot.child(name).child("name").getValue(String.class);
+                    retailer_name.setText(r_name);
                 }
             }
 
