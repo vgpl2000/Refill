@@ -80,7 +80,6 @@ public class SettingsFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -89,7 +88,8 @@ public class SettingsFragment extends Fragment {
 
 
         //Disable back button for this fragment
-        /*v.setFocusableInTouchMode(true);
+        /*
+        v.setFocusableInTouchMode(true);
         v.requestFocus();
         v.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -106,7 +106,7 @@ public class SettingsFragment extends Fragment {
 
 
 
-        //To click and change Profile Image
+        //To click and change Profile Image write code here
         
         client_profile=v.findViewById(R.id.retailer_profile);
         client_profile.setOnClickListener(new View.OnClickListener() {

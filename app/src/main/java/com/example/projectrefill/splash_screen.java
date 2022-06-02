@@ -13,7 +13,16 @@ import android.widget.TextView;
 
 public class splash_screen extends AppCompatActivity {
     TextView title_text,textView2;
-ImageView imageView,imageView2;
+    ImageView imageView,imageView2;
+
+    @Override
+    public void onBackPressed() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
