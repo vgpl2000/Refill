@@ -33,7 +33,6 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                     public void onClick(View view) {
                         AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
                         appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new Checkordersbtn_client_Fragment(model.getName())).addToBackStack(null).commit();
-
                     }
                 });
             }
