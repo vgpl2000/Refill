@@ -61,6 +61,7 @@ public class HomeFragment extends Fragment {
         //just for github purpose2
         //just for github purpose3
         //just for github purpose4
+        //just for github purpose5
 
         recyclerView1=(RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
