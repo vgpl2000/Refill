@@ -1,9 +1,12 @@
 package com.example.projectrefill;
 
+import android.graphics.ColorSpace;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,8 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<client_model_home_orders,adapter_clientside_order_list.myviewholder>
+import java.util.ArrayList;
+
+public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<client_model_home_orders,adapter_clientside_order_list.myviewholder> implements Filterable
         {
+
             public adapter_clientside_order_list(@NonNull FirebaseRecyclerOptions<client_model_home_orders> options) {
                 super(options);
             }
@@ -37,6 +43,11 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row_order_clientside_homepage,parent,false);
                return new myviewholder(view);
+            }
+
+            @Override
+            public Filter getFilter() {
+                return null;
             }
 
             public class myviewholder extends RecyclerView.ViewHolder

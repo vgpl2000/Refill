@@ -12,9 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomeFragment extends Fragment {
@@ -28,6 +32,8 @@ public class HomeFragment extends Fragment {
     private String mParam2;
     RecyclerView recyclerView1;
     adapter_clientside_order_list adapter;
+    SearchView searchView;
+
     public HomeFragment() {
 
     }
@@ -56,6 +62,13 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_home, container, false);
+
+
+
+
+
+
+
 //recycler added
         //just for github purpose
         //just for github purpose2
@@ -93,6 +106,10 @@ public class HomeFragment extends Fragment {
 
         return v;
     }
+
+
+
+
     @Override
     public void onStart() {
         super.onStart();
