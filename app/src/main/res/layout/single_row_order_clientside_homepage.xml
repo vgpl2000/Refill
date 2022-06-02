@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cdview"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:elevation="8dp"
+    app:cardUseCompatPadding="true">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/retailer_name"
+        android:text="Name Comes here"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="25dp"
+        />
+
+    <LinearLayout
+        android:layout_below="@+id/retailer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <Button
+            android:id="@+id/btn_checkorders"
+            android:layout_width="109dp"
+            android:layout_height="36dp"
+            android:background="@drawable/background_button2"
+            android:text="Check Orders"
+            android:textAllCaps="false"
+            android:textSize="15dp" />
+        <View
+            android:layout_width="4dp"
+            android:layout_height="1dp"/>
+
+        <Button
+            android:id="@+id/btn_checkorders1"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:drawableLeft="@drawable/ic_baseline_check_24"
+            android:background="@drawable/background_button2"
+           android:paddingRight="8dp"
+            android:text="Accept"
+            android:textAllCaps="false"
+            android:textSize="15dp" />
+        <View
+            android:layout_width="4dp"
+            android:layout_height="1dp"/>
+
+        <Button
+            android:id="@+id/btn_checkorders2"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:background="@drawable/backgroun_button3"
+            android:text="Cancel"
+            android:drawableLeft="@drawable/ic_baseline_close_24"
+            android:paddingRight="8dp"
+            android:textAllCaps="false"
+            android:textSize="15dp" />
+        <View
+            android:layout_width="4dp"
+            android:layout_height="1dp"/>
+
+        <Button
+            android:id="@+id/btn_checkorders3"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:background="@drawable/background_button4"
+            android:text="Delivered"
+            android:paddingRight="4dp"
+            android:drawableLeft="@drawable/ic_baseline_close_24"
+            android:textAllCaps="false"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+</androidx.cardview.widget.CardView>

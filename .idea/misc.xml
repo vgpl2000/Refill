@@ -5,11 +5,11 @@
       <map>
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/activity_main.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
-        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_retailer.xml" value="0.209375" />
-        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings.xml" value="0.209375" />
-        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings__retailer_.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/welcome_page.xml" value="0.14" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/backgroun_button3.xml" value="0.237" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/background_button.xml" value="0.2985" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/background_button2.xml" value="0.237" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/background_button4.xml" value="0.237" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/background_search_bar.xml" value="0.187" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/entry_fields.xml" value="0.187" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/activity_client.xml" value="0.36666666666666664" />
@@ -20,6 +20,8 @@
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_item.xml" value="0.36666666666666664" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_retailer.xml" value="0.36666666666666664" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_settings.xml" value="0.36666666666666664" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_settings__retailer_.xml" value="0.36666666666666664" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/single_row_order_clientside_homepage.xml" value="0.365625" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
       </map>
     </option>

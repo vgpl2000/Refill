@@ -43,8 +43,9 @@ dependencies {
     // FirebaseUI for Firebase Realtime Database
     implementation 'com.firebaseui:firebase-ui-database:8.0.1'
 
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation platform('com.google.firebase:firebase-bom:30.1.0')
-
+implementation 'androidx.cardview:cardview:1.0.0'
     // FirebaseUI for Cloud Firestore
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.1'
     implementation 'com.google.firebase:firebase-database:20.0.5'
