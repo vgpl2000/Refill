@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -21,6 +22,14 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             @Override
             protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull client_model_home_orders model) {
                 holder.textView.setText(model.getName());
+                holder.btnchk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
+                        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new Checkordersbtn_client_Fragment(model.getName())).addToBackStack(null).commit();
+
+                    }
+                });
             }
 
             @NonNull
