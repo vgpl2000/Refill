@@ -132,10 +132,10 @@ public class SettingsFragment extends Fragment {
                 
                 editor.clear();
                 editor.commit();
-                Button logout=v.findViewById(R.id.logout);
 
 
                 Intent intent=new Intent(getActivity(),splash_screen.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
             }

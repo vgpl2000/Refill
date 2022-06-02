@@ -51,6 +51,7 @@ ActivityClientBinding binding;
         fragmentTransaction.commit();
     }
 
+
 /*Button logout=findViewById(R.id.logout);
 
     public void setLogout(Button logout) {
