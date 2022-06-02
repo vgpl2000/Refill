@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.LinearLayout;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -26,7 +27,7 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     RecyclerView recyclerView1;
-
+    adapter_clientside_order_list adapter;
     public HomeFragment() {
 
     }
@@ -61,16 +62,10 @@ public class HomeFragment extends Fragment {
 
         FirebaseRecyclerOptions<client_model_home_orders> options =
                 new FirebaseRecyclerOptions.Builder<client_model_home_orders>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client"), client_model_home_orders.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders"), client_model_home_orders.class)
                         .build();
-
-
-
-
-
-
-
-
+        adapter=new adapter_clientside_order_list(options);
+        recyclerView1.setAdapter(adapter);
 
 
 
@@ -91,5 +86,16 @@ public class HomeFragment extends Fragment {
 
 
         return v;
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }

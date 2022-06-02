@@ -4,23 +4,21 @@
     android:layout_height="wrap_content"
     android:id="@+id/cdview"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp"
-    android:elevation="8dp"
     app:cardUseCompatPadding="true">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="15dp"
     >
+
     <TextView
+        android:id="@+id/retailer_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/retailer_name"
+        android:fontFamily="@font/poppins_medium"
         android:text="Name Comes here"
         android:textColor="@color/white"
-        android:fontFamily="@font/poppins_medium"
-        android:textSize="25dp"
-        />
+        android:textSize="25dp" />
 
     <LinearLayout
         android:layout_below="@+id/retailer_name"
@@ -37,11 +35,11 @@
             android:textAllCaps="false"
             android:textSize="15dp" />
         <View
-            android:layout_width="4dp"
+            android:layout_width="8dp"
             android:layout_height="1dp"/>
 
         <Button
-            android:id="@+id/btn_checkorders1"
+            android:id="@+id/btn_accept"
             android:layout_width="80dp"
             android:layout_height="36dp"
             android:drawableLeft="@drawable/ic_baseline_check_24"
@@ -51,11 +49,11 @@
             android:textAllCaps="false"
             android:textSize="15dp" />
         <View
-            android:layout_width="4dp"
+            android:layout_width="8dp"
             android:layout_height="1dp"/>
 
         <Button
-            android:id="@+id/btn_checkorders2"
+            android:id="@+id/btn_cancl"
             android:layout_width="80dp"
             android:layout_height="36dp"
             android:background="@drawable/backgroun_button3"
@@ -65,11 +63,11 @@
             android:textAllCaps="false"
             android:textSize="15dp" />
         <View
-            android:layout_width="4dp"
+            android:layout_width="8dp"
             android:layout_height="1dp"/>
 
         <Button
-            android:id="@+id/btn_checkorders3"
+            android:id="@+id/btn_deli"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:background="@drawable/background_button4"
