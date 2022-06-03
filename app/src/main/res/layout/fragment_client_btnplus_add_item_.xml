@@ -11,18 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageViewItem"
-            android:layout_width="139dp"
-            android:layout_height="133dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.104"
-            tools:src="@tools:sample/backgrounds/scenic" />
-
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/item_name"
@@ -112,6 +100,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item_quan"
             app:layout_constraintVertical_bias="0.377" />
+
+        <ImageView
+            android:id="@+id/imageViewfritem"
+            android:layout_width="226dp"
+            android:layout_height="159dp"
+            android:src="@drawable/ic_baseline_add_a_photo_24"
+            app:layout_constraintBottom_toTopOf="@+id/item_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
