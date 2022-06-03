@@ -65,7 +65,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
         recyclerView2.setLayoutManager(new LinearLayoutManager(getContext()));
 
         String rtname=textView.getText().toString();
-
+        System.out.println("Value of rtname: "+rtname);
 
 
 

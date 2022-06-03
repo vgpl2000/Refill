@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/cdview2"
@@ -76,14 +77,17 @@
             <View
                 android:layout_width="5dp"
                 android:layout_height="1dp"/>
+
             <TextView
+                android:id="@+id/quanvaluehere"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="number"
                 android:text="value here"
-                android:id="@+id/quanvaluehere"
                 android:textColor="#FFEB3B"
                 android:textSize="15dp"
-                android:fontFamily="@font/poppins_medium"/>
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
     </LinearLayout>

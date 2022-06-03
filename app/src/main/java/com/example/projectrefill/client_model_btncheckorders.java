@@ -1,13 +1,14 @@
 package com.example.projectrefill;
 
 public class client_model_btncheckorders {
-    String date,nm,quan;
+    String date,nm;
+    Integer quan;
 
     public client_model_btncheckorders() {
 
     }
 
-    public client_model_btncheckorders(String date, String nm, String quan) {
+    public client_model_btncheckorders(String date, String nm, Integer quan) {
         this.date = date;
         this.nm = nm;
         this.quan = quan;
@@ -29,11 +30,11 @@ public class client_model_btncheckorders {
         this.nm = nm;
     }
 
-    public String getQuan() {
+    public Integer getQuan() {
         return quan;
     }
 
-    public void setQuan(String quan) {
+    public void setQuan(Integer quan) {
         this.quan = quan;
     }
 }
