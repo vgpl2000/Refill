@@ -2,12 +2,14 @@ package com.example.projectrefill;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +26,8 @@ public class ItemFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    Button btn_add_items;
 
     public ItemFragment() {
         // Required empty public constructor
@@ -76,6 +80,17 @@ public class ItemFragment extends Fragment {
             }
         });*/
 
+
+        btn_add_items=v.findViewById(R.id.btn_add_item_client);
+
+        /*btn_add_items.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper4,
+                        new client_btnplus_add_item_Fragment()).addToBackStack(null).commit();
+            }
+        });*/
 
         return  v;
     }
