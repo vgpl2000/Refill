@@ -67,6 +67,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
         textView.setText(name);
         recyclerView2=(RecyclerView) view.findViewById(R.id.recyclerView2);
         recyclerView2.setLayoutManager(new LinearLayoutManager(getContext()));
+        //for venu
 
 
 
