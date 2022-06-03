@@ -2,35 +2,36 @@ package com.example.projectrefill;
 
 public class dataholder_add_item {
 
-    String price,quan,weight;
 
-    public dataholder_add_item(String price, String quan, String weight) {
+    Integer price,quan,weight;
+
+    public dataholder_add_item(Integer price, Integer quan, Integer weight) {
         this.price = price;
         this.quan = quan;
         this.weight = weight;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public String getQuan() {
+    public Integer getQuan() {
         return quan;
     }
 
-    public void setQuan(String quan) {
+    public void setQuan(Integer quan) {
         this.quan = quan;
     }
 
-    public String getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
 }

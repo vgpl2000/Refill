@@ -12,16 +12,16 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/imageViewItem"
+            android:layout_width="139dp"
+            android:layout_height="133dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.104"
-            tools:src="@tools:sample/avatars" />
+            tools:src="@tools:sample/backgrounds/scenic" />
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -49,6 +49,7 @@
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:hint="Enter Item Price"
+            android:inputType="number"
             android:paddingLeft="8dp"
             android:paddingRight="10dp"
             app:layout_constraintBottom_toTopOf="@+id/item_weight"
@@ -66,6 +67,7 @@
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:hint="Enter Item Quantity"
+            android:inputType="number"
             android:paddingLeft="8dp"
             android:paddingRight="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -83,6 +85,7 @@
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:hint="Enter Item Weight"
+            android:inputType="number"
             android:paddingLeft="8dp"
             android:paddingRight="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -106,8 +109,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.871" />
+            app:layout_constraintTop_toBottomOf="@+id/item_quan"
+            app:layout_constraintVertical_bias="0.377" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
