@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/cdview"
@@ -33,7 +34,8 @@
             android:background="@drawable/background_button2"
             android:text="Check Orders"
             android:textAllCaps="false"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            tools:ignore="TouchTargetSizeCheck" />
         <View
             android:layout_width="8dp"
             android:layout_height="1dp"/>
@@ -42,12 +44,13 @@
             android:id="@+id/btn_accept"
             android:layout_width="80dp"
             android:layout_height="36dp"
-            android:drawableLeft="@drawable/ic_baseline_check_24"
             android:background="@drawable/background_button2"
-           android:paddingRight="8dp"
+            android:drawableLeft="@drawable/ic_baseline_check_24"
+            android:paddingRight="8dp"
             android:text="Accept"
             android:textAllCaps="false"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            tools:ignore="TouchTargetSizeCheck" />
         <View
             android:layout_width="8dp"
             android:layout_height="1dp"/>
@@ -57,11 +60,12 @@
             android:layout_width="80dp"
             android:layout_height="36dp"
             android:background="@drawable/backgroun_button3"
-            android:text="Cancel"
             android:drawableLeft="@drawable/ic_baseline_close_24"
             android:paddingRight="8dp"
+            android:text="Cancel"
             android:textAllCaps="false"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            tools:ignore="TouchTargetSizeCheck" />
         <View
             android:layout_width="8dp"
             android:layout_height="1dp"/>
@@ -71,11 +75,12 @@
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:background="@drawable/background_button4"
-            android:text="Delivered"
-            android:paddingRight="4dp"
             android:drawableLeft="@drawable/ic_baseline_close_24"
+            android:paddingRight="4dp"
+            android:text="Delivered"
             android:textAllCaps="false"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>
 
