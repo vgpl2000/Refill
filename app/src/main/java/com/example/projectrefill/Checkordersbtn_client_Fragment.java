@@ -2,6 +2,7 @@ package com.example.projectrefill;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,8 +14,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Checkordersbtn_client_Fragment extends Fragment {
 
@@ -64,22 +68,33 @@ public class Checkordersbtn_client_Fragment extends Fragment {
         recyclerView2=(RecyclerView) view.findViewById(R.id.recyclerView2);
         recyclerView2.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        String rtname=textView.getText().toString();
 
 
+        final DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Client");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snapshot1:snapshot.child("c_orders").getChildren()){
+                    final String rt=snapshot1.getKey().toString();
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        String pname=databaseReference.child("Client").child("c_orders").child(rtname).getParent().getKey();
+            }
+        });
 
         FirebaseRecyclerOptions<client_model_btncheckorders> options2 =
                 new FirebaseRecyclerOptions.Builder<client_model_btncheckorders>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders").child("amritha_stores").child("check_orders"), client_model_btncheckorders.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders").child(rt).child("check_orders"), client_model_btncheckorders.class)
                         .build();
         adapter2=new adapter_clientside_checkbtn(options2);
         recyclerView2.setAdapter(adapter2);
 
 
         return view;
+
     }
     @Override
     public void onStart() {
