@@ -80,7 +80,7 @@ public class ItemFragment extends Fragment {
             }
         });*/
 
-
+        //findviewbyid
         btn_add_items=v.findViewById(R.id.btn_add_item_client);
 
         /*btn_add_items.setOnClickListener(new View.OnClickListener() {
