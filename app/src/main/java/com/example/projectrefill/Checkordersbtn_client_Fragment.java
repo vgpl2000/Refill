@@ -20,8 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
-
 public class Checkordersbtn_client_Fragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -73,26 +71,12 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
 
 
-
-
         final DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Client");
         reference.addValueEventListener(new ValueEventListener() {
-
             @Override
-
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snapshot1:snapshot.child("c_orders").getChildren()){
-
-
-                    String st=snapshot1.getKey().toString();
-
-
-                System.out.println("Value of RT: "+st);
-
-               /* st.append(rt).append("\n");
-                    String str1=st.toString();
-                    String[] str2=str1.split("\n");
-                    System.out.println("Value :   "+str2);*/
+                    final String rt=snapshot1.getKey().toString();
                 }
             }
 
@@ -102,14 +86,12 @@ public class Checkordersbtn_client_Fragment extends Fragment {
             }
         });
 
-
-            FirebaseRecyclerOptions<client_model_btncheckorders> options2 =
-                    new FirebaseRecyclerOptions.Builder<client_model_btncheckorders>()
-                            .setQuery(FirebaseDatabase.getInstance().getReference().child("c_orders").child("check_orders"), client_model_btncheckorders.class)
-                            .build();
-            adapter2 = new adapter_clientside_checkbtn(options2);
-            recyclerView2.setAdapter(adapter2);
-
+        FirebaseRecyclerOptions<client_model_btncheckorders> options2 =
+                new FirebaseRecyclerOptions.Builder<client_model_btncheckorders>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders").child("check_orders"), client_model_btncheckorders.class)
+                        .build();
+        adapter2=new adapter_clientside_checkbtn(options2);
+        recyclerView2.setAdapter(adapter2);
 
 
         return view;
