@@ -5,11 +5,15 @@ public class dataholder_add_item {
 
     Integer price,quan,weight;
 
+
     public dataholder_add_item(Integer price, Integer quan, Integer weight) {
         this.price = price;
         this.quan = quan;
         this.weight = weight;
+
     }
+
+
 
     public Integer getPrice() {
         return price;

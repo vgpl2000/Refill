@@ -2,6 +2,7 @@ package com.example.projectrefill;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.ColorSpace;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +32,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 import javax.xml.transform.Result;
@@ -46,8 +50,10 @@ public class client_btnplus_add_item_Fragment extends Fragment {
     TextInputEditText i_price;
     TextInputEditText i_weight;
     TextInputEditText i_quan;
+    TextInputEditText ii_name;
     FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
     Uri imageuri;
+
 
 
 
@@ -105,6 +111,8 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                 Integer str_iweight =Integer.parseInt(i_weight.getText().toString());
 
 
+
+
                 dataholder_add_item obj=new dataholder_add_item(str_iprice,str_iquan,str_iweight);
                 FirebaseDatabase db=FirebaseDatabase.getInstance();
                 DatabaseReference node=db.getReference("Client").child("c_items");
@@ -122,9 +130,6 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
             }
         });
-
-
-
 
 
 
@@ -148,10 +153,35 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                     if(task.isSuccessful()){
                         dialog.dismiss();
                         Toast.makeText(getActivity(), "Image added successfully", Toast.LENGTH_SHORT).show();
+
+
+
                     }else{
                         dialog.dismiss();
                         Toast.makeText(getActivity(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
+                }
+
+            });
+            reference.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+
+                            DatabaseReference imagestore=FirebaseDatabase.getInstance().getReference("Child").child("c_items").child(String.valueOf(i_name));
+                            HashMap<String,String>hashMap=new HashMap<>();
+                            hashMap.put("imageurl",String.valueOf(uri));
+
+                            imagestore.setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(getActivity(), "Uploaded to Firebase Database...", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
                 }
             });
         }
