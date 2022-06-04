@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/settings_retailer"
     android:layout_height="match_parent"
     android:background="#000000"
     tools:context=".Settings_Retailer_Fragment">
@@ -10,6 +11,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="103dp"
+            android:layout_height="51dp"
+            android:background="@drawable/background_button"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Log Out"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.361" />
 
         <ImageView
             android:id="@+id/retailer_profile"
@@ -22,13 +38,26 @@
             android:soundEffectsEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.14"
+            app:layout_constraintVertical_bias="0.098"
             app:srcCompat="@drawable/ic_baseline_person_outline_24"
             tools:ignore="SpeakableTextPresentCheck"
             tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/txtchngpassword_r"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Change Password"
+            android:textSize="18dp"
+            android:textColor="#FFF3D200"
+            app:layout_constraintBottom_toTopOf="@+id/btn_accepted"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logout" />
 
         <TextView
             android:id="@+id/txtrname"
@@ -43,55 +72,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.318" />
-
-        <Button
-            android:id="@+id/logout"
-            android:layout_width="103dp"
-            android:layout_height="51dp"
-            android:background="@drawable/background_button"
-            android:fontFamily="@font/poppins_medium"
-            android:onClick="logout"
-            android:text="Log Out"
-            android:textColor="#000000"
-            android:textSize="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.4" />
-
-        <Button
-            android:id="@+id/btn_accepted"
-            android:layout_width="245dp"
-            android:layout_height="75dp"
-            android:background="@drawable/entry_fields"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Accepted Orders"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.533" />
-
-        <Button
-            android:id="@+id/btn_cancelled"
-            android:layout_width="245dp"
-            android:layout_height="75dp"
-            android:background="@drawable/entry_fields"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Cancelled Orders"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.681" />
+            app:layout_constraintVertical_bias="0.281" />
 
         <Button
             android:id="@+id/btn_delivered"
@@ -107,7 +88,39 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.83" />
+            app:layout_constraintVertical_bias="0.875" />
+
+        <Button
+            android:id="@+id/btn_cancelled"
+            android:layout_width="245dp"
+            android:layout_height="75dp"
+            android:background="@drawable/entry_fields"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Cancelled Orders"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.725" />
+
+        <Button
+            android:id="@+id/btn_accepted"
+            android:layout_width="245dp"
+            android:layout_height="75dp"
+            android:background="@drawable/entry_fields"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Accepted Orders"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.577" />
 
         <TextView
             android:id="@+id/version"
@@ -117,10 +130,9 @@
             android:text="Refill-Version 1.0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.917" />
+            app:layout_constraintVertical_bias="0.958" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

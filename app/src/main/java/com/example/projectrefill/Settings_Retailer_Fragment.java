@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,7 @@ public class Settings_Retailer_Fragment extends Fragment {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     TextView retailer_name;
+    TextView txtchngpassword_r;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getInstance().getReference();
 
@@ -145,6 +147,7 @@ public class Settings_Retailer_Fragment extends Fragment {
 
         //To logout from retailer
 
+        txtchngpassword_r=v.findViewById(R.id.txtchngpassword_r);
 
         logout=v.findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -159,6 +162,18 @@ public class Settings_Retailer_Fragment extends Fragment {
                 Intent intent=new Intent(getActivity(),splash_screen.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+            }
+        });
+
+
+        txtchngpassword_r.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.settings_retailer,new change_pswrd_retailer_Fragment());
+                fr.commit();
+
             }
         });
 

@@ -1,5 +1,8 @@
 package com.example.projectrefill;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,20 +25,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class change_pswrd_Fragment extends SettingsFragment {
+public class change_pswrd_retailer_Fragment extends Settings_Retailer_Fragment {
 
     EditText txt_c_psswd;
     EditText txt_n_passwd;
     Button btn_chng_passwd;
-    ImageView btn_close;
+    ImageView btn_close_r;
     String c_passwrd,n_passwrd;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getInstance().getReference();
-
-
-
-
 
 
     @Override
@@ -43,21 +44,24 @@ public class change_pswrd_Fragment extends SettingsFragment {
                              Bundle savedInstanceState) {
 
 
-        View v= inflater.inflate(R.layout.fragment_change_pswrd_, container, false);
+        View v= inflater.inflate(R.layout.fragment_change_pswrd_retailer_, container, false);
 
-        txt_c_psswd=v.findViewById(R.id.txt_c_passwrd);
-        txt_n_passwd=v.findViewById(R.id.txt_n_passwrd);
-        btn_chng_passwd=v.findViewById(R.id.btn_chng_passwrd);
-        btn_close=v.findViewById(R.id.btn_close_chng);
+        preferences=getActivity().getSharedPreferences("MyPreferences",MODE_PRIVATE);
+        editor=preferences.edit();
+
+        txt_c_psswd=v.findViewById(R.id.txt_c_passwrd_r);
+        txt_n_passwd=v.findViewById(R.id.txt_n_passwrd_r);
+        btn_chng_passwd=v.findViewById(R.id.btn_chng_passwrd_r);
+        btn_close_r=v.findViewById(R.id.btn_close_chng_r);
 
         //Close button
-        btn_close.setOnClickListener(new View.OnClickListener() {
+        btn_close_r.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.chng_passwd,new Settings_Retailer_Fragment());
+                fr.replace(R.id.chng_passwd_r,new Settings_Retailer_Fragment());
                 fr.commit();
-                
+
             }
         });
 
@@ -76,24 +80,26 @@ public class change_pswrd_Fragment extends SettingsFragment {
                     txt_n_passwd.setError("Enter credentials!");
                 } else {
 
+                    String name = preferences.getString("username", "");
+
                     //checking
-                    databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
+                    databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            String d_c_passwd = snapshot.child("akashadeepa").child("password").getValue(String.class);
+                            String d_c_passwd = snapshot.child(name).child("password").getValue(String.class);
 
                             if (c_passwrd.equals(d_c_passwd)) {
-                                databaseReference.child("Client").child("akashadeepa").child("password").setValue(n_passwrd);
+                                databaseReference.child("Retailer").child(name).child("password").setValue(n_passwrd);
 
                                 Toast.makeText(getActivity(), "Password Updated!", Toast.LENGTH_SHORT).show();
-                                
+
                                 txt_c_psswd.setText("");
                                 txt_n_passwd.setText("");
 
 
 
                                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                                fr.replace(R.id.chng_passwd,new SettingsFragment());
+                                fr.replace(R.id.chng_passwd_r,new Settings_Retailer_Fragment());
                                 fr.commit();
 
                             } else {

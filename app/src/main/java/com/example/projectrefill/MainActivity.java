@@ -69,10 +69,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Check user already logged in or not
+                String u_name=preferences.getString("username","").toString();
 
-                if (preferences.contains("username")) {
-                    //Toast.makeText(this, "Preference checking...", Toast.LENGTH_LONG).show();
+                if(preferences.contains(String.valueOf("username".equals("akashadeepa")))){
                     Intent intent = new Intent(MainActivity.this, client_activity.class);
+                    startActivity(intent);
+                }
+                else if (preferences.contains("username")) {
+                    //Toast.makeText(this, "Preference checking...", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this, retailer_activity.class);
                     startActivity(intent);
                 }
 
@@ -109,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
                     txtPassword.setError("Password cannot be empty");
 
                 }else if(eUser.equals("akashadeepa")){
+                    editor.clear();
+                    editor.commit();
                     progressBar.setVisibility(View.VISIBLE);
                     databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -153,6 +160,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                 } else {
+                    editor.clear();
+                    editor.commit();
+
                     progressBar.setVisibility(View.VISIBLE);
 
                     databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
