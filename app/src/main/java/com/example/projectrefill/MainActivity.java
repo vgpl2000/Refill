@@ -69,16 +69,19 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Check user already logged in or not
-                String u_name=preferences.getString("username","").toString();
 
-                if(preferences.contains(String.valueOf("username".equals("akashadeepa")))){
-                    Intent intent = new Intent(MainActivity.this, client_activity.class);
-                    startActivity(intent);
-                }
-                else if (preferences.contains("username")) {
+
+                if (preferences.contains("username")) {
                     //Toast.makeText(this, "Preference checking...", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(MainActivity.this, retailer_activity.class);
-                    startActivity(intent);
+                    String resText=preferences.getString("username",null);
+                    System.out.println("text from preferences: "+resText);
+                    if(resText.equals("akashadeepa")) {
+                        Intent intent = new Intent(MainActivity.this, client_activity.class);
+                        startActivity(intent);
+                    }else {
+                        Intent intent = new Intent(MainActivity.this, retailer_activity.class);
+                        startActivity(intent);
+                    }
                 }
 
 
