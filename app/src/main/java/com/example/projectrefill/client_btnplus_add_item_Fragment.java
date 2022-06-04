@@ -1,8 +1,15 @@
 package com.example.projectrefill;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -13,11 +20,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.util.UUID;
+
+import javax.xml.transform.Result;
 
 
 public class client_btnplus_add_item_Fragment extends Fragment {
@@ -32,6 +46,8 @@ public class client_btnplus_add_item_Fragment extends Fragment {
     TextInputEditText i_price;
     TextInputEditText i_weight;
     TextInputEditText i_quan;
+    FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
+    Uri imageuri;
 
 
 
@@ -55,7 +71,7 @@ public class client_btnplus_add_item_Fragment extends Fragment {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                mgetcontent.launch("image/*");
 
                 Toast.makeText(getActivity(), "Image comes here", Toast.LENGTH_SHORT).show();
             }
@@ -97,6 +113,8 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
                 Toast.makeText(getActivity(), "Added data", Toast.LENGTH_SHORT).show();
 
+                uploadImage();
+
                 i_name.setText("");
                 i_price.setText("");
                 i_quan.setText("");
@@ -113,4 +131,42 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
         return v;
     }
+
+    private void uploadImage() {
+
+        ProgressDialog dialog=new ProgressDialog(getActivity());
+        dialog.setMessage("Uploading...");
+        dialog.show();
+
+
+        if(imageuri!=null){
+            StorageReference reference=firebaseStorage.getReference().child("images/"+ UUID.randomUUID().toString());
+
+            reference.putFile(imageuri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if(task.isSuccessful()){
+                        dialog.dismiss();
+                        Toast.makeText(getActivity(), "Image added successfully", Toast.LENGTH_SHORT).show();
+                    }else{
+                        dialog.dismiss();
+                        Toast.makeText(getActivity(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+
+    }
+
+    ActivityResultLauncher<String> mgetcontent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+        @Override
+        public void onActivityResult(Uri result) {
+            if(result!=null){
+                img.setImageURI(result);
+                imageuri=result;
+            }
+
+        }
+    });
 }
