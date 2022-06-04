@@ -79,7 +79,6 @@ public class client_btnplus_add_item_Fragment extends Fragment {
             public void onClick(View view) {
                 mgetcontent.launch("image/*");
 
-                Toast.makeText(getActivity(), "Image comes here", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -96,6 +95,8 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
 
 
+
+
                 String str_iname=i_name.getText().toString();
 
                 //String str_iprice=i_price.getText().toString();
@@ -109,6 +110,7 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                 //String str_iweight=i_weight.getText().toString();
 
                 Integer str_iweight =Integer.parseInt(i_weight.getText().toString());
+
 
 
 
@@ -172,7 +174,7 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                         @Override
                         public void onSuccess(Uri uri) {
                             String image_1=i_name.getText().toString();
-                            DatabaseReference imagestore=FirebaseDatabase.getInstance().getReference("Child").child("c_items").child(image_1);
+                            DatabaseReference imagestore=FirebaseDatabase.getInstance().getReference("Client").child("c_items").child(image_1);
                             HashMap<String,String>hashMap=new HashMap<>();
                             hashMap.put("imageurl",String.valueOf(uri));
                             Toast.makeText(getActivity(), "Uploaded to Firebase Database...", Toast.LENGTH_SHORT).show();

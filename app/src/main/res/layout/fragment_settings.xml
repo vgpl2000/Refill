@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
+    android:id="@+id/settings1"
     android:onClick="logout"
     tools:context=".SettingsFragment">
 
@@ -61,6 +62,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.4" />
 
+        <TextView
+            android:id="@+id/txtchngpassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Change Password"
+            android:textSize="18dp"
+            android:textColor="#FFF3D200"
+            app:layout_constraintBottom_toTopOf="@+id/btn_accepted"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logout" />
+
         <Button
             android:id="@+id/btn_accepted"
             android:layout_width="245dp"
@@ -75,23 +89,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.533" />
-
-        <Button
-            android:id="@+id/btn_cancelled"
-            android:layout_width="245dp"
-            android:layout_height="75dp"
-            android:background="@drawable/entry_fields"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Cancelled Orders"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.681" />
+            app:layout_constraintVertical_bias="0.585" />
 
         <Button
             android:id="@+id/btn_delivered"
@@ -107,7 +105,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.83" />
+            app:layout_constraintVertical_bias="0.882" />
 
         <TextView
             android:id="@+id/version"
@@ -117,9 +115,25 @@
             android:text="Refill-Version 1.0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.917" />
+            app:layout_constraintVertical_bias="0.966" />
+
+        <Button
+            android:id="@+id/btn_cancelled"
+            android:layout_width="245dp"
+            android:layout_height="75dp"
+            android:background="@drawable/entry_fields"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Cancelled Orders"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.733" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
