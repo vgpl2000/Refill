@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,8 +81,11 @@ public class change_pswrd_Fragment extends Fragment {
                                 txt_c_psswd.setText("");
                                 txt_n_passwd.setText("");
 
-                                AppCompatActivity appCompatActivity=(AppCompatActivity)getContext();
-                                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.chng_passwd,new SettingsFragment()).addToBackStack(null).commit();
+
+
+                                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                                fr.replace(R.id.chng_passwd,new SettingsFragment());
+                                fr.commit();
 
                             } else {
                                 txt_c_psswd.setError("Password is wrong!");
@@ -91,6 +95,8 @@ public class change_pswrd_Fragment extends Fragment {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
+
+                            Toast.makeText(getActivity(), "Error!", Toast.LENGTH_SHORT).show();
 
                         }
                     });
