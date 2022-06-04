@@ -36,6 +36,7 @@
                 android:background="@drawable/entry_fields"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
+                android:inputType="text"
                 android:hint="Enter Item Name"
                 android:paddingLeft="8dp"
                 android:paddingRight="10dp"

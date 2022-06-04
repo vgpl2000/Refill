@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public class client_btnplus_add_item_Fragment extends Fragment {
     TextInputEditText i_price;
     TextInputEditText i_weight;
     TextInputEditText i_quan;
-    TextInputEditText ii_name;
+
     FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
     Uri imageuri;
 
@@ -88,48 +89,58 @@ public class client_btnplus_add_item_Fragment extends Fragment {
             public void onClick(View view) {
 
 
-                i_name=v.findViewById(R.id.item_name);
-                i_price=v.findViewById(R.id.item_price);
-                i_quan=v.findViewById(R.id.item_quan);
-                i_weight=v.findViewById(R.id.item_weight);
+                i_name = v.findViewById(R.id.item_name);
+                i_price = v.findViewById(R.id.item_price);
+                i_quan = v.findViewById(R.id.item_quan);
+                i_weight = v.findViewById(R.id.item_weight);
 
 
-
-
-
-                String str_iname=i_name.getText().toString();
+                String str_iname = i_name.getText().toString();
 
                 //String str_iprice=i_price.getText().toString();
 
-                Integer str_iprice=Integer.parseInt(i_price.getText().toString());
+
+                Integer str_iprice = Integer.getInteger(i_price.getText().toString());
 
                 //String str_iquan=i_quan.getText().toString();
 
-                Integer str_iquan =Integer.parseInt(i_quan.getText().toString());
+                Integer str_iquan = Integer.getInteger(i_quan.getText().toString());
 
                 //String str_iweight=i_weight.getText().toString();
 
-                Integer str_iweight =Integer.parseInt(i_weight.getText().toString());
+                Integer str_iweight = Integer.getInteger(i_weight.getText().toString());
+                if(true){
+                    if (str_iname.isEmpty()) {
+                        i_name.setError("Cannot be empty!");
+                    }
+                    if (str_iprice == null) {
+                        i_price.setError("Cannot be empty!");
+                    }
+                    if (str_iquan == null) {
+                        i_quan.setError("Cannot be empty!");
+                    }
+                    if (str_iweight == null) {
+                        i_weight.setError("Cannot be empty!");
+                    }
+                } else {
 
 
+                    dataholder_add_item obj = new dataholder_add_item(str_iprice, str_iquan, str_iweight);
+                    FirebaseDatabase db = FirebaseDatabase.getInstance();
+                    DatabaseReference node = db.getReference("Client").child("c_items");
 
+                    node.child(str_iname).setValue(obj);
 
+                    Toast.makeText(getActivity(), "Added data", Toast.LENGTH_SHORT).show();
 
-                dataholder_add_item obj=new dataholder_add_item(str_iprice,str_iquan,str_iweight);
-                FirebaseDatabase db=FirebaseDatabase.getInstance();
-                DatabaseReference node=db.getReference("Client").child("c_items");
+                    uploadImage();
 
-                node.child(str_iname).setValue(obj);
+                    i_name.setText("");
+                    i_price.setText("");
+                    i_quan.setText("");
+                    i_weight.setText("");
 
-                Toast.makeText(getActivity(), "Added data", Toast.LENGTH_SHORT).show();
-
-                uploadImage();
-
-                i_name.setText("");
-                i_price.setText("");
-                i_quan.setText("");
-                i_weight.setText("");
-
+                }
             }
         });
 
