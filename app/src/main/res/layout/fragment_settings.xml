@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#000000"
     android:id="@+id/settings1"
-    android:onClick="logout"
     tools:context=".SettingsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -129,6 +128,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
             android:text="Refill-Version 1.0"
+            android:clickable="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
