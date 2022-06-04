@@ -152,6 +152,8 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     if(task.isSuccessful()){
                         dialog.dismiss();
+
+
                         Toast.makeText(getActivity(), "Image added successfully", Toast.LENGTH_SHORT).show();
 
 
@@ -173,11 +175,12 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                             DatabaseReference imagestore=FirebaseDatabase.getInstance().getReference("Child").child("c_items").child(image_1);
                             HashMap<String,String>hashMap=new HashMap<>();
                             hashMap.put("imageurl",String.valueOf(uri));
+                            Toast.makeText(getActivity(), "Uploaded to Firebase Database...", Toast.LENGTH_SHORT).show();
 
                             imagestore.setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
-                                    Toast.makeText(getActivity(), "Uploaded to Firebase Database...", Toast.LENGTH_SHORT).show();
+
                                 }
                             });
                         }
