@@ -169,8 +169,8 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                     reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-
-                            DatabaseReference imagestore=FirebaseDatabase.getInstance().getReference("Child").child("c_items").child(String.valueOf(i_name));
+                            String image_1=i_name.getText().toString();
+                            DatabaseReference imagestore=FirebaseDatabase.getInstance().getReference("Child").child("c_items").child(image_1);
                             HashMap<String,String>hashMap=new HashMap<>();
                             hashMap.put("imageurl",String.valueOf(uri));
 
