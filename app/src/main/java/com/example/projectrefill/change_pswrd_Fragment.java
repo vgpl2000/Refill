@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,14 +27,11 @@ public class change_pswrd_Fragment extends Fragment {
     EditText txt_c_psswd;
     EditText txt_n_passwd;
     Button btn_chng_passwd;
+    ImageView btn_close;
     String c_passwrd,n_passwrd;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getInstance().getReference();
-
-    public change_pswrd_Fragment() {
-        // Required empty public constructor
-    }
 
 
 
@@ -50,7 +48,18 @@ public class change_pswrd_Fragment extends Fragment {
         txt_c_psswd=v.findViewById(R.id.txt_c_passwrd);
         txt_n_passwd=v.findViewById(R.id.txt_n_passwrd);
         btn_chng_passwd=v.findViewById(R.id.btn_chng_passwrd);
+        btn_close=v.findViewById(R.id.btn_close_chng);
 
+        //Close button
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.chng_passwd,new SettingsFragment());
+                fr.commit();
+                
+            }
+        });
 
 
 

@@ -10,29 +10,43 @@
     tools:context=".change_pswrd_Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="369dp"
         android:layout_height="461dp"
-        android:background="@drawable/entry_fields"
         android:layout_gravity="center"
+        android:background="@drawable/entry_fields"
         android:padding="15dp">
 
 
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="43dp"
+            android:foregroundGravity="center"
+            android:id="@+id/btn_close_chng"
+            android:clickable="true"
+            android:src="@drawable/yellow_baseline_close_24"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
         <TextView
             android:id="@+id/textView6"
-            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center_horizontal"
+            android:padding="10dp"
             android:text="Change Password"
             android:textColor="#FFF3D200"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.551"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.232" />
+            app:layout_constraintVertical_bias="0.085" />
 
         <EditText
             android:id="@+id/txt_c_passwrd"
@@ -84,10 +98,10 @@
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_n_passwrd"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.465" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
