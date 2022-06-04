@@ -4,19 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/chng_passwd"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/entry_fields"
+    android:layout_height="match_parent"
+    android:background="@color/transperant_black"
     android:layout_gravity="center"
     tools:context=".change_pswrd_Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="461dp"
+        android:background="@drawable/entry_fields"
+        android:layout_gravity="center"
         android:padding="15dp">
 
 
         <TextView
             android:id="@+id/textView6"
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"

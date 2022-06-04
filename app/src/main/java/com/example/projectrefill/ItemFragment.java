@@ -34,8 +34,6 @@ public class ItemFragment extends Fragment {
             public void onClick(View view) {
 
 
-
-
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
                 fr.replace(R.id.wrapper4,new client_btnplus_add_item_Fragment());
                 fr.commit();

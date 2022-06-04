@@ -92,6 +92,22 @@
             app:layout_constraintVertical_bias="0.585" />
 
         <Button
+            android:id="@+id/btn_cancelled"
+            android:layout_width="245dp"
+            android:layout_height="75dp"
+            android:background="@drawable/entry_fields"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Cancelled Orders"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.733" />
+
+        <Button
             android:id="@+id/btn_delivered"
             android:layout_width="245dp"
             android:layout_height="75dp"
@@ -119,21 +135,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.966" />
 
-        <Button
-            android:id="@+id/btn_cancelled"
-            android:layout_width="245dp"
-            android:layout_height="75dp"
-            android:background="@drawable/entry_fields"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Cancelled Orders"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.733" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
