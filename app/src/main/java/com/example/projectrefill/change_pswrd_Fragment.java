@@ -66,7 +66,7 @@ public class change_pswrd_Fragment extends Fragment {
                     txt_n_passwd.setError("Enter credentials!");
                 } else {
 
-
+                    //checking
                     databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
