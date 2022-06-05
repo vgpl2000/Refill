@@ -47,6 +47,7 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
     //Declaration
     Button btn_add;
+    ImageView btn_close;
     ImageView img;
     TextInputEditText i_name;
     TextInputEditText i_price;
@@ -74,6 +75,7 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
         img=v.findViewById(R.id.imageViewfritem);
         btn_add=v.findViewById(R.id.btn_add_item_client);
+        btn_close=v.findViewById(R.id.btn_close);
 
 
         img.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +87,14 @@ public class client_btnplus_add_item_Fragment extends Fragment {
         });
 
 
-
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.add_item,new ItemFragment());
+                fr.commit();
+            }
+        });
 
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +120,7 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                 //String str_iweight=i_weight.getText().toString();
 
                 Integer str_iweight = Integer.parseInt(i_weight.getText().toString());
+
 
                     System.out.println("Else part!");
 
@@ -262,4 +272,5 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
         }
     });
+
 }

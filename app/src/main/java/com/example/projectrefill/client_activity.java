@@ -51,8 +51,19 @@ ActivityClientBinding binding;
         fragmentTransaction.commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
 
-/*Button logout=findViewById(R.id.logout);
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
+    }
+
+     /*Button logout=findViewById(R.id.logout);
 
     public void setLogout(Button logout) {
         this.logout = logout;
