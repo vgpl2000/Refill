@@ -77,7 +77,7 @@ public class ItemFragment extends Fragment {
     }
 
 
-    //this is for avoiding inconsistancy error
+    //this is for avoiding inconsistancy error please check
     public class CustomLinearLayoutManager extends LinearLayoutManager {
         public CustomLinearLayoutManager(Context context) {
             super(context);
