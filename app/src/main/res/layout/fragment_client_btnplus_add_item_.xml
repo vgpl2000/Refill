@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/add_item"
     android:layout_height="match_parent"
     android:background="#000000"
     tools:context=".client_btnplus_add_item_Fragment">
@@ -14,6 +15,26 @@
         android:padding="45dp"
         android:layout_gravity="center"
         android:gravity="center">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="60dp">
+
+            <ImageView
+                android:id="@+id/btn_close"
+                android:layout_width="27dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:foregroundGravity="center"
+                android:src="@drawable/yellow_baseline_close_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/imageViewfritem"
@@ -135,6 +156,5 @@
                 app:layout_constraintVertical_bias="0.224" />
 
 
-
-        </LinearLayout>
+    </LinearLayout>
     </FrameLayout>
