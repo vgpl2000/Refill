@@ -171,7 +171,7 @@ public class Settings_Retailer_Fragment extends Fragment {
             public void onClick(View view) {
 
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.settings_retailer,new change_pswrd_retailer_Fragment());
+                fr.replace(R.id.settings_retailer,new change_pswrd_retailer_Fragment()).addToBackStack(null);
                 fr.commit();
 
             }

@@ -35,7 +35,7 @@ public class ItemFragment extends Fragment {
 
 
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.wrapper4,new client_btnplus_add_item_Fragment());
+                fr.replace(R.id.wrapper4,new client_btnplus_add_item_Fragment()).addToBackStack(null);
                 fr.commit();
 
 

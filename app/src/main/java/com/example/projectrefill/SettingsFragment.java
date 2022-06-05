@@ -160,7 +160,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
 
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.settings1,new change_pswrd_Fragment());
+                fr.replace(R.id.settings1,new change_pswrd_Fragment()).addToBackStack(null);
                 fr.commit();
 
             }
