@@ -113,6 +113,7 @@
         android:id="@+id/btn_login"
         android:layout_width="139dp"
         android:layout_height="62dp"
+        android:hapticFeedbackEnabled="true"
         android:background="@drawable/background_button"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center|center_horizontal|center_vertical"

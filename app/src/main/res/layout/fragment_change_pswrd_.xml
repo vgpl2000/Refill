@@ -88,6 +88,7 @@
             android:id="@+id/btn_chng_passwrd"
             android:layout_width="210dp"
             android:layout_height="51dp"
+            android:hapticFeedbackEnabled="true"
             android:layout_marginTop="20dp"
             android:background="@drawable/background_button"
             android:fontFamily="@font/poppins_medium"
