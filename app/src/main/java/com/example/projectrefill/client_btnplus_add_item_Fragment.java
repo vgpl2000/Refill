@@ -31,6 +31,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -124,18 +125,11 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
                     System.out.println("Else part!");
 
-                    dataholder_add_item obj = new dataholder_add_item(str_iprice, str_iquan, str_iweight);
-                    FirebaseDatabase db = FirebaseDatabase.getInstance();
-                    DatabaseReference node = db.getReference("Client").child("c_items");
 
-                    node.child(str_iname).setValue(obj);
+                   ProgressDialog dialog=new ProgressDialog(getActivity());
 
-                    Toast.makeText(getActivity(), "Added data", Toast.LENGTH_SHORT).show();
-
-                    //uploadImage();
-                    ProgressDialog dialog=new ProgressDialog(getActivity());
-                    dialog.setMessage("Uploading...");
-                    dialog.show();
+                   dialog.setTitle("File uploader");
+                   dialog.show();
 
 
                 if(imageuri!=null){
@@ -145,6 +139,7 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                             if(task.isSuccessful()){
+
                                 dialog.dismiss();
 
 
@@ -159,6 +154,22 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                         }
 
                     });
+
+
+                    reference.putFile(imageuri).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                            float per=(100*snapshot.getBytesTransferred())/snapshot.getTotalByteCount();
+                            dialog.setMessage("Uploading  "+ (int)per+"%");
+
+
+
+
+                        }
+                    });
+
+
+
                     reference.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -169,24 +180,19 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                                     String image_1=i_name.getText().toString();
 
 
-                                    DatabaseReference imagestore=FirebaseDatabase.getInstance().getReference("Client").child("c_items").child(image_1).child("url");
-                                    HashMap<String,String>hashMap=new HashMap<>();
-                                    hashMap.put("url",String.valueOf(uri));
-                                    Toast.makeText(getActivity(), "Uploaded to Firebase Database...", Toast.LENGTH_SHORT).show();
+                                    FirebaseDatabase db=FirebaseDatabase.getInstance();
+                                    DatabaseReference root=db.getReference("Client");
+
+                                    dataholder_for_additem_test obj1=new dataholder_for_additem_test(str_iprice,str_iquan,str_iweight,str_iname,uri.toString());
+                                    root.child(image_1).setValue(obj1);
+
+
+                                    FragmentTransaction fr= getFragmentManager().beginTransaction();
+                                    fr.replace(R.id.add_item,new ItemFragment());
+                                    fr.commit();
 
 
 
-                                    imagestore.setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void unused) {
-
-                                            FragmentTransaction fr= getFragmentManager().beginTransaction();
-                                            fr.replace(R.id.add_item,new ItemFragment());
-                                            fr.commit();
-
-
-                                        }
-                                    });
                                 }
                             });
                         }
@@ -195,9 +201,9 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
 
                     //i_name.setText("");
-                    i_price.setText("");
-                    i_quan.setText("");
-                    i_weight.setText("");
+                    //i_price.setText("");
+                    //i_quan.setText("");
+                    //i_weight.setText("");
 
 
             }
@@ -207,60 +213,6 @@ public class client_btnplus_add_item_Fragment extends Fragment {
         return v;
     }
 
-   /* private void uploadImage() {
-
-        ProgressDialog dialog=new ProgressDialog(getActivity());
-        dialog.setMessage("Uploading...");
-        dialog.show();
-
-
-        if(imageuri!=null){
-            StorageReference reference=firebaseStorage.getReference().child("images/"+ UUID.randomUUID().toString());
-
-            reference.putFile(imageuri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                    if(task.isSuccessful()){
-                        dialog.dismiss();
-
-
-                        Toast.makeText(getActivity(), "Image added successfully", Toast.LENGTH_SHORT).show();
-
-
-
-                    }else{
-                        dialog.dismiss();
-                        Toast.makeText(getActivity(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-            });
-            reference.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            String image_1=i_name.getText().toString();
-                            DatabaseReference imagestore=FirebaseDatabase.getInstance().getReference("Client").child("c_items").child(image_1);
-                            HashMap<String,String>hashMap=new HashMap<>();
-                            hashMap.put("imageurl",String.valueOf(uri));
-                            Toast.makeText(getActivity(), "Uploaded to Firebase Database...", Toast.LENGTH_SHORT).show();
-
-                            imagestore.setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-        }
-
-
-    }*/
 
     ActivityResultLauncher<String> mgetcontent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
