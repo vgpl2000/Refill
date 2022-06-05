@@ -86,8 +86,8 @@
 
         <Button
             android:id="@+id/btn_chng_passwrd_r"
-            android:layout_width="256dp"
-            android:layout_height="58dp"
+            android:layout_width="210dp"
+            android:layout_height="51dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="68dp"
             android:background="@drawable/background_button"
