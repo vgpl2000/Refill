@@ -83,47 +83,35 @@ public class client_btnplus_add_item_Fragment extends Fragment {
             }
         });
 
+        i_name = v.findViewById(R.id.item_name);
+        i_price = v.findViewById(R.id.item_price);
+        i_quan = v.findViewById(R.id.item_quan);
+        i_weight = v.findViewById(R.id.item_weight);
+
+
+        String str_iname = i_name.getText().toString();
+
+        //String str_iprice=i_price.getText().toString();
+
+
+        Integer str_iprice = Integer.getInteger(i_price.getText().toString());
+
+        System.out.println("Value of price: "+str_iprice);
+
+        //String str_iquan=i_quan.getText().toString();
+
+        Integer str_iquan = Integer.getInteger(i_quan.getText().toString());
+
+        //String str_iweight=i_weight.getText().toString();
+
+        Integer str_iweight = Integer.getInteger(i_weight.getText().toString());
+
 
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
-                i_name = v.findViewById(R.id.item_name);
-                i_price = v.findViewById(R.id.item_price);
-                i_quan = v.findViewById(R.id.item_quan);
-                i_weight = v.findViewById(R.id.item_weight);
-
-
-                String str_iname = i_name.getText().toString();
-
-                //String str_iprice=i_price.getText().toString();
-
-
-                Integer str_iprice = Integer.getInteger(i_price.getText().toString());
-
-                //String str_iquan=i_quan.getText().toString();
-
-                Integer str_iquan = Integer.getInteger(i_quan.getText().toString());
-
-                //String str_iweight=i_weight.getText().toString();
-
-                Integer str_iweight = Integer.getInteger(i_weight.getText().toString());
-                if(true){
-                    if (str_iname.isEmpty()) {
-                        i_name.setError("Cannot be empty!");
-                    }
-                    if (str_iprice == null) {
-                        i_price.setError("Cannot be empty!");
-                    }
-                    if (str_iquan == null) {
-                        i_quan.setError("Cannot be empty!");
-                    }
-                    if (str_iweight == null) {
-                        i_weight.setError("Cannot be empty!");
-                    }
-                } else {
-
+                    System.out.println("Else part!");
 
                     dataholder_add_item obj = new dataholder_add_item(str_iprice, str_iquan, str_iweight);
                     FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -140,11 +128,9 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                     i_quan.setText("");
                     i_weight.setText("");
 
-                }
+
             }
         });
-
-
 
 
         return v;
