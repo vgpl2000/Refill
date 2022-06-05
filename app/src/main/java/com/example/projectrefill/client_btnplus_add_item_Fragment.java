@@ -83,33 +83,33 @@ public class client_btnplus_add_item_Fragment extends Fragment {
             }
         });
 
-        i_name = v.findViewById(R.id.item_name);
-        i_price = v.findViewById(R.id.item_price);
-        i_quan = v.findViewById(R.id.item_quan);
-        i_weight = v.findViewById(R.id.item_weight);
 
-
-        String str_iname = i_name.getText().toString();
-
-        //String str_iprice=i_price.getText().toString();
-
-
-        Integer str_iprice = Integer.getInteger(i_price.getText().toString());
-
-        System.out.println("Value of price: "+str_iprice);
-
-        //String str_iquan=i_quan.getText().toString();
-
-        Integer str_iquan = Integer.getInteger(i_quan.getText().toString());
-
-        //String str_iweight=i_weight.getText().toString();
-
-        Integer str_iweight = Integer.getInteger(i_weight.getText().toString());
 
 
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                i_name = v.findViewById(R.id.item_name);
+                i_price = v.findViewById(R.id.item_price);
+                i_quan = v.findViewById(R.id.item_quan);
+                i_weight = v.findViewById(R.id.item_weight);
+
+
+                String str_iname = i_name.getText().toString();
+
+                //String str_iprice=i_price.getText().toString();
+
+
+                Integer str_iprice = Integer.parseInt(i_price.getText().toString());
+
+                //String str_iquan=i_quan.getText().toString();
+
+                Integer str_iquan = Integer.parseInt(i_quan.getText().toString());
+
+                //String str_iweight=i_weight.getText().toString();
+
+                Integer str_iweight = Integer.parseInt(i_weight.getText().toString());
 
                     System.out.println("Else part!");
 
