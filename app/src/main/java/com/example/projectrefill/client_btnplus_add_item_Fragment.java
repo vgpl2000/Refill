@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModel;
 
 import android.text.TextUtils;
@@ -52,9 +53,6 @@ public class client_btnplus_add_item_Fragment extends Fragment {
     TextInputEditText i_weight;
     TextInputEditText i_quan;
 
-    TextInputEditText names;
-
-
     FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
     Uri imageuri;
 
@@ -76,7 +74,6 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
         img=v.findViewById(R.id.imageViewfritem);
         btn_add=v.findViewById(R.id.btn_add_item_client);
-
 
 
         img.setOnClickListener(new View.OnClickListener() {
@@ -115,16 +112,9 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
                 Integer str_iweight = Integer.parseInt(i_weight.getText().toString());
 
-                String hello="https://firebaseopensource.com/projects/firebase/firebaseui-android/database/readme/";
-
-
-
-                System.out.println("the url comes here...................................."+imageuri);
-
-
                     System.out.println("Else part!");
 
-                    dataholder_add_item obj = new dataholder_add_item(str_iprice, str_iquan, str_iweight,hello);
+                    dataholder_add_item obj = new dataholder_add_item(str_iprice, str_iquan, str_iweight);
                     FirebaseDatabase db = FirebaseDatabase.getInstance();
                     DatabaseReference node = db.getReference("Client").child("c_items");
 
@@ -168,7 +158,6 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
                                     String image_1=i_name.getText().toString();
 
-                                    System.out.println("name of image comes here......................."+image_1);
 
                                     DatabaseReference imagestore=FirebaseDatabase.getInstance().getReference("Client").child("c_items").child(image_1).child("url");
                                     HashMap<String,String>hashMap=new HashMap<>();
@@ -180,6 +169,10 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                                     imagestore.setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
+
+                                            FragmentTransaction fr= getFragmentManager().beginTransaction();
+                                            fr.replace(R.id.add_item,new ItemFragment());
+                                            fr.commit();
 
 
                                         }
@@ -238,22 +231,15 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                     reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-
                             String image_1=i_name.getText().toString();
-
-                            System.out.println("name of image comes here......................."+image_1);
-
-                            DatabaseReference imagestore=FirebaseDatabase.getInstance().getReference("Client").child("c_items").child(image_1).child("url");
+                            DatabaseReference imagestore=FirebaseDatabase.getInstance().getReference("Client").child("c_items").child(image_1);
                             HashMap<String,String>hashMap=new HashMap<>();
-                            hashMap.put("url",String.valueOf(uri));
+                            hashMap.put("imageurl",String.valueOf(uri));
                             Toast.makeText(getActivity(), "Uploaded to Firebase Database...", Toast.LENGTH_SHORT).show();
-
-
 
                             imagestore.setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
-
 
                                 }
                             });
