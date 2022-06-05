@@ -21,12 +21,11 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholderfordisplaying holder, int position, @NonNull client_model_todisplayitemsavailable model) {
-
+        holder.nm.setText(model.getName());
     holder.pri.setText(model.getPrice());
     holder.qty.setText(model.getQuan());
-    holder.weight.setText(model.getWeight());
-    holder.nm.setText(model.getName());
     Glide.with(holder.img1.getContext()).load(model.getUrl()).into(holder.img1);
+    holder.weight.setText(model.getWeight());
 
     }
 
@@ -46,8 +45,7 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
             img1=itemView.findViewById(R.id.imageViewfordisplayingitems);
             nm=itemView.findViewById(R.id.namevalueforitem);
             pri=itemView.findViewById(R.id.pricevalueforitem);
-
-            qty=itemView.findViewById(R.id.qtyvalueforitem);
+            qty=itemView.findViewById(R.id.quantvalueforitem);
             weight=itemView.findViewById(R.id.weightvalueforitem);
 
         }

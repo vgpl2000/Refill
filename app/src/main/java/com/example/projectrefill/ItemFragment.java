@@ -1,5 +1,6 @@
 package com.example.projectrefill;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +37,7 @@ public class ItemFragment extends Fragment {
         View v= inflater.inflate(R.layout.fragment_item, container, false);
 
         recyclerViewforitemdisplay=v.findViewById(R.id.recyclerView_items);
-        recyclerViewforitemdisplay.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewforitemdisplay.setLayoutManager(new CustomLinearLayoutManager(getContext()));
 
         FirebaseRecyclerOptions<client_model_todisplayitemsavailable> options =
                 new FirebaseRecyclerOptions.Builder<client_model_todisplayitemsavailable>()
@@ -73,6 +74,21 @@ public class ItemFragment extends Fragment {
     public void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+
+    //this is for avoiding inconsistancy error
+    public class CustomLinearLayoutManager extends LinearLayoutManager {
+        public CustomLinearLayoutManager(Context context) {
+            super(context);
+        }
+
+        //Generate constructors
+
+        @Override
+        public boolean supportsPredictiveItemAnimations() {
+            return false;
+        }
     }
 
     

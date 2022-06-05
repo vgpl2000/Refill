@@ -4,12 +4,12 @@ public class client_model_todisplayitemsavailable {
    String price,quan,weight,name,url;
 
 
-    public client_model_todisplayitemsavailable(String price, String quan, String weight, String name, String url) {
+    public client_model_todisplayitemsavailable(String name,String price, String quan, String url, String weight) {
+        this.name = name;
         this.price = price;
         this.quan = quan;
-        this.weight = weight;
-        this.name = name;
         this.url = url;
+        this.weight = weight;
     }
 
     public client_model_todisplayitemsavailable() {

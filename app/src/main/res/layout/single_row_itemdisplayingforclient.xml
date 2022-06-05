@@ -21,6 +21,7 @@
 
         <TextView
             android:id="@+id/namevalueforitem"
+            android:paddingLeft="9dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
@@ -40,12 +41,12 @@
             android:textSize="15dp" />
 
         <TextView
-            android:id="@+id/qtyvalueforitem"
+            android:id="@+id/quantvalueforitem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
-            android:text="Qty here"
+            android:text="Quantity here"
             android:textColor="@color/yellow"
             android:textSize="15dp" />
 
@@ -64,7 +65,7 @@
         android:id="@+id/imageViewfordisplayingitems"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/ic_baseline_close_24"
+        android:padding="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.051"
