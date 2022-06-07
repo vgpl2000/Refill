@@ -17,30 +17,28 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="565dp"
+            android:layout_height="wrap_content"
             android:fadeScrollbars="true"
             android:paddingTop="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchView" />
+            app:layout_constraintTop_toBottomOf="@id/searchView"
+            app:layout_constraintVertical_bias="0.058" />
 
         <SearchView
             android:id="@+id/searchView"
             android:layout_width="320dp"
             android:layout_height="55dp"
-            android:layout_marginBottom="-40dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/entry_fields"
             android:iconifiedByDefault="false"
             android:inputType="textCapWords"
             android:queryHint="Search for your Retailer"
-            app:layout_constraintBottom_toTopOf="@id/recyclerView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView5"
-            app:layout_constraintVertical_bias="0.57" />
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <TextView
             android:id="@+id/textView5"
@@ -51,11 +49,10 @@
             android:text="Refill"
             android:textColor="@color/white"
             android:textSize="35dp"
-            app:layout_constraintBottom_toTopOf="@+id/searchView"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            tools:layout_editor_absoluteY="16dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

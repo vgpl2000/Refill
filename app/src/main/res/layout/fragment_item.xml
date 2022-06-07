@@ -59,7 +59,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_items"
             android:layout_width="match_parent"
-            android:layout_height="516dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:fadeScrollbars="true"
             app:layout_constraintBottom_toBottomOf="parent"
