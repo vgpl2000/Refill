@@ -25,6 +25,8 @@
         android:layout_width="match_parent"
         app:itemTextColor="@color/yellow"
         app:itemIconTint="@color/white"
+        android:background="@drawable/entry_fields_2"
+        app:layout_constraintCircleRadius="5dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
