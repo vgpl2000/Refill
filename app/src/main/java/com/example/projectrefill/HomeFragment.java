@@ -65,6 +65,7 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    //for git
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
