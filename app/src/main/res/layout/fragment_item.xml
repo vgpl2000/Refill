@@ -8,6 +8,7 @@
     android:id="@+id/wrapper4"
     android:background="@color/black">
 
+
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,6 +29,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
+
+
 
         <SearchView
             android:id="@+id/searchView_items"
@@ -56,12 +59,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.212" />
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_items"
             android:layout_width="match_parent"
-            android:layout_height="510dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="520dp"
+            android:scrollbars="vertical"
             android:fadeScrollbars="true"
+            android:scrollbarStyle="outsideOverlay"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
@@ -69,7 +74,11 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_add_items"
             app:layout_constraintVertical_bias="-0.0" />
 
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 </FrameLayout>
