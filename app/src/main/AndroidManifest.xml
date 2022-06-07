@@ -18,6 +18,7 @@
         <activity
             android:name=".client_activity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".splash_screen"
@@ -33,6 +34,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true"
             android:noHistory="true" />
 

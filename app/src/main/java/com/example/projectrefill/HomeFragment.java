@@ -1,5 +1,7 @@
 package com.example.projectrefill;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,14 +13,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class HomeFragment extends Fragment {
@@ -33,6 +39,7 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView1;
     adapter_clientside_order_list adapter;
     SearchView searchView;
+
 
     public HomeFragment() {
 
@@ -70,6 +77,9 @@ public class HomeFragment extends Fragment {
         //just for github purpose4
         //just for github purpose5
 
+
+        searchView=v.findViewById(R.id.searchView);
+
         recyclerView1=(RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -80,6 +90,27 @@ public class HomeFragment extends Fragment {
         adapter=new adapter_clientside_order_list(options);
         recyclerView1.setAdapter(adapter);
 
+
+
+        SearchManager searchManager= (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setIconified(true);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                mySearch(s);
+                searchView.clearFocus();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                mySearch(s);
+                return true;
+            }
+
+        });
 
 
 
@@ -101,7 +132,18 @@ public class HomeFragment extends Fragment {
         return v;
     }
 
+    private void mySearch(String s) {
 
+        FirebaseRecyclerOptions<client_model_home_orders> options =
+                new FirebaseRecyclerOptions.Builder<client_model_home_orders>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders").orderByChild("name").startAt(s).endAt(s+"\uf8ff"), client_model_home_orders.class)
+                        .build();
+
+        adapter=new adapter_clientside_order_list(options);
+        adapter.startListening();
+        recyclerView1.setAdapter(adapter);
+
+    }
 
 
     @Override
