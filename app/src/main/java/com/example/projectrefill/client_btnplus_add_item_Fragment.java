@@ -53,7 +53,6 @@ public class client_btnplus_add_item_Fragment extends Fragment {
     TextInputEditText i_name;
     TextInputEditText i_price;
     TextInputEditText i_weight;
-    TextInputEditText i_quan;
 
     FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
     Uri imageuri;
@@ -103,7 +102,6 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
                 i_name = v.findViewById(R.id.item_name);
                 i_price = v.findViewById(R.id.item_price);
-                i_quan = v.findViewById(R.id.item_quan);
                 i_weight = v.findViewById(R.id.item_weight);
 
 
@@ -114,9 +112,6 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
                 //Integer str_iprice = Integer.parseInt(i_price.getText().toString());
 
-                String str_iquan=i_quan.getText().toString();
-
-                //Integer str_iquan = Integer.parseInt(i_quan.getText().toString());
 
                 String str_iweight=i_weight.getText().toString();
 
@@ -183,7 +178,7 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                                     FirebaseDatabase db=FirebaseDatabase.getInstance();
                                     DatabaseReference root=db.getReference("Client").child("c_items");
 
-                                    dataholder_for_additem_test obj1=new dataholder_for_additem_test(str_iprice,str_iquan,str_iweight,str_iname,uri.toString());
+                                    dataholder_for_additem_test obj1=new dataholder_for_additem_test(str_iprice,str_iweight,str_iname,uri.toString());
                                     root.child(image_1).setValue(obj1);
 
 

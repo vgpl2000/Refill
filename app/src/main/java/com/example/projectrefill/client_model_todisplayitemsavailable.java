@@ -1,13 +1,12 @@
 package com.example.projectrefill;
 
 public class client_model_todisplayitemsavailable {
-   String price,quan,weight,name,url;
+   String price,weight,name,url;
 
 
-    public client_model_todisplayitemsavailable(String name,String price, String quan, String url, String weight) {
+    public client_model_todisplayitemsavailable(String name,String price,String url, String weight) {
         this.name = name;
         this.price = price;
-        this.quan = quan;
         this.url = url;
         this.weight = weight;
     }
@@ -21,14 +20,6 @@ public class client_model_todisplayitemsavailable {
 
     public void setPrice(String price) {
         this.price = price;
-    }
-
-    public String getQuan() {
-        return quan;
-    }
-
-    public void setQuan(String quan) {
-        this.quan = quan;
     }
 
     public String getWeight() {

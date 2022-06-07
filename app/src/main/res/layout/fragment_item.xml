@@ -45,27 +45,29 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_add_items"
-            android:layout_width="40dp"
+            android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@drawable/ic_baseline_add_box_24"
+            android:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.876"
+            app:layout_constraintHorizontal_bias="0.877"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.218" />
+            app:layout_constraintVertical_bias="0.212" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_items"
             android:layout_width="406dp"
             android:layout_height="516dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
+            android:fadeScrollbars="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_add_items"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="-0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

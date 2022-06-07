@@ -1,12 +1,11 @@
 package com.example.projectrefill;
 
 public class dataholder_for_additem_test {
-   String price,qty,weight;
+   String price,weight;
     String name,url;
 
-    public dataholder_for_additem_test(String price, String qty, String weight, String name, String url) {
+    public dataholder_for_additem_test(String price, String weight, String name, String url) {
         this.price = price;
-        this.qty = qty;
         this.weight = weight;
         this.name = name;
         this.url = url;
@@ -23,13 +22,6 @@ public class dataholder_for_additem_test {
         this.price = price;
     }
 
-    public String getQty() {
-        return qty;
-    }
-
-    public void setQty(String qty) {
-        this.qty = qty;
-    }
 
     public String getWeight() {
         return weight;

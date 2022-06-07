@@ -3,15 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/drawable/entry_field_white.xml" value="0.119" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/drawable/entry_fields.xml" value="0.119" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/drawable/progress_bar.xml" value="0.119" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/activity_client.xml" value="0.17777777777777778" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/activity_main.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_checkordersbtn_client_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_client_btnplus_add_item_.xml" value="0.17777777777777778" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_home.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_info__retailer_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_item.xml" value="0.17777777777777778" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_retailer.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/single_row_checkorders_clientside.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/single_row_itemdisplayingforclient.xml" value="0.17777777777777778" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/single_row_order_clientside_homepage.xml" value="0.17777777777777778" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/welcome_page.xml" value="0.14" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/menu/bottom_menu.xml" value="0.17777777777777778" />

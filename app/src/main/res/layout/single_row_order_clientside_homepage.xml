@@ -8,6 +8,7 @@
     app:cardUseCompatPadding="true">
 <RelativeLayout
     android:layout_width="match_parent"
+    android:background="@drawable/entry_field_white"
     android:layout_height="wrap_content"
     android:padding="10dp">
 

@@ -42,6 +42,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     // FirebaseUI for Firebase Realtime Database
     implementation 'com.firebaseui:firebase-ui-database:8.0.1'
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
 
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation platform('com.google.firebase:firebase-bom:30.1.0')

@@ -40,8 +40,9 @@
             android:id="@+id/imageViewfritem"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:scaleType="centerCrop"
             android:padding="8dp"
-            android:background="@drawable/entry_fields"
+            android:background="@drawable/entry_field_white"
             android:src="@drawable/ic_baseline_add_a_photo_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,44 +96,24 @@
             android:layout_width="0dp"
             android:layout_height="12dp"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/item_quan"
-                android:layout_width="274dp"
-                android:layout_height="60dp"
-                android:background="@drawable/entry_fields"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="center"
-                android:hint="Enter Item Quantity"
-                android:inputType="number"
-                android:paddingLeft="8dp"
-                android:paddingRight="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/item_weight"
-                app:layout_constraintVertical_bias="0.068" />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="12dp"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/item_weight"
+            android:layout_width="274dp"
+            android:layout_height="60dp"
+            android:background="@drawable/entry_fields"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:hint="Enter Item Weight"
+            android:inputType="number"
+            android:paddingLeft="8dp"
+            android:paddingRight="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_price"
+            app:layout_constraintVertical_bias="0.052" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/item_weight"
-                android:layout_width="274dp"
-                android:layout_height="60dp"
-                android:background="@drawable/entry_fields"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="center"
-                android:hint="Enter Item Weight"
-                android:inputType="number"
-                android:paddingLeft="8dp"
-                android:paddingRight="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/item_price"
-                app:layout_constraintVertical_bias="0.052" />
         <View
             android:layout_width="0dp"
             android:layout_height="20dp"/>
