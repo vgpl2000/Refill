@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment {
         //just for github purpose4
         //just for github purpose5
 
-
+        //To search
         searchView=v.findViewById(R.id.searchView);
 
         recyclerView1=(RecyclerView) v.findViewById(R.id.recyclerView);
