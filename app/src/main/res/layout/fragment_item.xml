@@ -35,7 +35,7 @@
             android:layout_height="55dp"
             android:background="@drawable/entry_fields"
             android:iconifiedByDefault="false"
-            android:queryHint="Search"
+            android:queryHint="Search for an Item"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
