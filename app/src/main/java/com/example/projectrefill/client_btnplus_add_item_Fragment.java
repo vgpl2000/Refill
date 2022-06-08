@@ -132,17 +132,16 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                     i_name.setError("Name cannot be empty");
                     i_price.setError("Price cannot be empty");
                     i_weight.setError("Weight cannot be empty");
-                    Toast.makeText(getContext(), "No image added..Please add", Toast.LENGTH_SHORT).show();
-                  dialog.dismiss();
+                    dialog.dismiss();
                 }else {
 
 
                     System.out.println("Else part!");
 
-
-
-
-                    if (imageuri != null) {
+                    if(imageuri==null){
+                        Toast.makeText(getContext(), "Image not selected", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }else {
                         StorageReference reference = firebaseStorage.getReference().child("images/" + UUID.randomUUID().toString());
 
                         reference.putFile(imageuri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
