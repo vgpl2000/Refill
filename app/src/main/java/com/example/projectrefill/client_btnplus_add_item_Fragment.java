@@ -24,7 +24,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -109,6 +111,8 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
                 String str_iprice=i_price.getText().toString();
 
+                ImageView img1=v.findViewById(R.id.imageViewfritem);
+
 
                 //Integer str_iprice = Integer.parseInt(i_price.getText().toString());
 
@@ -117,92 +121,115 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
                 //Integer str_iweight = Integer.parseInt(i_weight.getText().toString());
 
+                ProgressDialog dialog = new ProgressDialog(getActivity());
+
+                dialog.setTitle("File uploader");
+                dialog.show();
+
+
+
+                if(str_iname.isEmpty()||str_iprice.isEmpty()||str_iweight.isEmpty()) {
+                    i_name.setError("Name cannot be empty");
+                    i_price.setError("Price cannot be empty");
+                    i_weight.setError("Weight cannot be empty");
+                    Toast.makeText(getContext(), "No image added..Please add", Toast.LENGTH_SHORT).show();
+                  dialog.dismiss();
+                }else {
+
 
                     System.out.println("Else part!");
 
 
-                   ProgressDialog dialog=new ProgressDialog(getActivity());
-
-                   dialog.setTitle("File uploader");
-                   dialog.show();
 
 
-                if(imageuri!=null){
-                    StorageReference reference=firebaseStorage.getReference().child("images/"+ UUID.randomUUID().toString());
+                    if (imageuri != null) {
+                        StorageReference reference = firebaseStorage.getReference().child("images/" + UUID.randomUUID().toString());
 
-                    reference.putFile(imageuri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                            if(task.isSuccessful()){
+                        reference.putFile(imageuri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                if (task.isSuccessful()) {
 
-                                dialog.dismiss();
-
-
-                                Toast.makeText(getActivity(), "Image added successfully", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
 
 
-
-                            }else{
-                                dialog.dismiss();
-                                Toast.makeText(getActivity(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                    });
+                                    Toast.makeText(getActivity(), "Image added successfully", Toast.LENGTH_SHORT).show();
 
 
-                    reference.putFile(imageuri).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                            float per=(100*snapshot.getBytesTransferred())/snapshot.getTotalByteCount();
-                            dialog.setMessage("Uploading  "+ (int)per+"%");
-
-
-
-
-                        }
-                    });
-
-
-
-                    reference.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-
-                                    String image_1=i_name.getText().toString();
-
-
-                                    FirebaseDatabase db=FirebaseDatabase.getInstance();
-                                    DatabaseReference root=db.getReference("Client").child("c_items");
-
-                                    dataholder_for_additem_test obj1=new dataholder_for_additem_test(str_iprice,str_iweight,str_iname,uri.toString());
-                                    root.child(image_1).setValue(obj1);
-
-
-                                    FragmentTransaction fr= getFragmentManager().beginTransaction();
-                                    fr.replace(R.id.add_item,new ItemFragment());
-                                    fr.commit();
-
-
-
+                                } else {
+                                    dialog.dismiss();
+                                    Toast.makeText(getActivity(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
-                            });
-                        }
-                    });
-                }
+                            }
+
+                        });
+
+
+                        reference.putFile(imageuri).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                                float per = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                                dialog.setMessage("Uploading  " + (int) per + "%");
+
+
+                            }
+                        });
+
+
+                        reference.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+
+                                        String image_1 = i_name.getText().toString();
+
+
+                                        FirebaseDatabase db = FirebaseDatabase.getInstance();
+                                        DatabaseReference root = db.getReference("Client").child("c_items");
+
+                                        dataholder_for_additem_test obj1 = new dataholder_for_additem_test(str_iprice, str_iweight, str_iname, uri.toString());
+                                        root.child(image_1).setValue(obj1);
+
+
+                                        FragmentTransaction fr = getFragmentManager().beginTransaction();
+                                        fr.replace(R.id.add_item, new ItemFragment());
+                                        fr.commit();
+
+
+                                    }
+                                });
+                            }
+                        });
+                        reference.putFile(imageuri).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                dialog.dismiss();
+                                Toast.makeText(getContext(), "No image is given", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        reference.putFile(imageuri).addOnCanceledListener(new OnCanceledListener() {
+                            @Override
+                            public void onCanceled() {
+                                dialog.dismiss();
+                                Toast.makeText(getContext(), "No image is given", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+                    }
 
 
                     //i_name.setText("");
                     //i_price.setText("");
                     //i_quan.setText("");
                     //i_weight.setText("");
+                }
 
 
             }
         });
+
 
 
         return v;
