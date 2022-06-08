@@ -3,12 +3,15 @@ package com.example.projectrefill;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -27,6 +30,14 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
     holder.pri.setText(model.getPrice());
     Glide.with(holder.img1.getContext()).load(model.getUrl()).into(holder.img1);
     holder.weight.setText(model.getWeight());
+    holder.btnedititems.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(view.getContext(), "Edit opening", Toast.LENGTH_SHORT).show();
+            AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
+            appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper4,new client_itemeditbuttonpressed_fragment(model.name)).addToBackStack(null).commit();
+        }
+    });
 
     }
 
@@ -41,6 +52,8 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
     public class myviewholderfordisplaying extends RecyclerView.ViewHolder{
         ImageView img1;
         TextView nm,pri,weight;
+        Button btnedititems;
+
 
         public myviewholderfordisplaying(@NonNull View itemView) {
             super(itemView);
@@ -48,6 +61,7 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
             nm=itemView.findViewById(R.id.namevalueforitem);
             pri=itemView.findViewById(R.id.pricevalueforitem);
             weight=itemView.findViewById(R.id.weightvalueforitem);
+            btnedititems=itemView.findViewById(R.id.btneditforitemdisplay);
 
         }
     }

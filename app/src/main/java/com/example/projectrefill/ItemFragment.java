@@ -35,6 +35,8 @@ public class ItemFragment extends Fragment {
 
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,6 +70,10 @@ public class ItemFragment extends Fragment {
 
             }
         });
+
+
+
+
 
 
         SearchManager searchManager= (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);

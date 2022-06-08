@@ -18,8 +18,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:layout_height="60dp">
+            android:layout_height="60dp"
+            android:layout_gravity="center">
 
             <ImageView
                 android:id="@+id/btn_close"
@@ -28,6 +28,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:clickable="true"
+
                 android:foregroundGravity="center"
                 android:src="@drawable/yellow_baseline_close_24"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -35,14 +36,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <View
+            android:layout_width="0dp"
+            android:layout_height="30dp"/>
         <ImageView
             android:id="@+id/imageViewfritem"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:scaleType="centerCrop"
-            android:padding="8dp"
+            android:layout_width="111dp"
+            android:layout_height="118dp"
             android:background="@drawable/entry_field_white"
+            android:padding="15dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_add_a_photo_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,6 +53,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.066" />
+
         <View
             android:layout_width="0dp"
             android:layout_height="12dp"/>
