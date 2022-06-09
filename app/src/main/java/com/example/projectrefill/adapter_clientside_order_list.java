@@ -112,6 +112,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                 return null;
             }
 
+
             public class myviewholder extends RecyclerView.ViewHolder
              {
                     Button btnchk,btnacp,btncan,btndel;
