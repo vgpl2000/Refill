@@ -77,6 +77,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snapshot1:snapshot.child("c_orders").getChildren()){
                     final String rt=snapshot1.getKey().toString();
+                    System.out.println(rt+"this is the rt to display....................................");
                 }
             }
 
@@ -86,9 +87,14 @@ public class Checkordersbtn_client_Fragment extends Fragment {
             }
         });
 
+        String retailname=textView.getText().toString();
+        System.out.println(retailname+"its an example name to disp............");
+
+
+
         FirebaseRecyclerOptions<client_model_btncheckorders> options2 =
                 new FirebaseRecyclerOptions.Builder<client_model_btncheckorders>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders").child("check_orders"), client_model_btncheckorders.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders").child(retailname).child("check_orders"), client_model_btncheckorders.class)
                         .build();
         adapter2=new adapter_clientside_checkbtn(options2);
         recyclerView2.setAdapter(adapter2);
