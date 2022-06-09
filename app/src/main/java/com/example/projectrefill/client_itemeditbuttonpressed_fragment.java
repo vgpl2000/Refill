@@ -98,25 +98,30 @@ public class client_itemeditbuttonpressed_fragment extends Fragment {
             public void onClick(View view) {
 
 
-                String newprice=price.getText().toString();
-                String newweight=weight.getText().toString();
+                String newprice = price.getText().toString();
+                String newweight = weight.getText().toString();
+
+                if (newprice.isEmpty() || newweight.isEmpty()) {
+                    price.setError("Price must be given");
+                    weight.setError("Weight must be given");
 
 
-
-                databaseReference1.child("Client").child("c_items").child(name11).child("price").setValue(newprice);
-                databaseReference1.child("Client").child("c_items").child(name11).child("weight").setValue(newweight);
+                } else {
 
 
-
-                price.setText("");
-                weight.setText("");
-
-                FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.edititemclosefrag,new ItemFragment());
-                fr.commit();
+                    databaseReference1.child("Client").child("c_items").child(name11).child("price").setValue(newprice);
+                    databaseReference1.child("Client").child("c_items").child(name11).child("weight").setValue(newweight);
 
 
+                    price.setText("");
+                    weight.setText("");
 
+                    FragmentTransaction fr = getFragmentManager().beginTransaction();
+                    fr.replace(R.id.edititemclosefrag, new ItemFragment());
+                    fr.commit();
+
+
+                }
             }
         });
 
