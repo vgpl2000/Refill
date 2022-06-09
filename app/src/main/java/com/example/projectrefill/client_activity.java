@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.example.projectrefill.databinding.ActivityClientBinding;
 
+
 public class client_activity extends AppCompatActivity {
 ActivityClientBinding binding;
 

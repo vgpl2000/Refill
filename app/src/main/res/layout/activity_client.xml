@@ -28,6 +28,7 @@
         app:itemTextColor="@color/yellow"
         app:itemIconTint="@color/white"
         android:background="@color/black"
+        app:itemRippleColor="@color/transperant_black"
         app:layout_constraintCircleRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
