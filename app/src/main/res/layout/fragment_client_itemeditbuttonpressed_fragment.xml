@@ -58,13 +58,13 @@
             android:textColor="@color/white"
             android:textSize="20dp"
             android:id="@+id/nametodisplayinedit"
-            app:layout_constraintBottom_toTopOf="@+id/txt_c_passwrd"
+            app:layout_constraintBottom_toTopOf="@+id/newprice"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <EditText
-            android:id="@+id/txt_c_passwrd"
+            android:id="@+id/newprice"
             android:layout_width="295dp"
             android:layout_height="63dp"
             android:layout_marginTop="15dp"
@@ -72,7 +72,7 @@
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:hint="Enter New Price"
-            android:inputType="textPassword"
+            android:inputType="number"
             android:padding="10dp"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -82,7 +82,7 @@
             app:layout_constraintVertical_bias="0.234" />
 
         <EditText
-            android:id="@+id/txt_n_passwrd"
+            android:id="@+id/newweight"
             android:layout_width="295dp"
             android:layout_height="63dp"
             android:layout_marginTop="15dp"
@@ -90,13 +90,13 @@
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:hint="Enter New Weight"
-            android:inputType="textPassword"
+            android:inputType="number"
             android:padding="10dp"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_c_passwrd"
+            app:layout_constraintTop_toBottomOf="@+id/newprice"
             app:layout_constraintVertical_bias="0.127" />
 
         <Button
@@ -116,7 +116,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_n_passwrd"
+            app:layout_constraintTop_toBottomOf="@+id/newweight"
             app:layout_constraintVertical_bias="0.054" />
 
         <Button

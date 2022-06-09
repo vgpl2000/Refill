@@ -1,5 +1,7 @@
 package com.example.projectrefill;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,8 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class client_itemeditbuttonpressed_fragment extends Fragment {
@@ -23,6 +30,12 @@ public class client_itemeditbuttonpressed_fragment extends Fragment {
     private String mParam1;
     private String mParam2;
     String name;
+    Button submit;
+    Button delete;
+    EditText price,weight;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference1 = database.getInstance().getReference();
 
     public client_itemeditbuttonpressed_fragment() {
         // Required empty public constructor
@@ -58,6 +71,11 @@ public class client_itemeditbuttonpressed_fragment extends Fragment {
 
         TextView textView=view.findViewById(R.id.nametodisplayinedit);
         textView.setText(name);
+
+
+
+
+
         ImageView buttonclose=view.findViewById(R.id.btntoclosefragmentedit);
         buttonclose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +83,70 @@ public class client_itemeditbuttonpressed_fragment extends Fragment {
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
                 fr.replace(R.id.edititemclosefrag,new ItemFragment());
                 fr.commit();
+            }
+        });
+
+        submit=view.findViewById(R.id.btntoupdateitemfromdatabase);
+        delete=view.findViewById(R.id.btntodeleteitemfromdatabase);
+        String name11=textView.getText().toString();
+        System.out.println(name11+"tihsofoaspft;hosovhoashostoga;sfjf;ll jf;ajsfjojgjsj o");
+        price=view.findViewById(R.id.newprice);
+        weight=view.findViewById(R.id.newweight);
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                String newprice=price.getText().toString();
+                String newweight=weight.getText().toString();
+
+
+
+                databaseReference1.child("Client").child("c_items").child(name11).child("price").setValue(newprice);
+                databaseReference1.child("Client").child("c_items").child(name11).child("weight").setValue(newweight);
+
+
+
+                price.setText("");
+                weight.setText("");
+
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.edititemclosefrag,new ItemFragment());
+                fr.commit();
+
+
+
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+                builder.setTitle("Delete!!");
+                builder.setMessage("Are you sure you want to delete "+name11+" ?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        DatabaseReference remove=FirebaseDatabase.getInstance().getReference("Client").child("c_items").child(name11);
+                        remove.removeValue();
+
+                        FragmentTransaction fr= getFragmentManager().beginTransaction();
+                        fr.replace(R.id.edititemclosefrag,new ItemFragment());
+                        fr.commit();
+
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.show();
             }
         });
 
