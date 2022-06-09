@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,9 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<client_model_home_orders,adapter_clientside_order_list.myviewholder> implements Filterable
         {
@@ -37,6 +44,48 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                         appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new Checkordersbtn_client_Fragment(model.getName())).addToBackStack(null).commit();
                     }
                 });
+
+
+                holder.btnacp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(view.getContext(), "accepting", Toast.LENGTH_SHORT).show();
+                        String retailername,itemname,quan;
+
+                        Date c = Calendar.getInstance().getTime();
+
+
+                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                        String formattedDate = df.format(c).toString();
+                        System.out.println("date to display for the system   "+formattedDate);
+
+
+
+
+
+
+
+                    }
+                });
+
+
+                holder.btncan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(view.getContext(), "cancelling", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
+                holder.btndel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(view.getContext(), "delivered", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
             }
 
             @NonNull

@@ -72,11 +72,6 @@ public class HomeFragment extends Fragment {
         View v= inflater.inflate(R.layout.fragment_home, container, false);
 
         //recycler added
-        //just for github purpose
-        //just for github purpose2
-        //just for github purpose3
-        //just for github purpose4
-        //just for github purpose5
 
         //To search
         searchView=v.findViewById(R.id.searchView);
@@ -112,23 +107,6 @@ public class HomeFragment extends Fragment {
             }
 
         });
-
-
-
-        /*v.setFocusableInTouchMode(true);
-        v.requestFocus();
-        v.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    if (keyCode == KeyEvent.KEYCODE_BACK) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });*/
-
 
         return v;
     }
