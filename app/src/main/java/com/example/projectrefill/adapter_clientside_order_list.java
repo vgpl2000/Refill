@@ -59,6 +59,11 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                         String formattedDate = df.format(c).toString();
                         System.out.println("date to display for the system   "+formattedDate);
 
+                        holder.btndel.setEnabled(true);
+                        holder.btnacp.setEnabled(false);
+                        holder.btncan.setEnabled(false);
+
+
 
 
 
@@ -73,6 +78,10 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(view.getContext(), "cancelling", Toast.LENGTH_SHORT).show();
+                        holder.btncan.setEnabled(false);
+                        holder.btnacp.setEnabled(false);
+                        holder.btndel.setEnabled(false);
+
                     }
                 });
 
@@ -81,6 +90,9 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                 holder.btndel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        holder.btndel.setEnabled(false);
+                        holder.btnacp.setEnabled(false);
+                        holder.btncan.setEnabled(false);
                         Toast.makeText(view.getContext(), "delivered", Toast.LENGTH_SHORT).show();
                     }
                 });

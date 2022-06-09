@@ -103,6 +103,7 @@
                 android:paddingRight="4dp"
                 android:text="Delivered"
                 android:textAllCaps="false"
+                android:enabled="false"
                 android:textSize="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btn_cancl"
