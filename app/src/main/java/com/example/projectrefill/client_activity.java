@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.projectrefill.databinding.ActivityClientBinding;
@@ -19,6 +20,7 @@ ActivityClientBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding=ActivityClientBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replacefragment(new HomeFragment());
