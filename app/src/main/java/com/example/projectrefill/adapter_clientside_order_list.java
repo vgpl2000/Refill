@@ -1,6 +1,8 @@
 package com.example.projectrefill;
 
+import android.content.SharedPreferences;
 import android.graphics.ColorSpace;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,8 +42,8 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                 holder.btnchk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
-                        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new Checkordersbtn_client_Fragment(model.getName())).addToBackStack(null).commit();
+                        AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new Checkordersbtn_client_Fragment(model.getName())).addToBackStack(null).commit();
                     }
                 });
 
@@ -50,24 +52,18 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(view.getContext(), "accepting", Toast.LENGTH_SHORT).show();
-                        String retailername,itemname,quan;
+                        String retailername, itemname, quan;
 
                         Date c = Calendar.getInstance().getTime();
 
 
                         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
                         String formattedDate = df.format(c).toString();
-                        System.out.println("date to display for the system   "+formattedDate);
+                        System.out.println("date to display for the system   " + formattedDate);
 
                         holder.btndel.setEnabled(true);
                         holder.btnacp.setEnabled(false);
                         holder.btncan.setEnabled(false);
-
-
-
-
-
-
 
 
                     }
@@ -84,7 +80,6 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
                     }
                 });
-
 
 
                 holder.btndel.setOnClickListener(new View.OnClickListener() {
