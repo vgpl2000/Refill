@@ -16,15 +16,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.internal.ParcelableSparseArray;
+import com.google.android.material.internal.ParcelableSparseBooleanArray;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<client_model_home_orders,adapter_clientside_order_list.myviewholder> implements Filterable
         {
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference databaseReference = database.getInstance().getReference();
+            String o_state;
+
+
 
 
             public adapter_clientside_order_list(@NonNull FirebaseRecyclerOptions<client_model_home_orders> options) {
@@ -37,76 +51,110 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
 
 
-                holder.textView.setText(model.getName());
-                holder.btnchk.setOnClickListener(new View.OnClickListener() {
+                ValueEventListener valueEventListener = new ValueEventListener() {
                     @Override
-                    public void onClick(View view) {
-                        AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new Checkordersbtn_client_Fragment(model.getName())).addToBackStack(null).commit();
-                    }
-                });
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        o_state = snapshot.child("Client").child("c_orders").child(model.getName()).child("order_state").getValue(String.class);
 
 
-
-                holder.btnacp.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(view.getContext(), "accepting", Toast.LENGTH_SHORT).show();
-                        String retailername, itemname, quan;
-
-                        Date c = Calendar.getInstance().getTime();
-
-
-                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                        String formattedDate = df.format(c).toString();
-                        System.out.println("date to display for the system   " + formattedDate);
-
-                        holder.btndel.setEnabled(true);
-                        holder.btnacp.setEnabled(false);
-                        holder.btncan.setEnabled(false);
+                        if(o_state.equals("accepted")){
+                            holder.btnacp.setEnabled(false);
+                            holder.btncan.setEnabled(false);
+                        }
 
 
                     }
-                });
 
 
-                holder.btncan.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        Toast.makeText(view.getContext(), "cancelling", Toast.LENGTH_SHORT).show();
-                        holder.btncan.setEnabled(false);
-                        holder.btnacp.setEnabled(false);
-                        holder.btndel.setEnabled(false);
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        System.out.println("Error");
 
                     }
-                });
+                };
+
+                //check order state
 
 
-                holder.btndel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        holder.btndel.setEnabled(false);
-                        holder.btnacp.setEnabled(false);
-                        holder.btncan.setEnabled(false);
-                        Toast.makeText(view.getContext(), "delivered", Toast.LENGTH_SHORT).show();
-                    }
-                });
 
 
+                    holder.textView.setText(model.getName());
+                    holder.btnchk.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                            appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new Checkordersbtn_client_Fragment(model.getName())).addToBackStack(null).commit();
+                        }
+                    });
+
+
+                    holder.btnacp.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(view.getContext(), "accepting", Toast.LENGTH_SHORT).show();
+                            String retailername, itemname, quan;
+
+                            Date c = Calendar.getInstance().getTime();
+
+
+                            SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                            String formattedDate = df.format(c).toString();
+                            System.out.println("date to display for the system   " + formattedDate);
+
+                            holder.btndel.setEnabled(true);
+                            holder.btnacp.setEnabled(false);
+                            holder.btncan.setEnabled(false);
+
+                            //To set accepted order state value accepted
+
+                            databaseReference.child("Client").child("c_orders").child(model.getName()).child("order_state").setValue("accepted");
+
+
+                        }
+                    });
+
+
+                    holder.btncan.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(view.getContext(), "cancelling", Toast.LENGTH_SHORT).show();
+                            holder.btncan.setEnabled(false);
+                            holder.btnacp.setEnabled(false);
+                            holder.btndel.setEnabled(false);
+
+                            //To update that order is cancelled in database
+                            databaseReference.child("Client").child("c_orders").child(model.getName()).child("order_state").setValue("cancelled");
+
+                        }
+                    });
+
+
+                    holder.btndel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            holder.btndel.setEnabled(false);
+                            holder.btnacp.setEnabled(false);
+                            holder.btncan.setEnabled(false);
+                            Toast.makeText(view.getContext(), "delivered", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
 
             }
 
             @NonNull
-            @Override
-            public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-               View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row_order_clientside_homepage,parent,false);
-               return new myviewholder(view);
-            }
 
             @Override
             public Filter getFilter() {
                 return null;
+            }
+
+            @NonNull
+            @Override
+            public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row_order_clientside_homepage,parent,false);
+                return new myviewholder(view);
+
             }
 
 
