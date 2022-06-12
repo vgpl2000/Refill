@@ -103,10 +103,9 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                             String formattedDate = df.format(c).toString();
                             System.out.println("date to display for the system   " + formattedDate);
 
-                            holder.btndel.setEnabled(true);
-                            holder.btnacp.setBackgroundResource(R.drawable.disabled);
-                            holder.btnacp.setEnabled(false);
-                            holder.btncan.setEnabled(false);
+                            holder.btndel.setVisibility(View.VISIBLE);
+                            holder.btnacp.setVisibility(View.GONE);
+                            holder.btncan.setVisibility(View.GONE);
 
                             //To set accepted order state value accepted
 
@@ -121,10 +120,9 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                         @Override
                         public void onClick(View view) {
                             Toast.makeText(view.getContext(), "cancelling", Toast.LENGTH_SHORT).show();
-                            holder.btncan.setEnabled(false);
-                            holder.btncan.setBackgroundResource(R.drawable.disabled);
-                            holder.btnacp.setEnabled(false);
-                            holder.btndel.setEnabled(false);
+                            holder.btndel.setVisibility(View.GONE);
+                            holder.btnacp.setVisibility(View.GONE);
+                            holder.btncan.setVisibility(View.GONE);
 
                             //To update that order is cancelled in database
                             databaseReference.child("Client").child("c_orders").child(model.getName()).child("order_state").setValue("cancelled");
@@ -136,10 +134,9 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                     holder.btndel.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            holder.btndel.setEnabled(false);
-                            holder.btndel.setBackgroundResource(R.drawable.disabled);
-                            holder.btnacp.setEnabled(false);
-                            holder.btncan.setEnabled(false);
+                            holder.btndel.setVisibility(View.GONE);
+                            holder.btnacp.setVisibility(View.GONE);
+                            holder.btncan.setVisibility(View.GONE);
                             Toast.makeText(view.getContext(), "delivered", Toast.LENGTH_SHORT).show();
                         }
                     });
