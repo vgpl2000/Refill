@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -102,6 +104,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                             System.out.println("date to display for the system   " + formattedDate);
 
                             holder.btndel.setEnabled(true);
+                            holder.btnacp.setBackgroundResource(R.drawable.disabled);
                             holder.btnacp.setEnabled(false);
                             holder.btncan.setEnabled(false);
 
@@ -119,6 +122,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                         public void onClick(View view) {
                             Toast.makeText(view.getContext(), "cancelling", Toast.LENGTH_SHORT).show();
                             holder.btncan.setEnabled(false);
+                            holder.btncan.setBackgroundResource(R.drawable.disabled);
                             holder.btnacp.setEnabled(false);
                             holder.btndel.setEnabled(false);
 
@@ -133,6 +137,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                         @Override
                         public void onClick(View view) {
                             holder.btndel.setEnabled(false);
+                            holder.btndel.setBackgroundResource(R.drawable.disabled);
                             holder.btnacp.setEnabled(false);
                             holder.btncan.setEnabled(false);
                             Toast.makeText(view.getContext(), "delivered", Toast.LENGTH_SHORT).show();
@@ -160,7 +165,8 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
             public class myviewholder extends RecyclerView.ViewHolder
              {
-                    Button btnchk,btnacp,btncan,btndel;
+                    Button btnchk;
+                    ImageButton btnacp,btncan,btndel;
                     TextView textView;
 
 
