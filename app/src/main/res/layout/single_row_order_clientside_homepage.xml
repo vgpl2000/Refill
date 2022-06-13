@@ -45,6 +45,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/background_button2"
                 android:elevation="5dp"
+                android:fontFamily="@font/poppins_medium"
                 android:padding="2dp"
                 android:text="Check Orders"
                 android:textAllCaps="false"
@@ -55,7 +56,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/btn_accept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,7 +65,10 @@
                 android:background="@drawable/background_button2"
                 android:elevation="5dp"
                 android:padding="6dp"
-                android:src="@drawable/ic_baseline_check_24"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Accept"
+                android:textSize="12dp"
+                android:drawableLeft="@drawable/ic_baseline_check_24"
                 android:textAllCaps="false"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -74,16 +78,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <ImageButton
+            <Button
                 android:id="@+id/btn_cancl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/backgroun_button3"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Cancel"
+                android:drawableLeft="@drawable/ic_baseline_close_24"
                 android:elevation="5dp"
                 android:padding="6dp"
-                android:src="@drawable/ic_baseline_close_24"
                 android:textAllCaps="false"
                 android:visibility="visible"
                 app:layout_constraintEnd_toStartOf="@id/btn_deli"
@@ -92,7 +98,7 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
 
-            <ImageButton
+            <Button
                 android:id="@+id/btn_deli"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,7 +107,9 @@
                 android:background="@drawable/background_button4"
                 android:elevation="5dp"
                 android:padding="6dp"
-                android:src="@drawable/ic_baseline_done_all_24"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Delivered"
+                android:drawableLeft="@drawable/ic_baseline_done_all_24"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btn_cancl"

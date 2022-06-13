@@ -53,27 +53,26 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
 
 
-                ValueEventListener valueEventListener = new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        o_state = snapshot.child("Client").child("c_orders").child(model.getName()).child("order_state").getValue(String.class);
+               databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
+                   @Override
+                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+                       o_state=snapshot.child("c_orders").child(model.getName()).child("order_state").getValue(String.class);
+                       if(o_state.equals("accepted")){
+                           holder.btnacp.setVisibility(View.GONE);
+                           holder.btncan.setVisibility(View.GONE);
+                           holder.btndel.setVisibility(View.VISIBLE);
+                       }
+                       else if(o_state.equals("cancelled")){
+                           holder.btncan.setVisibility(View.GONE);
+                           holder.btnacp.setVisibility(View.GONE);
+                       }
+                   }
 
+                   @Override
+                   public void onCancelled(@NonNull DatabaseError error) {
 
-                        if(o_state.equals("accepted")){
-                            holder.btnacp.setEnabled(false);
-                            holder.btncan.setEnabled(false);
-                        }
-
-
-                    }
-
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        System.out.println("Error");
-
-                    }
-                };
+                   }
+               });
 
                 //check order state
 
@@ -103,11 +102,13 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                             String formattedDate = df.format(c).toString();
                             System.out.println("date to display for the system   " + formattedDate);
 
-                            holder.btndel.setVisibility(View.VISIBLE);
                             holder.btnacp.setVisibility(View.GONE);
                             holder.btncan.setVisibility(View.GONE);
+                            holder.btndel.setVisibility(View.VISIBLE);
+
 
                             //To set accepted order state value accepted
+
 
                             databaseReference.child("Client").child("c_orders").child(model.getName()).child("order_state").setValue("accepted");
 
@@ -120,9 +121,9 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                         @Override
                         public void onClick(View view) {
                             Toast.makeText(view.getContext(), "cancelling", Toast.LENGTH_SHORT).show();
-                            holder.btndel.setVisibility(View.GONE);
-                            holder.btnacp.setVisibility(View.GONE);
                             holder.btncan.setVisibility(View.GONE);
+                            holder.btnacp.setVisibility(View.GONE);
+
 
                             //To update that order is cancelled in database
                             databaseReference.child("Client").child("c_orders").child(model.getName()).child("order_state").setValue("cancelled");
@@ -162,8 +163,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
             public class myviewholder extends RecyclerView.ViewHolder
              {
-                    Button btnchk;
-                    ImageButton btnacp,btncan,btndel;
+                    Button btnchk,btnacp,btncan,btndel;
                     TextView textView;
 
 
