@@ -7,11 +7,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,26 +51,27 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
 
 
-               databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
-                   @Override
-                   public void onDataChange(@NonNull DataSnapshot snapshot) {
-                       o_state=snapshot.child("c_orders").child(model.getName()).child("order_state").getValue(String.class);
-                       if(o_state.equals("accepted")){
-                           holder.btnacp.setVisibility(View.GONE);
-                           holder.btncan.setVisibility(View.GONE);
-                           holder.btndel.setVisibility(View.VISIBLE);
-                       }
-                       else if(o_state.equals("cancelled")){
-                           holder.btncan.setVisibility(View.GONE);
-                           holder.btnacp.setVisibility(View.GONE);
-                       }
-                   }
+                ValueEventListener valueEventListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        o_state = snapshot.child("Client").child("c_orders").child(model.getName()).child("order_state").getValue(String.class);
 
-                   @Override
-                   public void onCancelled(@NonNull DatabaseError error) {
 
-                   }
-               });
+                        if(o_state.equals("accepted")){
+                            holder.btnacp.setEnabled(false);
+                            holder.btncan.setEnabled(false);
+                        }
+
+
+                    }
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        System.out.println("Error");
+
+                    }
+                };
 
                 //check order state
 
@@ -102,13 +101,11 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                             String formattedDate = df.format(c).toString();
                             System.out.println("date to display for the system   " + formattedDate);
 
-                            holder.btnacp.setVisibility(View.GONE);
-                            holder.btncan.setVisibility(View.GONE);
-                            holder.btndel.setVisibility(View.VISIBLE);
-
+                            holder.btndel.setEnabled(true);
+                            holder.btnacp.setEnabled(false);
+                            holder.btncan.setEnabled(false);
 
                             //To set accepted order state value accepted
-
 
                             databaseReference.child("Client").child("c_orders").child(model.getName()).child("order_state").setValue("accepted");
 
@@ -121,9 +118,9 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                         @Override
                         public void onClick(View view) {
                             Toast.makeText(view.getContext(), "cancelling", Toast.LENGTH_SHORT).show();
-                            holder.btncan.setVisibility(View.GONE);
-                            holder.btnacp.setVisibility(View.GONE);
-
+                            holder.btncan.setEnabled(false);
+                            holder.btnacp.setEnabled(false);
+                            holder.btndel.setEnabled(false);
 
                             //To update that order is cancelled in database
                             databaseReference.child("Client").child("c_orders").child(model.getName()).child("order_state").setValue("cancelled");
@@ -135,9 +132,9 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                     holder.btndel.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            holder.btndel.setVisibility(View.GONE);
-                            holder.btnacp.setVisibility(View.GONE);
-                            holder.btncan.setVisibility(View.GONE);
+                            holder.btndel.setEnabled(false);
+                            holder.btnacp.setEnabled(false);
+                            holder.btncan.setEnabled(false);
                             Toast.makeText(view.getContext(), "delivered", Toast.LENGTH_SHORT).show();
                         }
                     });

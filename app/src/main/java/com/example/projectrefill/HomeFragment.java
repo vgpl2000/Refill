@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment {
         searchView=v.findViewById(R.id.searchView);
 
         recyclerView1=(RecyclerView) v.findViewById(R.id.recyclerView);
-        recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView1.setLayoutManager(new CustomLinearLayoutManager1(getContext()));
 
         FirebaseRecyclerOptions<client_model_home_orders> options =
                 new FirebaseRecyclerOptions.Builder<client_model_home_orders>()
@@ -114,11 +114,7 @@ public class HomeFragment extends Fragment {
         return v;
     }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
 
-    }
 
     private void mySearch(String s) {
 
@@ -144,5 +140,16 @@ public class HomeFragment extends Fragment {
     public void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    //solution for inconsistency detected error
+    public class CustomLinearLayoutManager1 extends LinearLayoutManager {
+        public CustomLinearLayoutManager1(Context context) {
+            super(context);
+        }
+        @Override
+        public boolean supportsPredictiveItemAnimations() {
+            return false;
+        }
     }
 }
