@@ -22,7 +22,6 @@ ActivityClientBinding binding;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             binding = ActivityClientBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
             replacefragment(new HomeFragment());

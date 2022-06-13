@@ -16,6 +16,7 @@ ActivityRetailerBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding= ActivityRetailerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replacefragment(new Home_Retailer_Fragment());
