@@ -39,8 +39,6 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
     holder.weight.setText(model.getWeight());
 
 
-        setAnimation(holder.itemView, position);//for animation of recycler
-
         holder.btnedititems.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -53,18 +51,7 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
     }
 
 
-    // display recycler animation once for
-    private int lastPosition = -1;
 
-    private void setAnimation(View viewToAnimate, int position) {
-        // If the bound view wasn't previously displayed on screen, it's animated
-        if (position > lastPosition) {
-            ScaleAnimation anim = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-            anim.setDuration(new Random().nextInt(501));//to make duration random number between [0,501)
-            viewToAnimate.startAnimation(anim);
-            lastPosition = position;
-        }
-    }
 
 
 
