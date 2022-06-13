@@ -22,6 +22,7 @@
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/single_row_order_clientside_homepage.xml" value="0.17777777777777778" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/welcome_page.xml" value="0.14" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/menu/bottom_menu.xml" value="0.17777777777777778" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.246" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/backgroun_button3.xml" value="0.237" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/background_button.xml" value="0.2985" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/background_button2.xml" value="0.237" />
@@ -30,6 +31,9 @@
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/background_search_bar.xml" value="0.187" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/entry_field_white.xml" value="0.237" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/entry_fields.xml" value="0.187" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.246" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.246" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/ic_launcher_background.xml" value="0.246" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/activity_client.xml" value="0.3050397877984085" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/activity_splash_screen.xml" value="0.33" />
@@ -50,6 +54,8 @@
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/single_row_order_clientside_homepage.xml" value="0.365625" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/singlerow_design_todisplay_itemsavailable_at_client_side.xml" value="0.25" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.246" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.246" />
       </map>
     </option>
   </component>

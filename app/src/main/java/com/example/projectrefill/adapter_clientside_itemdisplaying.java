@@ -53,7 +53,7 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
     }
 
 
-    // display recycler animation once
+    // display recycler animation once for
     private int lastPosition = -1;
 
     private void setAnimation(View viewToAnimate, int position) {
