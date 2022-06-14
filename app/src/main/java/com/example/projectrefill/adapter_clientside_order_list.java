@@ -62,8 +62,11 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                         }else if(o_state.equals("cancelled")){
                             holder.btncan.setVisibility(View.GONE);
                             holder.btnacp.setVisibility(View.GONE);
+                            holder.btndel.setVisibility(View.GONE);
                         }else if(o_state.equals("delivered")){
                             holder.btndel.setVisibility(View.GONE);
+                            holder.btncan.setVisibility(View.GONE);
+                            holder.btnacp.setVisibility(View.GONE);
                         }
                     }
 
