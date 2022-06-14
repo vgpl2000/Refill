@@ -1,5 +1,6 @@
 package com.example.projectrefill;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -54,6 +56,9 @@ public class change_pswrd_Fragment extends SettingsFragment {
         btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                closeKeyboard();
+
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
                 fr.replace(R.id.chng_passwd,new Settings_Retailer_Fragment());
                 fr.commit();
@@ -67,6 +72,7 @@ public class change_pswrd_Fragment extends SettingsFragment {
             @Override
             public void onClick(View view) {
 
+
                 c_passwrd = txt_c_psswd.getText().toString();
                 n_passwrd = txt_n_passwd.getText().toString();
 
@@ -75,6 +81,8 @@ public class change_pswrd_Fragment extends SettingsFragment {
                     txt_c_psswd.setError("Enter credentials!");
                     txt_n_passwd.setError("Enter credentials!");
                 } else {
+
+                    closeKeyboard();
 
                     //checking
                     databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -117,6 +125,14 @@ public class change_pswrd_Fragment extends SettingsFragment {
 
         return v;
 
+    }
+
+    private void closeKeyboard() {
+        View view=this.getActivity().getCurrentFocus();
+        if(view!=null){
+            InputMethodManager keyboard=(InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            keyboard.hideSoftInputFromWindow(view.getWindowToken(),0);
+        }
     }
 
 
