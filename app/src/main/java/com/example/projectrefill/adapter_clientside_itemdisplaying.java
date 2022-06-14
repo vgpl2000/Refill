@@ -3,6 +3,10 @@ package com.example.projectrefill;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -12,11 +16,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+
+import java.util.Random;
 
 public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<client_model_todisplayitemsavailable,adapter_clientside_itemdisplaying.myviewholderfordisplaying>{
 
@@ -30,7 +37,9 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
     holder.pri.setText(model.getPrice());
     Glide.with(holder.img1.getContext()).load(model.getUrl()).into(holder.img1);
     holder.weight.setText(model.getWeight());
-    holder.btnedititems.setOnClickListener(new View.OnClickListener() {
+
+
+        holder.btnedititems.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Toast.makeText(view.getContext(), "Edit opening", Toast.LENGTH_SHORT).show();
@@ -40,6 +49,11 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
     });
 
     }
+
+
+
+
+
 
     @NonNull
     @Override
@@ -53,6 +67,7 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
         ImageView img1;
         TextView nm,pri,weight;
         Button btnedititems;
+        //CardView cardView;
 
 
         public myviewholderfordisplaying(@NonNull View itemView) {
@@ -62,7 +77,9 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
             pri=itemView.findViewById(R.id.pricevalueforitem);
             weight=itemView.findViewById(R.id.weightvalueforitem);
             btnedititems=itemView.findViewById(R.id.btneditforitemdisplay);
+           // cardView=itemView.findViewById(R.id.cardviewtodispitem);
 
         }
     }
+
 }
