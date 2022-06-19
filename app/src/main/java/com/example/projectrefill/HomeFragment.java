@@ -120,7 +120,7 @@ public class HomeFragment extends Fragment {
 
         FirebaseRecyclerOptions<client_model_home_orders> options =
                 new FirebaseRecyclerOptions.Builder<client_model_home_orders>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders").orderByChild("name").startAt(s).endAt(s+"\uf8ff"), client_model_home_orders.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders").orderByChild("name").startAt(s.toUpperCase()).endAt(s+"\uf8ff"), client_model_home_orders.class)
                         .build();
 
         adapter=new adapter_clientside_order_list(options);

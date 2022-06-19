@@ -104,7 +104,7 @@ public class ItemFragment extends Fragment {
 
         FirebaseRecyclerOptions<client_model_todisplayitemsavailable> options =
                 new FirebaseRecyclerOptions.Builder<client_model_todisplayitemsavailable>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_items").orderByChild("name").startAt(s).endAt(s+"\uf8ff"), client_model_todisplayitemsavailable.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_items").orderByChild("name").startAt(s.toUpperCase()).endAt(s.toLowerCase()+"\uf8ff"), client_model_todisplayitemsavailable.class)
                         .build();
 
         adapter=new adapter_clientside_itemdisplaying(options);
