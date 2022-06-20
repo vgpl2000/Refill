@@ -53,12 +53,18 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
                     @Override
                     public void onComplete(@NonNull Task task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(view.getContext(), "Done!!!!!!", Toast.LENGTH_SHORT).show();
+                            
+                          }else {
+                            Toast.makeText(view.getContext(), "If its big error we will make updates", Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 });
-
+            }
+        });
+        holder.trans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), "To show fragment", Toast.LENGTH_SHORT).show();
             }
         });
 
