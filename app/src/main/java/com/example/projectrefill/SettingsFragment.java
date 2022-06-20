@@ -11,8 +11,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,6 +47,7 @@ public class SettingsFragment extends Fragment {
     TextView txtchngpassword;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    Animation scaleUp,scaleDown;
 
 
     // TODO: Rename and change types of parameters
@@ -114,6 +118,11 @@ public class SettingsFragment extends Fragment {
         });*/
 
 
+        logout=v.findViewById(R.id.logout);
+
+
+
+
 
          txtchngpassword=v.findViewById(R.id.txtchngpassword);
         //To click and change Profile Image write code here
@@ -132,7 +141,7 @@ public class SettingsFragment extends Fragment {
         //To logout from client
 
 
-        logout=v.findViewById(R.id.logout);
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
