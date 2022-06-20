@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cdviewfordisplayingretailerlist"
+    android:background="@color/black"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardUseCompatPadding="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/entry_field_white"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/retailer_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Name Comes here"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/retailer_name"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="-2dp"
+            android:layout_marginEnd="4dp"
+            android:gravity="center"
+            android:padding="5dp">
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:background="@drawable/background_button"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Transactions"
+                android:id="@+id/buttontoopentransactions"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Due(Rs):"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="0"
+                android:id="@+id/edittexttoeditdueamount"
+                android:textColor="@color/white"
+                android:textSize="18dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:text="Submit"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="15dp"
+                android:id="@+id/buttontosubmitdue"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/entry_fields"/>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

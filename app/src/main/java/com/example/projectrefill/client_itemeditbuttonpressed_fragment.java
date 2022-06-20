@@ -80,6 +80,7 @@ public class client_itemeditbuttonpressed_fragment extends Fragment {
         buttonclose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
                 fr.replace(R.id.edititemclosefrag,new ItemFragment());
                 fr.commit();

@@ -52,9 +52,6 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
 
 
 
-
-
-
     @NonNull
     @Override
     public myviewholderfordisplaying onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
