@@ -13,6 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecyclerAdapter<client_model_fordisplayingretailerstoupdatedue,adapter_clientside_retailerdetailesdisplying.myviewholder> {
 
@@ -30,6 +36,28 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Submit", Toast.LENGTH_SHORT).show();
 
+                String name1=holder.name.getText().toString();
+                System.out.println(name1+"flsjfslfj;lsdfjlajsjfjsfjfjsjfjlsjflj;ljfljljfl");
+
+                String dueamt=holder.duefield.getText().toString();
+                System.out.println(dueamt+"flsjfslfj;lsdfjlajsjfjsfjfjsjfjlsjflj;ljfljljfl");
+
+
+                HashMap user=new HashMap();
+                user.put("due_amt",dueamt);
+
+
+                //FirebaseDatabase db = FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Retailer");
+                databaseReference.child(name1).updateChildren(user).addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(view.getContext(), "Done!!!!!!", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
 
             }
         });
