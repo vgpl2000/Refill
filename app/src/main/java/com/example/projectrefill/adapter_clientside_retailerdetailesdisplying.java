@@ -66,7 +66,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
         holder.trans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "To show fragment", Toast.LENGTH_SHORT).show();
+
                 AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
                 appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper5, new clientside_transactionpressedbutton_Fragment(model.getName())).addToBackStack(null).commit();
             }
