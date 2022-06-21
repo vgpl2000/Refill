@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        MediaPlayer mp= MediaPlayer.create(this,R.raw.welcome_1);
 
 
         preferences=getSharedPreferences("MyPreferences",MODE_PRIVATE);
@@ -78,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
                     String resText=preferences.getString("username",null);
 
                     if(resText.equals("akashadeepa")) {
-                        mp.start();
                         Intent intent = new Intent(MainActivity.this, client_activity.class);
                         startActivity(intent);
                     }else {
@@ -143,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                                     editor.putString("password",ePassword);
                                     editor.commit();
 
-                                    mp.start();
+
                                     Toast.makeText(MainActivity.this, "Client Logged In", Toast.LENGTH_SHORT).show();
                                     Intent intent=new Intent(MainActivity.this,client_activity.class);
                                     startActivity(intent);

@@ -82,7 +82,7 @@
             android:id="@+id/recyclerView_items"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="169dp"
+            android:paddingBottom="173dp"
             android:scrollbars="vertical"
             android:scrollbarStyle="outsideInset"
             android:scrollbarSize="3dp"
