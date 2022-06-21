@@ -35,13 +35,12 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
         holder.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Submit", Toast.LENGTH_SHORT).show();
+
 
                 String name1=holder.name.getText().toString();
-                System.out.println(name1+"flsjfslfj;lsdfjlajsjfjsfjfjsjfjlsjflj;ljfljljfl");
+
 
                 String dueamt=holder.duefield.getText().toString();
-                System.out.println(dueamt+"flsjfslfj;lsdfjlajsjfjsfjfjsjfjlsjflj;ljfljljfl");
 
 
                 HashMap user=new HashMap();
