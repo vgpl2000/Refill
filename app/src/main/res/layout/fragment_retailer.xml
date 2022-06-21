@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
     android:background="@color/black"
     android:id="@+id/wrapper5"
     tools:context=".RetailerFragment">
@@ -64,7 +65,7 @@
         android:id="@+id/recyclerviewtodispretailerlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="130dp"
+        android:paddingBottom="110dp"
         android:scrollbars="vertical"
         android:fadeScrollbars="true"
         android:scrollbarStyle="outsideOverlay"
