@@ -1,5 +1,6 @@
 package com.example.projectrefill;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,6 +27,7 @@ public class RetailerFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     RecyclerView recyclerView;
+    SearchView searchView;
     adapter_clientside_retailerdetailesdisplying adapter;
 
 
@@ -57,6 +60,8 @@ public class RetailerFragment extends Fragment {
 
         View v= inflater.inflate(R.layout.fragment_retailer, container, false);
 
+        searchView=v.findViewById(R.id.searchViewforretailerlist);
+
         recyclerView=v.findViewById(R.id.recyclerviewtodispretailerlist);
         recyclerView.setLayoutManager(new RetailerFragment.CustomLinearLayoutManager1(getContext()));
 
@@ -69,7 +74,41 @@ public class RetailerFragment extends Fragment {
 
 
 
+        SearchManager searchManager= (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setIconified(true);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                mySearch(s);
+                searchView.clearFocus();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                mySearch(s);
+                return true;
+            }
+
+        });
+
+
+
         return v;
+    }
+
+    private void mySearch(String s) {
+
+        FirebaseRecyclerOptions<client_model_fordisplayingretailerstoupdatedue> options =
+                new FirebaseRecyclerOptions.Builder<client_model_fordisplayingretailerstoupdatedue>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").orderByChild("name").startAt(s.toUpperCase()).endAt(s.toLowerCase()+"\uf8ff"), client_model_fordisplayingretailerstoupdatedue.class)
+                        .build();
+
+        adapter=new adapter_clientside_retailerdetailesdisplying(options);
+        adapter.startListening();
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

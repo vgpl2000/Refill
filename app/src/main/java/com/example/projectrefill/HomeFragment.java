@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -39,6 +40,8 @@ public class HomeFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+
+    ProgressBar progressBar;
     RecyclerView recyclerView1;
     adapter_clientside_order_list adapter;
     SearchView searchView;
@@ -79,6 +82,8 @@ public class HomeFragment extends Fragment {
         //To search
         searchView=v.findViewById(R.id.searchView);
 
+        progressBar=v.findViewById(R.id.progressBar);
+
         recyclerView1=(RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView1.setLayoutManager(new CustomLinearLayoutManager1(getContext()));
 
@@ -87,6 +92,7 @@ public class HomeFragment extends Fragment {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders"), client_model_home_orders.class)
                         .build();
         adapter=new adapter_clientside_order_list(options);
+
         recyclerView1.setAdapter(adapter);
 
 

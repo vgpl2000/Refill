@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class ItemFragment extends Fragment {
     RecyclerView recyclerViewforitemdisplay;
     adapter_clientside_itemdisplaying adapter;
     SearchView searchView;
+    ProgressBar progressBar;
 
 
 
@@ -43,6 +45,8 @@ public class ItemFragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_item, container, false);
 
+        progressBar=v.findViewById(R.id.progressBar);
+
         recyclerViewforitemdisplay=v.findViewById(R.id.recyclerView_items);
         recyclerViewforitemdisplay.setLayoutManager(new CustomLinearLayoutManager(getContext()));
 
@@ -51,6 +55,7 @@ public class ItemFragment extends Fragment {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_items"), client_model_todisplayitemsavailable.class)
                         .build();
         adapter=new adapter_clientside_itemdisplaying(options);
+
         recyclerViewforitemdisplay.setAdapter(adapter);
 
 
