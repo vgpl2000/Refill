@@ -3,12 +3,14 @@ package com.example.projectrefill;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.provider.MediaStore;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -47,7 +49,8 @@ public class SettingsFragment extends Fragment {
     TextView txtchngpassword;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
-    Animation scaleUp,scaleDown;
+
+
 
 
     // TODO: Rename and change types of parameters
@@ -122,6 +125,7 @@ public class SettingsFragment extends Fragment {
         accepted=v.findViewById(R.id.btn_accepted);
         cancelled=v.findViewById(R.id.btn_cancelled);
         delivered=v.findViewById(R.id.btn_delivered);
+
 
 
 
