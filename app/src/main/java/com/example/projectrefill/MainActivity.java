@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         showPassword=findViewById(R.id.checkBox);
 
 
+
         //Check user already logged in or not
 
 
@@ -106,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 final String ePassword = txtPassword.getText().toString();
                 final String eUser = txtUser.getText().toString();

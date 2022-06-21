@@ -42,7 +42,7 @@ public class SettingsFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
 
-    Button logout;
+    Button logout,accepted,cancelled,delivered;
     ImageView client_profile;
     TextView txtchngpassword;
     SharedPreferences preferences;
@@ -119,7 +119,9 @@ public class SettingsFragment extends Fragment {
 
 
         logout=v.findViewById(R.id.logout);
-
+        accepted=v.findViewById(R.id.btn_accepted);
+        cancelled=v.findViewById(R.id.btn_cancelled);
+        delivered=v.findViewById(R.id.btn_delivered);
 
 
 
@@ -172,6 +174,28 @@ public class SettingsFragment extends Fragment {
                 fr.replace(R.id.settings1,new change_pswrd_Fragment()).addToBackStack(null);
                 fr.commit();
 
+            }
+        });
+
+
+        accepted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),  "Accepted Orders", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        cancelled.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),  "Cancelled Orders", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        delivered.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),  "Delivered Orders", Toast.LENGTH_SHORT).show();
             }
         });
 
