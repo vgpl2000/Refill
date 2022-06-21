@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -61,10 +62,14 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
                 });
             }
         });
+
+        //holder.name2.setText(model.getName());
         holder.trans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "To show fragment", Toast.LENGTH_SHORT).show();
+                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper5, new clientside_transactionpressedbutton_Fragment(model.getName())).addToBackStack(null).commit();
             }
         });
 
@@ -78,7 +83,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
     }
 
     public class myviewholder extends RecyclerView.ViewHolder{
-        TextView name;
+        TextView name,name2;
         Button trans,submit;
         EditText duefield;
 
@@ -88,6 +93,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             trans=itemView.findViewById(R.id.buttontoopentransactions);
             submit=itemView.findViewById(R.id.buttontosubmitdue);
             duefield=itemView.findViewById(R.id.edittexttoeditdueamount);
+            //name2=itemView.findViewById(R.id.textViewtodispnamefortrans);
 
         }
     }

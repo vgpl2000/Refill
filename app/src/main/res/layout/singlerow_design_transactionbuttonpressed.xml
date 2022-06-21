@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cardviewtodisptransactiondetails"
+    android:layout_marginBottom="5dp"
+    android:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:text="Date:"/>
+            <View
+                android:layout_width="5dp"
+                android:layout_height="1dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="value here"
+                android:textColor="#FFEB3B"
+                android:id="@+id/datevalueherefortransactions"
+                android:textSize="15dp"
+                android:fontFamily="@font/poppins_medium"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="15dp"
+                android:textColor="@color/white"
+                android:text="Item:"/>
+            <View
+                android:layout_width="5dp"
+                android:layout_height="1dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="value here"
+                android:textSize="15dp"
+                android:textColor="#FFEB3B"
+                android:id="@+id/namevalueherefortransaction"
+                android:fontFamily="@font/poppins_medium"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/white"
+
+                android:textSize="15dp"
+                android:text="Quantity:"/>
+            <View
+                android:layout_width="5dp"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:id="@+id/quanvalueherefortransaction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="number"
+                android:text="value here"
+                android:textColor="#FFEB3B"
+                android:textSize="15dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
