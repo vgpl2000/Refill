@@ -57,6 +57,12 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:text="0"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/entry_field_white"
+                android:inputType="number"
                 android:id="@+id/edittexttoeditdueamount"
                 android:textColor="@color/white"
                 android:textSize="18dp"/>
@@ -69,6 +75,7 @@
                 android:textSize="15dp"
                 android:id="@+id/buttontosubmitdue"
                 android:layout_marginLeft="15dp"
+                android:visibility="gone"
                 android:background="@drawable/entry_fields"/>
 
 

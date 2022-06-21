@@ -1,6 +1,7 @@
 package com.example.projectrefill;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,14 +33,23 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull client_model_fordisplayingretailerstoupdatedue model) {
         holder.duefield.setText(model.getDue_amt());
         holder.name.setText(model.getName());
+
+
+        holder.duefield.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                holder.submit.setVisibility(View.VISIBLE);
+            }
+        });
         holder.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                holder.submit.setVisibility(View.GONE);
+                holder.duefield.clearFocus();
+
 
                 String name1=holder.name.getText().toString();
-
-
                 String dueamt=holder.duefield.getText().toString();
 
 
@@ -52,7 +62,9 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
                 databaseReference.child(name1).updateChildren(user).addOnCompleteListener(new OnCompleteListener() {
                     @Override
                     public void onComplete(@NonNull Task task) {
+
                         if (task.isSuccessful()){
+
                             
                           }else {
                             Toast.makeText(view.getContext(), "If its big error we will make updates", Toast.LENGTH_SHORT).show();
