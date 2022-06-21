@@ -113,6 +113,9 @@ public class ItemFragment extends Fragment {
                         .build();
 
         adapter=new adapter_clientside_itemdisplaying(options);
+        if(adapter.getItemCount()!=0){
+            progressBar.setVisibility(View.GONE);
+        }
         adapter.startListening();
         recyclerViewforitemdisplay.setAdapter(adapter);
 

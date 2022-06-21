@@ -41,10 +41,10 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    ProgressBar progressBar;
     RecyclerView recyclerView1;
     adapter_clientside_order_list adapter;
     SearchView searchView;
+    ProgressBar progressBar;
 
 
     public HomeFragment() {
@@ -70,6 +70,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
+
     @Override
     //for git
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,12 +78,12 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_home, container, false);
 
+        progressBar=v.findViewById(R.id.progressBarHome);
         //recycler added
 
         //To search
         searchView=v.findViewById(R.id.searchView);
 
-        progressBar=v.findViewById(R.id.progressBar);
 
         recyclerView1=(RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView1.setLayoutManager(new CustomLinearLayoutManager1(getContext()));
@@ -92,8 +93,10 @@ public class HomeFragment extends Fragment {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders"), client_model_home_orders.class)
                         .build();
         adapter=new adapter_clientside_order_list(options);
+        adapter.startListening();
 
         recyclerView1.setAdapter(adapter);
+
 
 
 
@@ -150,9 +153,12 @@ public class HomeFragment extends Fragment {
 
     //solution for inconsistency detected error
     public class CustomLinearLayoutManager1 extends LinearLayoutManager {
+
         public CustomLinearLayoutManager1(Context context) {
             super(context);
         }
+
+
         @Override
         public boolean supportsPredictiveItemAnimations() {
             return false;

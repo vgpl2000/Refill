@@ -63,6 +63,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
                     @Override
                     public void onComplete(@NonNull Task task) {
 
+
                         if (task.isSuccessful()){
 
                             

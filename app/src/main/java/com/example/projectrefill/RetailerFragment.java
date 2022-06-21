@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -28,6 +29,7 @@ public class RetailerFragment extends Fragment {
     private String mParam2;
     RecyclerView recyclerView;
     SearchView searchView;
+    ProgressBar progressBar;
     adapter_clientside_retailerdetailesdisplying adapter;
 
 
@@ -60,6 +62,8 @@ public class RetailerFragment extends Fragment {
 
         View v= inflater.inflate(R.layout.fragment_retailer, container, false);
 
+        progressBar=v.findViewById(R.id.progressBar1);
+
         searchView=v.findViewById(R.id.searchViewforretailerlist);
 
         recyclerView=v.findViewById(R.id.recyclerviewtodispretailerlist);
@@ -70,7 +74,11 @@ public class RetailerFragment extends Fragment {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer"),client_model_fordisplayingretailerstoupdatedue.class)
                         .build();
         adapter=new adapter_clientside_retailerdetailesdisplying(options);
+        if(adapter.getItemCount()!=0){
+            progressBar.setVisibility(View.GONE);
+        }
         recyclerView.setAdapter(adapter);
+
 
 
 

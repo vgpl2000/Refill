@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,11 +38,15 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = database.getInstance().getReference();
             String o_state;
+            ProgressBar progressBar;
 
-
-
+            @Override
+            public int getItemCount() {
+                return super.getItemCount();
+            }
 
             public adapter_clientside_order_list(@NonNull FirebaseRecyclerOptions<client_model_home_orders> options) {
+
                 super(options);
             }
 
@@ -50,10 +55,10 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull client_model_home_orders model) {
 
 
-
                 databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                         o_state=snapshot.child("c_orders").child(model.getName()).child("order_state").getValue(String.class);
                         if(o_state.equals("accepted")){
                             holder.btnacp.setVisibility(View.GONE);
@@ -180,7 +185,10 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             btnacp=itemView.findViewById(R.id.btn_accept);
             btncan=itemView.findViewById(R.id.btn_cancl);
             btndel=itemView.findViewById(R.id.btn_deli);
+            progressBar=itemView.findViewById(R.id.progressBar);
         }
 
     }
-}
+
+
+        }

@@ -65,8 +65,8 @@
             android:layout_height="31dp"
             android:layout_marginStart="193dp"
             android:layout_marginEnd="189dp"
-            android:foregroundGravity="center"
             android:layout_marginBottom="396dp"
+            android:foregroundGravity="center"
             android:indeterminate="true"
             android:indeterminateDrawable="@drawable/progress_bar"
             android:visibility="visible"
@@ -76,7 +76,7 @@
             app:layout_constraintStart_toStartOf="parent"
 
             app:layout_constraintTop_toTopOf="@+id/recyclerView_items"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.336" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_items"
