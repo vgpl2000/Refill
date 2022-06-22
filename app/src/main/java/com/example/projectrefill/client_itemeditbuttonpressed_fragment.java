@@ -90,7 +90,6 @@ public class client_itemeditbuttonpressed_fragment extends Fragment {
         submit=view.findViewById(R.id.btntoupdateitemfromdatabase);
         delete=view.findViewById(R.id.btntodeleteitemfromdatabase);
         String name11=textView.getText().toString();
-        System.out.println(name11+"tihsofoaspft;hosovhoashostoga;sfjf;ll jf;ajsfjojgjsj o");
         price=view.findViewById(R.id.newprice);
         weight=view.findViewById(R.id.newweight);
 
