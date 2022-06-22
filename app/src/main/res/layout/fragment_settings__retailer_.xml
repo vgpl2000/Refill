@@ -33,8 +33,6 @@
             android:layout_height="119dp"
             android:clickable="true"
             android:scaleType="center"
-            android:scaleX="6"
-            android:scaleY="6"
             android:soundEffectsEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
