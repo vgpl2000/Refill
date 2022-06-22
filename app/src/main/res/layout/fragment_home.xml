@@ -7,7 +7,7 @@
     app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
     tools:context=".HomeFragment"
     android:id="@+id/wrapper"
-    android:background="@color/black">
+    android:background="@color/grey">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +21,6 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/entry_fields"
             android:iconifiedByDefault="false"
-            android:inputType="textCapWords"
             android:queryHint="Search for your Retailer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +48,7 @@
             android:layout_height="31dp"
             android:layout_marginStart="193dp"
             android:layout_marginEnd="189dp"
-            android:layout_marginBottom="508dp"
+            android:layout_marginBottom="484dp"
             android:indeterminate="true"
             android:indeterminateDrawable="@drawable/progress_bar"
             android:visibility="visible"

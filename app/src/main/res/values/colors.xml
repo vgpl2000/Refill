@@ -10,4 +10,11 @@
     <color name="yellow">#FFEB3B</color>
     <color name="transperant_black">#C1000000</color>
     <color name="light_white">#434343</color>
+    <color name="palette_blackdark">#1E2328</color>
+    <color name="palette_blackdarkless">#2A2E34</color>
+    <color name="palette_blackdarklessless">#3B3F46</color>
+    <color name="palette_yellowdark">#f5a302</color>
+    <color name="palette_yellowdarkless">#f5b301</color>
+    <color name="palette_yellowdarklessless">#fed053</color>
+    <color name="grey">#232323</color>
 </resources>
