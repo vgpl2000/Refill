@@ -1,5 +1,7 @@
 package com.example.projectrefill;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -88,7 +90,7 @@ public class Settings_Retailer_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v=inflater.inflate(R.layout.fragment_settings__retailer_, container, false);
+        View v = inflater.inflate(R.layout.fragment_settings__retailer_, container, false);
 
         //Disable back button for this fragment
         /*v.setFocusableInTouchMode(true);
@@ -105,20 +107,29 @@ public class Settings_Retailer_Fragment extends Fragment {
             }
         });*/
 
+        //preferences
+        preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        editor=preferences.edit();
+        retailer_name = v.findViewById(R.id.txtrname);
 
+        if (preferences.contains("r_name")) {
+            String r_name1=preferences.getString("r_name", null);
+            retailer_name.setText(r_name1);
 
+        } else {
 
         //setting retailer name form database
-
-        retailer_name=v.findViewById(R.id.txtrname);
         databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String name = preferences.getString("username", "");
-                if(snapshot.hasChild(name)){
-                    final String r_name=snapshot.child(name).child("name").getValue(String.class);
+                String name = preferences.getString("username", null);
+                if (snapshot.hasChild(name)) {
+                    final String r_name = snapshot.child(name).child("name").getValue(String.class);
                     retailer_name.setText(r_name);
+                    //adds to shared preferences
+                    editor.putString("r_name", r_name);
+                    editor.commit();
                 }
             }
 
@@ -128,6 +139,7 @@ public class Settings_Retailer_Fragment extends Fragment {
 
             }
         });
+    }
 
 
 
@@ -142,7 +154,7 @@ public class Settings_Retailer_Fragment extends Fragment {
             }
         });
         //Shared preferences
-        preferences=this.getActivity().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        preferences=this.getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
         editor=preferences.edit();
 
         //To logout from retailer
