@@ -118,7 +118,7 @@ public class client_itemeditbuttonpressed_fragment extends Fragment {
                     weight.setText("");
 
                     FragmentTransaction fr = getFragmentManager().beginTransaction();
-                    fr.replace(R.id.edititemclosefrag, new ItemFragment());
+                    fr.replace(R.id.edititemclosefrag, new ItemFragment()).addToBackStack(null);
                     fr.commit();
 
 

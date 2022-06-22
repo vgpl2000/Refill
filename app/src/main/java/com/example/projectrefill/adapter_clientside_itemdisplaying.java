@@ -42,7 +42,6 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
         holder.btnedititems.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(), "Edit opening", Toast.LENGTH_SHORT).show();
             AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
             appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper4,new client_itemeditbuttonpressed_fragment(model.name)).addToBackStack(null).commit();
         }

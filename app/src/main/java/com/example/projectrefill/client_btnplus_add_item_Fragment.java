@@ -193,7 +193,7 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
 
                                         FragmentTransaction fr = getFragmentManager().beginTransaction();
-                                        fr.replace(R.id.add_item, new ItemFragment());
+                                        fr.replace(R.id.add_item, new ItemFragment()).addToBackStack(null);
                                         fr.commit();
 
 
