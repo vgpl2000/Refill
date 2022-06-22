@@ -64,7 +64,7 @@
         <ImageView
             android:id="@+id/imageViewfordisplayingitems"
             android:layout_width="111dp"
-            android:layout_height="118dp"
+            android:layout_height="111dp"
             android:padding="2dip"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"

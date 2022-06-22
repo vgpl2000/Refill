@@ -16,11 +16,9 @@
 
         <ImageView
             android:id="@+id/retailer_profile"
-            android:layout_width="131dp"
-            android:layout_height="119dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:clickable="true"
-            android:scaleX="6"
-            android:scaleY="6"
             android:scaleType="center"
             android:soundEffectsEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -42,7 +42,7 @@
         <ImageView
             android:id="@+id/imageViewfritem"
             android:layout_width="111dp"
-            android:layout_height="118dp"
+            android:layout_height="111dp"
             android:background="@drawable/entry_field_white"
             android:padding="15dp"
             android:scaleType="centerCrop"
