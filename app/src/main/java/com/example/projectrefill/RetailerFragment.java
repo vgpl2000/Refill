@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -79,7 +80,13 @@ public class RetailerFragment extends Fragment {
         }
         recyclerView.setAdapter(adapter);
 
-
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                progressBar.setVisibility(View.GONE);
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
 
 
         SearchManager searchManager= (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
@@ -88,15 +95,27 @@ public class RetailerFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-
-                mySearch(s);
-                searchView.clearFocus();
+                try{
+                    String output = s.substring(0, 1).toUpperCase() + s.substring(1);
+                    searchView.clearFocus();
+                    mySearch(output);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    mySearch(s);
+                }
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                mySearch(s);
+                try{
+                    progressBar.setVisibility(View.VISIBLE);
+                    String output = s.substring(0, 1).toUpperCase() + s.substring(1);
+                    mySearch(output);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    mySearch(s);
+                }
                 return true;
             }
 
@@ -111,7 +130,7 @@ public class RetailerFragment extends Fragment {
 
         FirebaseRecyclerOptions<client_model_fordisplayingretailerstoupdatedue> options =
                 new FirebaseRecyclerOptions.Builder<client_model_fordisplayingretailerstoupdatedue>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").orderByChild("name").startAt(s.toUpperCase()).endAt(s.toLowerCase()+"\uf8ff"), client_model_fordisplayingretailerstoupdatedue.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").orderByChild("name").startAt(s).endAt(s+"\uf8ff"), client_model_fordisplayingretailerstoupdatedue.class)
                         .build();
 
         adapter=new adapter_clientside_retailerdetailesdisplying(options);

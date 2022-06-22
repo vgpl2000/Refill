@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -37,8 +38,6 @@ public class ItemFragment extends Fragment {
 
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,10 +57,26 @@ public class ItemFragment extends Fragment {
 
         recyclerViewforitemdisplay.setAdapter(adapter);
 
+        recyclerViewforitemdisplay.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                progressBar.setVisibility(View.GONE);
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+
 
         searchView=v.findViewById(R.id.searchView_items);
 
         btn_add_items=v.findViewById(R.id.btn_add_items);
+        
+        btn_add_items.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Toast.makeText(getActivity(), "Add new Items here...", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
 
         btn_add_items.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,9 +93,6 @@ public class ItemFragment extends Fragment {
 
 
 
-
-
-
         SearchManager searchManager= (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setIconified(true);
@@ -88,14 +100,27 @@ public class ItemFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String s) {
 
-                mySearch(s);
-                searchView.clearFocus();
+                try{
+                    String output = s.substring(0, 1).toUpperCase() + s.substring(1);
+                    searchView.clearFocus();
+                    mySearch(output);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    mySearch(s);
+                }
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                mySearch(s);
+                try{
+                    progressBar.setVisibility(View.VISIBLE);
+                    String output = s.substring(0, 1).toUpperCase() + s.substring(1);
+                    mySearch(output);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    mySearch(s);
+                }
                 return true;
             }
 
@@ -109,7 +134,7 @@ public class ItemFragment extends Fragment {
 
         FirebaseRecyclerOptions<client_model_todisplayitemsavailable> options =
                 new FirebaseRecyclerOptions.Builder<client_model_todisplayitemsavailable>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_items").orderByChild("name").startAt(s.toUpperCase()).endAt(s.toLowerCase()+"\uf8ff"), client_model_todisplayitemsavailable.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_items").orderByChild("name").startAt(s).endAt(s+"\uf8ff"), client_model_todisplayitemsavailable.class)
                         .build();
 
         adapter=new adapter_clientside_itemdisplaying(options);

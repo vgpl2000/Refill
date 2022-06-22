@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Parcelable;
+import android.provider.ContactsContract;
+import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -72,7 +75,6 @@ public class HomeFragment extends Fragment {
 
 
     @Override
-    //for git
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -88,17 +90,22 @@ public class HomeFragment extends Fragment {
         recyclerView1=(RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView1.setLayoutManager(new CustomLinearLayoutManager1(getContext()));
 
+
         FirebaseRecyclerOptions<client_model_home_orders> options =
                 new FirebaseRecyclerOptions.Builder<client_model_home_orders>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders"), client_model_home_orders.class)
                         .build();
         adapter=new adapter_clientside_order_list(options);
         adapter.startListening();
-
         recyclerView1.setAdapter(adapter);
 
-
-
+        recyclerView1.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                progressBar.setVisibility(View.GONE);
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
 
         SearchManager searchManager= (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
@@ -106,19 +113,33 @@ public class HomeFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-
-                mySearch(s);
-                searchView.clearFocus();
+                try{
+                    String output = s.substring(0, 1).toUpperCase() + s.substring(1);
+                    searchView.clearFocus();
+                    mySearch(output);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    mySearch(s);
+                }
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                mySearch(s);
+                try{
+                    progressBar.setVisibility(View.VISIBLE);
+                    String output = s.substring(0, 1).toUpperCase() + s.substring(1);
+                    mySearch(output);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    mySearch(s);
+                }
+
                 return true;
             }
 
         });
+
 
         return v;
     }
@@ -129,7 +150,7 @@ public class HomeFragment extends Fragment {
 
         FirebaseRecyclerOptions<client_model_home_orders> options =
                 new FirebaseRecyclerOptions.Builder<client_model_home_orders>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders").orderByChild("name").startAt(s.toUpperCase()).endAt(s+"\uf8ff"), client_model_home_orders.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders").orderByChild("name").startAt(s).endAt(s+"\uf8ff"), client_model_home_orders.class)
                         .build();
 
         adapter=new adapter_clientside_order_list(options);
