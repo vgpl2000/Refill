@@ -96,10 +96,10 @@ public class HomeFragment extends Fragment {
                 new FirebaseRecyclerOptions.Builder<client_model_home_orders>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders"), client_model_home_orders.class)
                         .build();
+
         adapter=new adapter_clientside_order_list(options);
         adapter.startListening();
         recyclerView1.setAdapter(adapter);
-
         recyclerView1.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {

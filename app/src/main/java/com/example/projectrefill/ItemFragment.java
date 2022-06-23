@@ -142,7 +142,7 @@ public class ItemFragment extends Fragment {
 
         adapter=new adapter_clientside_itemdisplaying(options);
         if(adapter.getItemCount()!=0){
-            nosearch.setVisibility(View.GONE);
+            nosearch.setVisibility(View.INVISIBLE);
             progressBar.setVisibility(View.GONE);
         }else if (adapter.getItemCount()==0){
             progressBar.setVisibility(View.GONE);

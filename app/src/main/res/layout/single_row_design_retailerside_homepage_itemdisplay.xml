@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="158dp"
+        android:background="@drawable/entry_field_white"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:id="@+id/melanalayout"
+            android:layout_width="161dp"
+            android:layout_height="91dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="-50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/ll1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.06">
+
+            <TextView
+                android:id="@+id/namevalueforitem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:paddingLeft="9dp"
+                android:text="Name here"
+                android:textColor="@color/yellow"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/pricevalueforitem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="Price here"
+                android:textColor="@color/yellow"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/weightvalueforitem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="Weight here"
+                android:textColor="@color/yellow"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageViewfordisplayingitems"
+            android:layout_width="111dp"
+            android:layout_height="111dp"
+            android:padding="2dip"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.016"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:id="@+id/edittextforhomeretailertoenterquan"
+            android:fontFamily="@font/poppins_medium"
+            android:inputType="number"
+            android:textSize="16dp"
+            android:hint="Quantity?"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btneditforitemdisplay"
+            app:layout_constraintHorizontal_bias="0.618"
+            app:layout_constraintStart_toEndOf="@+id/imageViewfordisplayingitems"
+            app:layout_constraintTop_toBottomOf="@id/melanalayout"
+            app:layout_constraintVertical_bias="0.09" />
+
+        <Button
+            android:id="@+id/btneditforitemdisplay"
+            android:layout_width="105dp"
+            android:layout_height="48dp"
+            android:background="@drawable/entry_fields"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Add to Cart"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.859"
+            app:layout_constraintStart_toEndOf="@+id/imageViewfordisplayingitems"
+            app:layout_constraintTop_toBottomOf="@id/melanalayout"
+            app:layout_constraintVertical_bias="0.157" />
+
+        <LinearLayout
+            android:id="@+id/ll1"
+            android:layout_width="120dp"
+            android:layout_height="91dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingRight="-50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.072"
+            app:layout_constraintStart_toEndOf="@+id/imageViewfordisplayingitems"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.06">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="Name:"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="Price:"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="Weight:"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
