@@ -57,6 +57,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.37" />
 
+
         <TextView
             android:id="@+id/textviewfornosearchresultrt1"
             android:layout_width="wrap_content"
@@ -65,13 +66,13 @@
             android:gravity="center"
             android:text="Sample text here"
             android:textColor="@color/white"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.52"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.278" />
+            app:layout_constraintVertical_bias="0.426" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -79,7 +80,7 @@
             android:layout_height="wrap_content"
             android:fadeScrollbars="true"
             android:paddingTop="15dp"
-            android:paddingBottom="110dp"
+            android:paddingBottom="118dp"
             android:scrollbarStyle="outsideOverlay"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"

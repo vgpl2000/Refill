@@ -37,8 +37,10 @@ public class Home_Retailer_Fragment extends Fragment {
     TextView noresult;
 
 
+
+
     public Home_Retailer_Fragment() {
-        // Required empty public constructor
+        //Required empty public constructor
     }
 
 
@@ -70,11 +72,14 @@ public class Home_Retailer_Fragment extends Fragment {
         progressBar=v.findViewById(R.id.progressBarHomerthome);
 
         noresult=v.findViewById(R.id.textviewfornosearchresultrt1);
+        noresult.setVisibility(View.INVISIBLE);
 
         searchView=v.findViewById(R.id.searchViewrthome);
 
         recyclerView=(RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new CustomLinearLayoutManager1(getContext()));
+
+
 
         FirebaseRecyclerOptions<retailer_model_home_recycler_itemdisplaying> options =
                 new FirebaseRecyclerOptions.Builder<retailer_model_home_recycler_itemdisplaying>()
@@ -85,10 +90,12 @@ public class Home_Retailer_Fragment extends Fragment {
         adapter=new adapter_retailerside_homepage_itemdisplay(options);
         adapter.startListening();
         recyclerView.setAdapter(adapter);
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 progressBar.setVisibility(View.GONE);
+                noresult.setVisibility(View.INVISIBLE);
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
@@ -96,6 +103,7 @@ public class Home_Retailer_Fragment extends Fragment {
         SearchManager searchManager= (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setIconified(true);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -136,14 +144,13 @@ public class Home_Retailer_Fragment extends Fragment {
                         .build();
 
         adapter=new adapter_retailerside_homepage_itemdisplay(options);
-        if(adapter.getItemCount()!=0){
-            noresult.setVisibility(View.INVISIBLE);
-            progressBar.setVisibility(View.GONE);
-        }else if (adapter.getItemCount()==0){
+
+         if (adapter.getSnapshots().isEmpty()){
             progressBar.setVisibility(View.GONE);
             noresult.setText("No such item named as "+s);
             noresult.setVisibility(View.VISIBLE);
         }
+
         adapter.startListening();
         recyclerView.setAdapter(adapter);
 

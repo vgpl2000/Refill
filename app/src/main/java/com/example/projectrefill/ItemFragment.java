@@ -64,6 +64,7 @@ public class ItemFragment extends Fragment {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 progressBar.setVisibility(View.GONE);
+                nosearch.setVisibility(View.INVISIBLE);
                 super.onScrolled(recyclerView, dx, dy);
             }
         });

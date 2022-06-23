@@ -104,6 +104,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 progressBar.setVisibility(View.GONE);
+                noresult.setVisibility(View.INVISIBLE);
                 super.onScrolled(recyclerView, dx, dy);
             }
         });

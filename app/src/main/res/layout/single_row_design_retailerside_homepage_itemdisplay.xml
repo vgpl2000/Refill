@@ -2,8 +2,10 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardUseCompatPadding="true"
+    android:paddingBottom="110dp"
     android:background="@color/black">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -88,6 +90,14 @@
             app:layout_constraintTop_toBottomOf="@id/melanalayout"
             app:layout_constraintVertical_bias="0.09" />
 
+        <TextView
+            android:id="@+id/secrettext"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:text="hello"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
         <Button
             android:id="@+id/btneditforitemdisplay"
             android:layout_width="105dp"
@@ -144,6 +154,8 @@
                 android:text="Weight:"
                 android:textColor="@color/white"
                 android:textSize="15dp" />
+
+
 
         </LinearLayout>
 
