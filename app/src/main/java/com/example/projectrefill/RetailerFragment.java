@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,6 +33,7 @@ public class RetailerFragment extends Fragment {
     SearchView searchView;
     ProgressBar progressBar;
     adapter_clientside_retailerdetailesdisplying adapter;
+    TextView noresult;
 
 
     public RetailerFragment() {
@@ -66,6 +68,7 @@ public class RetailerFragment extends Fragment {
         progressBar=v.findViewById(R.id.progressBar1);
 
         searchView=v.findViewById(R.id.searchViewforretailerlist);
+        noresult=v.findViewById(R.id.textviewfornosearchresult3);
 
         recyclerView=v.findViewById(R.id.recyclerviewtodispretailerlist);
         recyclerView.setLayoutManager(new RetailerFragment.CustomLinearLayoutManager1(getContext()));
@@ -134,6 +137,13 @@ public class RetailerFragment extends Fragment {
                         .build();
 
         adapter=new adapter_clientside_retailerdetailesdisplying(options);
+
+        if (adapter.getItemCount()==0){
+            progressBar.setVisibility(View.GONE);
+            noresult.setText("No such retailer named as "+s);
+            noresult.setVisibility(View.VISIBLE);
+        }
+
         adapter.startListening();
         recyclerView.setAdapter(adapter);
     }

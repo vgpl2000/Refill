@@ -7,7 +7,7 @@
     app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
     tools:context=".HomeFragment"
     android:id="@+id/wrapper"
-    android:background="@color/grey">
+    android:background="@color/black">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,6 +57,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/recyclerView"
             app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textviewfornosearchresult2"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="Sample text here"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.238" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

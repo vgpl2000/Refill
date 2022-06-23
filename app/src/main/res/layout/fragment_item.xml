@@ -7,7 +7,7 @@
     app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
     tools:context=".HomeFragment"
     android:id="@+id/wrapper4"
-    android:background="@color/grey">
+    android:background="@color/black">
 
 
     <!-- TODO: Update blank fragment layout -->
@@ -58,6 +58,22 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.976" />
 
+        <TextView
+            android:id="@+id/textviewfornosearchresult"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="Sample text here"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.238" />
+
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
@@ -83,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="15dp"
-            android:paddingBottom="105dp"
+            android:paddingBottom="110dp"
             android:scrollbarSize="3dp"
             android:scrollbarStyle="outsideInset"
             android:scrollbars="vertical"

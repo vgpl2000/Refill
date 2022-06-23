@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -35,6 +36,7 @@ public class ItemFragment extends Fragment {
     adapter_clientside_itemdisplaying adapter;
     SearchView searchView;
     ProgressBar progressBar;
+    TextView nosearch;
 
 
 
@@ -45,6 +47,7 @@ public class ItemFragment extends Fragment {
         View v= inflater.inflate(R.layout.fragment_item, container, false);
 
         progressBar=v.findViewById(R.id.progressBar);
+        nosearch=v.findViewById(R.id.textviewfornosearchresult);
 
         recyclerViewforitemdisplay=v.findViewById(R.id.recyclerView_items);
         recyclerViewforitemdisplay.setLayoutManager(new CustomLinearLayoutManager(getContext()));
@@ -139,7 +142,12 @@ public class ItemFragment extends Fragment {
 
         adapter=new adapter_clientside_itemdisplaying(options);
         if(adapter.getItemCount()!=0){
+            nosearch.setVisibility(View.GONE);
             progressBar.setVisibility(View.GONE);
+        }else if (adapter.getItemCount()==0){
+            progressBar.setVisibility(View.GONE);
+            nosearch.setText("No such item named as "+s);
+            nosearch.setVisibility(View.VISIBLE);
         }
         adapter.startListening();
         recyclerViewforitemdisplay.setAdapter(adapter);

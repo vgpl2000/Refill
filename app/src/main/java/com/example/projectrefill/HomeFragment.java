@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -48,7 +49,7 @@ public class HomeFragment extends Fragment {
     adapter_clientside_order_list adapter;
     SearchView searchView;
     ProgressBar progressBar;
-
+    TextView noresult;
 
     public HomeFragment() {
 
@@ -82,7 +83,7 @@ public class HomeFragment extends Fragment {
 
         progressBar=v.findViewById(R.id.progressBarHome);
         //recycler added
-
+        noresult=v.findViewById(R.id.textviewfornosearchresult2);
         //To search
         searchView=v.findViewById(R.id.searchView);
 
@@ -154,6 +155,11 @@ public class HomeFragment extends Fragment {
                         .build();
 
         adapter=new adapter_clientside_order_list(options);
+        if (adapter.getItemCount()==0){
+            progressBar.setVisibility(View.GONE);
+            noresult.setText("No such retailer named as "+s);
+            noresult.setVisibility(View.VISIBLE);
+        }
         adapter.startListening();
         recyclerView1.setAdapter(adapter);
 
