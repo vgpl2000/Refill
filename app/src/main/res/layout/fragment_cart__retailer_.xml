@@ -64,16 +64,17 @@
             android:id="@+id/selectpaymenttext"
             android:layout_width="338dp"
             android:layout_height="27dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:text="Please Select Payment Method"
+
             android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/rgroup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.774" />
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewtoshowcart" />
 
         <RadioGroup
             android:id="@+id/rgroup"
@@ -81,12 +82,10 @@
             android:layout_height="47dp"
             android:gravity="center"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/buttontoplaceorder"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/selectpaymenttext"
-            app:layout_constraintVertical_bias="0.548">
+            tools:layout_editor_absoluteY="536dp">
 
             <RadioButton
                 android:id="@+id/cashradiobutton"
@@ -115,8 +114,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.955" />
+            app:layout_constraintTop_toBottomOf="@+id/rgroup"
+            app:layout_constraintVertical_bias="0.254" />
 
         <TextView
             android:layout_width="wrap_content"

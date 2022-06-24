@@ -65,6 +65,8 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
 
 
                         if (task.isSuccessful()){
+                            holder.submit.setVisibility(View.GONE);
+
 
                             
                           }else {

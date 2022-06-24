@@ -58,6 +58,7 @@
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/activity_splash_screen.xml" value="0.33" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/activity_splash_try.xml" value="0.33" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_cart__retailer_.xml" value="0.36666666666666664" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_change_pswrd_.xml" value="0.33" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_change_pswrd_retailer_.xml" value="0.36666666666666664" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_checkorders_button_client.xml" value="0.33" />
@@ -72,6 +73,7 @@
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_settings__retailer_.xml" value="0.36666666666666664" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_singlerow_design_retailerside_homepage_itemdisplay_.xml" value="0.36666666666666664" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/single_row_checkorders_clientside.xml" value="0.36102564102564105" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/single_row_design_retailer_side_cart_displaying.xml" value="0.36666666666666664" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/single_row_design_retailerside_homepage_itemdisplay.xml" value="0.36666666666666664" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/single_row_itemdisplayingforclient.xml" value="0.365625" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/single_row_order_clientside_homepage.xml" value="0.365625" />
