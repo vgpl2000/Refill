@@ -91,6 +91,7 @@
             android:id="@+id/btndeleteincart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="8dp"
             android:scaleX="1.0"
             android:scaleY="1.0"
             android:scaleType="centerCrop"
