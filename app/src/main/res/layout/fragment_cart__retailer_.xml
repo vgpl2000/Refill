@@ -3,16 +3,123 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Cart_Retailer_Fragment"
-    android:background="@color/teal_700">
+    android:background="@color/black">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello_cart"
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:textSize="28dp"/>
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="133dp"
+            android:layout_height="52dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="Refill"
+            android:textColor="@color/white"
+            android:textSize="35dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ProgressBar
+            android:id="@+id/progressBarcart"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="28dp"
+            android:layout_height="31dp"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/progress_bar"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.524"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.37" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:background="@drawable/entry_field_white"
+            android:id="@+id/recyclerViewtoshowcart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadeScrollbars="true"
+            android:paddingTop="15dp"
+            android:paddingBottom="118dp"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/selectpaymenttext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView5"
+            app:layout_constraintVertical_bias="0.542" />
+
+        <TextView
+            android:id="@+id/selectpaymenttext"
+            android:layout_width="338dp"
+            android:layout_height="27dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="Please Select Payment Method"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.691" />
+
+        <RadioGroup
+            android:id="@+id/rgroup"
+            android:layout_width="280dp"
+            android:layout_height="47dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/buttontoplaceorder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/selectpaymenttext"
+            app:layout_constraintVertical_bias="0.548">
+
+            <RadioButton
+                android:id="@+id/cashradiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:paddingRight="20dp"
+                android:text="Cash" />
+
+            <RadioButton
+                android:id="@+id/creditradiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Credit" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/buttontoplaceorder"
+            android:layout_width="169dp"
+            android:layout_height="56dp"
+            android:background="@drawable/background_button2"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Place Order"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.874" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </FrameLayout>

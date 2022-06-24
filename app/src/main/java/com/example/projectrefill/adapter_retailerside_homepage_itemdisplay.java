@@ -5,6 +5,7 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,6 +21,8 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.common.internal.Constants;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,7 +42,15 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
             holder.name.setText(model.getName());
             holder.price.setText(model.getPrice());
             holder.weight.setText(model.getWeight());
+
             Glide.with(holder.imageView.getContext()).load(model.getUrl()).into(holder.imageView);
+
+          holder.editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+              @Override
+              public void onFocusChange(View view, boolean b) {
+                  holder.cart.setVisibility(View.VISIBLE);
+              }
+          });
             holder.cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -49,22 +60,37 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
                     SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
                     String formattedDate = df.format(c);
 
+
                     String quan=holder.editText.getText().toString();
 
-                    String name=holder.name.getText().toString();
+
+                    String iname=holder.name.getText().toString();
                     String price=holder.price.getText().toString();
                     String weight=holder.weight.getText().toString();
 
                     String rname=holder.stext.getText().toString();
 
+                    if(quan.isEmpty()||quan.equals("0")){
+                        holder.editText.setError("Specify the quantity");
+                    }else   {
+
+                        Integer iquan=Integer.parseInt(quan);
 
 
 
+                        FirebaseDatabase db = FirebaseDatabase.getInstance();
+                        DatabaseReference root = db.getReference("Retailer").child(rname).child("r_orders");
+
+                        retailer_model_button_addtocart_pressed obj1 = new retailer_model_button_addtocart_pressed(iname, quan, weight, formattedDate,price);
+                        root.child(iname).setValue(obj1);
 
 
+                        Toast.makeText(view.getContext(), "Successfully added", Toast.LENGTH_SHORT).show();
+                        holder.editText.setText("");
+                        holder.editText.clearFocus();
+                        holder.cart.setVisibility(View.GONE);
 
-
-                    Toast.makeText(view.getContext(), "Hellooo", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
@@ -94,7 +120,6 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
             cart=itemView.findViewById(R.id.btneditforitemdisplay);
             SharedPreferences prefs = itemView.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
             String ipAdrs=prefs.getString("username", "");
-           // System.out.println(ipAdrs+"sdlfjlsjdfjljfjlajlsfjjosfjjj");
             stext=itemView.findViewById(R.id.secrettext);
             stext.setText(ipAdrs);
         }
