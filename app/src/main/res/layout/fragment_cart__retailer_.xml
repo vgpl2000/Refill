@@ -81,6 +81,7 @@
             android:layout_width="280dp"
             android:layout_height="47dp"
             android:gravity="center"
+
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -123,6 +124,7 @@
             android:fontFamily="@font/poppins_medium"
             android:text="Items In Cart:"
             android:textColor="@color/white"
+            android:enabled="false"
             android:textSize="18dp"
             app:layout_constraintBottom_toTopOf="@+id/recyclerViewtoshowcart"
             app:layout_constraintEnd_toEndOf="parent"

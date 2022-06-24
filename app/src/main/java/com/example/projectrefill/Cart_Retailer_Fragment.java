@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.ColorSpace;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,14 +12,30 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
 
 
 public class Cart_Retailer_Fragment extends Fragment {
@@ -34,6 +51,11 @@ public class Cart_Retailer_Fragment extends Fragment {
     ProgressBar progressBar;
     SharedPreferences preferences;
     adapter_retailerside_cart_display adapter;
+    Button placeorder;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    retailer_model_placeorder_pressed model=null;
+
+    DatabaseReference databaseReference = database.getInstance().getReference();
 
 
     public Cart_Retailer_Fragment() {
@@ -88,6 +110,84 @@ public class Cart_Retailer_Fragment extends Fragment {
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 progressBar.setVisibility(View.GONE);
                 super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+
+        placeorder=v.findViewById(R.id.buttontoplaceorder);
+        RadioGroup radioGroup;
+        RadioButton cash,credit;
+        radioGroup=v.findViewById(R.id.rgroup);
+
+        placeorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            if(radioGroup.getCheckedRadioButtonId()==-1){
+                Toast.makeText(getContext(), "select atleast one", Toast.LENGTH_SHORT).show();
+            }else {
+                RadioButton select=v.findViewById(radioGroup.getCheckedRadioButtonId());
+                String pmode = select== null ? "" : select.getText().toString();
+
+                String iname,price,quan,weight;
+
+                Date c = Calendar.getInstance().getTime();
+
+                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                String formattedDate = df.format(c);
+
+                preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                String username=preferences.getString("username","");
+
+
+                    TextView itemname = v.findViewById(R.id.cart_name);
+
+                    System.out.println(itemname.getText().toString() + " dlsjfljslkfjlsfjls");
+
+
+                    final HashMap<String, Object> cart = new HashMap<>();
+
+                   // cart.put("name", model.getName());
+                   // cart.put("price", model.getPrice());
+                    //cart.put("date", formattedDate);
+                   // cart.put("quan", model.quan);
+                   // cart.put("weight", model.getWeight());
+
+
+                /*DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Retailer");
+                databaseReference.child(username).child("r_orders").child(iname).updateChildren(user).addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+
+
+                        if (task.isSuccessful()){
+
+                            holder.update.setVisibility(View.GONE);
+
+                        }else {
+                            Toast.makeText(view.getContext(), "If its big error we will make updates", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });*/
+
+                databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+                if(pmode.equals("Cash")){
+
+                }else if(pmode.equals("Credit")){
+
+                }
+            }
             }
         });
 
