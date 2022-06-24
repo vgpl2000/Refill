@@ -4,24 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true"
+
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/black">
+    android:background="@color/white">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@drawable/entry_field_white">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linear1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/linear2">
             <TextView
+                android:padding="6dp"
+                android:id="@+id/cart_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Item Name"
                 android:fontFamily="@font/poppins_medium"
-                android:textSize="25dp"/>
+                android:textSize="18dp"/>
 
 
 
@@ -33,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:padding="8dp"
             app:layout_constraintTop_toBottomOf="@+id/linear1">
             <TextView
                 android:layout_width="wrap_content"
@@ -72,6 +79,7 @@
                 android:layout_width="60dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="8dp"
+                android:id="@+id/cart_updatequan"
                 android:background="@drawable/entry_field_white"
                 android:text="Update"
                 android:fontFamily="@font/poppins_medium"
@@ -83,8 +91,8 @@
             android:id="@+id/btndeleteincart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleX="1.5"
-            android:scaleY="1.5"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
             android:scaleType="centerCrop"
             android:layout_marginRight="10dp"
             android:src="@drawable/ic_baseline_delete_outline_24"

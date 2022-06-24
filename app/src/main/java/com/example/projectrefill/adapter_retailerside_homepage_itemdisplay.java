@@ -107,6 +107,7 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
         ImageView imageView;
         EditText editText;
         Button cart;
+        //hellooooo
 
 
 
