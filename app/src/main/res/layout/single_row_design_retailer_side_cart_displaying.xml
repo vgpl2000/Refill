@@ -1,28 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <LinearLayout
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            >
+            app:layout_constraintBottom_toTopOf="@+id/linear2">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Item Name"
                 android:fontFamily="@font/poppins_medium"
-                android:textSize="15dp"/>
+                android:textSize="25dp"/>
 
 
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/linear1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price: "
+                android:textSize="15dp"
+                android:fontFamily="@font/poppins_medium"/>
+            <TextView
+                android:id="@+id/cart_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="price here"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/yellow"
+                android:paddingLeft="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quan: "
+                android:textSize="15dp"
+                android:paddingLeft="10dp"
+                android:fontFamily="@font/poppins_medium"/>
+            <EditText
+                android:id="@+id/cart_quan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="3dp"
+                android:textSize="15dp"
+                android:inputType="number"
+                android:fontFamily="@font/poppins_medium"
+                android:text="quan here"
+                android:textColor="@color/yellow"/>
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/entry_field_white"
+                android:text="Update"
+                android:fontFamily="@font/poppins_medium"
+                android:textAllCaps="false"
+                android:textSize="10dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <ImageButton
+            android:id="@+id/btndeleteincart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:scaleType="centerCrop"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_baseline_delete_outline_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

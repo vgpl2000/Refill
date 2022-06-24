@@ -88,7 +88,7 @@ public class Home_Retailer_Fragment extends Fragment {
 
 
         adapter=new adapter_retailerside_homepage_itemdisplay(options);
-        adapter.startListening();
+
         recyclerView.setAdapter(adapter);
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
