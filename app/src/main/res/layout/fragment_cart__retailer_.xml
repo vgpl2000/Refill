@@ -58,7 +58,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView5"
-            app:layout_constraintVertical_bias="0.542" />
+            app:layout_constraintVertical_bias="0.659" />
 
         <TextView
             android:id="@+id/selectpaymenttext"
@@ -73,7 +73,7 @@
             app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.775" />
+            app:layout_constraintVertical_bias="0.774" />
 
         <RadioGroup
             android:id="@+id/rgroup"
@@ -123,14 +123,14 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
             android:text="Items In Cart:"
-            android:textSize="18dp"
             android:textColor="@color/white"
+            android:textSize="18dp"
             app:layout_constraintBottom_toTopOf="@+id/recyclerViewtoshowcart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintHorizontal_bias="0.055"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.625" />
+            app:layout_constraintVertical_bias="0.676" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
