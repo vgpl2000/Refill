@@ -70,6 +70,12 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
 
                     String rname=holder.stext.getText().toString();
 
+                    Integer p,q,tot;
+                    p=Integer.parseInt(price);
+                    q=Integer.parseInt(quan);
+                    tot=p*q;
+                    String total=Integer.toString(tot);
+
                     if(quan.isEmpty()||quan.equals("0")){
                         holder.editText.setError("Specify the quantity");
                     }else   {
@@ -81,7 +87,7 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
                         FirebaseDatabase db = FirebaseDatabase.getInstance();
                         DatabaseReference root = db.getReference("Retailer").child(rname).child("r_orders");
 
-                        retailer_model_button_addtocart_pressed obj1 = new retailer_model_button_addtocart_pressed(iname, quan, weight, formattedDate,price);
+                        retailer_model_button_addtocart_pressed obj1 = new retailer_model_button_addtocart_pressed(iname, quan, weight, formattedDate,price,total);
                         root.child(iname).setValue(obj1);
 
 

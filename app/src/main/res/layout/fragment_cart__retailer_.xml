@@ -58,7 +58,40 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView5"
-            app:layout_constraintVertical_bias="0.659" />
+            app:layout_constraintVertical_bias="0.308" />
+
+        <TextView
+            android:id="@+id/totamt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Total Amount:"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toTopOf="@+id/selectpaymenttext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.127"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewtoshowcart" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:drawableLeft="@drawable/ic_baseline_currency_rupee_24"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Total value here"
+            android:id="@+id/totalamountcomeshere"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toTopOf="@+id/selectpaymenttext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.445"
+            app:layout_constraintStart_toEndOf="@+id/totamt"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewtoshowcart"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/selectpaymenttext"
@@ -74,7 +107,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewtoshowcart" />
+            app:layout_constraintTop_toBottomOf="@+id/totamt" />
 
         <RadioGroup
             android:id="@+id/rgroup"
@@ -116,7 +149,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgroup"
-            app:layout_constraintVertical_bias="0.254" />
+            app:layout_constraintVertical_bias="0.27" />
 
         <TextView
             android:layout_width="wrap_content"

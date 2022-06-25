@@ -102,6 +102,20 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/singleitemtotalamt"
+            android:gravity="center"
+            android:paddingRight="15dp"
+            android:layout_marginRight="15dp"
+            android:text="hell"
+            android:fontFamily="@font/poppins_medium"
+            android:drawableLeft="@drawable/ic_baseline_currency_rupee_24"
+            app:layout_constraintEnd_toStartOf="@+id/btndeleteincart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -111,4 +125,7 @@
     android:text="hhhhh"
     android:id="@+id/secrettext2"
     android:visibility="gone"/>
+
+
+
 </androidx.cardview.widget.CardView>

@@ -1,17 +1,26 @@
 package com.example.projectrefill;
 
 public class retailer_model_button_addtocart_pressed {
-    String name,quan,weight,date,price;
+    String name,quan,weight,date,price,totalamount;
 
     public retailer_model_button_addtocart_pressed() {
     }
 
-    public retailer_model_button_addtocart_pressed(String name, String quan, String weight, String date,String price) {
+    public retailer_model_button_addtocart_pressed(String name, String quan, String weight, String date,String price,String totalamount) {
         this.name = name;
         this.quan = quan;
         this.weight = weight;
         this.date = date;
         this.price=price;
+        this.totalamount=totalamount;
+    }
+
+    public String getTotalamount() {
+        return totalamount;
+    }
+
+    public void setTotalamount(String totalamount) {
+        this.totalamount = totalamount;
     }
 
     public String getPrice() {

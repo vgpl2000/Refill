@@ -3,15 +3,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Info_Retailer_Fragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Info_Retailer_Fragment"
+    android:background="@color/black">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello_info"
-        android:textColor="@color/black"
+        android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="133dp"
+        android:layout_height="52dp"
+        android:fontFamily="@font/poppins_medium"
         android:gravity="center"
-        android:textSize="28dp"/>
+        android:text="Refill"
+        android:textColor="@color/white"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Due Amount:"
+            android:textColor="@color/white"
+            app:layout_constraintRight_toLeftOf="@+id/dueamtcomeshere"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/dueamtcomeshere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="124dp"
+            android:drawableLeft="@drawable/ic_baseline_currency_rupee_24"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Amount here"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="28dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="193dp"
+            android:layout_marginEnd="189dp"
+            android:layout_marginBottom="396dp"
+            android:foregroundGravity="center"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/progress_bar"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/recyclerViewtodispdate"
+            app:layout_constraintVertical_bias="0.42" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewtodispdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="256dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="110dp"
+            android:background="@drawable/entry_field_white"
+            android:scrollbarSize="3dp"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dueamtcomeshere"
+            app:layout_constraintVertical_bias="0.233" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

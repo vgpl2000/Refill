@@ -32,6 +32,8 @@ import java.util.HashMap;
 
 public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<retailer_model_cart_retailer,adapter_retailerside_cart_display.myviewholder> {
 
+    Integer totalprice=0;
+
     public adapter_retailerside_cart_display(@NonNull FirebaseRecyclerOptions<retailer_model_cart_retailer> options) {
         super(options);
     }
@@ -41,6 +43,22 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
         holder.name.setText(model.getName());
         holder.price.setText(model.getPrice());
         holder.quan.setText(model.getQuan());
+        String price2=holder.price.getText().toString();
+        String quan2=holder.quan.getText().toString();
+        Integer pr,qu,tot;
+        pr=Integer.parseInt(price2);
+        qu=Integer.parseInt(quan2);
+        tot=pr*qu;
+        String totalamt=Integer.toString(tot);
+
+
+        System.out.println(totalprice+" this is the total of all items");
+
+
+        holder.totalamtofitem.setText(totalamt);
+
+
+
         holder.quan.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -61,6 +79,7 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
 
                 HashMap user=new HashMap();
                 user.put("quan",quannewvalue);
+                user.put("totalamount",totalamt);
 
                 String rname=holder.stext.getText().toString();
                 DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Retailer");
@@ -108,6 +127,9 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
     EditText quan;
     Button update;
     ImageButton delete;
+    TextView totalamtofitem;
+    Integer totalofallitems=0;
+    TextView totalvalue;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -120,6 +142,9 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
             String ipAdrs=prefs.getString("username", "");
             stext=itemView.findViewById(R.id.secrettext2);
             stext.setText(ipAdrs);
+            totalamtofitem=itemView.findViewById(R.id.singleitemtotalamt);
+
+
         }
     }
 }
