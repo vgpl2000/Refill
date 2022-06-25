@@ -86,7 +86,7 @@ public class Info_Retailer_Fragment extends Fragment {
                 dueamount=v.findViewById(R.id.dueamtcomeshere);
 
                 final String getdueamt = snapshot.child(username).child("due_amt").getValue(String.class);
-                System.out.println(username+" its the duem");
+
                 dueamount.setText(getdueamt);
 
             }
@@ -97,9 +97,9 @@ public class Info_Retailer_Fragment extends Fragment {
             }
         });
 
-        progressBar=v.findViewById(R.id.progressBarHomerthome);
+        progressBar=v.findViewById(R.id.progressBardate);
 
-        recyclerView=(RecyclerView) v.findViewById(R.id.recyclerView);
+        recyclerView=(RecyclerView) v.findViewById(R.id.recyclerViewtodispdate);
         recyclerView.setLayoutManager(new CustomLinearLayoutManager1(getContext()));
 
         FirebaseRecyclerOptions<retailer_model_info_fragment_datedisplay> options =

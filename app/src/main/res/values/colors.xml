@@ -17,4 +17,5 @@
     <color name="palette_yellowdarkless">#f5b301</color>
     <color name="palette_yellowdarklessless">#fed053</color>
     <color name="grey">#232323</color>
+    <color name="red">#FF0000</color>
 </resources>

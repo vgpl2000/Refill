@@ -50,10 +50,12 @@
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/background_button2.xml" value="0.237" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/background_button4.xml" value="0.237" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/background_button5.xml" value="0.237" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/background_button6.xml" value="0.246" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/background_search_bar.xml" value="0.187" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/entry_field_white.xml" value="0.237" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/entry_fields.xml" value="0.187" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/ic_baseline_currency_rupee_24.xml" value="0.246" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/ic_baseline_currency_rupee_24_1.xml" value="0.246" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.246" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.246" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable/ic_launcher_background.xml" value="0.246" />
@@ -73,6 +75,8 @@
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_info__retailer_.xml" value="0.36666666666666664" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_item.xml" value="0.36666666666666664" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_retailer.xml" value="0.36666666666666664" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_retailerside_datewisehistory_fragment.xml" value="0.33" />
+        <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_retailerside_datewisetransaction_.xml" value="0.3009833262077811" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_settings.xml" value="0.36666666666666664" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_settings__retailer_.xml" value="0.36666666666666664" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/layout/fragment_singlerow_design_retailerside_homepage_itemdisplay_.xml" value="0.36666666666666664" />

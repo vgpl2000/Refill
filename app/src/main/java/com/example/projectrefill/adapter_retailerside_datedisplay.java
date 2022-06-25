@@ -5,8 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -24,6 +26,14 @@ public class adapter_retailerside_datedisplay extends FirebaseRecyclerAdapter<re
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull retailer_model_info_fragment_datedisplay model) {
         holder.date.setText(model.getDate());
+        holder.date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper7,new retailerside_datewisetransaction_Fragment(model.date)).addToBackStack(null).commit();
+
+            }
+        });
     }
 
     @NonNull
@@ -32,6 +42,7 @@ public class adapter_retailerside_datedisplay extends FirebaseRecyclerAdapter<re
 
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row_design_date_display,parent,false);
         return new myviewholder(view);
+        
     }
 
     public class myviewholder extends RecyclerView.ViewHolder {
