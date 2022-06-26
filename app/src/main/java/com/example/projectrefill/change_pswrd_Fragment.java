@@ -127,11 +127,12 @@ public class change_pswrd_Fragment extends SettingsFragment {
 
     }
 
+
     private void closeKeyboard() {
         View view=this.getActivity().getCurrentFocus();
         if(view!=null){
             InputMethodManager keyboard=(InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            keyboard.hideSoftInputFromWindow(view.getWindowToken(),0);
+            keyboard.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
 

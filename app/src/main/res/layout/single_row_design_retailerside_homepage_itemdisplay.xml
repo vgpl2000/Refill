@@ -81,7 +81,7 @@
             android:fontFamily="@font/poppins_medium"
             android:inputType="number"
             android:textSize="16dp"
-            android:hint="Quantity?"
+            android:hint="Quantity"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btneditforitemdisplay"

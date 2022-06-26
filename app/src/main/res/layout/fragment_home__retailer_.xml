@@ -42,6 +42,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.004" />
 
+        <TextView
+            android:id="@+id/textview_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Add Items to Cart"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchViewrthome" />
+
         <ProgressBar
             android:id="@+id/progressBarHomerthome"
             style="?android:attr/progressBarStyle"
@@ -78,16 +89,17 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="160dp"
             android:fadeScrollbars="true"
-            android:paddingTop="15dp"
-            android:paddingBottom="118dp"
-            android:scrollbarStyle="outsideOverlay"
+            android:scrollbarThumbVertical="@drawable/ic_baseline_scrollbarstyle"
             android:scrollbars="vertical"
+            android:scrollbarStyle="outsideOverlay"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchViewrthome"
-            app:layout_constraintVertical_bias="0.048" />
+            app:layout_constraintTop_toBottomOf="@+id/textview_1"
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

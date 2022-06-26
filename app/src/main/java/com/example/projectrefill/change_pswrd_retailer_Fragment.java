@@ -2,6 +2,7 @@ package com.example.projectrefill;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -58,6 +60,7 @@ public class change_pswrd_retailer_Fragment extends Settings_Retailer_Fragment {
         btn_close_r.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                closeKeyboard();
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
                 fr.replace(R.id.chng_passwd_r,new Settings_Retailer_Fragment());
                 fr.commit();
@@ -95,6 +98,7 @@ public class change_pswrd_retailer_Fragment extends Settings_Retailer_Fragment {
 
                                 txt_c_psswd.setText("");
                                 txt_n_passwd.setText("");
+                                closeKeyboard();
 
 
 
@@ -123,6 +127,11 @@ public class change_pswrd_retailer_Fragment extends Settings_Retailer_Fragment {
 
         return v;
 
+    }
+
+    private void closeKeyboard() {
+        InputMethodManager keyboard=(InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        keyboard.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
 

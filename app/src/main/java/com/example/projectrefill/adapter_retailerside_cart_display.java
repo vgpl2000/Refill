@@ -91,6 +91,8 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
                         if (task.isSuccessful()){
 
                             holder.update.setVisibility(View.GONE);
+                            InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
                         }else {
                             Toast.makeText(view.getContext(), "If its big error we will make updates", Toast.LENGTH_SHORT).show();

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -80,10 +81,6 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
                         holder.editText.setError("Specify the quantity");
                     }else   {
 
-                        Integer iquan=Integer.parseInt(quan);
-
-
-
                         FirebaseDatabase db = FirebaseDatabase.getInstance();
                         DatabaseReference root = db.getReference("Retailer").child(rname).child("r_orders");
 
@@ -94,6 +91,8 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
                         Toast.makeText(view.getContext(), "Successfully added", Toast.LENGTH_SHORT).show();
                         holder.editText.setText("");
                         holder.editText.clearFocus();
+                        InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
                         holder.cart.setVisibility(View.GONE);
 
                     }
