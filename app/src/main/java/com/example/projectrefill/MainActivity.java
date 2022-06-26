@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -142,7 +143,9 @@ public class MainActivity extends AppCompatActivity {
                                     editor.commit();
 
 
-                                    Toast.makeText(MainActivity.this, "Client Logged In", Toast.LENGTH_SHORT).show();
+                                    Toast toast=Toast.makeText(MainActivity.this, "Welcome Akashadeepa...", Toast.LENGTH_SHORT);
+                                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                    toast.show();
                                     Intent intent=new Intent(MainActivity.this,client_activity.class);
                                     startActivity(intent);
                                     progressBar.setVisibility(View.GONE);
@@ -181,7 +184,9 @@ public class MainActivity extends AppCompatActivity {
                                 final String getPassword = snapshot.child(eUser).child("password").getValue(String.class);
 
                                 if (ePassword.equals(getPassword)) {
-                                    Toast.makeText(MainActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
+                                    Toast toast=Toast.makeText(MainActivity.this, eUser+" Logged In...", Toast.LENGTH_SHORT);
+                                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                    toast.show();
                                     //shared preferences
                                     editor.putString("username",eUser);
                                     editor.putString("password",ePassword);
