@@ -37,10 +37,11 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
     ProgressBar progressBar;
     adapter_retailerside_datewise_dispoforder adapter;
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+    //FirebaseDatabase database = FirebaseDatabase.getInstance();
     SharedPreferences preferences;
 
-    DatabaseReference databaseReference = database.getInstance().getReference();
+   // DatabaseReference databaseReference = database.getInstance().getReference();
 
 
 
@@ -84,11 +85,17 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
         progressBar=view.findViewById(R.id.progressBardatewise);
         recyclerView.setLayoutManager(new CustomLinearLayoutManager1(getContext()));
 
+
         preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
         String username=preferences.getString("username","");
 
         String datenew=dateval.getText().toString();
         System.out.println(datenew+" date value");
+
+       /* FirebaseRecyclerOptions<retailer_model_datewise_detailsdisp> options =
+                new FirebaseRecyclerOptions.Builder<retailer_model_datewise_detailsdisp>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").child(username).child("r_orders"),retailer_model_datewise_detailsdisp.class)
+                        .build();*/
 
         FirebaseRecyclerOptions<retailer_model_datewise_detailsdisp> options =
                 new FirebaseRecyclerOptions.Builder<retailer_model_datewise_detailsdisp>()
@@ -96,6 +103,7 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
                         .build();
 
         adapter=new adapter_retailerside_datewise_dispoforder(options);
+        adapter.startListening();
 
         recyclerView.setAdapter(adapter);
 

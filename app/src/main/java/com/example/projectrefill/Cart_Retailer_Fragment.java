@@ -215,6 +215,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
         return v;
     }
+
     @Override
     public void onStart() {
         super.onStart();
