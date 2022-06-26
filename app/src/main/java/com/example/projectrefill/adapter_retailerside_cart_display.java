@@ -121,6 +121,7 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row_design_retailer_side_cart_displaying,parent,false);
+
         return new myviewholder(view);
     }
 
