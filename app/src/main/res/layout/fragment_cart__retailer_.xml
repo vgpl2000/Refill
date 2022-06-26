@@ -50,7 +50,6 @@
             android:paddingTop="5dip"
             android:paddingBottom="5dip"
             android:fadeScrollbars="true"
-            android:scrollbarThumbVertical="@drawable/ic_baseline_scrollbarstyle"
             android:scrollbars="vertical"
             android:scrollbarStyle="outsideOverlay"
             app:layout_constraintBottom_toTopOf="@+id/selectpaymenttext"
