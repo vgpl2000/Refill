@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 //match data
                                 final String getPassword = snapshot.child(eUser).child("password").getValue(String.class);
-
+                                final String state=snapshot.child(eUser).child("state").getValue(String.class);
                                 if (ePassword.equals(getPassword)) {
                                     Toast toast=Toast.makeText(MainActivity.this, eUser+" Logged In...", Toast.LENGTH_SHORT);
                                     toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
@@ -193,8 +193,15 @@ public class MainActivity extends AppCompatActivity {
                                     editor.commit();
 
                                     progressBar.setVisibility(View.GONE);
-                                    Intent intent=new Intent(MainActivity.this,retailer_activity.class);
-                                    startActivity(intent);
+                                    if(state.equals("notblocked")){
+                                        Intent intent=new Intent(MainActivity.this,retailer_activity.class);
+                                        startActivity(intent);
+                                    }else{
+                                        Toast toast1=Toast.makeText(MainActivity.this, eUser+" don't have access!", Toast.LENGTH_SHORT);
+                                        toast1.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                        toast1.show();
+                                    }
+
                                 } else {
                                     txtPassword.setError("Credentials do not match");
                                     progressBar.setVisibility(View.GONE);

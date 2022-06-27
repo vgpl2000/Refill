@@ -50,7 +50,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
                 String state=snapshot.child(name1).child("state").getValue(String.class);
 
                 if(state.equals("blocked")){
-                    System.out.print("if blocked part");
+
                     holder.switchCompat.setChecked(true);
 
                 }
