@@ -5,25 +5,32 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
 public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecyclerAdapter<client_model_fordisplayingretailerstoupdatedue,adapter_clientside_retailerdetailesdisplying.myviewholder> {
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = database.getInstance().getReference();
 
     public adapter_clientside_retailerdetailesdisplying(@NonNull FirebaseRecyclerOptions<client_model_fordisplayingretailerstoupdatedue> options) {
         super(options);
@@ -33,6 +40,27 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull client_model_fordisplayingretailerstoupdatedue model) {
         holder.duefield.setText(model.getDue_amt());
         holder.name.setText(model.getName());
+
+        //check that retailer is blocked or not to display switch
+        databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String name1=holder.name.getText().toString();
+                String state=snapshot.child(name1).child("state").getValue(String.class);
+
+                if(state.equals("blocked")){
+                    System.out.print("if blocked part");
+                    holder.switchCompat.setChecked(true);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         holder.duefield.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -87,6 +115,50 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             }
         });
 
+        holder.switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                //getting needed strings to pass
+                String name1=holder.name.getText().toString();
+
+                if(b){
+                    String state="blocked";
+                    HashMap hashstate=new HashMap();
+                    hashstate.put("state",state);
+                    DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Retailer");
+                    databaseReference.child(name1).updateChildren(hashstate).addOnCompleteListener(new OnCompleteListener() {
+                        @Override
+                        public void onComplete(@NonNull Task task) {
+
+
+                            if (task.isSuccessful()){
+                                System.out.println("Task Success!");
+                            }
+                        }
+                    });
+                }else{
+                    String state="notblocked";
+                    HashMap hashstate=new HashMap();
+                    hashstate.put("state",state);
+                    DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Retailer");
+                    databaseReference.child(name1).updateChildren(hashstate).addOnCompleteListener(new OnCompleteListener() {
+                        @Override
+                        public void onComplete(@NonNull Task task) {
+
+
+                            if (task.isSuccessful()){
+                                System.out.println("Task Success!");
+                            }
+                        }
+                    });
+
+                }
+
+
+            }
+        });
+
     }
 
     @NonNull
@@ -97,9 +169,10 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
     }
 
     public class myviewholder extends RecyclerView.ViewHolder{
-        TextView name,name2;
+        TextView name;
         Button trans,submit;
         EditText duefield;
+        SwitchCompat switchCompat;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -107,6 +180,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             trans=itemView.findViewById(R.id.buttontoopentransactions);
             submit=itemView.findViewById(R.id.buttontosubmitdue);
             duefield=itemView.findViewById(R.id.edittexttoeditdueamount);
+            switchCompat=itemView.findViewById(R.id.switchview);
             //name2=itemView.findViewById(R.id.textViewtodispnamefortrans);
 
         }

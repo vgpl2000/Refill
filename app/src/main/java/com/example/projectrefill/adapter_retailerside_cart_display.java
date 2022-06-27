@@ -1,6 +1,5 @@
 package com.example.projectrefill;
 
-import static android.content.Context.CLIPBOARD_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
@@ -32,7 +31,6 @@ import java.util.HashMap;
 
 public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<retailer_model_cart_retailer,adapter_retailerside_cart_display.myviewholder> {
 
-    Integer totalprice=0;
 
     public adapter_retailerside_cart_display(@NonNull FirebaseRecyclerOptions<retailer_model_cart_retailer> options) {
         super(options);
@@ -50,10 +48,6 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
         qu=Integer.parseInt(quan2);
         tot=pr*qu;
         String totalamt=Integer.toString(tot);
-
-
-        System.out.println(totalprice+" this is the total of all items");
-
 
         holder.totalamtofitem.setText(totalamt);
 

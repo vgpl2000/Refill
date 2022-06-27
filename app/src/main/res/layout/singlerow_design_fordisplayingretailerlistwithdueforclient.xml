@@ -22,6 +22,23 @@
             android:textColor="@color/white"
             android:textSize="25dp" />
 
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/retailer_name"
+            android:layout_alignBottom="@+id/retailer_name"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Block  "
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:thumb="@drawable/thumb"
+            app:track="@drawable/track" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

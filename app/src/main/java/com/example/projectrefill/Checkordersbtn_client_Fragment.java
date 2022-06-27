@@ -88,7 +88,6 @@ public class Checkordersbtn_client_Fragment extends Fragment {
         });
 
         String retailname=textView.getText().toString();
-        System.out.println(retailname+"its an example name to disp............");
 
 
 
