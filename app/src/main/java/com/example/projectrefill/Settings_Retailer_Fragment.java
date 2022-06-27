@@ -93,6 +93,39 @@ public class Settings_Retailer_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_settings__retailer_, container, false);
 
+
+        //blocked or not
+
+        preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        editor=preferences.edit();
+        String name1=preferences.getString("username","");
+        databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String state=snapshot.child(name1).child("state").getValue(String.class);
+
+                if(state.equals("blocked")){
+                    editor.putString("state","blocked");
+                    editor.commit();
+                    Toast.makeText(getActivity(), "You don't have access!", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(getActivity(),MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+
+                }else{
+                    editor.putString("notblocked","");
+                    editor.commit();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
         //Disable back button for this fragment
         /*v.setFocusableInTouchMode(true);
         v.requestFocus();

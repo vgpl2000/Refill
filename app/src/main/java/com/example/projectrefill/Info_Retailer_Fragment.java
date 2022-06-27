@@ -3,6 +3,7 @@ package com.example.projectrefill;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -37,7 +39,6 @@ public class Info_Retailer_Fragment extends Fragment {
     private String mParam2;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    SharedPreferences preferences;
     TextView dueamount;
     RecyclerView recyclerView;
     ProgressBar progressBar;
@@ -74,6 +75,38 @@ public class Info_Retailer_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_info__retailer_, container, false);
+
+        //blocked or not
+        SharedPreferences preferences;
+        SharedPreferences.Editor editor;
+        preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        editor=preferences.edit();
+        String name1=preferences.getString("username","");
+        databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String state=snapshot.child(name1).child("state").getValue(String.class);
+
+                if(state.equals("blocked")){
+                    editor.putString("state","blocked");
+                    editor.commit();
+                    Toast.makeText(getActivity(), "You don't have access!", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(getActivity(),MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+
+                }else{
+                    editor.putString("notblocked","");
+                    editor.commit();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
         String username=preferences.getString("username","");

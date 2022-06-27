@@ -3,6 +3,7 @@ package com.example.projectrefill;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -16,10 +17,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class retailerside_datewisetransaction_Fragment extends Fragment {
@@ -35,6 +40,8 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
     TextView dateval;
     RecyclerView recyclerView;
     ProgressBar progressBar;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = database.getInstance().getReference();
     adapter_retailerside_datewise_dispoforder adapter;
 
 
@@ -78,6 +85,39 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view=inflater.inflate(R.layout.fragment_retailerside_datewisetransaction_, container, false);
+
+        //blocked or not
+        SharedPreferences preferences;
+        SharedPreferences.Editor editor;
+        preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        editor=preferences.edit();
+        String name1=preferences.getString("username","");
+        databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String state=snapshot.child(name1).child("state").getValue(String.class);
+
+                if(state.equals("blocked")){
+                    editor.putString("state","blocked");
+                    editor.commit();
+                    Toast.makeText(getActivity(), "You don't have access!", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(getActivity(),MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+
+                }else{
+                    editor.putString("notblocked","");
+                    editor.commit();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
         dateval=view.findViewById(R.id.texttodispdateforref);
         dateval.setText(date);
         String  date=dateval.toString();
