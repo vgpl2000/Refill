@@ -16,7 +16,7 @@
             <solid android:color="@color/white">
             </solid>
             <stroke android:width="2dp"
-                android:color="@color/palette_yellowdark"/>
+                android:color="#007B21"/>
             <size android:width="18dp"
                 android:height="18dp"/>
         </shape>
