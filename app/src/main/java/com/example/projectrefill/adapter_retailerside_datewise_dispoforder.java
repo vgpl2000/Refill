@@ -18,34 +18,29 @@ public class adapter_retailerside_datewise_dispoforder extends FirebaseRecyclerA
     }
 
     @Override
-    public int getItemCount() {
-        return super.getItemCount();
-    }
-
-    @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull retailer_model_datewise_detailsdisp model) {
-        holder.name.setText(model.getName());
+
+      holder.name.setText("Name: "+model.getName());
         System.out.println(model.getName()+" name value");
 
-        holder.price.setText(model.getPrice());
+        holder.price.setText("Price: "+model.getPrice());
         System.out.println(model.getPrice()+" name value");
 
-        holder.quan.setText(model.getQuan());
+        holder.quan.setText("Quan: "+model.getQuan());
         System.out.println(model.getQuan()+" name value");
 
-        holder.weight.setText(model.getWeight());
+        holder.weight.setText("Weight :"+model.getWeight());
         System.out.println(model.getWeight()+" name value");
 
-        String pri=holder.price.getText().toString();
-        String qu=holder.quan.getText().toString();
 
-        Integer pr1,qr1,tot;
-        pr1=Integer.parseInt(pri);
-        qr1=Integer.parseInt(qu);
+        Integer pr1=Integer.parseInt(model.getPrice());
+        Integer qr1=Integer.parseInt(model.getQuan());
         
-        tot=pr1*qr1;
+        Integer tot=pr1*qr1;
         String totalf=Integer.toString(tot);
         holder.totprice.setText(totalf);
+        System.out.println(totalf+" name value");
+
     }
 
     @NonNull
