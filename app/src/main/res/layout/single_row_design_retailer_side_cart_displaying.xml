@@ -110,6 +110,7 @@
             android:paddingRight="15dp"
             android:layout_marginRight="15dp"
             android:text="hell"
+            android:textSize="18dp"
             android:fontFamily="@font/poppins_medium"
             android:drawableLeft="@drawable/ic_baseline_currency_rupee_24"
             app:layout_constraintEnd_toStartOf="@+id/btndeleteincart"

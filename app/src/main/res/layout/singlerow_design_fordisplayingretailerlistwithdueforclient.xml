@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Due(Rs):"
+                android:text="Due: "
                 android:textColor="@color/white"
                 android:textSize="18dp" />
 
@@ -74,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:text="0"
+                android:drawableLeft="@drawable/ic_baseline_currency_rupee_24"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:paddingTop="5dp"
