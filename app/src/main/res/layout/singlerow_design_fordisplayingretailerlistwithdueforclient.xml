@@ -7,11 +7,13 @@
     android:background="@color/black"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardUseCompatPadding="true">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@drawable/entry_field_white"
         android:layout_height="wrap_content"
         android:padding="10dp">
+
 
         <TextView
             android:id="@+id/retailer_name"
@@ -21,6 +23,17 @@
             android:text="Name Comes here"
             android:textColor="@color/white"
             android:textSize="25dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBarakasha"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="28dp"
+            android:layout_height="31dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="114dp"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/progress_bar"
+            android:visibility="gone" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchview"
@@ -98,6 +111,8 @@
 
 
         </LinearLayout>
+
+
 
     </RelativeLayout>
 

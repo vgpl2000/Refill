@@ -1,5 +1,7 @@
 package com.example.projectrefill;
 
+import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -7,12 +9,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -31,6 +35,8 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getInstance().getReference();
+
+    private Context context;
 
     public adapter_clientside_retailerdetailesdisplying(@NonNull FirebaseRecyclerOptions<client_model_fordisplayingretailerstoupdatedue> options) {
         super(options);
@@ -120,27 +126,35 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
                 //getting needed strings to pass
-                String name1=holder.name.getText().toString();
+
 
                 if(b){
+                    holder.progressBar.setVisibility(View.VISIBLE);
+                    String name1=holder.name.getText().toString();
                     String state="blocked";
                     HashMap hashstate=new HashMap();
                     hashstate.put("state",state);
+
+
                     DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Retailer");
                     databaseReference.child(name1).updateChildren(hashstate).addOnCompleteListener(new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
 
-
                             if (task.isSuccessful()){
-                                System.out.println("Task Success!");
+                                holder.progressBar.setVisibility(View.GONE);
+
                             }
                         }
                     });
                 }else{
+                    holder.progressBar.setVisibility(View.VISIBLE);
                     String state="notblocked";
+                    String name1=holder.name.getText().toString();
                     HashMap hashstate=new HashMap();
                     hashstate.put("state",state);
+                    
+
                     DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Retailer");
                     databaseReference.child(name1).updateChildren(hashstate).addOnCompleteListener(new OnCompleteListener() {
                         @Override
@@ -148,7 +162,8 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
 
 
                             if (task.isSuccessful()){
-                                System.out.println("Task Success!");
+                                holder.progressBar.setVisibility(View.GONE);
+
                             }
                         }
                     });
@@ -173,6 +188,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
         Button trans,submit;
         EditText duefield;
         SwitchCompat switchCompat;
+        ProgressBar progressBar;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -181,6 +197,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             submit=itemView.findViewById(R.id.buttontosubmitdue);
             duefield=itemView.findViewById(R.id.edittexttoeditdueamount);
             switchCompat=itemView.findViewById(R.id.switchview);
+            progressBar=itemView.findViewById(R.id.progressBarakasha);
             //name2=itemView.findViewById(R.id.textViewtodispnamefortrans);
 
         }
