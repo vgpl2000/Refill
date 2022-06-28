@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             }
+        }
 
 
             showPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -121,8 +122,6 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 //check data exist in firebase
-
-
                                 if (snapshot.hasChild(eUser)) {
 
                                     //match data
@@ -221,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
 
             });
 
-        }
+
 
     }
 }
