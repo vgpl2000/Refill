@@ -33,7 +33,7 @@ public class change_pswrd_retailer_Fragment extends Settings_Retailer_Fragment {
     EditText txt_n_passwd;
     Button btn_chng_passwd;
     ImageView btn_close_r;
-    String c_passwrd,n_passwrd;
+    String c_passwrd, n_passwrd;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
@@ -46,28 +46,27 @@ public class change_pswrd_retailer_Fragment extends Settings_Retailer_Fragment {
                              Bundle savedInstanceState) {
 
 
-        View v= inflater.inflate(R.layout.fragment_change_pswrd_retailer_, container, false);
+        View v = inflater.inflate(R.layout.fragment_change_pswrd_retailer_, container, false);
 
-        preferences=getActivity().getSharedPreferences("MyPreferences",MODE_PRIVATE);
-        editor=preferences.edit();
+        preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        editor = preferences.edit();
 
-        txt_c_psswd=v.findViewById(R.id.txt_c_passwrd_r);
-        txt_n_passwd=v.findViewById(R.id.txt_n_passwrd_r);
-        btn_chng_passwd=v.findViewById(R.id.btn_chng_passwrd_r);
-        btn_close_r=v.findViewById(R.id.btn_close_chng_r);
+        txt_c_psswd = v.findViewById(R.id.txt_c_passwrd_r);
+        txt_n_passwd = v.findViewById(R.id.txt_n_passwrd_r);
+        btn_chng_passwd = v.findViewById(R.id.btn_chng_passwrd_r);
+        btn_close_r = v.findViewById(R.id.btn_close_chng_r);
 
         //Close button
         btn_close_r.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 closeKeyboard();
-                FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.chng_passwd_r,new Settings_Retailer_Fragment());
+                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                fr.replace(R.id.chng_passwd_r, new Settings_Retailer_Fragment());
                 fr.commit();
 
             }
         });
-
 
 
         btn_chng_passwd.setOnClickListener(new View.OnClickListener() {
@@ -101,9 +100,8 @@ public class change_pswrd_retailer_Fragment extends Settings_Retailer_Fragment {
                                 closeKeyboard();
 
 
-
-                                FragmentTransaction fr= getFragmentManager().beginTransaction();
-                                fr.replace(R.id.chng_passwd_r,new Settings_Retailer_Fragment());
+                                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                                fr.replace(R.id.chng_passwd_r, new Settings_Retailer_Fragment());
                                 fr.commit();
 
                             } else {
@@ -130,9 +128,12 @@ public class change_pswrd_retailer_Fragment extends Settings_Retailer_Fragment {
     }
 
     private void closeKeyboard() {
-        InputMethodManager keyboard=(InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        keyboard.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        View view = this.getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager keyboard = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            keyboard.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+
+
     }
-
-
 }

@@ -60,7 +60,7 @@ public class change_pswrd_Fragment extends SettingsFragment {
                 closeKeyboard();
 
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.chng_passwd,new Settings_Retailer_Fragment());
+                fr.replace(R.id.chng_passwd,new SettingsFragment());
                 fr.commit();
                 
             }
