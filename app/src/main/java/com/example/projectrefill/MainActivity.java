@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                                     final String getPassword = snapshot.child(eUser).child("password").getValue(String.class);
                                     final String state = snapshot.child(eUser).child("state").getValue(String.class);
                                     if (ePassword.equals(getPassword)) {
-                                        Toast toast = Toast.makeText(MainActivity.this, eUser + " Logged In...", Toast.LENGTH_SHORT);
+                                        Toast toast = Toast.makeText(MainActivity.this, eUser + " Logging In...", Toast.LENGTH_SHORT);
                                         toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                                         toast.show();
                                         //shared preferences
