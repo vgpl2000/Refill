@@ -38,6 +38,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
 
     private Context context;
 
+
     public adapter_clientside_retailerdetailesdisplying(@NonNull FirebaseRecyclerOptions<client_model_fordisplayingretailerstoupdatedue> options) {
         super(options);
     }
@@ -47,26 +48,31 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
         holder.duefield.setText(model.getDue_amt());
         holder.name.setText(model.getName());
 
-        //check that retailer is blocked or not to display switch
-        databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String name1=holder.name.getText().toString();
-                String state=snapshot.child(name1).child("state").getValue(String.class);
 
-                if(state.equals("blocked")){
+            //check that retailer is blocked or not to display switch
+            databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    holder.switchCompat.setChecked(true);
+                    String name1=holder.name.getText().toString();
+                    String state=snapshot.child(name1).child("state").getValue(String.class);
+
+                    if(state.equals("blocked")){
+
+                        holder.switchCompat.setChecked(true);
+
+                    }else if(state.equals("notblocked")){
+                        holder.switchCompat.setChecked(false);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
                 }
-            }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
 
         holder.duefield.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -97,12 +103,10 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
                     @Override
                     public void onComplete(@NonNull Task task) {
 
-
                         if (task.isSuccessful()){
                             holder.submit.setVisibility(View.GONE);
 
 
-                            
                           }else {
                             Toast.makeText(view.getContext(), "If its big error we will make updates", Toast.LENGTH_SHORT).show();
                         }
@@ -127,7 +131,6 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
 
                 //getting needed strings to pass
 
-
                 if(b){
                     holder.progressBar.setVisibility(View.VISIBLE);
                     String name1=holder.name.getText().toString();
@@ -142,12 +145,14 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
                         public void onComplete(@NonNull Task task) {
 
                             if (task.isSuccessful()){
+
                                 holder.progressBar.setVisibility(View.GONE);
 
                             }
                         }
                     });
                 }else{
+
                     holder.progressBar.setVisibility(View.VISIBLE);
                     String state="notblocked";
                     String name1=holder.name.getText().toString();
@@ -173,6 +178,10 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
 
             }
         });
+
+
+
+
 
     }
 
