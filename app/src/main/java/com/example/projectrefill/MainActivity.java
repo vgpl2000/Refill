@@ -59,178 +59,171 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
-
-        preferences=getSharedPreferences("MyPreferences",MODE_PRIVATE);
-        editor=preferences.edit();
+        preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        editor = preferences.edit();
         Button login = findViewById(R.id.btn_login);
         EditText txtUser = findViewById(R.id.txtUser);
         EditText txtPassword = findViewById(R.id.txtPassword);
-        progressBar=findViewById(R.id.progressBar);
-        showPassword=findViewById(R.id.checkBox);
+        progressBar = findViewById(R.id.progressBar);
+        showPassword = findViewById(R.id.checkBox);
 
         //Check user already logged in or not
 
-                if (preferences.contains("username")) {
-                    //Toast.makeText(this, "Preference checking...", Toast.LENGTH_LONG).show();
-                    String resText=preferences.getString("username",null);
+        if (preferences.contains("username")) {
+            //Toast.makeText(this, "Preference checking...", Toast.LENGTH_LONG).show();
+            String resText = preferences.getString("username", null);
 
-                    if(resText.equals("akashadeepa")) {
-                        Intent intent = new Intent(MainActivity.this, client_activity.class);
-                        startActivity(intent);
-                    }else {
-                        if(preferences.getString("state","").equals("notblocked")){
-                            Intent intent = new Intent(MainActivity.this, retailer_activity.class);
-                            startActivity(intent);
-                        }
-
-                    }
-                }
-
-
-
-
-        showPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b){
-                    txtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }else{
-                    txtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                }
-            }
-        });
-
-
-
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                final String ePassword = txtPassword.getText().toString();
-                final String eUser = txtUser.getText().toString();
-
-
-
-
-                //Login for Retailer
-                if (eUser.isEmpty() && ePassword.isEmpty()) {
-                    txtUser.setError("Username cannot be empty");
-                    txtPassword.setError("Password cannot be empty");
-
-                }else if(eUser.equals("akashadeepa")){
-                    editor.clear();
-                    editor.commit();
-                    progressBar.setVisibility(View.VISIBLE);
-                    databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            //check data exist in firebase
-
-
-                            if (snapshot.hasChild(eUser)) {
-
-                                //match data
-                                final String getPassword = snapshot.child(eUser).child("password").getValue(String.class);
-
-                                if (ePassword.equals(getPassword)) {
-
-                                    //save to shared preferences
-
-                                    editor.putString("username",eUser);
-                                    editor.putString("password",ePassword);
-                                    editor.commit();
-
-
-                                    Toast toast=Toast.makeText(MainActivity.this, "Welcome Akashadeepa...", Toast.LENGTH_SHORT);
-                                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                                    toast.show();
-                                    Intent intent=new Intent(MainActivity.this,client_activity.class);
-                                    startActivity(intent);
-                                    progressBar.setVisibility(View.GONE);
-                                } else {
-                                    txtPassword.setError("Credentials do not match");
-                                    progressBar.setVisibility(View.GONE);
-                                }
-                            } else {
-                                txtUser.setError("Credentials do not match");
-                                progressBar.setVisibility(View.GONE);
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-
+            if (resText.equals("akashadeepa")) {
+                Intent intent = new Intent(MainActivity.this, client_activity.class);
+                startActivity(intent);
+            } else {
+                if (preferences.getString("state", "").equals("blocked")) {
 
                 } else {
-                    editor.clear();
-                    editor.commit();
+                    Intent intent = new Intent(MainActivity.this, retailer_activity.class);
+                    startActivity(intent);
 
-                    progressBar.setVisibility(View.VISIBLE);
-
-                    databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            //check data exist in firebase
-                            if (snapshot.hasChild(eUser)) {
-
-                                //match data
-                                final String getPassword = snapshot.child(eUser).child("password").getValue(String.class);
-                                final String state=snapshot.child(eUser).child("state").getValue(String.class);
-                                if (ePassword.equals(getPassword)) {
-                                    Toast toast=Toast.makeText(MainActivity.this, eUser+" Logged In...", Toast.LENGTH_SHORT);
-                                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                                    toast.show();
-                                    //shared preferences
-                                    editor.putString("username",eUser);
-                                    editor.putString("password",ePassword);
-                                    editor.commit();
-
-                                    progressBar.setVisibility(View.GONE);
-                                    if(state.equals("notblocked")){
-                                        Intent intent=new Intent(MainActivity.this,retailer_activity.class);
-                                        startActivity(intent);
-                                    }else{
-                                        Toast toast1=Toast.makeText(MainActivity.this, eUser+" don't have access!", Toast.LENGTH_SHORT);
-                                        toast1.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                                        toast1.show();
-                                    }
-
-                                } else {
-                                    txtPassword.setError("Credentials do not match");
-                                    progressBar.setVisibility(View.GONE);
-                                }
-                            } else {
-                                txtUser.setError("Credentials do not match");
-                                progressBar.setVisibility(View.GONE);
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            Toast.makeText(MainActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
                 }
-
-
             }
 
 
-        });
+            showPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    if (b) {
+                        txtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    } else {
+                        txtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    }
+                }
+            });
+
+
+            login.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+                    final String ePassword = txtPassword.getText().toString();
+                    final String eUser = txtUser.getText().toString();
+
+
+                    //Login for Retailer
+                    if (eUser.isEmpty() && ePassword.isEmpty()) {
+                        txtUser.setError("Username cannot be empty");
+                        txtPassword.setError("Password cannot be empty");
+
+                    } else if (eUser.equals("akashadeepa")) {
+                        editor.clear();
+                        editor.commit();
+                        progressBar.setVisibility(View.VISIBLE);
+                        databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                //check data exist in firebase
+
+
+                                if (snapshot.hasChild(eUser)) {
+
+                                    //match data
+                                    final String getPassword = snapshot.child(eUser).child("password").getValue(String.class);
+
+                                    if (ePassword.equals(getPassword)) {
+
+                                        //save to shared preferences
+
+                                        editor.putString("username", eUser);
+                                        editor.putString("password", ePassword);
+                                        editor.commit();
+
+
+                                        Toast toast = Toast.makeText(MainActivity.this, "Welcome Akashadeepa...", Toast.LENGTH_SHORT);
+                                        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                        toast.show();
+                                        Intent intent = new Intent(MainActivity.this, client_activity.class);
+                                        startActivity(intent);
+                                        progressBar.setVisibility(View.GONE);
+                                    } else {
+                                        txtPassword.setError("Credentials do not match");
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+                                } else {
+                                    txtUser.setError("Credentials do not match");
+                                    progressBar.setVisibility(View.GONE);
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
+
+                    } else {
+                        editor.clear();
+                        editor.commit();
+
+                        progressBar.setVisibility(View.VISIBLE);
+
+                        databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                //check data exist in firebase
+                                if (snapshot.hasChild(eUser)) {
+
+                                    //match data
+                                    final String getPassword = snapshot.child(eUser).child("password").getValue(String.class);
+                                    final String state = snapshot.child(eUser).child("state").getValue(String.class);
+                                    if (ePassword.equals(getPassword)) {
+                                        Toast toast = Toast.makeText(MainActivity.this, eUser + " Logged In...", Toast.LENGTH_SHORT);
+                                        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                        toast.show();
+                                        //shared preferences
+                                        editor.putString("username", eUser);
+                                        editor.putString("password", ePassword);
+                                        editor.commit();
+
+                                        progressBar.setVisibility(View.GONE);
+                                        if (state.equals("notblocked")) {
+                                            Intent intent = new Intent(MainActivity.this, retailer_activity.class);
+                                            startActivity(intent);
+                                        } else {
+                                            Toast toast1 = Toast.makeText(MainActivity.this, eUser + " don't have access!", Toast.LENGTH_SHORT);
+                                            toast1.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                            toast1.show();
+                                        }
+
+                                    } else {
+                                        txtPassword.setError("Credentials do not match");
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+                                } else {
+                                    txtUser.setError("Credentials do not match");
+                                    progressBar.setVisibility(View.GONE);
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(MainActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+                    }
+
+
+                }
+
+
+            });
+
+        }
 
     }
-
 }
 
 
