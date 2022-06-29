@@ -94,7 +94,7 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
                 user.put("quan",quannewvalue);
                 user.put("totalamount",totalamt);
 
-                notifyDataSetChanged();
+
 
                 String rname=holder.stext.getText().toString();
                 DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Retailer");
@@ -105,7 +105,14 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
 
                         if (task.isSuccessful()){
 
-                            notifyDataSetChanged();
+                            totalamtcheck=totalamtcheck-tot;
+                            System.out.println(totalamtcheck+" final price here is");
+
+                            Intent intent=new Intent("mytotamt");
+                            intent.putExtra("totalamount",totalamtcheck);
+
+                            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+
                             holder.update.setVisibility(View.GONE);
                             InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                             inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
