@@ -3,6 +3,7 @@ package com.example.projectrefill;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -30,6 +32,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<retailer_model_cart_retailer,adapter_retailerside_cart_display.myviewholder> {
+
+    Integer totalamtcheck=0;
+    Context context;
+
 
 
     public adapter_retailerside_cart_display(@NonNull FirebaseRecyclerOptions<retailer_model_cart_retailer> options) {
@@ -49,8 +55,18 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
         tot=pr*qu;
         String totalamt=Integer.toString(tot);
 
+
+
         holder.totalamtofitem.setText(totalamt);
 
+
+        totalamtcheck=totalamtcheck+tot;
+        System.out.println(totalamtcheck+" final price here is");
+
+        Intent intent=new Intent("mytotamt");
+        intent.putExtra("totalamount",totalamtcheck);
+
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
 
         holder.quan.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -78,6 +94,8 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
                 user.put("quan",quannewvalue);
                 user.put("totalamount",totalamt);
 
+                notifyDataSetChanged();
+
                 String rname=holder.stext.getText().toString();
                 DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Retailer");
                 databaseReference.child(rname).child("r_orders").child(iname).updateChildren(user).addOnCompleteListener(new OnCompleteListener() {
@@ -87,6 +105,7 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
 
                         if (task.isSuccessful()){
 
+                            notifyDataSetChanged();
                             holder.update.setVisibility(View.GONE);
                             InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                             inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -110,6 +129,15 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
 
                 DatabaseReference remove=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_orders").child(iname);
                 remove.removeValue();
+
+                totalamtcheck=totalamtcheck-tot;
+                System.out.println(totalamtcheck+" final price here is");
+
+                Intent intent=new Intent("mytotamt");
+                intent.putExtra("totalamount",totalamtcheck);
+
+                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+
             }
         });
     }
@@ -118,6 +146,7 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row_design_retailer_side_cart_displaying,parent,false);
+        context=parent.getContext();
 
         return new myviewholder(view);
     }

@@ -2,14 +2,17 @@ package com.example.projectrefill;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.ColorSpace;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,6 +52,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+    int overalltotal;
     RecyclerView recyclerView;
     ProgressBar progressBar;
     SharedPreferences preferences;
@@ -57,6 +61,7 @@ public class Cart_Retailer_Fragment extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     retailer_model_placeorder_pressed model=null;
     Integer ftot=0;
+    TextView totalamounthere;
 
     DatabaseReference databaseReference = database.getInstance().getReference();
 
@@ -89,7 +94,10 @@ public class Cart_Retailer_Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v= inflater.inflate(R.layout.fragment_cart__retailer_, container, false);
+        totalamounthere=v.findViewById(R.id.totalamountcomeshere);
 
+        LocalBroadcastManager.getInstance(v.getContext())
+                .registerReceiver(msgbrdrec,new IntentFilter("mytotamt"));
 
         //blocked or not
         SharedPreferences.Editor editor;
@@ -276,4 +284,13 @@ public class Cart_Retailer_Fragment extends Fragment {
             return false;
         }
     }
+    public BroadcastReceiver msgbrdrec=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+        int totalofall=intent.getIntExtra("totalamount",0);
+        String newtot=Integer.toString(totalofall);
+        totalamounthere.setText(newtot);
+
+        }
+    };
 }
