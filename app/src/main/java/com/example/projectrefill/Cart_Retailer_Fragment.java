@@ -169,11 +169,14 @@ public class Cart_Retailer_Fragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                final String getdueamt = snapshot.child(username).child("r_orders").child("Benne Murku").child("totalamount").getValue(String.class);
 
-                Integer tot=Integer.parseInt(getdueamt);
-                ftot=ftot+tot;
-                System.out.println(ftot+" some what values");
+                    final String getdueamt = snapshot.child(username).child("r_orders").child("Benne Murku").child("totalamount").getValue(String.class);
+
+
+                        Integer tot = Integer.parseInt(getdueamt);
+                        ftot = ftot + tot;
+                        System.out.println(ftot + " some what values");
+
 
             }
 

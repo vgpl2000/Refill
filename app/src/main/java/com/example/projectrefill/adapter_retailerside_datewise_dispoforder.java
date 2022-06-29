@@ -20,26 +20,10 @@ public class adapter_retailerside_datewise_dispoforder extends FirebaseRecyclerA
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull retailer_model_datewise_detailsdisp model) {
 
-      holder.name.setText("Name: "+model.getName());
-        System.out.println(model.getName()+" name value");
-
-        holder.price.setText("Price: "+model.getPrice());
-        System.out.println(model.getPrice()+" name value");
-
-        holder.quan.setText("Quan: "+model.getQuan());
-        System.out.println(model.getQuan()+" name value");
-
-        holder.weight.setText("Weight :"+model.getWeight());
-        System.out.println(model.getWeight()+" name value");
+      holder.name.setText("Name: "+model.getDate());
 
 
-        Integer pr1=Integer.parseInt(model.getPrice());
-        Integer qr1=Integer.parseInt(model.getQuan());
-        
-        Integer tot=pr1*qr1;
-        String totalf=Integer.toString(tot);
-        holder.totprice.setText(totalf);
-        System.out.println(totalf+" name value");
+
 
     }
 
