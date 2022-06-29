@@ -85,6 +85,9 @@ public class change_pswrd_Fragment extends SettingsFragment {
                     closeKeyboard();
 
                     //checking
+                    if (c_passwrd.equals(n_passwrd)) {
+                        txt_n_passwd.setError("New Password cannot be same as Current Password");
+                    }else{
                     databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -94,14 +97,13 @@ public class change_pswrd_Fragment extends SettingsFragment {
                                 databaseReference.child("Client").child("akashadeepa").child("password").setValue(n_passwrd);
 
                                 Toast.makeText(getActivity(), "Password Updated!", Toast.LENGTH_SHORT).show();
-                                
+
                                 txt_c_psswd.setText("");
                                 txt_n_passwd.setText("");
 
 
-
-                                FragmentTransaction fr= getFragmentManager().beginTransaction();
-                                fr.replace(R.id.chng_passwd,new SettingsFragment());
+                                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                                fr.replace(R.id.chng_passwd, new SettingsFragment());
                                 fr.commit();
 
                             } else {
@@ -117,6 +119,7 @@ public class change_pswrd_Fragment extends SettingsFragment {
 
                         }
                     });
+                }
                 }
             }
 

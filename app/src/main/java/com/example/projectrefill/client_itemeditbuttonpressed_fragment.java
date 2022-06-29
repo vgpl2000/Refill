@@ -1,6 +1,7 @@
 package com.example.projectrefill;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
@@ -10,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -112,9 +114,11 @@ public class client_itemeditbuttonpressed_fragment extends Fragment {
                     databaseReference1.child("Client").child("c_items").child(name11).child("price").setValue(newprice);
                     databaseReference1.child("Client").child("c_items").child(name11).child("weight").setValue(newweight);
 
-
                     price.setText("");
                     weight.setText("");
+
+                    InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
                     FragmentTransaction fr = getFragmentManager().beginTransaction();
                     fr.replace(R.id.edititemclosefrag, new ItemFragment()).addToBackStack(null);

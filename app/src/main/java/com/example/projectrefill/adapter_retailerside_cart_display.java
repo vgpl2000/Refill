@@ -67,6 +67,9 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
                 holder.update.setVisibility(View.GONE);
                 holder.quan.clearFocus();
 
+                InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
                 String quannewvalue;
                 quannewvalue=holder.quan.getText().toString();
                 String iname=holder.name.getText().toString();

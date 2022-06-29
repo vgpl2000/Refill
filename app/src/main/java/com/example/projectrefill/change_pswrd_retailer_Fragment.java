@@ -85,38 +85,42 @@ public class change_pswrd_retailer_Fragment extends Settings_Retailer_Fragment {
                     String name = preferences.getString("username", "");
 
                     //checking
-                    databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            String d_c_passwd = snapshot.child(name).child("password").getValue(String.class);
+                    if (c_passwrd.equals(n_passwrd)) {
+                        txt_n_passwd.setError("New Password cannot be same as Current Password");
+                    }else {
+                        databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                String d_c_passwd = snapshot.child(name).child("password").getValue(String.class);
 
-                            if (c_passwrd.equals(d_c_passwd)) {
-                                databaseReference.child("Retailer").child(name).child("password").setValue(n_passwrd);
+                                if (c_passwrd.equals(d_c_passwd)) {
+                                    databaseReference.child("Retailer").child(name).child("password").setValue(n_passwrd);
 
-                                Toast.makeText(getActivity(), "Password Updated!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "Password Updated!", Toast.LENGTH_SHORT).show();
 
-                                txt_c_psswd.setText("");
-                                txt_n_passwd.setText("");
-                                closeKeyboard();
+                                    txt_c_psswd.setText("");
+                                    txt_n_passwd.setText("");
+                                    closeKeyboard();
 
 
-                                FragmentTransaction fr = getFragmentManager().beginTransaction();
-                                fr.replace(R.id.chng_passwd_r, new Settings_Retailer_Fragment());
-                                fr.commit();
+                                    FragmentTransaction fr = getFragmentManager().beginTransaction();
+                                    fr.replace(R.id.chng_passwd_r, new Settings_Retailer_Fragment());
+                                    fr.commit();
 
-                            } else {
-                                txt_c_psswd.setError("Password is wrong!");
-                                txt_n_passwd.setError("Password is wrong!");
+                                } else {
+                                    txt_c_psswd.setError("Password is wrong!");
+                                    txt_n_passwd.setError("Password is wrong!");
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
 
-                            Toast.makeText(getActivity(), "Error!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Error!", Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
             }
 

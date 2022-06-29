@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -87,6 +88,8 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
 
                 holder.submit.setVisibility(View.GONE);
                 holder.duefield.clearFocus();
+                InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
 
                 String name1=holder.name.getText().toString();

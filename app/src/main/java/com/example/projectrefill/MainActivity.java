@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
                                             Intent intent = new Intent(MainActivity.this, retailer_activity.class);
                                             startActivity(intent);
                                         } else {
-                                            Toast toast1 = Toast.makeText(MainActivity.this, eUser + " don't have access!", Toast.LENGTH_SHORT);
+                                            Toast toast1 = Toast.makeText(MainActivity.this, eUser + " can't use Refill right now!", Toast.LENGTH_LONG);
                                             toast1.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                                             toast1.show();
                                         }
