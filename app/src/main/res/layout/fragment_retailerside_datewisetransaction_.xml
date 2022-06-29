@@ -55,8 +55,6 @@
             android:fadeScrollbars="true"
             android:paddingTop="15dp"
             android:paddingBottom="110dp"
-            android:scrollbarStyle="outsideOverlay"
-            android:scrollbarThumbVertical="@drawable/ic_baseline_scrollbarstyle"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
