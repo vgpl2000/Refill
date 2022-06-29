@@ -109,7 +109,7 @@ public class change_pswrd_retailer_Fragment extends Settings_Retailer_Fragment {
 
                                 } else {
                                     txt_c_psswd.setError("Password is wrong!");
-                                    txt_n_passwd.setError("Password is wrong!");
+
                                 }
                             }
 

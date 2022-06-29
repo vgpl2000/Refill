@@ -108,7 +108,6 @@ public class change_pswrd_Fragment extends SettingsFragment {
 
                             } else {
                                 txt_c_psswd.setError("Password is wrong!");
-                                txt_n_passwd.setError("Password is wrong!");
                             }
                         }
 
