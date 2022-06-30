@@ -139,7 +139,7 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
 
         FirebaseRecyclerOptions<retailer_model_datewise_detailsdisp> options =
                 new FirebaseRecyclerOptions.Builder<retailer_model_datewise_detailsdisp>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").child(username).child("r_history"),retailer_model_datewise_detailsdisp.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").child(username).child("r_history").child(datenew).child("Items"),retailer_model_datewise_detailsdisp.class)
                         .build();
 
         adapter=new adapter_retailerside_datewise_dispoforder(options);

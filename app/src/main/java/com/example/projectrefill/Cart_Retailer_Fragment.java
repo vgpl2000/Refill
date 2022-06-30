@@ -62,6 +62,7 @@ public class Cart_Retailer_Fragment extends Fragment {
     retailer_model_placeorder_pressed model=null;
     Integer ftot=0;
     TextView totalamounthere;
+    static Integer a=0;
 
     DatabaseReference databaseReference = database.getInstance().getReference();
 
@@ -170,19 +171,26 @@ public class Cart_Retailer_Fragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 
+
+
+
                     final String getdueamt = snapshot.child(username).child("r_orders").child("Benne Murku").child("totalamount").getValue(String.class);
 
+                        try {
+                            Integer tot = Integer.parseInt(getdueamt);
+                            ftot = ftot + tot;
+                            System.out.println(ftot + " some what values");
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
 
-                        Integer tot = Integer.parseInt(getdueamt);
-                        ftot = ftot + tot;
-                        System.out.println(ftot + " some what values");
 
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getContext(), "good", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -212,30 +220,26 @@ public class Cart_Retailer_Fragment extends Fragment {
                     System.out.println(itemname.getText().toString() + " dlsjfljslkfjlsfjls");
 
 
-                    final HashMap<String, Object> cart = new HashMap<>();
-
-                   // cart.put("name", model.getName());
-                   // cart.put("price", model.getPrice());
-                    //cart.put("date", formattedDate);
-                   // cart.put("quan", model.quan);
-                   // cart.put("weight", model.getWeight());
 
 
-                /*DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Retailer");
-                databaseReference.child(username).child("r_orders").child(iname).updateChildren(user).addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public void onComplete(@NonNull Task task) {
 
 
-                        if (task.isSuccessful()){
+                    String b=Integer.toString(a);
 
-                            holder.update.setVisibility(View.GONE);
 
-                        }else {
-                            Toast.makeText(view.getContext(), "If its big error we will make updates", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });*/
+
+                    DatabaseReference cartref=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_orders");
+
+                    DatabaseReference order=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items").child(b);
+
+                    DatabaseReference date=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate);
+
+                    date.child("date").setValue(formattedDate);
+
+
+                    moveFirebaseRecord(cartref, order);
+
+
 
                 databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -261,6 +265,10 @@ public class Cart_Retailer_Fragment extends Fragment {
         });
 
         return v;
+    }
+
+    private void columnincrementor(DatabaseReference order) {
+
     }
 
     @Override
@@ -296,4 +304,34 @@ public class Cart_Retailer_Fragment extends Fragment {
 
         }
     };
+
+
+    public void moveFirebaseRecord(DatabaseReference fromPath, final DatabaseReference toPath) {
+        fromPath.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                toPath.setValue(dataSnapshot.getValue(), new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                        if (databaseError != null) {
+                            Toast.makeText(getContext(), "Not Successfull", Toast.LENGTH_LONG).show();
+                        } else {
+
+                            Toast.makeText(getContext(), "Order Placed", Toast.LENGTH_LONG).show();
+                            a=a+1;
+                            fromPath.removeValue();
+                            totalamounthere.setText("0");
+
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getContext(), "onCancelled- copy fail", Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
 }
