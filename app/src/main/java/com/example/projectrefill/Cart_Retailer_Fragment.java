@@ -234,30 +234,31 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                     DatabaseReference date=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate);
 
+
+
+
                     date.child("date").setValue(formattedDate);
+
+                    DatabaseReference columnv=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items").child(b);
+
+                    System.out.println(b+" the value of b here");
+                    columnv.child("SL").setValue(b);
 
 
                     moveFirebaseRecord(cartref, order);
 
 
 
-                databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
                 if(pmode.equals("Cash")){
+                    Toast.makeText(getContext(), "Selected cash", Toast.LENGTH_SHORT).show();
+                    DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items");
+                    mode.child(b).child("Pmode").setValue("Cash");
+
 
                 }else if(pmode.equals("Credit")){
+                    Toast.makeText(getContext(), "Selected credit", Toast.LENGTH_SHORT).show();
+                    DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items");
+                    mode.child(b).child("Pmode").setValue("Credit");
 
                 }
             }
