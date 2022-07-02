@@ -11,20 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-public class adapter_retailerside_datewise_dispoforder extends FirebaseRecyclerAdapter<retailer_model_datewise_detailsdisp,adapter_retailerside_datewise_dispoforder.myviewholder> {
+public class adapter_retailerside_datewise_dispoforder extends FirebaseRecyclerAdapter<retailer_model_datewise_dispwhenpressed,adapter_retailerside_datewise_dispoforder.myviewholder> {
 
-    public adapter_retailerside_datewise_dispoforder(@NonNull FirebaseRecyclerOptions<retailer_model_datewise_detailsdisp> options) {
+    public adapter_retailerside_datewise_dispoforder(@NonNull FirebaseRecyclerOptions<retailer_model_datewise_dispwhenpressed> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull retailer_model_datewise_detailsdisp model) {
+    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull retailer_model_datewise_dispwhenpressed model) {
 
       holder.name.setText("Name: "+model.getName());
       holder.price.setText("Price: "+model.getPrice());
       holder.quan.setText("Quan: "+model.getQuan());
+      holder.totprice.setText(model.getTotalamount());
       holder.weight.setText("Weight: "+model.getWeight());
-      holder.totprice.setText(model.getTotal());
+
 
     }
 
@@ -32,7 +33,7 @@ public class adapter_retailerside_datewise_dispoforder extends FirebaseRecyclerA
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row_design_date_display,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row_retailer_datewise_whenpressed,parent,false);
         return new myviewholder(view);
     }
 
@@ -41,12 +42,12 @@ public class adapter_retailerside_datewise_dispoforder extends FirebaseRecyclerA
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
+
             name=itemView.findViewById(R.id.datewisename);
             price=itemView.findViewById(R.id.datewiseprice);
             quan=itemView.findViewById(R.id.datewisequan);
             weight=itemView.findViewById(R.id.datewiseweight);
             totprice=itemView.findViewById(R.id.totalpricehere);
-
         }
     }
 }

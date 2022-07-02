@@ -16,6 +16,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,17 +54,24 @@ public class Cart_Retailer_Fragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    int overalltotal;
     RecyclerView recyclerView;
     ProgressBar progressBar;
     SharedPreferences preferences;
+    SharedPreferences.Editor editor;
     adapter_retailerside_cart_display adapter;
     Button placeorder;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     retailer_model_placeorder_pressed model=null;
     Integer ftot=0;
     TextView totalamounthere;
-    static Integer a=0;
+    RadioGroup radioGroup;
+
+
+    Date c = Calendar.getInstance().getTime();
+
+    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault());
+    String formattedDate = df.format(c);
+
 
     DatabaseReference databaseReference = database.getInstance().getReference();
 
@@ -161,7 +169,7 @@ public class Cart_Retailer_Fragment extends Fragment {
         });
 
         placeorder=v.findViewById(R.id.buttontoplaceorder);
-        RadioGroup radioGroup;
+
         RadioButton cash,credit;
         radioGroup=v.findViewById(R.id.rgroup);
 
@@ -202,15 +210,10 @@ public class Cart_Retailer_Fragment extends Fragment {
             if(radioGroup.getCheckedRadioButtonId()==-1){
                 Toast.makeText(getContext(), "Please select a payment mode!", Toast.LENGTH_LONG).show();
             }else {
-                RadioButton select=v.findViewById(radioGroup.getCheckedRadioButtonId());
-                String pmode = select== null ? "" : select.getText().toString();
+
 
                 String iname,price,quan,weight;
 
-                Date c = Calendar.getInstance().getTime();
-
-                /*SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                String formattedDate = df.format(c);*/
 
                 preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
                 String username=preferences.getString("username","");
@@ -222,20 +225,14 @@ public class Cart_Retailer_Fragment extends Fragment {
 
 
 
-                    String b=Integer.toString(a);
-
-
 
                     DatabaseReference cartref=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_orders");
 
                     //DatabaseReference order=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items").child(b);
-                    DatabaseReference order=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history");
 
-                    //DatabaseReference date=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate);
-
+                    DatabaseReference order=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate);
 
 
-                    //date.child("date").setValue(formattedDate);
 
                     /*DatabaseReference columnv=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items").child(b);
 
@@ -246,19 +243,6 @@ public class Cart_Retailer_Fragment extends Fragment {
                     moveFirebaseRecord(cartref, order);
 
 
-
-                if(pmode.equals("Cash")){
-                    Toast.makeText(getContext(), "Selected cash", Toast.LENGTH_SHORT).show();
-                    DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(b);
-                    mode.child(b).child("Pmode").setValue("Cash");
-
-
-                }else if(pmode.equals("Credit")){
-                    Toast.makeText(getContext(), "Selected credit", Toast.LENGTH_SHORT).show();
-                    DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(b);
-                    mode.child(b).child("Pmode").setValue("Credit");
-
-                }
             }
             }
         });
@@ -305,6 +289,8 @@ public class Cart_Retailer_Fragment extends Fragment {
     };
 
 
+
+
     public void moveFirebaseRecord(DatabaseReference fromPath, final DatabaseReference toPath) {
         fromPath.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -316,12 +302,32 @@ public class Cart_Retailer_Fragment extends Fragment {
                             Toast.makeText(getContext(), "Not Successfull", Toast.LENGTH_LONG).show();
                         } else {
 
-
-
-                            a=a+1;
                             fromPath.removeValue();
                             totalamounthere.setText("0");
+                            RadioButton select=getActivity().findViewById(radioGroup.getCheckedRadioButtonId());
+
+                            String pmode = select== null ? "" : select.getText().toString();
+                            preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                            String username=preferences.getString("username","");
+
+                            if(pmode.equals("Cash")){
+                                Toast.makeText(getContext(), "Selected cash", Toast.LENGTH_SHORT).show();
+                                DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history");
+                                mode.child(formattedDate).child("Pmode").setValue("Cash");
+
+
+                            }else if(pmode.equals("Credit")){
+                                Toast.makeText(getContext(), "Selected credit", Toast.LENGTH_SHORT).show();
+                                DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history");
+                                mode.child(formattedDate).child("Pmode").setValue("Credit");
+
+                            }
+                            DatabaseReference date=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate);
+
+                            date.child("date").setValue(formattedDate);
+
                             Toast.makeText(getContext(), "Order Placed", Toast.LENGTH_LONG).show();
+
 
                         }
                     }
@@ -330,7 +336,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getContext(), "onCancelled- copy fail", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Failed", Toast.LENGTH_LONG).show();
 
             }
         });
