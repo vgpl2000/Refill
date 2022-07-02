@@ -11,6 +11,7 @@ import android.graphics.ColorSpace;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -228,21 +229,18 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                     DatabaseReference cartref=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_orders");
 
-                    //DatabaseReference order=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items").child(b);
 
                     DatabaseReference order=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items");
 
-
-
-                    /*DatabaseReference columnv=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items").child(b);
-
-                    System.out.println(b+" the value of b here");
-                    columnv.child("SL").setValue(b);*/
-
-
                     moveFirebaseRecord(cartref, order);
 
+                    //check orders
+                DatabaseReference c_cartref=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_orders");
 
+
+                DatabaseReference c_order=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username).child("check_orders").child("Items");
+
+                c_moveFirebaseRecord(c_cartref, c_order);
             }
             }
         });
@@ -250,9 +248,36 @@ public class Cart_Retailer_Fragment extends Fragment {
         return v;
     }
 
-    private void columnincrementor(DatabaseReference order) {
+    private void c_moveFirebaseRecord(DatabaseReference c_cartref, DatabaseReference c_order) {
+        c_cartref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                c_order.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                        if (error != null) {
+                            Toast.makeText(getContext(), "Not Successfull", Toast.LENGTH_LONG).show();
+                        } else {
+                            preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                            String username=preferences.getString("username","");
+                            DatabaseReference name=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username);
+                            name.child("name").setValue(username);
 
+                            DatabaseReference o_state=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username);
+                            o_state.child("order_state").setValue("");
+
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
+
 
     @Override
     public void onStart() {

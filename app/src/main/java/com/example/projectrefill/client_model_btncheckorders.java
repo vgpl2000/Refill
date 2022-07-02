@@ -1,15 +1,15 @@
 package com.example.projectrefill;
 
 public class client_model_btncheckorders {
-    String date,item,quan;
+    String date,name,quan;
 
     public client_model_btncheckorders() {
 
     }
 
-    public client_model_btncheckorders(String date, String item, String quan) {
+    public client_model_btncheckorders(String date, String name, String quan) {
         this.date = date;
-        this.item = item;
+        this.name = name;
         this.quan = quan;
     }
 
@@ -21,12 +21,12 @@ public class client_model_btncheckorders {
         this.date = date;
     }
 
-    public String getItem() {
-        return item;
+    public String getName() {
+        return name;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getQuan() {
