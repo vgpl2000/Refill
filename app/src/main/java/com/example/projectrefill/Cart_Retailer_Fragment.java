@@ -182,8 +182,6 @@ public class Cart_Retailer_Fragment extends Fragment {
 
 
 
-
-
                     final String getdueamt = snapshot.child(username).child("r_orders").child("Benne Murku").child("totalamount").getValue(String.class);
 
                         try {
@@ -211,36 +209,47 @@ public class Cart_Retailer_Fragment extends Fragment {
             if(radioGroup.getCheckedRadioButtonId()==-1){
                 Toast.makeText(getContext(), "Please select a payment mode!", Toast.LENGTH_LONG).show();
             }else {
+                    databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.child("c_orders").child(username).hasChild("order_state")){
+                                placeorder.setEnabled(false);
+                                Toast.makeText(getActivity(), "Please wait until delivery of previous orders!", Toast.LENGTH_LONG).show();
+                            }else{
 
 
-                String iname,price,quan,weight;
+                                preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                                String username=preferences.getString("username","");
 
 
-                preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
-                String username=preferences.getString("username","");
+                                TextView itemname = v.findViewById(R.id.cart_name);
 
 
-                    TextView itemname = v.findViewById(R.id.cart_name);
-
-                    System.out.println(itemname.getText().toString() + " dlsjfljslkfjlsfjls");
+                                DatabaseReference cartref=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_orders");
 
 
+                                DatabaseReference order=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items");
+
+                                moveFirebaseRecord(cartref, order);
+
+                                //check orders
+                                DatabaseReference c_cartref=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_orders");
 
 
-                    DatabaseReference cartref=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_orders");
+                                DatabaseReference c_order=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username).child("check_orders").child("Items");
+
+                                c_moveFirebaseRecord(c_cartref, c_order);
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
 
 
-                    DatabaseReference order=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items");
-
-                    moveFirebaseRecord(cartref, order);
-
-                    //check orders
-                DatabaseReference c_cartref=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_orders");
-
-
-                DatabaseReference c_order=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username).child("check_orders").child("Items");
-
-                c_moveFirebaseRecord(c_cartref, c_order);
             }
             }
         });
