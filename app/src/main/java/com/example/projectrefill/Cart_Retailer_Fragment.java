@@ -199,7 +199,7 @@ public class Cart_Retailer_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
             if(radioGroup.getCheckedRadioButtonId()==-1){
-                Toast.makeText(getContext(), "select atleast one", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Please select a payment mode!", Toast.LENGTH_LONG).show();
             }else {
                 RadioButton select=v.findViewById(radioGroup.getCheckedRadioButtonId());
                 String pmode = select== null ? "" : select.getText().toString();
@@ -208,8 +208,8 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                 Date c = Calendar.getInstance().getTime();
 
-                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                String formattedDate = df.format(c);
+                /*SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                String formattedDate = df.format(c);*/
 
                 preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
                 String username=preferences.getString("username","");
@@ -221,28 +221,25 @@ public class Cart_Retailer_Fragment extends Fragment {
 
 
 
-
-
-
                     String b=Integer.toString(a);
 
 
 
                     DatabaseReference cartref=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_orders");
 
-                    DatabaseReference order=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items").child(b);
+                    //DatabaseReference order=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items").child(b);
+                    DatabaseReference order=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history");
 
-                    DatabaseReference date=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate);
+                    //DatabaseReference date=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate);
 
 
 
+                    //date.child("date").setValue(formattedDate);
 
-                    date.child("date").setValue(formattedDate);
-
-                    DatabaseReference columnv=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items").child(b);
+                    /*DatabaseReference columnv=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items").child(b);
 
                     System.out.println(b+" the value of b here");
-                    columnv.child("SL").setValue(b);
+                    columnv.child("SL").setValue(b);*/
 
 
                     moveFirebaseRecord(cartref, order);
@@ -251,13 +248,13 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                 if(pmode.equals("Cash")){
                     Toast.makeText(getContext(), "Selected cash", Toast.LENGTH_SHORT).show();
-                    DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items");
+                    DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(b);
                     mode.child(b).child("Pmode").setValue("Cash");
 
 
                 }else if(pmode.equals("Credit")){
                     Toast.makeText(getContext(), "Selected credit", Toast.LENGTH_SHORT).show();
-                    DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items");
+                    DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(b);
                     mode.child(b).child("Pmode").setValue("Credit");
 
                 }

@@ -32,7 +32,7 @@ public class adapter_retailerside_datewise_dispoforder extends FirebaseRecyclerA
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow_design_retailerside_datewise_detailsdisp,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row_design_date_display,parent,false);
         return new myviewholder(view);
     }
 

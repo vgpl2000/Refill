@@ -25,15 +25,12 @@ public class adapter_retailerside_datedisplay extends FirebaseRecyclerAdapter<re
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull retailer_model_info_fragment_datedisplay model) {
+        holder.name.setText("Name: "+model.getName());
+        holder.price.setText("Price: "+model.getPrice());
+        holder.quan.setText("Quan: "+model.getQuan());
+        holder.weight.setText("Weight: "+model.getWeight());
+        holder.totprice.setText(model.getTotalamount());
         holder.date.setText(model.getDate());
-        holder.date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper7,new retailerside_datewisetransaction_Fragment(model.date)).addToBackStack(null).commit();
-
-            }
-        });
     }
 
     @NonNull
@@ -46,11 +43,16 @@ public class adapter_retailerside_datedisplay extends FirebaseRecyclerAdapter<re
     }
 
     public class myviewholder extends RecyclerView.ViewHolder {
-            Button date;
+        TextView name,price,quan,weight,totprice,date;
             public myviewholder(@NonNull View itemView) {
                 super(itemView);
-                date=itemView.findViewById(R.id.datebutton);
 
+                name=itemView.findViewById(R.id.datewisename);
+                price=itemView.findViewById(R.id.datewiseprice);
+                quan=itemView.findViewById(R.id.datewisequan);
+                weight=itemView.findViewById(R.id.datewiseweight);
+                totprice=itemView.findViewById(R.id.totalpricehere);
+                date=itemView.findViewById(R.id.dateinside);
             }
         }
     }
