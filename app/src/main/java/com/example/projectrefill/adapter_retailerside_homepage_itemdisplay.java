@@ -32,6 +32,7 @@ import java.util.Locale;
 
 public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerAdapter<retailer_model_home_recycler_itemdisplaying,adapter_retailerside_homepage_itemdisplay.myviewholder>
     {
+        static Integer a=0;
 
 
         public adapter_retailerside_homepage_itemdisplay(@NonNull FirebaseRecyclerOptions<retailer_model_home_recycler_itemdisplaying> options) {
@@ -44,6 +45,7 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
             holder.price.setText(model.getPrice());
             holder.weight.setText(model.getWeight());
 
+
             Glide.with(holder.imageView.getContext()).load(model.getUrl()).into(holder.imageView);
 
           holder.editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -52,6 +54,8 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
                   holder.cart.setVisibility(View.VISIBLE);
               }
           });
+
+
             holder.cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -84,8 +88,11 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
                         FirebaseDatabase db = FirebaseDatabase.getInstance();
                         DatabaseReference root = db.getReference("Retailer").child(rname).child("r_orders");
 
+                        a=a+1;
+                        String b=Integer.toString(a);
+
                         retailer_model_button_addtocart_pressed obj1 = new retailer_model_button_addtocart_pressed(iname, quan, weight, formattedDate,price,total);
-                        root.child(iname).setValue(obj1);
+                        root.child(b).setValue(obj1);
 
 
                         Toast.makeText(view.getContext(), "Successfully added", Toast.LENGTH_SHORT).show();
@@ -104,6 +111,7 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
         @Override
         public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row_design_retailerside_homepage_itemdisplay,parent,false);
+
             return new myviewholder(view);
         }
 
@@ -112,6 +120,7 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
         ImageView imageView;
         EditText editText;
         Button cart;
+
         //hellooooo
 
 
@@ -128,6 +137,9 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
             String ipAdrs=prefs.getString("username", "");
             stext=itemView.findViewById(R.id.secrettext);
             stext.setText(ipAdrs);
+
         }
+
     }
+
 }

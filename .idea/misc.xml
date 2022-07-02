@@ -46,10 +46,12 @@
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings.xml" value="0.1824074074074074" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings__retailer_.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/single_row_checkorders_clientside.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/single_row_design_date_display.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/single_row_design_retailer_side_cart_displaying.xml" value="0.25" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/single_row_design_retailerside_homepage_itemdisplay.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/single_row_itemdisplayingforclient.xml" value="0.17777777777777778" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/single_row_order_clientside_homepage.xml" value="0.17777777777777778" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/single_row_retailer_datewise_whenpressed.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/singlerow_design_fordisplayingretailerlistwithdueforclient.xml" value="0.25" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/singlerow_design_retailerside_datewise_detailsdisp.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/singlerow_design_transactionbuttonpressed.xml" value="0.209375" />

@@ -26,16 +26,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link retailerside_datewisetransaction_Fragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class retailerside_datewisetransaction_Fragment extends Fragment {
 
-
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-
+    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
     String date;
     TextView dateval;
     RecyclerView recyclerView;
@@ -44,18 +53,10 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
     DatabaseReference databaseReference = database.getInstance().getReference();
     adapter_retailerside_datewise_dispoforder adapter;
 
-
-    //FirebaseDatabase database = FirebaseDatabase.getInstance();
-    SharedPreferences preferences;
-
-   // DatabaseReference databaseReference = database.getInstance().getReference();
-
-
-
-
     public retailerside_datewisetransaction_Fragment() {
         // Required empty public constructor
     }
+
     public retailerside_datewisetransaction_Fragment(String date) {
         this.date=date;
     }
@@ -82,19 +83,18 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         View view=inflater.inflate(R.layout.fragment_retailerside_datewisetransaction_, container, false);
 
-        //blocked or not
         SharedPreferences preferences;
         SharedPreferences.Editor editor;
-        preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        preferences = getActivity().getSharedPreferences("MyPreferences",MODE_PRIVATE);
         editor=preferences.edit();
         String name1=preferences.getString("username","");
+
         databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 String state=snapshot.child(name1).child("state").getValue(String.class);
 
                 if(state.equals("blocked")){
@@ -109,6 +109,7 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
                     editor.putString("notblocked","");
                     editor.commit();
                 }
+
             }
 
             @Override
@@ -116,63 +117,46 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
 
             }
         });
-
-
         dateval=view.findViewById(R.id.texttodispdateforref);
+        System.out.print(date+" date here");
         dateval.setText(date);
-        String  date=dateval.toString();
+
         recyclerView=view.findViewById(R.id.recyclerViewdatewisedipofdetails);
         progressBar=view.findViewById(R.id.progressBardatewise);
         recyclerView.setLayoutManager(new CustomLinearLayoutManager1(getContext()));
-
 
         preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
         String username=preferences.getString("username","");
 
         String datenew=dateval.getText().toString();
-        System.out.println(datenew+" date value");
-
-       /* FirebaseRecyclerOptions<retailer_model_datewise_detailsdisp> options =
-                new FirebaseRecyclerOptions.Builder<retailer_model_datewise_detailsdisp>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").child(username).child("r_orders"),retailer_model_datewise_detailsdisp.class)
-                        .build();*/
+        System.out.println(dateval+" date value");
 
 
-        FirebaseRecyclerOptions<retailer_model_datewise_detailsdisp> options =
-                new FirebaseRecyclerOptions.Builder<retailer_model_datewise_detailsdisp>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").child(username).child("r_history").child(datenew).child("Items"),retailer_model_datewise_detailsdisp.class)
-                        .build();
+            FirebaseRecyclerOptions<retailer_model_datewise_dispwhenpressed> options =
+                    new FirebaseRecyclerOptions.Builder<retailer_model_datewise_dispwhenpressed>()
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").child(username).child("r_history").child(datenew).child("Items"), retailer_model_datewise_dispwhenpressed.class)
+                            .build();
 
 
+            adapter = new adapter_retailerside_datewise_dispoforder(options);
+            adapter.startListening();
 
-        adapter=new adapter_retailerside_datewise_dispoforder(options);
-        adapter.startListening();
+            recyclerView.setAdapter(adapter);
 
-        recyclerView.setAdapter(adapter);
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                progressBar.setVisibility(View.GONE);
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    progressBar.setVisibility(View.GONE);
+                    super.onScrolled(recyclerView, dx, dy);
+                }
+            });
+
 
 
 
 
         return view;
-    }
-    @Override
-    public void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        adapter.stopListening();
     }
     public class CustomLinearLayoutManager1 extends LinearLayoutManager {
 
@@ -186,4 +170,5 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
             return false;
         }
     }
+
 }

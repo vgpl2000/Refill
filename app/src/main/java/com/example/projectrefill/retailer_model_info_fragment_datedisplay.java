@@ -8,6 +8,7 @@ public class retailer_model_info_fragment_datedisplay {
 
     public retailer_model_info_fragment_datedisplay(String date) {
         this.date = date;
+
     }
 
     public String getDate() {
@@ -18,3 +19,5 @@ public class retailer_model_info_fragment_datedisplay {
         this.date = date;
     }
 }
+
+
