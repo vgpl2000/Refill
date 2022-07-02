@@ -134,11 +134,11 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
                 String rname=holder.stext.getText().toString();
                 String iname=holder.name.getText().toString();
 
-                DatabaseReference remove=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_orders").child(iname);
+                DatabaseReference remove=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_orders");
                 remove.removeValue();
 
                 totalamtcheck=totalamtcheck-tot;
-                System.out.println(totalamtcheck+" final price here is");
+
 
                 Intent intent=new Intent("mytotamt");
                 intent.putExtra("totalamount",totalamtcheck);

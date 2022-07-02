@@ -79,7 +79,7 @@
             android:layout_marginBottom="20dp"
             android:drawableLeft="@drawable/ic_baseline_currency_rupee_24"
             android:fontFamily="@font/poppins_medium"
-            android:text="Total value here"
+            android:text="0"
             android:id="@+id/totalamountcomeshere"
             android:textColor="@color/white"
             android:textSize="18dp"
