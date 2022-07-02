@@ -49,7 +49,7 @@ public class adapter_retailerside_datedisplay extends FirebaseRecyclerAdapter<re
 
 
                 AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper7,new retailerside_datewisetransaction_Fragment(datefinal)).addToBackStack(null).commit();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper7,new retailerside_datewisetransaction_Fragment(model.getDate())).addToBackStack(null).commit();
 
             }
         });
