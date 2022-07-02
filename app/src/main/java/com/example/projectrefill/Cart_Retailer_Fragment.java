@@ -34,6 +34,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
@@ -315,10 +316,12 @@ public class Cart_Retailer_Fragment extends Fragment {
                             Toast.makeText(getContext(), "Not Successfull", Toast.LENGTH_LONG).show();
                         } else {
 
-                            Toast.makeText(getContext(), "Order Placed", Toast.LENGTH_LONG).show();
+
+
                             a=a+1;
                             fromPath.removeValue();
                             totalamounthere.setText("0");
+                            Toast.makeText(getContext(), "Order Placed", Toast.LENGTH_LONG).show();
 
                         }
                     }
