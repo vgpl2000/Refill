@@ -26,6 +26,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link retailerside_datewisetransaction_Fragment#newInstance} factory method to
@@ -115,8 +118,9 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
             }
         });
         dateval=view.findViewById(R.id.texttodispdateforref);
+        System.out.print(date+" date here");
         dateval.setText(date);
-        String date=dateval.toString();
+
         recyclerView=view.findViewById(R.id.recyclerViewdatewisedipofdetails);
         progressBar=view.findViewById(R.id.progressBardatewise);
         recyclerView.setLayoutManager(new CustomLinearLayoutManager1(getContext()));
@@ -125,27 +129,31 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
         String username=preferences.getString("username","");
 
         String datenew=dateval.getText().toString();
-        System.out.println(datenew+" date value");
-
-        FirebaseRecyclerOptions<retailer_model_datewise_dispwhenpressed> options =
-                new FirebaseRecyclerOptions.Builder<retailer_model_datewise_dispwhenpressed>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").child(username).child("r_history").child(datenew),retailer_model_datewise_dispwhenpressed.class)
-                        .build();
+        System.out.println(dateval+" date value");
 
 
+            FirebaseRecyclerOptions<retailer_model_datewise_dispwhenpressed> options =
+                    new FirebaseRecyclerOptions.Builder<retailer_model_datewise_dispwhenpressed>()
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").child(username).child("r_history").child(datenew).child("Items"), retailer_model_datewise_dispwhenpressed.class)
+                            .build();
 
-        adapter=new adapter_retailerside_datewise_dispoforder(options);
-        adapter.startListening();
 
-        recyclerView.setAdapter(adapter);
+            adapter = new adapter_retailerside_datewise_dispoforder(options);
+            adapter.startListening();
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                progressBar.setVisibility(View.GONE);
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });
+            recyclerView.setAdapter(adapter);
+
+
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    progressBar.setVisibility(View.GONE);
+                    super.onScrolled(recyclerView, dx, dy);
+                }
+            });
+
+
+
 
 
         return view;

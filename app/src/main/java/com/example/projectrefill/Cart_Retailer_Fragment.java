@@ -230,7 +230,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                     //DatabaseReference order=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items").child(b);
 
-                    DatabaseReference order=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate);
+                    DatabaseReference order=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items");
 
 
 
