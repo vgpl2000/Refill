@@ -198,65 +198,64 @@ public class Cart_Retailer_Fragment extends Fragment {
                 Toast.makeText(getContext(), "good", Toast.LENGTH_SHORT).show();
             }
         });
-        String totaltemp=totalamounthere.getText().toString();
-        System.out.println(totalamounthere.getText().toString()+" above");
-        if (totaltemp.equals("0")) {
-            System.out.println(totaltemp+" above");
-            placeorder.setEnabled(false);
-        } else {
 
         placeorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (radioGroup.getCheckedRadioButtonId() == -1) {
-                    Toast.makeText(getContext(), "Please select a payment mode!", Toast.LENGTH_LONG).show();
+                if (totalamounthere.getText().toString().equals("0")) {
+                    Toast.makeText(getContext(), "Please add at least one item to cart", Toast.LENGTH_SHORT).show();
+
                 } else {
+                    if (radioGroup.getCheckedRadioButtonId() == -1) {
+                        Toast.makeText(getContext(), "Please select a payment mode!", Toast.LENGTH_LONG).show();
+                    } else {
 
-                    databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.child("c_orders").child(username).hasChild("order_state")) {
-                                placeorder.setEnabled(false);
-                                Toast.makeText(getActivity(), "Please wait until delivery of previous orders!", Toast.LENGTH_LONG).show();
-                            } else {
-
-
-                                preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
-                                String username = preferences.getString("username", "");
+                        databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.child("c_orders").child(username).hasChild("order_state")) {
+                                    Toast.makeText(getActivity(), "Please wait until delivery of previous orders!", Toast.LENGTH_LONG).show();
+                                } else {
 
 
-                                TextView itemname = v.findViewById(R.id.cart_name);
+                                    preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                                    String username = preferences.getString("username", "");
 
 
-                                DatabaseReference cartref = FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_orders");
+                                    TextView itemname = v.findViewById(R.id.cart_name);
 
 
-                                DatabaseReference order = FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items");
-
-                                moveFirebaseRecord(cartref, order);
-
-                                //check orders
-                                DatabaseReference c_cartref = FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_orders");
+                                    DatabaseReference cartref = FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_orders");
 
 
-                                DatabaseReference c_order = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username).child("check_orders").child("Items");
+                                    DatabaseReference order = FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items");
 
-                                c_moveFirebaseRecord(c_cartref, c_order);
+
+                                    moveFirebaseRecord(cartref, order);
+
+                                    //check orders
+                                    DatabaseReference c_cartref = FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_orders");
+
+
+                                    DatabaseReference c_order = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username).child("check_orders").child("Items");
+
+                                    c_moveFirebaseRecord(c_cartref, c_order);
+                                }
 
                             }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
 
 
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
+                    }
                 }
             }
         });
-    }
 
         return v;
     }
@@ -271,6 +270,11 @@ public class Cart_Retailer_Fragment extends Fragment {
                         if (error != null) {
                             Toast.makeText(getContext(), "Not Successfull", Toast.LENGTH_LONG).show();
                         } else {
+
+                            RadioButton select=getActivity().findViewById(radioGroup.getCheckedRadioButtonId());
+
+                            String pmode1 = select== null ? "" : select.getText().toString();
+
                             preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
                             String username=preferences.getString("username","");
                             DatabaseReference name=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username);
@@ -278,6 +282,23 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                             DatabaseReference o_state=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username);
                             o_state.child("order_state").setValue("");
+
+
+
+                            if(pmode1.equals("Cash")){
+
+                                Toast.makeText(getContext(), "Selected cash", Toast.LENGTH_SHORT).show();
+                                DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username);
+                                mode.child("pmode").setValue("Cash");
+
+                            }else if(pmode1.equals("Credit")) {
+
+                                Toast.makeText(getContext(), "Selected credit", Toast.LENGTH_SHORT).show();
+                                DatabaseReference mode = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username);
+                                mode.child("pmode").setValue("Credit");
+                            }
+
+
 
                         }
                     }
