@@ -1,9 +1,13 @@
 package com.example.projectrefill;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +21,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -113,6 +119,8 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                     });
 
 
+
+
                     holder.btnacp.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -158,6 +166,15 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                                                     top.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
                                                         @Override
                                                         public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+
+                                                            NotificationCompat.Builder builder1=new NotificationCompat.Builder(view.getContext(),"MyNotification");
+                                                            builder1.setContentTitle("Order Accepted");
+                                                            builder1.setContentText("Dear"+rname+" your recent order is accepted ");
+                                                            builder1.setSmallIcon(R.drawable.logo);
+                                                            builder1.setAutoCancel(true);
+
+                                                            NotificationManagerCompat managerCompat=NotificationManagerCompat.from(view.getContext());
+                                                            managerCompat.notify(1, builder1.build());
                                                             Toast.makeText(view.getContext(), "Accepted", Toast.LENGTH_SHORT).show();
                                                         }
                                                     });
@@ -339,6 +356,12 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             @Override
             public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row_order_clientside_homepage,parent,false);
+
+                if(Build.VERSION.SDK_INT>Build.VERSION_CODES.O){
+                    NotificationChannel channel=new NotificationChannel("MyNotification","MyNotification", NotificationManager.IMPORTANCE_HIGH);
+                    NotificationManager manager=view.getContext().getSystemService(NotificationManager.class);
+                    manager.createNotificationChannel(channel);
+                }
                 return new myviewholder(view);
 
             }
