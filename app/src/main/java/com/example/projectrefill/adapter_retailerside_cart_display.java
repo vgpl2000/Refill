@@ -135,7 +135,7 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
                 String rname=holder.stext.getText().toString();
                 String iname=holder.name.getText().toString();
 
-                DatabaseReference remove=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_orders");
+                DatabaseReference remove=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_orders").child(iname);
                 remove.removeValue();
 
                 totalamtcheck=totalamtcheck-tot;
