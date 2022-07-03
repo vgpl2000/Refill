@@ -4,9 +4,14 @@ import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +28,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -50,6 +56,13 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             String o_state;
             ProgressBar progressBar;
             Date c = Calendar.getInstance().getTime();
+
+            private static  final  String CHANNEL_ID="My Channel";
+
+            private static  final  int REQUEST_CODE=100;
+
+            private static  final  int NOTIFICATION_ID=100;
+
 
 
 
@@ -167,15 +180,48 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                                                         @Override
                                                         public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
 
-                                                            NotificationCompat.Builder builder1=new NotificationCompat.Builder(view.getContext(),"MyNotification");
-                                                            builder1.setContentTitle("Order Accepted");
-                                                            builder1.setContentText("Dear"+rname+" your recent order is accepted ");
-                                                            builder1.setSmallIcon(R.drawable.logo);
-                                                            builder1.setAutoCancel(true);
+                                                            Drawable drawable = ResourcesCompat.getDrawable(view.getResources(), R.drawable.logo, null);
+                                                            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+                                                            Bitmap largeicon = bitmapDrawable.getBitmap();
 
-                                                            NotificationManagerCompat managerCompat=NotificationManagerCompat.from(view.getContext());
-                                                            managerCompat.notify(1, builder1.build());
+                                                            NotificationManager nm=(NotificationManager) view.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+                                                            Notification notificationforaccepting;
+
+                                                            AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+
+                                                            Context context=new retailer_activity();
+
+                                                            Intent intent=new Intent(view.getContext(),retailer_activity.class);
+                                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+
+                                                            //PendingIntent pendingIntent=PendingIntent.getActivity(context,REQUEST_CODE,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+
+                                                            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                notificationforaccepting=new Notification.Builder(view.getContext())
+                                                                        .setLargeIcon(largeicon)
+                                                                        .setSmallIcon(R.drawable.logo)
+                                                                        .setContentTitle("Order Accepted")
+                                                                        .setContentText("Dear " + rname + " your recent order is accepted ")
+
+                                                                        .setChannelId(CHANNEL_ID)
+                                                                        .build();
+                                                                nm.createNotificationChannel(new NotificationChannel(CHANNEL_ID,"Accepting Channel",NotificationManager.IMPORTANCE_HIGH));
+                                                        }else{
+                                                                notificationforaccepting=new Notification.Builder(view.getContext())
+                                                                        .setLargeIcon(largeicon)
+                                                                        .setContentTitle("Order Accepted")
+                                                                        .setSmallIcon(R.drawable.logo)
+
+                                                                        .setContentText("Dear " + rname + " your recent order is accepted")
+                                                                        .build();
+
+                                                            }
+                                                            nm.notify(NOTIFICATION_ID,notificationforaccepting);
                                                             Toast.makeText(view.getContext(), "Accepted", Toast.LENGTH_SHORT).show();
+
                                                         }
                                                     });
                                                 }
@@ -253,6 +299,8 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
                                                             DatabaseReference frmtode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname);
                                                             frmtode.removeValue();
+
+
 
                                                         }
                                                     });
@@ -357,11 +405,13 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row_order_clientside_homepage,parent,false);
 
-                if(Build.VERSION.SDK_INT>Build.VERSION_CODES.O){
+               /* if(Build.VERSION.SDK_INT>Build.VERSION_CODES.O){
                     NotificationChannel channel=new NotificationChannel("MyNotification","MyNotification", NotificationManager.IMPORTANCE_HIGH);
                     NotificationManager manager=view.getContext().getSystemService(NotificationManager.class);
                     manager.createNotificationChannel(channel);
-                }
+                }*/
+
+
                 return new myviewholder(view);
 
             }
