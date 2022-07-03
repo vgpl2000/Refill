@@ -1,5 +1,8 @@
 package com.example.projectrefill;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +43,13 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             DatabaseReference databaseReference = database.getInstance().getReference();
             String o_state;
             ProgressBar progressBar;
+            Date c = Calendar.getInstance().getTime();
+
+
+
+            SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault());
+            String formattedDate1 = df.format(c);
+
 
             @Override
             public int getItemCount() {
@@ -120,6 +131,31 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
                             databaseReference.child("Client").child("c_orders").child(model.getName()).child("order_state").setValue("accepted");
 
+                            String rname=holder.textView.getText().toString();
+
+                            DatabaseReference fromp = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
+
+
+                            DatabaseReference top = FirebaseDatabase.getInstance().getReference("Client").child("c_accepted").child(rname).child(formattedDate1);
+
+                            fromp.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    top.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
+                                        @Override
+                                        public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                            Toast.makeText(view.getContext(), "accepted", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    Toast.makeText(view.getContext(), "error accepting", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+
 
                         }
                     });
@@ -128,12 +164,61 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                     holder.btncan.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Toast.makeText(view.getContext(), "cancelling", Toast.LENGTH_SHORT).show();
-                            holder.btncan.setVisibility(View.GONE);
-                            holder.btnacp.setVisibility(View.GONE);
 
-                            //To update that order is cancelled in database
-                            databaseReference.child("Client").child("c_orders").child(model.getName()).child("order_state").setValue("cancelled");
+                            android.app.AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
+                            builder.setTitle("Delete!!");
+                            builder.setMessage("Are you sure you want to cancel new order from "+holder.textView.getText().toString()+" ?");
+                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            Toast.makeText(view.getContext(), "cancelling", Toast.LENGTH_SHORT).show();
+                                            holder.btncan.setVisibility(View.GONE);
+                                            holder.btnacp.setVisibility(View.GONE);
+
+                                            //To update that order is cancelled in database
+                                            databaseReference.child("Client").child("c_orders").child(model.getName()).child("order_state").setValue("cancelled");
+
+
+                                            String rname=holder.textView.getText().toString();
+
+                                            DatabaseReference fromp = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
+
+
+                                            DatabaseReference top = FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(rname).child(formattedDate1);
+
+                                            fromp.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    top.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
+                                                        @Override
+                                                        public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                                            Toast.makeText(view.getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+
+                                                            DatabaseReference frmtode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname);
+                                                            frmtode.removeValue();
+                                                        }
+                                                    });
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+                                                    Toast.makeText(view.getContext(), "error cancelling", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+
+
+
+                                        }
+                                    });
+                            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            });
+                            builder.show();
+
+
 
                         }
                     });
@@ -152,8 +237,12 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                         }
                     });
 
+                    holder.modep.setText(model.getPmode());
+
 
             }
+
+
 
             @NonNull
 
@@ -174,7 +263,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             public class myviewholder extends RecyclerView.ViewHolder
              {
                     Button btnchk,btnacp,btncan,btndel;
-                    TextView textView;
+                    TextView textView,modep;
 
 
         public myviewholder(@NonNull View itemView) {
@@ -186,9 +275,31 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             btncan=itemView.findViewById(R.id.btn_cancl);
             btndel=itemView.findViewById(R.id.btn_deli);
             progressBar=itemView.findViewById(R.id.progressBar);
+            modep=itemView.findViewById(R.id.pmodeforclient);
         }
 
     }
+            /*private void c_moveFirebaseRecord(DatabaseReference fromp, final DatabaseReference top) {
+                fromp.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        top.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                Toast.makeText(, "accepted", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+            }*/
 
 
         }
