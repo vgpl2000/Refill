@@ -440,6 +440,7 @@ public class Cart_Retailer_Fragment extends Fragment {
     }
 
     public void preparenotificationmessage(String orderId){
+        System.out.println("inside prepare()");
         String NOTIFICATION_TOPIC="/topics/"+constantsforuse.FCM_KEY;
         String NOTIFICATION_TITILE="New Order from"+orderId;
         String NOTIFICATION_MESSAGE="New order is placed!";
@@ -453,6 +454,7 @@ public class Cart_Retailer_Fragment extends Fragment {
         JSONObject notificationjo=new JSONObject();
         JSONObject notificationBodyjo=new JSONObject();
         try {
+            System.out.println("inside prepare and try");
             notificationBodyjo.put("notificationtype",NOTIFICATION_TYPE);
             notificationBodyjo.put("buyeruid",name1);
             notificationBodyjo.put("selleruid",owner);
@@ -472,6 +474,7 @@ public class Cart_Retailer_Fragment extends Fragment {
     }
 
     private void sendfcmnotification(JSONObject notificationjo, String orderId) {
+        System.out.println("inside sendfcmnotification");
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationjo, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
