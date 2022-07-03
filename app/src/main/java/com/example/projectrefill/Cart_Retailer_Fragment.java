@@ -29,6 +29,11 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,11 +44,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 
 public class Cart_Retailer_Fragment extends Fragment {
@@ -415,6 +423,8 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                             Toast.makeText(getContext(), "Order Placed", Toast.LENGTH_LONG).show();
 
+                            preparenotificationmessage(username);
+
 
                         }
                     }
@@ -427,5 +437,65 @@ public class Cart_Retailer_Fragment extends Fragment {
 
             }
         });
+    }
+
+    public void preparenotificationmessage(String orderId){
+        String NOTIFICATION_TOPIC="/topics/"+constantsforuse.FCM_KEY;
+        String NOTIFICATION_TITILE="New Order from"+orderId;
+        String NOTIFICATION_MESSAGE="New order is placed!";
+        String NOTIFICATION_TYPE="neworder";
+
+        SharedPreferences preferences;
+        preferences = getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        String name1=preferences.getString("username","");
+        String owner="akashadeepa";
+
+        JSONObject notificationjo=new JSONObject();
+        JSONObject notificationBodyjo=new JSONObject();
+        try {
+            notificationBodyjo.put("notificationtype",NOTIFICATION_TYPE);
+            notificationBodyjo.put("buyeruid",name1);
+            notificationBodyjo.put("selleruid",owner);
+            notificationBodyjo.put("orderid",orderId);
+            notificationBodyjo.put("notificationtitile",NOTIFICATION_TITILE);
+            notificationBodyjo.put("notificationmessage",NOTIFICATION_MESSAGE);
+
+            //where to send
+            notificationjo.put("to",NOTIFICATION_TOPIC);
+            notificationjo.put("data",notificationBodyjo);
+
+
+        }catch (Exception e){
+            Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        sendfcmnotification(notificationjo,orderId);
+    }
+
+    private void sendfcmnotification(JSONObject notificationjo, String orderId) {
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationjo, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                //after sending fcm start order details activity
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //if failed sending fcm
+
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                //put required headers
+                Map<String,String> headers=new HashMap<>();
+                headers.put("Content_Type","application/json");
+                headers.put("Authorization","key="+constantsforuse.FCM_KEY);
+
+                return headers;
+            }
+        };
+        Volley.newRequestQueue(getContext()).add(jsonObjectRequest);
+
     }
 }

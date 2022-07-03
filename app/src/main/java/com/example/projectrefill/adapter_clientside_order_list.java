@@ -1,5 +1,7 @@
 package com.example.projectrefill;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -31,6 +33,11 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.internal.ParcelableSparseArray;
@@ -41,10 +48,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -180,47 +191,76 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                                                         @Override
                                                         public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
 
-                                                            Drawable drawable = ResourcesCompat.getDrawable(view.getResources(), R.drawable.logo, null);
-                                                            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-                                                            Bitmap largeicon = bitmapDrawable.getBitmap();
-
-                                                            NotificationManager nm=(NotificationManager) view.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
-                                                            Notification notificationforaccepting;
-
-                                                            AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-
-                                                            Context context=new retailer_activity();
-
-                                                            Intent intent=new Intent(view.getContext(),retailer_activity.class);
-                                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-
-                                                            //PendingIntent pendingIntent=PendingIntent.getActivity(context,REQUEST_CODE,intent,PendingIntent.FLAG_UPDATE_CURRENT);
 
 
 
-                                                            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                                notificationforaccepting=new Notification.Builder(view.getContext())
-                                                                        .setLargeIcon(largeicon)
-                                                                        .setSmallIcon(R.drawable.logo)
-                                                                        .setContentTitle("Order Accepted")
-                                                                        .setContentText("Dear " + rname + " your recent order is accepted ")
 
-                                                                        .setChannelId(CHANNEL_ID)
-                                                                        .build();
-                                                                nm.createNotificationChannel(new NotificationChannel(CHANNEL_ID,"Accepting Channel",NotificationManager.IMPORTANCE_HIGH));
-                                                        }else{
-                                                                notificationforaccepting=new Notification.Builder(view.getContext())
-                                                                        .setLargeIcon(largeicon)
-                                                                        .setContentTitle("Order Accepted")
-                                                                        .setSmallIcon(R.drawable.logo)
-
-                                                                        .setContentText("Dear " + rname + " your recent order is accepted")
-                                                                        .build();
-
-                                                            }
-                                                            nm.notify(NOTIFICATION_ID,notificationforaccepting);
                                                             Toast.makeText(view.getContext(), "Accepted", Toast.LENGTH_SHORT).show();
+
+                                                            //notification testing
+
+                                                            SharedPreferences preferences;
+                                                            preferences = view.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                                                            String orderId=preferences.getString("username","");
+                                                            String owner="akashadeepa";
+
+
+                                                                String NOTIFICATION_TOPIC="/topics/"+constantsforuse.FCM_KEY;
+                                                                String NOTIFICATION_TITILE="Your order"+orderId;
+                                                                String NOTIFICATION_MESSAGE="accepted";
+                                                                String NOTIFICATION_TYPE="orderstatuschanged";
+
+                                                                SharedPreferences preferencess;
+                                                                preferencess = view.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                                                                String name1=preferences.getString("username","");
+                                                                String ownern="akashadeepa";
+
+                                                                JSONObject notificationjo=new JSONObject();
+                                                                JSONObject notificationBodyjo=new JSONObject();
+                                                                try {
+                                                                    notificationBodyjo.put("notificationtype",NOTIFICATION_TYPE);
+                                                                    notificationBodyjo.put("buyeruid",ownern);
+                                                                    notificationBodyjo.put("selleruid",name1);
+                                                                    notificationBodyjo.put("orderid",orderId);
+                                                                    notificationBodyjo.put("notificationtitile",NOTIFICATION_TITILE);
+                                                                    notificationBodyjo.put("notificationmessage",NOTIFICATION_MESSAGE);
+
+                                                                    //where to send
+                                                                    notificationjo.put("to",NOTIFICATION_TOPIC);
+                                                                    notificationjo.put("data",notificationBodyjo);
+
+
+                                                                }catch (Exception e){
+                                                                    Toast.makeText(view.getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                }
+
+                                                                JsonObjectRequest jsonObjectRequest=new JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationjo, new Response.Listener<JSONObject>() {
+                                                                    @Override
+                                                                    public void onResponse(JSONObject response) {
+                                                                        //after sending fcm start order details activity
+
+                                                                    }
+                                                                }, new Response.ErrorListener() {
+                                                                    @Override
+                                                                    public void onErrorResponse(VolleyError error) {
+                                                                        //if failed sending fcm
+
+                                                                    }
+                                                                }){
+                                                                    @Override
+                                                                    public Map<String, String> getHeaders() throws AuthFailureError {
+                                                                        //put required headers
+                                                                        Map<String,String> headers=new HashMap<>();
+                                                                        headers.put("Content_Type","application/json");
+                                                                        headers.put("Authorization","key="+constantsforuse.FCM_KEY);
+
+                                                                        return headers;
+                                                                    }
+                                                                };
+                                                                Volley.newRequestQueue(view.getContext()).add(jsonObjectRequest);
+
+
+
 
                                                         }
                                                     });
@@ -434,6 +474,8 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             progressBar=itemView.findViewById(R.id.progressBar);
             modep=itemView.findViewById(R.id.pmodeforclient);
         }
+
+
 
     }
             /*private void c_moveFirebaseRecord(DatabaseReference fromp, final DatabaseReference top) {

@@ -1,7 +1,10 @@
 package com.example.projectrefill;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,14 +28,23 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 
 public class HomeFragment extends Fragment {
@@ -192,4 +204,64 @@ public class HomeFragment extends Fragment {
             return false;
         }
     }
+    /*public void preparenotificationmessage(String orderId,String message){
+        String NOTIFICATION_TOPIC="/topics/"+constantsforuse.FCM_KEY;
+        String NOTIFICATION_TITILE="Your order"+orderId;
+        String NOTIFICATION_MESSAGE=""+message;
+        String NOTIFICATION_TYPE="orderstatuschanged";
+
+        SharedPreferences preferences;
+        preferences = getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        String name1=preferences.getString("username","");
+        String owner="akashadeepa";
+
+        JSONObject notificationjo=new JSONObject();
+        JSONObject notificationBodyjo=new JSONObject();
+        try {
+            notificationBodyjo.put("notificationtype",NOTIFICATION_TYPE);
+            notificationBodyjo.put("buyeruid",name1);
+            notificationBodyjo.put("selleruid",owner);
+            notificationBodyjo.put("orderid",orderId);
+            notificationBodyjo.put("notificationtitile",NOTIFICATION_TITILE);
+            notificationBodyjo.put("notificationmessage",NOTIFICATION_MESSAGE);
+
+            //where to send
+            notificationjo.put("to",NOTIFICATION_TOPIC);
+            notificationjo.put("data",notificationBodyjo);
+
+
+        }catch (Exception e){
+            Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        sendfcmnotification(notificationjo);
+    }
+
+    private void sendfcmnotification(JSONObject notificationjo) {
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationjo, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                //after sending fcm start order details activity
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //if failed sending fcm
+
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                //put required headers
+                Map<String,String> headers=new HashMap<>();
+                headers.put("Content_Type","application/json");
+                headers.put("Authorization","key="+constantsforuse.FCM_KEY);
+
+                return headers;
+            }
+        };
+        Volley.newRequestQueue(getContext()).add(jsonObjectRequest);
+
+    }*/
+
 }

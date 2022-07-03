@@ -11,6 +11,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.projectrefill.databinding.ActivityClientBinding;
 import com.example.projectrefill.databinding.ActivityRetailerBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +23,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class retailer_activity extends AppCompatActivity {
 ActivityRetailerBinding binding;
@@ -91,4 +101,6 @@ ActivityRetailerBinding binding;
         fragmentTransaction.replace(R.id.framel2,fragment);
         fragmentTransaction.commit();
     }
+
+
 }
