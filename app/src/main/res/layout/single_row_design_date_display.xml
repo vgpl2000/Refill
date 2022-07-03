@@ -8,14 +8,18 @@
     app:cardUseCompatPadding="true">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="wrap_content"
         android:background="@color/black">
+
+
+
 
         <Button
             android:id="@+id/datebutton"
             android:layout_width="match_parent"
             android:layout_height="49dp"
             android:padding="5dp"
+            android:textAllCaps="false"
             android:background="@drawable/background_button6"
             android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
             android:fontFamily="@font/poppins_medium"
@@ -27,6 +31,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.523" />
+
+        <TextView
+            android:id="@+id/paymentmodetodip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="hello"
+            android:textColor="@color/white"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.072"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/datebutton"
+            app:layout_constraintVertical_bias="0.407"
+            tools:visibility="visible" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

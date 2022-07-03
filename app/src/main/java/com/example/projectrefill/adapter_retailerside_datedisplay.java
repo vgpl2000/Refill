@@ -41,7 +41,7 @@ public class adapter_retailerside_datedisplay extends FirebaseRecyclerAdapter<re
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull retailer_model_info_fragment_datedisplay model) {
 
-        holder.date.setText(model.getDate());
+        holder.date.setText("Mode: "+model.getPmode()+"/"+ model.getDate());
         datefinal=holder.date.getText().toString();
         holder.date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +67,8 @@ public class adapter_retailerside_datedisplay extends FirebaseRecyclerAdapter<re
 
     public class myviewholder extends RecyclerView.ViewHolder {
         Button date;
+
+
 
             public myviewholder(@NonNull View itemView) {
                 super(itemView);

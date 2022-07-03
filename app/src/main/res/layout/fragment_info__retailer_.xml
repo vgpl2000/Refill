@@ -32,13 +32,13 @@
             android:id="@+id/ll"
             android:layout_width="265dp"
             android:layout_height="64dp"
-            android:layout_marginTop="8dp"
             android:gravity="center"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerViewtodispdate"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
 
             <TextView
@@ -91,8 +91,8 @@
             android:id="@+id/recyclerViewtodispdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="256dp"
-            android:paddingBottom="110dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="93dp"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
