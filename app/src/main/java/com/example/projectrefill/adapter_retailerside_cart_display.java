@@ -57,6 +57,7 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
 
 
 
+
         holder.totalamtofitem.setText(totalamt);
 
 
@@ -139,12 +140,10 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
 
                 totalamtcheck=totalamtcheck-tot;
 
+                    Intent intent = new Intent("mytotamt");
+                    intent.putExtra("totalamount", totalamtcheck);
 
-                Intent intent=new Intent("mytotamt");
-                intent.putExtra("totalamount",totalamtcheck);
-
-                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-
+                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
             }
         });
     }

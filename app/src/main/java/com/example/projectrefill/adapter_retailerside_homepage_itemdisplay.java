@@ -92,7 +92,7 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
                         String b=Integer.toString(a);
 
                         retailer_model_button_addtocart_pressed obj1 = new retailer_model_button_addtocart_pressed(iname, quan, weight, formattedDate,price,total);
-                        root.child(b).setValue(obj1);
+                        root.child(iname).setValue(obj1);
 
 
                         Toast.makeText(view.getContext(), "Successfully added", Toast.LENGTH_SHORT).show();
