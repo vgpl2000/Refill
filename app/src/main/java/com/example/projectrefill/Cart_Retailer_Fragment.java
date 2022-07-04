@@ -472,7 +472,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
 
             }
-        },1000);
+        },100);
     }
 
     public void preparenotificationmessage(String orderId){
