@@ -199,7 +199,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
 
                                                             Toast.makeText(view.getContext(), "Accepted", Toast.LENGTH_SHORT).show();
-                                                            Activity activity=new client_activity();
+
 
                                                             //notification testing
 
@@ -229,8 +229,8 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
                                                                     System.out.println("inside postdelay");
 
-                                                                    firebasenotificationsendertesting notificationsender=new firebasenotificationsendertesting(token2,"Refill","Dear "+rname+" your order has been accepted!","accepted", view.getContext(),activity);
-                                                                    notificationsender.sendnotifications();
+                                                                    testnotificationtestinpart2 notificationsender2=new testnotificationtestinpart2(token2,"Refill","Dear "+rname+" your order has been accepted!","accepted", view.getContext());
+                                                                    notificationsender2.sendnotifications();
 
 
                                                                 }
