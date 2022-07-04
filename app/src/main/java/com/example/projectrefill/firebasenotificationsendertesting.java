@@ -61,7 +61,7 @@ public class firebasenotificationsendertesting {
                     //if failed sending fcm
 
                 }
-            }){
+            }) {
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     //put required headers
@@ -72,7 +72,10 @@ public class firebasenotificationsendertesting {
                     return headers;
                 }
             };
-            Volley.newRequestQueue(mActivity.getApplicationContext()).add(jsonObjectRequest);
+            requestQueue.add(jsonObjectRequest);
+
+
+
 
         }catch (Exception e){
             e.printStackTrace();
