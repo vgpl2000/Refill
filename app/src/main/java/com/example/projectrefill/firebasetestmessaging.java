@@ -34,7 +34,7 @@ public class firebasetestmessaging extends FirebaseMessagingService {
 
 
 
-            if (notificationtype.equals("orderplaced")) {
+            //if (notificationtype.equals("orderplaced")) {
                 Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
                 r.play();
@@ -86,7 +86,7 @@ public class firebasetestmessaging extends FirebaseMessagingService {
 
                 mnotification.notify(100, builder.build());
 
-            } else if (notificationtype.equals("accepted")) {
+           /* } else if (notificationtype.equals("accepted")) {
                 Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
                 r.play();
@@ -139,7 +139,7 @@ public class firebasetestmessaging extends FirebaseMessagingService {
                 mnotification.notify(100, builder.build());
             }else{
                 System.out.println("else part");
-            }
+            }*/
 
 
 
