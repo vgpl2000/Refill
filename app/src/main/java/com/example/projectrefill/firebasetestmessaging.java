@@ -44,7 +44,7 @@ public class firebasetestmessaging extends FirebaseMessagingService {
             builder.setSmallIcon(R.drawable.logo);
         }
 
-        Intent resultintent=new Intent(this,MainActivity.class);
+        Intent resultintent=new Intent(this,retailer_activity.class);
 
         PendingIntent pendingIntent=PendingIntent.getActivity(this,1,resultintent,PendingIntent.FLAG_UPDATE_CURRENT);
 

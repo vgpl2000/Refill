@@ -67,7 +67,7 @@ public class firebasenotificationsendertesting {
                     //put required headers
                     Map<String,String> headers=new HashMap<>();
                     headers.put("Content_Type","application/json");
-                    headers.put("Authorization","key="+constantsforuse.FCM_KEY);
+                    headers.put("Authorization","key="+fcmServerKey);
 
                     return headers;
                 }
