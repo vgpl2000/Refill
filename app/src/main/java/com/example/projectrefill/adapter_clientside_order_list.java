@@ -2,6 +2,7 @@ package com.example.projectrefill;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -15,6 +16,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +69,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             String o_state;
             ProgressBar progressBar;
             Date c = Calendar.getInstance().getTime();
+            String token2;
 
             private static  final  String CHANNEL_ID="My Channel";
 
@@ -196,6 +199,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
 
                                                             Toast.makeText(view.getContext(), "Accepted", Toast.LENGTH_SHORT).show();
+                                                            Activity activity=new client_activity();
 
                                                             //notification testing
 
@@ -205,59 +209,36 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                                                             String owner="akashadeepa";
 
 
-                                                                String NOTIFICATION_TOPIC="/topics/"+constantsforuse.FCM_KEY;
-                                                                String NOTIFICATION_TITILE="Your order"+orderId;
-                                                                String NOTIFICATION_MESSAGE="accepted";
-                                                                String NOTIFICATION_TYPE="orderstatuschanged";
+                                                            FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                @Override
+                                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                    token2=snapshot.getValue(String.class);
 
-                                                                SharedPreferences preferencess;
-                                                                preferencess = view.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
-                                                                String name1=preferences.getString("username","");
-                                                                String ownern="akashadeepa";
-
-                                                                JSONObject notificationjo=new JSONObject();
-                                                                JSONObject notificationBodyjo=new JSONObject();
-                                                                try {
-                                                                    notificationBodyjo.put("notificationtype",NOTIFICATION_TYPE);
-                                                                    notificationBodyjo.put("buyeruid",ownern);
-                                                                    notificationBodyjo.put("selleruid",name1);
-                                                                    notificationBodyjo.put("orderid",orderId);
-                                                                    notificationBodyjo.put("notificationtitile",NOTIFICATION_TITILE);
-                                                                    notificationBodyjo.put("notificationmessage",NOTIFICATION_MESSAGE);
-
-                                                                    //where to send
-                                                                    notificationjo.put("to",NOTIFICATION_TOPIC);
-                                                                    notificationjo.put("data",notificationBodyjo);
-
-
-                                                                }catch (Exception e){
-                                                                    Toast.makeText(view.getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                                                                 }
 
-                                                                JsonObjectRequest jsonObjectRequest=new JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationjo, new Response.Listener<JSONObject>() {
-                                                                    @Override
-                                                                    public void onResponse(JSONObject response) {
-                                                                        //after sending fcm start order details activity
+                                                                @Override
+                                                                public void onCancelled(@NonNull DatabaseError error) {
 
-                                                                    }
-                                                                }, new Response.ErrorListener() {
-                                                                    @Override
-                                                                    public void onErrorResponse(VolleyError error) {
-                                                                        //if failed sending fcm
+                                                                }
+                                                            });
 
-                                                                    }
-                                                                }){
-                                                                    @Override
-                                                                    public Map<String, String> getHeaders() throws AuthFailureError {
-                                                                        //put required headers
-                                                                        Map<String,String> headers=new HashMap<>();
-                                                                        headers.put("Content_Type","application/json");
-                                                                        headers.put("Authorization","key="+constantsforuse.FCM_KEY);
+                                                            Handler handler=new Handler();
+                                                            handler.postDelayed(new Runnable() {
+                                                                @Override
+                                                                public void run() {
 
-                                                                        return headers;
-                                                                    }
-                                                                };
-                                                                Volley.newRequestQueue(view.getContext()).add(jsonObjectRequest);
+                                                                    System.out.println("inside postdelay");
+
+                                                                    firebasenotificationsendertesting notificationsender=new firebasenotificationsendertesting(token2,"Refill","Dear "+rname+" your order has been accepted!","accepted", view.getContext(),activity);
+                                                                    notificationsender.sendnotifications();
+
+
+                                                                }
+                                                            },1000);
+
+
+
+
 
 
 
