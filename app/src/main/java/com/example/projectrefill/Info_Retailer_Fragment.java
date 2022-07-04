@@ -136,7 +136,10 @@ public class Info_Retailer_Fragment extends Fragment {
         progressBar=v.findViewById(R.id.progressBardate);
 
         recyclerView=(RecyclerView) v.findViewById(R.id.recyclerViewtodispdate);
-        recyclerView.setLayoutManager(new CustomLinearLayoutManager1(getContext()));
+        LinearLayoutManager linearLayoutManager=new CustomLinearLayoutManager1(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
 
         FirebaseRecyclerOptions<retailer_model_info_fragment_datedisplay> options =
                 new FirebaseRecyclerOptions.Builder<retailer_model_info_fragment_datedisplay>()
@@ -144,6 +147,7 @@ public class Info_Retailer_Fragment extends Fragment {
                         .build();
 
         adapter=new adapter_retailerside_datedisplay(options);
+
 
         recyclerView.setAdapter(adapter);
 
