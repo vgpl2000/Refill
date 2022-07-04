@@ -472,7 +472,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
 
             }
-        },100);
+        },1000);
     }
 
     public void preparenotificationmessage(String orderId){
@@ -506,7 +506,7 @@ public class Cart_Retailer_Fragment extends Fragment {
         }catch (Exception e){
             Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-       sendfcmnotification(notificationjo,orderId);
+       //sendfcmnotification(notificationjo,orderId);
     }
 
     private void sendfcmnotification(JSONObject notificationjo, String orderId) {
