@@ -426,9 +426,9 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                             Toast.makeText(getContext(), "Order Placed", Toast.LENGTH_LONG).show();
 
-                            preparenotificationmessage(username);
+                            //preparenotificationmessage(username);
                             String uid="akashadeepa";
-                            //sendnotification(uid,username);
+                            sendnotification(uid,username);
 
 
                         }
