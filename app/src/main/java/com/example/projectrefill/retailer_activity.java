@@ -18,11 +18,14 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.projectrefill.databinding.ActivityClientBinding;
 import com.example.projectrefill.databinding.ActivityRetailerBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONObject;
 
@@ -37,6 +40,10 @@ ActivityRetailerBinding binding;
         super.onCreate(savedInstanceState);
 
 
+
+
+
+
         //blocked or not
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getInstance().getReference();
@@ -45,6 +52,31 @@ ActivityRetailerBinding binding;
         preferences = this.getSharedPreferences("MyPreferences", MODE_PRIVATE);
         editor=preferences.edit();
         String name1=preferences.getString("username","");
+
+
+
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+                        FirebaseDatabase.getInstance().getReference("Retailer").child(name1).child("token").setValue(token);
+                        // Log and toast
+
+                    }
+                });
+
+
+
+
+
         databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

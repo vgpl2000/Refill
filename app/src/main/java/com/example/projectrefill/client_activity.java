@@ -1,5 +1,8 @@
 package com.example.projectrefill;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
@@ -8,11 +11,17 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.projectrefill.databinding.ActivityClientBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.errorprone.annotations.Var;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 
 public class client_activity extends AppCompatActivity {
@@ -25,6 +34,24 @@ ActivityClientBinding binding;
 
             binding = ActivityClientBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+                        FirebaseDatabase.getInstance().getReference("Client").child("akashadeepa").child("token").setValue(token);
+                        // Log and toast
+
+                    }
+                });
+
             replacefragment(new HomeFragment());
 
 

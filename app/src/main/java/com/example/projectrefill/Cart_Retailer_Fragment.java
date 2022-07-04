@@ -17,6 +17,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -74,6 +75,8 @@ public class Cart_Retailer_Fragment extends Fragment {
     Integer ftot=0;
     TextView totalamounthere;
     RadioGroup radioGroup;
+
+    String token;
 
 
 
@@ -423,7 +426,9 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                             Toast.makeText(getContext(), "Order Placed", Toast.LENGTH_LONG).show();
 
-                            preparenotificationmessage(username);
+                            //preparenotificationmessage(username);
+                            String uid="akashadeepa";
+                            sendnotification(uid,username);
 
 
                         }
@@ -437,6 +442,34 @@ public class Cart_Retailer_Fragment extends Fragment {
 
             }
         });
+    }
+
+
+    private  void sendnotification(String uid,String name){
+        FirebaseDatabase.getInstance().getReference().child(uid).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                token=snapshot.getValue(String.class);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        Handler handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                firebasenotificationsendertesting notificationsender=new firebasenotificationsendertesting(token,"Refill","New Order placed by "+name,getContext() ,getActivity());
+                notificationsender.sendnotifications();
+
+
+            }
+        },1000);
     }
 
     public void preparenotificationmessage(String orderId){
