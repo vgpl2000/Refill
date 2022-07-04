@@ -467,7 +467,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                 System.out.println("inside postdelay");
 
-                firebasenotificationsendertesting notificationsender=new firebasenotificationsendertesting(token,"Refill","New Order placed by "+name,getContext() ,getActivity());
+                firebasenotificationsendertesting notificationsender=new firebasenotificationsendertesting(token,"Refill","New Order placed by "+name,"orderplaced",getContext() ,getActivity());
                 notificationsender.sendnotifications();
 
 

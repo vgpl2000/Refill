@@ -23,17 +23,19 @@ public class firebasenotificationsendertesting {
     String body;
     Context mContext;
     Activity mActivity;
+    String typeofnoti;
 
     private RequestQueue requestQueue;
     private final String posturl="https://fcm.googleapis.com/fcm/send";
     private final String fcmServerKey="AAAAlTw2js0:APA91bFBgYACMCJezb_oH6LQy7nEv62b0sH1mqss3WWeaePPZNZnLGkYc8gKmGiKWCfOrQTJEomGz0BJvXl-b-E88isaNZadn8lB6R8-EK_TOe3iqj5IchN9fSdDAnlbJKBdS41xZAKb";
 
-    public firebasenotificationsendertesting(String userfcmtoken, String title, String body, Context mContext, Activity mActivity) {
+    public firebasenotificationsendertesting(String userfcmtoken, String title, String body,String typeofnoti, Context mContext, Activity mActivity) {
         this.userfcmtoken = userfcmtoken;
         this.title = title;
         this.body = body;
         this.mContext = mContext;
         this.mActivity = mActivity;
+        this.typeofnoti=typeofnoti;
     }
 
     public void sendnotifications(){
@@ -48,7 +50,8 @@ public class firebasenotificationsendertesting {
             notiobject.put("title",title);
             notiobject.put("body",body);
             notiobject.put("icon",R.drawable.logo);
-            notiobject.put("big","logo");
+            notiobject.put("big",R.drawable.logo);
+            notiobject.put("notificationtype",typeofnoti);
 
             mainobj.put("notification",notiobject);
 
