@@ -446,7 +446,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
 
     private  void sendnotification(String uid,String name){
-        FirebaseDatabase.getInstance().getReference().child(uid).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("Client").child(uid).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 token=snapshot.getValue(String.class);
@@ -503,7 +503,7 @@ public class Cart_Retailer_Fragment extends Fragment {
         }catch (Exception e){
             Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        sendfcmnotification(notificationjo,orderId);
+       // sendfcmnotification(notificationjo,orderId);
     }
 
     private void sendfcmnotification(JSONObject notificationjo, String orderId) {
