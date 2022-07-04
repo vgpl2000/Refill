@@ -48,6 +48,7 @@ public class firebasenotificationsendertesting {
             notiobject.put("title",title);
             notiobject.put("body",body);
             notiobject.put("icon",R.drawable.logo);
+            notiobject.put("big","logo");
 
             mainobj.put("notification",notiobject);
 

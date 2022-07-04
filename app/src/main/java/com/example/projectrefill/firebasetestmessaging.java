@@ -6,6 +6,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -40,13 +42,19 @@ public class firebasetestmessaging extends FirebaseMessagingService {
 
         NotificationCompat.Builder builder=new NotificationCompat.Builder(this,"CHANNEL_ID");
 
+        Bitmap largeicon= BitmapFactory.decodeResource(getResources(),R.drawable.logo);
+
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
             builder.setSmallIcon(R.drawable.logo);
+            builder.setLargeIcon(largeicon);
         }else {
             builder.setSmallIcon(R.drawable.logo);
+            builder.setLargeIcon(largeicon);
         }
 
-        Intent resultintent=new Intent(this,retailer_activity.class);
+        Intent resultintent=new Intent(this,client_activity.class);
+
+
 
         PendingIntent pendingIntent=PendingIntent.getActivity(this,1,resultintent,PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -56,6 +64,7 @@ public class firebasetestmessaging extends FirebaseMessagingService {
         builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message.getNotification().getBody()));
         builder.setAutoCancel(true);
         builder.setPriority(Notification.PRIORITY_MAX);
+
 
         mnotification=(NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
