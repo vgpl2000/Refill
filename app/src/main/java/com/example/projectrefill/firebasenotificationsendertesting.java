@@ -38,6 +38,8 @@ public class firebasenotificationsendertesting {
 
     public void sendnotifications(){
 
+        System.out.println("inside sendnotifications file");
+
         requestQueue= Volley.newRequestQueue(mActivity);
         JSONObject mainobj=new JSONObject();
         try {

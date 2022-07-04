@@ -60,14 +60,13 @@ ActivityRetailerBinding binding;
                 .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
                     public void onComplete(@NonNull Task<String> task) {
-                        if (!task.isSuccessful()) {
+                        if (task.isSuccessful()) {
+                            // Get new FCM registration token
+                            String token = task.getResult();
+                            FirebaseDatabase.getInstance().getReference("Retailer").child(name1).child("token").setValue(token);
 
-                            return;
                         }
 
-                        // Get new FCM registration token
-                        String token = task.getResult();
-                        FirebaseDatabase.getInstance().getReference("Retailer").child(name1).child("token").setValue(token);
                         // Log and toast
 
                     }

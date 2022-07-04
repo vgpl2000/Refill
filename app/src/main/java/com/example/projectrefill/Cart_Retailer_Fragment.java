@@ -446,6 +446,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
 
     private  void sendnotification(String uid,String name){
+        System.out.println("inside sendnotification()");
         FirebaseDatabase.getInstance().getReference("Client").child("akashadeepa").child("token").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -463,6 +464,8 @@ public class Cart_Retailer_Fragment extends Fragment {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+
+                System.out.println("inside postdelay");
 
                 firebasenotificationsendertesting notificationsender=new firebasenotificationsendertesting(token,"Refill","New Order placed by "+name,getContext() ,getActivity());
                 notificationsender.sendnotifications();
