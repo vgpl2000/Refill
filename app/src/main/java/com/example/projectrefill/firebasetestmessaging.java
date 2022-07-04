@@ -31,7 +31,7 @@ public class firebasetestmessaging extends FirebaseMessagingService {
 
         String notificationtype=message.getData().get("notificationtype");
 
-        try {
+
 
 
             if (notificationtype.equals("orderplaced")) {
@@ -137,10 +137,10 @@ public class firebasetestmessaging extends FirebaseMessagingService {
                 }
 
                 mnotification.notify(100, builder.build());
+            }else{
+                System.out.println("else part");
             }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+
 
 
     }
