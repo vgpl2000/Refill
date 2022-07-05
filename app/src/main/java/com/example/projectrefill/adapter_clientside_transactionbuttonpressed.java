@@ -14,17 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-public class adapter_clientside_transactionbuttonpressed extends FirebaseRecyclerAdapter<client_model_todisplaytransactionswhenbuttonpressed,adapter_clientside_transactionbuttonpressed.myviewholder1> {
+public class adapter_clientside_transactionbuttonpressed extends FirebaseRecyclerAdapter<client_model_todispalldetailswhendatepressed,adapter_clientside_transactionbuttonpressed.myviewholder1> {
 
-    public adapter_clientside_transactionbuttonpressed(@NonNull FirebaseRecyclerOptions<client_model_todisplaytransactionswhenbuttonpressed> options) {
+    public adapter_clientside_transactionbuttonpressed(@NonNull FirebaseRecyclerOptions<client_model_todispalldetailswhendatepressed> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull myviewholder1 holder, int position, @NonNull client_model_todisplaytransactionswhenbuttonpressed model) {
+    protected void onBindViewHolder(@NonNull myviewholder1 holder, int position, @NonNull client_model_todispalldetailswhendatepressed model) {
         //only date comes here
         holder.date.setText(model.getDate());
         holder.pmode.setText(model.getPmode());
+
 
 
 
@@ -33,7 +34,7 @@ public class adapter_clientside_transactionbuttonpressed extends FirebaseRecycle
             @Override
             public void onClick(View view) {
                 AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapperfrc,new clientside_datebutton_pressed_detaildisp_Fragment(model.getDate())).addToBackStack(null).commit();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrappernewforclient,new clientside_datebutton_pressed_detaildisp_Fragment(model.getDate(),model.getNameofretailer())).addToBackStack(null).commit();
 
             }
         });
@@ -47,13 +48,14 @@ public class adapter_clientside_transactionbuttonpressed extends FirebaseRecycle
     }
 
     public class myviewholder1 extends RecyclerView.ViewHolder {
-        TextView pmode;
+        TextView pmode,stext;
         Button date;
 
         public myviewholder1(@NonNull View itemView) {
             super(itemView);
             date=itemView.findViewById(R.id.datebutton);
             pmode=itemView.findViewById(R.id.paymentmodetodip);
+            stext=itemView.findViewById(R.id.secrettextnooneknows);
 
         }
     }

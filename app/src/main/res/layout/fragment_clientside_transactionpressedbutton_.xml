@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
+    android:id="@+id/wrappernewforclient"
     tools:context=".clientside_transactionpressedbutton_Fragment">
 
     <!-- TODO: Update blank fragment layout -->

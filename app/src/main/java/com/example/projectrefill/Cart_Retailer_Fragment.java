@@ -429,6 +429,10 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                             date.child("date").setValue(formattedDate);
 
+                            DatabaseReference  nameforfuture=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate);
+                            nameforfuture.child("nameofretailer").setValue(username);
+
+
                             if(pmode.equals("Cash")){
                                 tempmode="Pay on Delivery";
                             }else if(pmode.equals("Credit")){

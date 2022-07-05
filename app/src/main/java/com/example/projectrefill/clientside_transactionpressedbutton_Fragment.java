@@ -30,6 +30,7 @@ public class clientside_transactionpressedbutton_Fragment extends Fragment {
     adapter_clientside_transactionbuttonpressed adapter;
 
 
+
     public clientside_transactionpressedbutton_Fragment() {
         // Required empty public constructor
     }
@@ -66,9 +67,9 @@ public class clientside_transactionpressedbutton_Fragment extends Fragment {
 
         String nameforretailer=textView.getText().toString();
 
-        TextView namewhereitexists=view.findViewById(R.id.itshouldnotbevisibleatanycost);
+        //TextView namewhereitexists=view.findViewById(R.id.itshouldnotbevisibleatanycost);
 
-        namewhereitexists.setText(name);
+        //namewhereitexists.setText("Amritha Stores");
 
         recyclerView4=(RecyclerView) view.findViewById(R.id.recyclerViewfortransactionsdisplay);
 
@@ -79,9 +80,9 @@ public class clientside_transactionpressedbutton_Fragment extends Fragment {
 
         //recyclerView4.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        FirebaseRecyclerOptions<client_model_todisplaytransactionswhenbuttonpressed> options2 =
-                new FirebaseRecyclerOptions.Builder<client_model_todisplaytransactionswhenbuttonpressed>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").child(nameforretailer).child("r_history"), client_model_todisplaytransactionswhenbuttonpressed.class)
+        FirebaseRecyclerOptions<client_model_todispalldetailswhendatepressed> options2 =
+                new FirebaseRecyclerOptions.Builder<client_model_todispalldetailswhendatepressed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").child(nameforretailer).child("r_history"), client_model_todispalldetailswhendatepressed.class)
                         .build();
         adapter=new adapter_clientside_transactionbuttonpressed(options2);
         recyclerView4.setAdapter(adapter);
