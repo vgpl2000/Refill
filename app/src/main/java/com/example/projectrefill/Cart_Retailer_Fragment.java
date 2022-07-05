@@ -2,8 +2,10 @@ package com.example.projectrefill;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -75,6 +77,7 @@ public class Cart_Retailer_Fragment extends Fragment {
     Integer ftot=0;
     TextView totalamounthere;
     RadioGroup radioGroup;
+    String tempmode;
 
     String token;
 
@@ -383,7 +386,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                             if(pmode.equals("Cash")){
 
-                                Toast.makeText(getContext(), "Selected cash", Toast.LENGTH_SHORT).show();
+
                                 DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history");
                                 mode.child(formattedDate).child("Pmode").setValue("Cash");
                                 totalamounthere.setText("0");
@@ -392,7 +395,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                             }else if(pmode.equals("Credit")){
 
-                                Toast.makeText(getContext(), "Selected credit", Toast.LENGTH_SHORT).show();
+
                                 DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history");
                                 mode.child(formattedDate).child("Pmode").setValue("Credit");
 
@@ -409,7 +412,7 @@ public class Cart_Retailer_Fragment extends Fragment {
                                         String final_due=Integer.toString(f_due);
                                         DatabaseReference dueref=dataref.child(username);
                                         dueref.child("due_amt").setValue(final_due);
-                                        System.out.println(final_due+" due here");
+
                                         totalamounthere.setText("0");
                                     }
 
@@ -424,7 +427,22 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                             date.child("date").setValue(formattedDate);
 
-                            Toast.makeText(getContext(), "Order Placed", Toast.LENGTH_LONG).show();
+                            if(pmode.equals("Cash")){
+                                tempmode="Pay on Delivery";
+                            }else if(pmode.equals("Credit")){
+                                tempmode="Your due amount is added!";
+                            }
+
+                            AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+                            builder.setTitle("Order Placed!");
+                            builder.setMessage("Your order is placed and will be accepted soon! \n"+tempmode);
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            });
+                            builder.show();
 
                             //preparenotificationmessage(username);
                             String uid="akashadeepa";
@@ -446,7 +464,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
 
     private  void sendnotification(String uid,String name){
-        System.out.println("inside sendnotification()");
+
         FirebaseDatabase.getInstance().getReference("Client").child("akashadeepa").child("token").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -465,7 +483,6 @@ public class Cart_Retailer_Fragment extends Fragment {
             @Override
             public void run() {
 
-                System.out.println("inside postdelay");
 
                 firebasenotificationsendertesting notificationsender=new firebasenotificationsendertesting(token,"Refill","New Order placed by "+name,"orderplaced",getContext() ,getActivity());
                 notificationsender.sendnotifications();
