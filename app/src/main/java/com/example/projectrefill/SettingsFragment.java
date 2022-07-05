@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +49,7 @@ public class SettingsFragment extends Fragment {
     Button logout,accepted,cancelled,delivered;
     ImageView client_profile;
     TextView txtchngpassword;
+    ImageButton btn_add_r;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
@@ -121,7 +123,7 @@ public class SettingsFragment extends Fragment {
             }
         });*/
 
-
+        btn_add_r=v.findViewById(R.id.btn_addretailer);
         logout=v.findViewById(R.id.logout);
         accepted=v.findViewById(R.id.btn_accepted);
         cancelled=v.findViewById(R.id.btn_cancelled);
@@ -145,9 +147,20 @@ public class SettingsFragment extends Fragment {
         preferences=this.getActivity().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         editor=preferences.edit();
 
+
+        //To add a new retailer
+        btn_add_r.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.settings1,new clientside_add_retailer_Fragment()).addToBackStack(null);
+                fr.commit();
+
+            }
+        });
+
+
         //To logout from client
-
-
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
