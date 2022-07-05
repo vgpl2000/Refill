@@ -264,7 +264,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
             }
         });
-/*
+
         btncan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -458,7 +458,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
         });
 
 
- */
+
 
         final DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Client");
         reference.addValueEventListener(new ValueEventListener() {
