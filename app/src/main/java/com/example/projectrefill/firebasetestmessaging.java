@@ -60,8 +60,17 @@ public class firebasetestmessaging extends FirebaseMessagingService {
                 }
 
 
-                Intent resultintent = new Intent(this, client_activity.class);
+               Intent resultintent=null;
+                if(notificationtype.equals("orderplaced")) {
 
+                    resultintent = new Intent(this, client_activity.class);
+                }else if(notificationtype.equals("accepted")){
+
+                    resultintent = new Intent(this, retailer_activity.class);
+
+                }
+
+               resultintent = new Intent(this, client_activity.class);
 
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultintent, PendingIntent.FLAG_UPDATE_CURRENT);
 
