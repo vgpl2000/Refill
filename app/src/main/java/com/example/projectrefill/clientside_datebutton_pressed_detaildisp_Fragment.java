@@ -67,6 +67,10 @@ public class clientside_datebutton_pressed_detaildisp_Fragment extends Fragment 
 
         recyclerView4=(RecyclerView) view.findViewById(R.id.recyclerViewdatewisedipofdetailsfrc);
         recyclerView4.setLayoutManager(new CustomLinearLayoutManager1(getContext()));
+        TextView datedisp=view.findViewById(R.id.texttodispdateforreffrc);
+
+        datedisp.setText(date);
+
 
         //TextView nameofuser=view.findViewById(R.id.itshouldnotbevisibleatanycost);
         //String name=nameofuser.getText().toString();
