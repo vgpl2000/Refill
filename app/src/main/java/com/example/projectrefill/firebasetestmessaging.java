@@ -58,13 +58,12 @@ public class firebasetestmessaging extends FirebaseMessagingService {
                 }
 
 
-               Intent resultintent=null;
+               //Intent resultintent=null;
 
-                PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultintent, PendingIntent.FLAG_UPDATE_CURRENT);
+               // PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultintent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                 builder.setContentTitle(message.getNotification().getTitle());
                 builder.setContentText(message.getNotification().getBody());
-                builder.setContentIntent(pendingIntent);
                 builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message.getNotification().getBody()));
                 builder.setAutoCancel(true);
                 builder.setPriority(Notification.PRIORITY_MAX);
