@@ -13,12 +13,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/secrettemp"
         android:text="secret"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="158dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/entry_field_white"
         android:padding="5dp">
 
@@ -59,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/poppins_medium"
-
+            android:textSize="18dp"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/datewisequan"
@@ -73,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:fontFamily="@font/poppins_medium"
-
+            android:textSize="18dp"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/datewiseweight"
@@ -87,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
             android:fontFamily="@font/poppins_medium"
-
+            android:textSize="18dp"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

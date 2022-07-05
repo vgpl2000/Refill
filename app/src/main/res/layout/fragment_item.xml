@@ -50,6 +50,7 @@
             android:layout_width="50dp"
             android:longClickable="true"
             android:layout_height="50dp"
+            android:elevation="200dp"
             android:background="@drawable/ic_baseline_add_circle_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

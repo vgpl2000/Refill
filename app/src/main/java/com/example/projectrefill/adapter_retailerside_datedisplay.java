@@ -33,6 +33,13 @@ public class adapter_retailerside_datedisplay extends FirebaseRecyclerAdapter<re
 
     String datefinal;
     TextView secret;
+    Context context;
+
+    public Context getContext() {
+        return context;
+    }
+
+
 
     public adapter_retailerside_datedisplay(@NonNull FirebaseRecyclerOptions<retailer_model_info_fragment_datedisplay> options) {
         super(options);
@@ -40,8 +47,10 @@ public class adapter_retailerside_datedisplay extends FirebaseRecyclerAdapter<re
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull retailer_model_info_fragment_datedisplay model) {
+        holder.pmode.bringToFront();
+        holder.pmode.setText(model.getPmode());
 
-        holder.date.setText("Mode: "+model.getPmode()+"/"+ model.getDate());
+        holder.date.setText(model.getDate());
         datefinal=holder.date.getText().toString();
         holder.date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +76,7 @@ public class adapter_retailerside_datedisplay extends FirebaseRecyclerAdapter<re
 
     public class myviewholder extends RecyclerView.ViewHolder {
         Button date;
-
+        TextView pmode;
 
 
             public myviewholder(@NonNull View itemView) {
@@ -75,6 +84,7 @@ public class adapter_retailerside_datedisplay extends FirebaseRecyclerAdapter<re
 
 
                 date=itemView.findViewById(R.id.datebutton);
+                pmode=itemView.findViewById(R.id.paymentmodetodip);
 
             }
         }
