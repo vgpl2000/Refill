@@ -146,7 +146,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                     });
 
 
-
+/*
 
                     holder.btnacp.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -407,6 +407,9 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                         }
                     });
 
+
+
+ */
                     holder.modep.setText(model.getPmode());
 
 
