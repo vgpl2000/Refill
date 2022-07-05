@@ -301,13 +301,13 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                             if(pmode1.equals("Cash")){
 
-                                Toast.makeText(getContext(), "Selected cash", Toast.LENGTH_SHORT).show();
+
                                 DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username);
                                 mode.child("pmode").setValue("Cash");
 
                             }else if(pmode1.equals("Credit")) {
 
-                                Toast.makeText(getContext(), "Selected credit", Toast.LENGTH_SHORT).show();
+
                                 DatabaseReference mode = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username);
                                 mode.child("pmode").setValue("Credit");
                             }
