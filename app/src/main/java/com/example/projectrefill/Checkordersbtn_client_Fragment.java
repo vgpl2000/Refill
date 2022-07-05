@@ -268,8 +268,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
         btncan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
+
 
                 android.app.AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
                 builder.setTitle("Cancel!");
@@ -342,6 +341,8 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
 
 
+
+
                                     }
                                 });
                             }
@@ -383,6 +384,9 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                 });
                 builder.show();
 
+                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
+
 
             }
         });
@@ -390,8 +394,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
         btndel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
+
 
 
                 btndel.setVisibility(View.GONE);
@@ -443,6 +446,9 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                 DatabaseReference frmtode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname);
                                 frmtode.removeValue();
+
+                                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
 
                             }
                         });
