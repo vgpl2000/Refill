@@ -15,10 +15,12 @@
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
             android:name=".no_internet_retailer"
-            android:exported="false" />
+            android:exported="false"
+            android:noHistory="true"/>
         <activity
             android:name=".no_internet_client"
-            android:exported="false" />
+            android:exported="false"
+            android:noHistory="true"/>
         <activity
             android:name=".retailer_activity"
             android:exported="false"
