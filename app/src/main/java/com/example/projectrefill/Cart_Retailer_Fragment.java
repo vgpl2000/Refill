@@ -439,14 +439,14 @@ public class Cart_Retailer_Fragment extends Fragment {
                             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-
+                                    String uid="akashadeepa";
+                                    sendnotification(uid,username);
                                 }
                             });
                             builder.show();
 
                             //preparenotificationmessage(username);
-                            String uid="akashadeepa";
-                            sendnotification(uid,username);
+
 
 
                         }
