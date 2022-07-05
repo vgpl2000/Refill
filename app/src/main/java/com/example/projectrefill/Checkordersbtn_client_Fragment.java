@@ -158,28 +158,43 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                         databaseReference.child("Client").child("c_orders").child(user).child("order_state").setValue("accepted");
 
                         String rname=name;
-                        databaseReference.child("Client").child("c_orders").child(user).child("total").addListenerForSingleValueEvent(new ValueEventListener() {
+                        databaseReference.child("Client").child("c_orders").child(user).child("Pmode").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                String totalamounthere=snapshot.getValue(String.class);
-                                databaseReference.child("Retailer").child(user).child("due_amt").addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        String due=snapshot.getValue(String.class);
-                                        Integer i_due=Integer.parseInt(due);
-                                        String s_due=totalamounthere;
-                                        Integer s_due1=Integer.parseInt(s_due);
-                                        Integer f_due=i_due+s_due1;
-                                        String final_due=Integer.toString(f_due);
-                                        DatabaseReference dueref=databaseReference.child("Retailer").child(user);
-                                        dueref.child("due_amt").setValue(final_due);
-                                    }
+                                String pmode=snapshot.getValue(String.class);
+                                if(pmode.equals("Credit")){
+                                    //if credit then get totalamt
+                                    databaseReference.child("Client").child("c_orders").child(user).child("total").addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            String totalamounthere=snapshot.getValue(String.class);
+                                            databaseReference.child("Retailer").child(user).child("due_amt").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    String due=snapshot.getValue(String.class);
+                                                    Integer i_due=Integer.parseInt(due);
+                                                    String s_due=totalamounthere;
+                                                    Integer s_due1=Integer.parseInt(s_due);
+                                                    Integer f_due=i_due+s_due1;
+                                                    String final_due=Integer.toString(f_due);
+                                                    DatabaseReference dueref=databaseReference.child("Retailer").child(user);
+                                                    dueref.child("due_amt").setValue(final_due);
+                                                }
 
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
 
-                                    }
-                                });
+                                                }
+                                            });
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
+                                }
                             }
 
                             @Override
@@ -187,6 +202,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                             }
                         });
+
 
                         DatabaseReference fromp = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
 
