@@ -1,17 +1,26 @@
 package com.example.projectrefill;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +28,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class Checkordersbtn_client_Fragment extends Fragment {
 
@@ -32,6 +46,12 @@ public class Checkordersbtn_client_Fragment extends Fragment {
     String name;
     RecyclerView recyclerView2;
     adapter_clientside_checkbtn adapter2;
+    Button btnacp,btncan,btndel;
+    String o_state;
+    String token2;
+    Date c = Calendar.getInstance().getTime();
+    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault());
+    String formattedDate1 = df.format(c);
 
     public Checkordersbtn_client_Fragment() {
 
@@ -65,11 +85,204 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
         TextView textView=view.findViewById(R.id.rname);
         textView.setText(name);
+        String user=textView.getText().toString();
+
+        btnacp=view.findViewById(R.id.btn_accept);
+        btncan=view.findViewById(R.id.btn_cancl);
+        btndel=view.findViewById(R.id.btn_deli);
+
+
+        databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try{
+                    o_state=snapshot.child("c_orders").child(name).child("order_state").getValue(String.class);
+                    if(o_state.equals("accepted")){
+                        btnacp.setVisibility(View.GONE);
+                        btncan.setVisibility(View.GONE);
+                        btndel.setVisibility(View.VISIBLE);
+                    }else if(o_state.equals("cancelled")){
+                        btncan.setVisibility(View.GONE);
+                       btnacp.setVisibility(View.GONE);
+                        btndel.setVisibility(View.GONE);
+                    }else if(o_state.equals("delivered")){
+                        btndel.setVisibility(View.GONE);
+                        btncan.setVisibility(View.GONE);
+                        btnacp.setVisibility(View.GONE);
+                    }else if(o_state.equals("")){
+                        btnacp.setVisibility(View.VISIBLE);
+                        btncan.setVisibility(View.VISIBLE);
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+
+            }
+        });
+
         recyclerView2=(RecyclerView) view.findViewById(R.id.recyclerView2);
         recyclerView2.setLayoutManager(new LinearLayoutManager(getContext()));
         //for venu
 
+        btnacp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                android.app.AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
+                builder.setTitle("Accept!");
+                builder.setMessage("Are you sure you want to accept new order from "+name+" ?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(view.getContext(), "accepting", Toast.LENGTH_SHORT).show();
+                        String retailername, itemname, quan;
+
+                        Date c = Calendar.getInstance().getTime();
+
+
+                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                        String formattedDate = df.format(c).toString();
+                        System.out.println("date to display for the system   " + formattedDate);
+
+                        btndel.setVisibility(View.VISIBLE);
+                        btnacp.setVisibility(View.GONE);
+                        btncan.setVisibility(View.GONE);
+
+                        //To set accepted order state value accepted
+
+                        databaseReference.child("Client").child("c_orders").child(user).child("order_state").setValue("accepted");
+
+                        String rname=name;
+
+                        DatabaseReference fromp = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
+
+
+                        DatabaseReference top = FirebaseDatabase.getInstance().getReference("Client").child("c_accepted").child(rname).child(formattedDate1);
+
+                        DatabaseReference fromforretailer = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
+
+                        DatabaseReference toretailer=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_accepted").child(formattedDate1);
+
+                        fromp.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                top.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
+                                    @Override
+                                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+
+
+
+
+
+                                        Toast.makeText(view.getContext(), "Accepted", Toast.LENGTH_SHORT).show();
+
+
+                                        //notification testing
+
+                                        SharedPreferences preferences;
+                                        preferences = view.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                                        String orderId=preferences.getString("username","");
+                                        String owner="akashadeepa";
+
+
+                                        FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                token2=snapshot.getValue(String.class);
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
+                                        Handler handler=new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+                                                System.out.println("inside postdelay");
+
+                                                firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token2,"Refill","Dear "+rname+" your order has been accepted!","accepted", getContext(),getActivity());
+                                                notificationsender2.sendnotifications();
+
+
+                                            }
+                                        },1000);
+
+
+
+
+
+
+
+
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(view.getContext(), "Error accepting", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        fromforretailer.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                toretailer.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
+                                    @Override
+                                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.show();
+
+            }
+        });
+
+        btncan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
+
+
+            }
+        });
+
+        btndel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
+
+            }
+        });
 
         final DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Client");
         reference.addValueEventListener(new ValueEventListener() {
