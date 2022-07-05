@@ -48,7 +48,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
     adapter_clientside_checkbtn adapter2;
     Button btnacp,btncan,btndel;
     String o_state;
-    String token2;
+    String token2,token3,token4;
     Date c = Calendar.getInstance().getTime();
     SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault());
     String formattedDate1 = df.format(c);
@@ -310,7 +310,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                         FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                token2=snapshot.getValue(String.class);
+                                                token3=snapshot.getValue(String.class);
 
                                             }
 
@@ -327,7 +327,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                                 System.out.println("inside postdelay");
 
-                                                firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token2,"Refill","Dear "+rname+" your order has been cancelled!","cancelled", getContext(),getActivity());
+                                                firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token3,"Refill","Dear "+rname+" your order has been cancelled!","cancelled", getContext(),getActivity());
                                                 notificationsender2.sendnotifications();
 
 
@@ -417,7 +417,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                 FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        token2=snapshot.getValue(String.class);
+                                        token4=snapshot.getValue(String.class);
 
                                     }
 
@@ -434,7 +434,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                         System.out.println("inside postdelay");
 
-                                        firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token2,"Refill","Dear "+rname+" your order has been delivered!","delivered", getContext(),getActivity());
+                                        firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token4,"Refill","Dear "+rname+" your order has been delivered!","delivered", getContext(),getActivity());
                                         notificationsender2.sendnotifications();
 
 
