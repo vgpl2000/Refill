@@ -158,7 +158,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                         databaseReference.child("Client").child("c_orders").child(user).child("order_state").setValue("accepted");
 
                         String rname=name;
-                        databaseReference.child("Client").child("c_orders").child(user).child("Pmode").addListenerForSingleValueEvent(new ValueEventListener() {
+                        databaseReference.child("Client").child("c_orders").child(user).child("pmode").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 String pmode=snapshot.getValue(String.class);
