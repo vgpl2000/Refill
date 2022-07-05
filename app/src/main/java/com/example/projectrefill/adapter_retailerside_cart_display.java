@@ -44,6 +44,7 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull retailer_model_cart_retailer model) {
+        //to set text in cart
         holder.name.setText(model.getName());
         holder.price.setText(model.getPrice());
         holder.quan.setText(model.getQuan());
@@ -54,9 +55,6 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
         qu=Integer.parseInt(quan2);
         tot=pr*qu;
         String totalamt=Integer.toString(tot);
-
-
-
 
         holder.totalamtofitem.setText(totalamt);
 

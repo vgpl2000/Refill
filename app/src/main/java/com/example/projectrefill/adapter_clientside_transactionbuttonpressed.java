@@ -3,6 +3,7 @@ package com.example.projectrefill;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,9 +20,9 @@ public class adapter_clientside_transactionbuttonpressed extends FirebaseRecycle
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder1 holder, int position, @NonNull client_model_todisplaytransactionswhenbuttonpressed model) {
+        //only date comes here
         holder.date.setText(model.getDate());
-        holder.name.setText(model.getName());
-        holder.quan.setText(model.getQuan());
+        holder.pmode.setText(model.getPmode());
     }
 
     @NonNull
@@ -32,13 +33,13 @@ public class adapter_clientside_transactionbuttonpressed extends FirebaseRecycle
     }
 
     public class myviewholder1 extends RecyclerView.ViewHolder {
-        TextView date,name,quan;
+        TextView pmode;
+        Button date;
 
         public myviewholder1(@NonNull View itemView) {
             super(itemView);
-            date=itemView.findViewById(R.id.datevalueherefortransactions);
-            name=itemView.findViewById(R.id.namevalueherefortransaction);
-            quan=itemView.findViewById(R.id.quanvalueherefortransaction);
+            date=itemView.findViewById(R.id.datebutton);
+            pmode=itemView.findViewById(R.id.paymentmodetodip);
         }
     }
 

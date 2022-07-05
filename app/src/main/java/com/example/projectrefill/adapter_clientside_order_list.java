@@ -71,15 +71,12 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             Date c = Calendar.getInstance().getTime();
             String token2;
 
+            //declaration for notifications
             private static  final  String CHANNEL_ID="My Channel";
-
             private static  final  int REQUEST_CODE=100;
-
             private static  final  int NOTIFICATION_ID=100;
 
-
-
-
+            //date to use later but never used
             SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault());
             String formattedDate1 = df.format(c);
 
@@ -98,29 +95,29 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             @Override
             protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull client_model_home_orders model) {
 
-
+                //to change the state of button after clicking accept,cancel and delivered(loads from database)
                 databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        try{
-                            o_state=snapshot.child("c_orders").child(model.getName()).child("order_state").getValue(String.class);
-                            if(o_state.equals("accepted")){
+                        try {
+                            o_state = snapshot.child("c_orders").child(model.getName()).child("order_state").getValue(String.class);
+                            if (o_state.equals("accepted")) {
                                 holder.btnacp.setVisibility(View.GONE);
                                 holder.btncan.setVisibility(View.GONE);
                                 holder.btndel.setVisibility(View.VISIBLE);
-                            }else if(o_state.equals("cancelled")){
+                            } else if (o_state.equals("cancelled")) {
                                 holder.btncan.setVisibility(View.GONE);
                                 holder.btnacp.setVisibility(View.GONE);
                                 holder.btndel.setVisibility(View.GONE);
-                            }else if(o_state.equals("delivered")){
+                            } else if (o_state.equals("delivered")) {
                                 holder.btndel.setVisibility(View.GONE);
                                 holder.btncan.setVisibility(View.GONE);
                                 holder.btnacp.setVisibility(View.GONE);
-                            }else if(o_state.equals("")){
+                            } else if (o_state.equals("")) {
                                 holder.btnacp.setVisibility(View.VISIBLE);
                                 holder.btncan.setVisibility(View.VISIBLE);
                             }
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -131,21 +128,18 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
                     }
                 });
-                //check order state
 
+                //to set name of retailer when recieved order
+                holder.textView.setText(model.getName());
+                holder.btnchk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new Checkordersbtn_client_Fragment(model.getName())).addToBackStack(null).commit();
+                    }
+                });
 
-
-
-                    holder.textView.setText(model.getName());
-                    holder.btnchk.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                            appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new Checkordersbtn_client_Fragment(model.getName())).addToBackStack(null).commit();
-                        }
-                    });
-
-
+//extra codes of accept etc button
 /*
 
                     holder.btnacp.setOnClickListener(new View.OnClickListener() {
@@ -410,12 +404,10 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
 
  */
-                    holder.modep.setText(model.getPmode());
-
+                //to set payment mode of recieved orders
+                holder.modep.setText(model.getPmode());
 
             }
-
-
 
             @NonNull
 
@@ -449,7 +441,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
-
+            //findviewbyid
             textView=itemView.findViewById(R.id.retailer_name);
             btnchk=itemView.findViewById(R.id.btn_checkorders);
             btnacp=itemView.findViewById(R.id.btn_accept);
@@ -461,7 +453,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
 
 
 
-    }
+    }//code which was used to copy the database records from one branch to the other
             /*private void c_moveFirebaseRecord(DatabaseReference fromp, final DatabaseReference top) {
                 fromp.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

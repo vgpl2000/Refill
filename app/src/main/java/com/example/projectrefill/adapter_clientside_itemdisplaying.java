@@ -33,15 +33,18 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholderfordisplaying holder, int position, @NonNull client_model_todisplayitemsavailable model) {
+        //to display items with images which is in stock
         holder.nm.setText(model.getName());
-    holder.pri.setText(model.getPrice());
-    Glide.with(holder.img1.getContext()).load(model.getUrl()).into(holder.img1);
-    holder.weight.setText(model.getWeight());
+        holder.pri.setText(model.getPrice());
+        //to display image of item
+        Glide.with(holder.img1.getContext()).load(model.getUrl()).into(holder.img1);
+        holder.weight.setText(model.getWeight());
 
-
+        //edit btn to edit item price and weight for client
         holder.btnedititems.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            //to open fragment to edit or delete items
             AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
             appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper4,new client_itemeditbuttonpressed_fragment(model.name)).addToBackStack(null).commit();
         }
@@ -68,6 +71,7 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
 
         public myviewholderfordisplaying(@NonNull View itemView) {
             super(itemView);
+            //findviewbyid
             img1=itemView.findViewById(R.id.imageViewfordisplayingitems);
             nm=itemView.findViewById(R.id.namevalueforitem);
             pri=itemView.findViewById(R.id.pricevalueforitem);

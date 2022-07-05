@@ -1,13 +1,13 @@
 package com.example.projectrefill;
 
 public class client_model_todisplaytransactionswhenbuttonpressed {
-    String date,name,quan;
+    String date,Pmode;
 
 
-    public client_model_todisplaytransactionswhenbuttonpressed(String date, String name, String quan) {
+    public client_model_todisplaytransactionswhenbuttonpressed(String date, String Pmode) {
         this.date = date;
-        this.name = name;
-        this.quan = quan;
+        this.Pmode = Pmode;
+
     }
 
     public client_model_todisplaytransactionswhenbuttonpressed() {
@@ -21,19 +21,11 @@ public class client_model_todisplaytransactionswhenbuttonpressed {
         this.date = date;
     }
 
-    public String getName() {
-        return name;
+    public String getPmode() {
+        return Pmode;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getQuan() {
-        return quan;
-    }
-
-    public void setQuan(String quan) {
-        this.quan = quan;
+    public void setPmode(String pmode) {
+        Pmode = pmode;
     }
 }

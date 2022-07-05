@@ -33,12 +33,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 
 public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecyclerAdapter<client_model_fordisplayingretailerstoupdatedue,adapter_clientside_retailerdetailesdisplying.myviewholder> {
-
+    //declaration of database to display retailers
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getInstance().getReference();
 
     private Context context;
-
 
     public adapter_clientside_retailerdetailesdisplying(@NonNull FirebaseRecyclerOptions<client_model_fordisplayingretailerstoupdatedue> options) {
         super(options);
@@ -46,10 +45,9 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull client_model_fordisplayingretailerstoupdatedue model) {
+        //setting due and name of the retailers
         holder.duefield.setText(model.getDue_amt());
         holder.name.setText(model.getName());
-
-
 
             //check that retailer is blocked or not to display switch
             databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -75,22 +73,23 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             });
 
 
-
+        //what happens when focus changes on due amt field
         holder.duefield.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 holder.submit.setVisibility(View.VISIBLE);
             }
         });
+        //on submitting new due_amt by client
         holder.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 holder.submit.setVisibility(View.GONE);
                 holder.duefield.clearFocus();
+                //to closekeyboard
                 InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-
 
                 String name1=holder.name.getText().toString();
                 String dueamt=holder.duefield.getText().toString();
@@ -99,7 +98,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
                 HashMap user=new HashMap();
                 user.put("due_amt",dueamt);
 
-
+                //changing due amt in database
                 //FirebaseDatabase db = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Retailer");
                 databaseReference.child(name1).updateChildren(user).addOnCompleteListener(new OnCompleteListener() {
@@ -109,7 +108,6 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
                         if (task.isSuccessful()){
                             holder.submit.setVisibility(View.GONE);
 
-
                           }else {
                             Toast.makeText(view.getContext(), "If its big error we will make updates", Toast.LENGTH_SHORT).show();
                         }
@@ -118,22 +116,24 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             }
         });
 
-        //holder.name2.setText(model.getName());
+        //when transaction btn is pressed of a particular retailer
+
         holder.trans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //change fragment which displays date wise r_history to click
                 AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
                 appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper5, new clientside_transactionpressedbutton_Fragment(model.getName())).addToBackStack(null).commit();
             }
         });
 
+        //to change the switch of any retailer is blocked out by client
         holder.switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-                //getting needed strings to pass
 
+                //blocked or not is updated in database for further use
                 if(b){
                     holder.progressBar.setVisibility(View.VISIBLE);
                     String name1=holder.name.getText().toString();
@@ -146,16 +146,13 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
                     databaseReference.child(name1).updateChildren(hashstate).addOnCompleteListener(new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
-
                             if (task.isSuccessful()){
-
                                 holder.progressBar.setVisibility(View.GONE);
 
                             }
                         }
                     });
                 }else{
-
                     holder.progressBar.setVisibility(View.VISIBLE);
                     String state="notblocked";
                     String name1=holder.name.getText().toString();
@@ -210,7 +207,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             duefield=itemView.findViewById(R.id.edittexttoeditdueamount);
             switchCompat=itemView.findViewById(R.id.switchview);
             progressBar=itemView.findViewById(R.id.progressBarakasha);
-            //name2=itemView.findViewById(R.id.textViewtodispnamefortrans);
+
 
         }
     }

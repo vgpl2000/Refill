@@ -19,6 +19,7 @@ public class adapter_clientside_checkbtn extends FirebaseRecyclerAdapter<client_
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder1 holder, int position, @NonNull client_model_btncheckorders model) {
+        //to set values insdie check orders btn of client
         holder.dt.setText(model.getDate());
         holder.nm.setText(model.getName());
         holder.qu.setText(model.getQuan());

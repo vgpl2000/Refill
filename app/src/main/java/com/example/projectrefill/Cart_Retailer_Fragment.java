@@ -298,7 +298,6 @@ public class Cart_Retailer_Fragment extends Fragment {
                             o_state.child("order_state").setValue("");
 
 
-
                             if(pmode1.equals("Cash")){
 
 
@@ -310,6 +309,8 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                                 DatabaseReference mode = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username);
                                 mode.child("pmode").setValue("Credit");
+                                //setting total amount in database in c_orders
+                                mode.child("total").setValue(totalamounthere.getText().toString());
                             }
 
 
@@ -398,7 +399,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                                 DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history");
                                 mode.child(formattedDate).child("Pmode").setValue("Credit");
-
+/*
                                 //Credit adding
                                 DatabaseReference dataref=database.getReference("Retailer");
                                 dataref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -420,7 +421,7 @@ public class Cart_Retailer_Fragment extends Fragment {
                                     public void onCancelled(@NonNull DatabaseError error) {
 
                                     }
-                                });
+                                });*/
 
                             }
                             DatabaseReference date=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate);
@@ -430,7 +431,7 @@ public class Cart_Retailer_Fragment extends Fragment {
                             if(pmode.equals("Cash")){
                                 tempmode="Pay on Delivery";
                             }else if(pmode.equals("Credit")){
-                                tempmode="Your due amount is added!";
+                                tempmode="Your can pay in the future!";
                             }
 
                             AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
