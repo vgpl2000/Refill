@@ -137,7 +137,8 @@ public class Info_Retailer_Fragment extends Fragment {
 
         recyclerView=(RecyclerView) v.findViewById(R.id.recyclerViewtodispdate);
         LinearLayoutManager linearLayoutManager=new CustomLinearLayoutManager1(getContext());
-        linearLayoutManager.setReverseLayout(true);
+        //linearLayoutManager.setReverseLayout(false);
+        linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
 

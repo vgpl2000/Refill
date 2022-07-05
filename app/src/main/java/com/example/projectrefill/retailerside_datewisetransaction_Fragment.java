@@ -118,7 +118,7 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
             }
         });
         dateval=view.findViewById(R.id.texttodispdateforref);
-        System.out.print(date+" date here");
+
         dateval.setText(date);
 
         recyclerView=view.findViewById(R.id.recyclerViewdatewisedipofdetails);
@@ -129,7 +129,7 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
         String username=preferences.getString("username","");
 
         String datenew=dateval.getText().toString();
-        System.out.println(dateval+" date value");
+
 
 
             FirebaseRecyclerOptions<retailer_model_datewise_dispwhenpressed> options =
