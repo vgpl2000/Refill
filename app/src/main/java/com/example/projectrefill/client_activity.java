@@ -10,6 +10,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
@@ -26,6 +29,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class client_activity extends AppCompatActivity {
 ActivityClientBinding binding;
+Context context;
 
 
     @Override
@@ -34,6 +38,12 @@ ActivityClientBinding binding;
 
             binding = ActivityClientBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
+
+            if(!isConnected()){
+                Intent intent = new Intent(client_activity.this, no_internet_client.class);
+                startActivity(intent);
+            }
+
 
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
@@ -60,6 +70,12 @@ ActivityClientBinding binding;
                     switch (item.getItemId()) {
                         case R.id.home:
                             replacefragment(new HomeFragment());
+                            //check internet
+                            ConnectivityManager connectivityManager=(ConnectivityManager) getApplicationContext().getSystemService(context.CONNECTIVITY_SERVICE);
+                            if((connectivityManager.getActiveNetworkInfo()!=null)&&(connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting())==false){
+                                Intent intent = new Intent(client_activity.this, no_internet_client.class);
+                                startActivity(intent);
+                            }
                             break;
                         case R.id.item:
                             replacefragment(new ItemFragment());
@@ -83,6 +99,7 @@ ActivityClientBinding binding;
         private void replacefragment (Fragment fragment){
             FragmentManager fragmentManager=getSupportFragmentManager();
             FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+
 
             fragmentTransaction.replace(R.id.framel, fragment);
             fragmentTransaction.commit();
@@ -108,6 +125,11 @@ ActivityClientBinding binding;
         this.logout = logout;
     }*/
 
+
+    public boolean isConnected(){
+        ConnectivityManager connectivityManager=(ConnectivityManager) getApplicationContext().getSystemService(context.CONNECTIVITY_SERVICE);
+        return connectivityManager.getActiveNetworkInfo()!=null&&connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting();
+    }
 
 }
 

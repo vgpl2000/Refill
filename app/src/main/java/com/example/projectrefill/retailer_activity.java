@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -35,13 +37,17 @@ import java.util.Map;
 
 public class retailer_activity extends AppCompatActivity {
 ActivityRetailerBinding binding;
+Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-
+        if(!isConnected()){
+            Intent intent = new Intent(retailer_activity.this, no_internet_retailer.class);
+            startActivity(intent);
+        }
 
 
 
@@ -134,5 +140,11 @@ ActivityRetailerBinding binding;
         fragmentTransaction.commit();
     }
 
+
+    public boolean isConnected(){
+        ConnectivityManager connectivityManager=(ConnectivityManager) getApplicationContext().getSystemService(context.CONNECTIVITY_SERVICE);
+        return connectivityManager.getActiveNetworkInfo()!=null&&connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting();
+
+    }
 
 }

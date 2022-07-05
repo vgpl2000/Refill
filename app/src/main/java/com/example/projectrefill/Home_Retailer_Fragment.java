@@ -6,6 +6,8 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -48,7 +50,17 @@ public class Home_Retailer_Fragment extends Fragment {
     ProgressBar progressBar;
     TextView noresult;
 
+    protected boolean isNetworkConnected() {
+        try {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            return (mNetworkInfo == null) ? false : true;
 
+        }catch (NullPointerException e){
+            return false;
+
+        }
+    }
 
 
     public Home_Retailer_Fragment() {
@@ -80,6 +92,13 @@ public class Home_Retailer_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_home__retailer_, container, false);
 
+
+        //check internet
+        if(!isNetworkConnected()){
+            Intent intent = new Intent(getActivity().getApplication(), no_internet_retailer.class);
+            startActivity(intent);
+
+        }
 
         progressBar=v.findViewById(R.id.progressBarHomerthome);
 

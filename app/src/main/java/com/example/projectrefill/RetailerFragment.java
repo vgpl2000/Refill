@@ -2,6 +2,9 @@ package com.example.projectrefill;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -36,6 +39,18 @@ public class RetailerFragment extends Fragment {
     TextView noresult;
 
 
+    protected boolean isNetworkConnected() {
+        try {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            return (mNetworkInfo == null) ? false : true;
+
+        }catch (NullPointerException e){
+            return false;
+
+        }
+    }
+
     public RetailerFragment() {
         // Required empty public constructor
     }
@@ -64,6 +79,14 @@ public class RetailerFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v= inflater.inflate(R.layout.fragment_retailer, container, false);
+
+
+        //check internet
+        if(!isNetworkConnected()){
+            Intent intent = new Intent(getActivity().getApplication(), no_internet_client.class);
+            startActivity(intent);
+
+        }
 
         progressBar=v.findViewById(R.id.progressBar1);
 

@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.ColorSpace;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -63,6 +65,18 @@ public class Cart_Retailer_Fragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+
+    protected boolean isNetworkConnected() {
+        try {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            return (mNetworkInfo == null) ? false : true;
+
+        }catch (NullPointerException e){
+            return false;
+
+        }
+    }
 
     private String mParam1;
     private String mParam2;
@@ -120,6 +134,14 @@ public class Cart_Retailer_Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_cart__retailer_, container, false);
+
+        //check internet
+        if(!isNetworkConnected()){
+            Intent intent = new Intent(getActivity().getApplication(), no_internet_retailer.class);
+            startActivity(intent);
+
+        }
+
         totalamounthere = v.findViewById(R.id.totalamountcomeshere);
 
         LocalBroadcastManager.getInstance(v.getContext())

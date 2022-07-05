@@ -5,6 +5,8 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -48,7 +50,17 @@ public class Settings_Retailer_Fragment extends Fragment {
     DatabaseReference databaseReference = database.getInstance().getReference();
 
 
+    protected boolean isNetworkConnected() {
+        try {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            return (mNetworkInfo == null) ? false : true;
 
+        }catch (NullPointerException e){
+            return false;
+
+        }
+    }
 
 
 
@@ -93,6 +105,13 @@ public class Settings_Retailer_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_settings__retailer_, container, false);
 
+
+        //check internet
+        if(!isNetworkConnected()){
+            Intent intent = new Intent(getActivity().getApplication(), no_internet_retailer.class);
+            startActivity(intent);
+
+        }
 
         //blocked or not
 

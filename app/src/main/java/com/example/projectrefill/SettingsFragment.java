@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -53,8 +55,18 @@ public class SettingsFragment extends Fragment {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
+    //check network connected or not function
+    protected boolean isNetworkConnected() {
+        try {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            return (mNetworkInfo == null) ? false : true;
 
+        }catch (NullPointerException e){
+            return false;
 
+        }
+    }
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -93,6 +105,8 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -105,6 +119,15 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_settings, container, false);
+
+
+        //check internet
+       if(!isNetworkConnected()){
+           Intent intent = new Intent(getActivity().getApplication(), no_internet_client.class);
+           startActivity(intent);
+
+       }
+
 
 
         //Disable back button for this fragment

@@ -5,6 +5,8 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -46,6 +48,19 @@ public class Info_Retailer_Fragment extends Fragment {
     adapter_retailerside_datedisplay adapter;
 
 
+    protected boolean isNetworkConnected() {
+        try {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            return (mNetworkInfo == null) ? false : true;
+
+        }catch (NullPointerException e){
+            return false;
+
+        }
+    }
+
+
     DatabaseReference databaseReference = database.getInstance().getReference();
 
     public Info_Retailer_Fragment() {
@@ -76,6 +91,14 @@ public class Info_Retailer_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_info__retailer_, container, false);
+
+        //check internet
+        if(!isNetworkConnected()){
+            Intent intent = new Intent(getActivity().getApplication(), no_internet_retailer.class);
+            startActivity(intent);
+
+        }
+
 
         //blocked or not
         SharedPreferences preferences;
