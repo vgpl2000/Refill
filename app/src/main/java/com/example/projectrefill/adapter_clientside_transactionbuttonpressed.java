@@ -5,8 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -23,6 +25,18 @@ public class adapter_clientside_transactionbuttonpressed extends FirebaseRecycle
         //only date comes here
         holder.date.setText(model.getDate());
         holder.pmode.setText(model.getPmode());
+
+
+
+
+        holder.date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapperfrc,new clientside_datebutton_pressed_detaildisp_Fragment(model.getDate())).addToBackStack(null).commit();
+
+            }
+        });
     }
 
     @NonNull
@@ -40,6 +54,7 @@ public class adapter_clientside_transactionbuttonpressed extends FirebaseRecycle
             super(itemView);
             date=itemView.findViewById(R.id.datebutton);
             pmode=itemView.findViewById(R.id.paymentmodetodip);
+
         }
     }
 

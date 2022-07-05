@@ -1,5 +1,6 @@
 package com.example.projectrefill;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,8 +66,18 @@ public class clientside_transactionpressedbutton_Fragment extends Fragment {
 
         String nameforretailer=textView.getText().toString();
 
+        TextView namewhereitexists=view.findViewById(R.id.itshouldnotbevisibleatanycost);
+
+        namewhereitexists.setText(name);
+
         recyclerView4=(RecyclerView) view.findViewById(R.id.recyclerViewfortransactionsdisplay);
-        recyclerView4.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        LinearLayoutManager linearLayoutManager=new CustomLinearLayoutManager1(getContext());
+        //linearLayoutManager.setReverseLayout(false);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView4.setLayoutManager(linearLayoutManager);
+
+        //recyclerView4.setLayoutManager(new LinearLayoutManager(getContext()));
 
         FirebaseRecyclerOptions<client_model_todisplaytransactionswhenbuttonpressed> options2 =
                 new FirebaseRecyclerOptions.Builder<client_model_todisplaytransactionswhenbuttonpressed>()
@@ -90,7 +101,18 @@ public class clientside_transactionpressedbutton_Fragment extends Fragment {
     }
 
 
+    public class CustomLinearLayoutManager1 extends LinearLayoutManager {
 
+        public CustomLinearLayoutManager1(Context context) {
+            super(context);
+        }
+
+
+        @Override
+        public boolean supportsPredictiveItemAnimations() {
+            return false;
+        }
+    }
 
     public void onBackPressed()
     {
