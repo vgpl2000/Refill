@@ -82,7 +82,7 @@ ActivityClientBinding binding;
         }
         private void replacefragment (Fragment fragment){
             FragmentManager fragmentManager=getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction().addToBackStack(null);
 
             fragmentTransaction.replace(R.id.framel, fragment);
             fragmentTransaction.commit();

@@ -49,9 +49,10 @@ public class firebasenotificationsendertesting {
             JSONObject notiobject=new JSONObject();
             notiobject.put("title",title);
             notiobject.put("body",body);
+            notiobject.put("notificationtype",typeofnoti);
             notiobject.put("icon",R.drawable.logo);
             notiobject.put("big",R.drawable.logo);
-            notiobject.put("notificationtype",typeofnoti);
+
 
             mainobj.put("notification",notiobject);
 

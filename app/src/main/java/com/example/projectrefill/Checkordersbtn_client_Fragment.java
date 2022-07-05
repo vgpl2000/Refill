@@ -127,7 +127,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
         recyclerView2=(RecyclerView) view.findViewById(R.id.recyclerView2);
         recyclerView2.setLayoutManager(new LinearLayoutManager(getContext()));
-        //for venu
+
 
         btnacp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,11 +216,6 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                             }
                                         },1000);
-
-
-
-
-
 
 
 
