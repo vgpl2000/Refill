@@ -29,10 +29,6 @@ public class firebasetestmessaging extends FirebaseMessagingService {
 
         System.out.println("inside onmsgrecieved");
 
-        String notificationtype=message.getData().get("notificationtype");
-
-
-
 
             //if (notificationtype.equals("orderplaced")) {
                 Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -60,23 +56,14 @@ public class firebasetestmessaging extends FirebaseMessagingService {
                 }
 
 
-               Intent resultintent=null;
-                if(notificationtype.equals("orderplaced")) {
 
-                    resultintent = new Intent(this, client_activity.class);
-                }else if(notificationtype.equals("accepted")){
 
-                    resultintent = new Intent(this, retailer_activity.class);
 
-                }
 
-               resultintent = new Intent(this, client_activity.class);
-
-                PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultintent, PendingIntent.FLAG_UPDATE_CURRENT);
+                //PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultintent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                 builder.setContentTitle(message.getNotification().getTitle());
                 builder.setContentText(message.getNotification().getBody());
-                builder.setContentIntent(pendingIntent);
                 builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message.getNotification().getBody()));
                 builder.setAutoCancel(true);
                 builder.setPriority(Notification.PRIORITY_MAX);
