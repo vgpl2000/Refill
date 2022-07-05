@@ -399,6 +399,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                                 DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history");
                                 mode.child(formattedDate).child("Pmode").setValue("Credit");
+                                totalamounthere.setText("0");
 /*
                                 //Credit adding
                                 DatabaseReference dataref=database.getReference("Retailer");
