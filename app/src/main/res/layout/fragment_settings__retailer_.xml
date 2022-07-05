@@ -6,6 +6,7 @@
     android:id="@+id/settings_retailer"
     android:layout_height="match_parent"
     android:background="#000000"
+    android:clickable="true"
     tools:context=".Settings_Retailer_Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout

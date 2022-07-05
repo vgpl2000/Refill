@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/transperant_black"
     android:layout_gravity="center"
+    android:clickable="true"
     tools:context=".change_pswrd_Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout

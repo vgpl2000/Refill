@@ -75,6 +75,7 @@ public class clientside_add_retailer_Fragment extends Fragment {
         txt_passwd=v.findViewById(R.id.r_txt_n_passwrd);
         btn_add_r=v.findViewById(R.id.r_btn_add_submit);
 
+
         r_name=txt_name.getText().toString();
         r_passwrd=txt_passwd.getText().toString();
 
