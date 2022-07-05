@@ -271,6 +271,118 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                 AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
                 appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
 
+                android.app.AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
+                builder.setTitle("Cancel!");
+                builder.setMessage("Are you sure you want to cancel new order from "+name+" ?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(view.getContext(), "cancelling", Toast.LENGTH_SHORT).show();
+
+                        btncan.setVisibility(View.GONE);
+                        btnacp.setVisibility(View.GONE);
+
+                        //To update that order is cancelled in database
+                        databaseReference.child("Client").child("c_orders").child(name).child("order_state").setValue("cancelled");
+
+
+                        String rname=name;
+
+                        DatabaseReference fromp = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
+
+
+                        DatabaseReference top = FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(rname).child(formattedDate1);
+
+                        fromp.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                top.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
+                                    @Override
+                                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                        Toast.makeText(view.getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+
+                                        SharedPreferences preferences;
+                                        preferences = view.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                                        String orderId=preferences.getString("username","");
+                                        String owner="akashadeepa";
+
+
+                                        FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                token2=snapshot.getValue(String.class);
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
+                                        Handler handler=new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+                                                System.out.println("inside postdelay");
+
+                                                firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token2,"Refill","Dear "+rname+" your order has been cancelled!","cancelled", getContext(),getActivity());
+                                                notificationsender2.sendnotifications();
+
+
+                                            }
+                                        },1000);
+
+
+
+
+                                        DatabaseReference frmtode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname);
+                                        frmtode.removeValue();
+
+
+
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(view.getContext(), "Error cancelling", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        DatabaseReference fromforretailer2 = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
+
+                        DatabaseReference toretailer2=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_cancelled").child(formattedDate1);
+
+                        fromforretailer2.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                toretailer2.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
+                                    @Override
+                                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.show();
+
 
             }
         });
@@ -280,6 +392,67 @@ public class Checkordersbtn_client_Fragment extends Fragment {
             public void onClick(View view) {
                 AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
                 appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
+
+
+                btndel.setVisibility(View.GONE);
+                databaseReference.child("Client").child("c_orders").child(name).child("order_state").setValue("delivered");
+                Toast.makeText(view.getContext(), "delivered", Toast.LENGTH_SHORT).show();
+                String rname=name;
+
+                DatabaseReference fromp = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
+
+
+                DatabaseReference top = FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(rname).child(formattedDate1);
+
+                fromp.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        top.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                Toast.makeText(view.getContext(), "Delivered", Toast.LENGTH_SHORT).show();
+
+
+
+                                FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        token2=snapshot.getValue(String.class);
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
+                                Handler handler=new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        System.out.println("inside postdelay");
+
+                                        firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token2,"Refill","Dear "+rname+" your order has been delivered!","delivered", getContext(),getActivity());
+                                        notificationsender2.sendnotifications();
+
+
+                                    }
+                                },1000);
+
+                                DatabaseReference frmtode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname);
+                                frmtode.removeValue();
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(view.getContext(), "Error delivery pressed", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
             }
         });
