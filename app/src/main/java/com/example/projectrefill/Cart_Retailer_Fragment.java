@@ -440,7 +440,34 @@ public class Cart_Retailer_Fragment extends Fragment {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     String uid="akashadeepa";
-                                    sendnotification(uid,username);
+                                    //sendnotification(uid,username);
+
+                                    FirebaseDatabase.getInstance().getReference("Client").child("akashadeepa").child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            token=snapshot.getValue(String.class);
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
+                                    Handler handler=new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+
+
+                                            firebasenotificationsendertesting notificationsender=new firebasenotificationsendertesting(token,"Refill","New Order placed by "+username,"orderplaced",getContext() ,getActivity());
+                                            notificationsender.sendnotifications();
+
+
+                                        }
+                                    },1000);
+
                                 }
                             });
                             builder.show();
