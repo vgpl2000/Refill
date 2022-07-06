@@ -31,7 +31,7 @@ public class adapter_retailer_setting_accp1 extends FirebaseRecyclerAdapter<reta
             public void onClick(View view) {
 
                 AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frmlayoutaccp1,new retailer_setting_accp2_Fragment(model.getDate())).addToBackStack(null).commit();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frmlayoutaccp1,new retailer_setting_accp2_Fragment(model.getDate())).addToBackStack("retailer_acc").commit();
 
             }
         });

@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Gravity;
@@ -229,8 +230,13 @@ public class Settings_Retailer_Fragment extends Fragment {
         accp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager fm=getFragmentManager();
+                fm.popBackStack("retailer_acc",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("retailer_can",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("retailer_deli",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.settings_retailer,new retailer_setting_accp1_Fragment()).addToBackStack(null);
+                fr.replace(R.id.settings_retailer,new retailer_setting_accp1_Fragment()).addToBackStack("retailer_acc");
                 fr.commit();
             }
         });
@@ -238,8 +244,13 @@ public class Settings_Retailer_Fragment extends Fragment {
         can.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager fm=getFragmentManager();
+                fm.popBackStack("retailer_acc",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("retailer_can",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("retailer_deli",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.settings_retailer,new retailer_setting_can1_Fragment()).addToBackStack(null);
+                fr.replace(R.id.settings_retailer,new retailer_setting_can1_Fragment()).addToBackStack("retailer_can");
                 fr.commit();
             }
         });
@@ -247,8 +258,13 @@ public class Settings_Retailer_Fragment extends Fragment {
         delivered.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager fm=getFragmentManager();
+                fm.popBackStack("retailer_acc",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("retailer_can",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("retailer_deli",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.settings_retailer,new retailer_setting_delivere1_Fragment()).addToBackStack(null);
+                fr.replace(R.id.settings_retailer,new retailer_setting_delivere1_Fragment()).addToBackStack("retailer_deli");
                 fr.commit();
             }
         });

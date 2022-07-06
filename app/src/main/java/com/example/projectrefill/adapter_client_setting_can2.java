@@ -29,7 +29,7 @@ public class adapter_client_setting_can2  extends FirebaseRecyclerAdapter<client
             public void onClick(View view) {
 
                 AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frmlayoutclientcan2,new settings_client_can3_Fragment(model.getDate(),model.getRetname())).addToBackStack(null).commit();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frmlayoutclientcan2,new settings_client_can3_Fragment(model.getDate(),model.getRetname())).addToBackStack("client_can").commit();
 
             }
         });

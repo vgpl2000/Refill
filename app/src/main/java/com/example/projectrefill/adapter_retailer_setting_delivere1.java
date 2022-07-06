@@ -28,7 +28,7 @@ public class adapter_retailer_setting_delivere1 extends FirebaseRecyclerAdapter<
             public void onClick(View view) {
 
                 AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frmlayoutdelivere1,new retailer_setting_deliver2_Fragment(model.getDate())).addToBackStack(null).commit();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frmlayoutdelivere1,new retailer_setting_deliver2_Fragment(model.getDate())).addToBackStack("retailer_deli").commit();
 
             }
         });

@@ -100,7 +100,6 @@ Context context;
             FragmentManager fragmentManager=getSupportFragmentManager();
             FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
 
-
             fragmentTransaction.replace(R.id.framel, fragment);
             fragmentTransaction.commit();
         }

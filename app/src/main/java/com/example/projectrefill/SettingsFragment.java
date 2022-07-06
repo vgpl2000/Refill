@@ -10,6 +10,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.MediaStore;
@@ -185,27 +186,43 @@ public class SettingsFragment extends Fragment {
         accepted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager fm=getFragmentManager();
+                fm.popBackStack("client_acc",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("client_can",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("client_deli",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.settings1,new settings_client_accp1_Fragment()).addToBackStack(null);
+                fr.replace(R.id.settings1,new settings_client_accp1_Fragment()).addToBackStack("client_acc");
                 fr.commit();
+
             }
         });
 
         cancelled.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager fm=getFragmentManager();
+                fm.popBackStack("client_acc",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("client_can",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("client_deli",FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.settings1,new settings_client_can1_Fragment()).addToBackStack(null);
+                fr.replace(R.id.settings1,new settings_client_can1_Fragment()).addToBackStack("client_can");
                 fr.commit();
+
             }
         });
 
         delivered.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager fm=getFragmentManager();
+                fm.popBackStack("client_acc",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("client_can",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("client_deli",FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.settings1,new settings_client_delivere1_Fragment()).addToBackStack(null);
+                fr.replace(R.id.settings1,new settings_client_delivere1_Fragment()).addToBackStack("client_deli");
                 fr.commit();
+
             }
         });
 

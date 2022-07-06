@@ -28,7 +28,7 @@ public class adapter_retailer_setting_can1 extends FirebaseRecyclerAdapter<retai
             public void onClick(View view) {
 
                 AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frmlayoutcan1,new retailer_setting_can2_Fragment(model.getDate())).addToBackStack(null).commit();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frmlayoutcan1,new retailer_setting_can2_Fragment(model.getDate())).addToBackStack("retailer_can").commit();
 
             }
         });
