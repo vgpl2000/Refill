@@ -96,7 +96,7 @@ public class retailer_setting_can2_Fragment extends Fragment {
         });
 
         headtext=v.findViewById(R.id.headtext);
-        headtext.setText("Details of accepted orders on "+date);
+        headtext.setText("Details of cancelled orders on "+date);
 
 
         return v;
