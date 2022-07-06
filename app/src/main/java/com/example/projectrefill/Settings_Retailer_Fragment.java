@@ -253,6 +253,8 @@ public class Settings_Retailer_Fragment extends Fragment {
             }
         });
 
+
+
         return v;
     }
 }

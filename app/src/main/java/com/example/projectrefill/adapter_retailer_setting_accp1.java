@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -26,7 +27,10 @@ public class adapter_retailer_setting_accp1 extends FirebaseRecyclerAdapter<reta
         holder.date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), holder.date.getText().toString()+" this date pressed", Toast.LENGTH_SHORT).show();
+
+                AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frmlayoutaccp1,new retailer_setting_accp2_Fragment(model.getDate())).addToBackStack(null).commit();
+
             }
         });
     }
