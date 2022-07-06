@@ -1,12 +1,10 @@
 package com.example.projectrefill;
 
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-public class adapter_retailer_setting_accp1 extends FirebaseRecyclerAdapter<retailer_model_setting_accp1,adapter_retailer_setting_accp1.myviewholder> {
+public class adapter_retailer_setting_can1 extends FirebaseRecyclerAdapter<retailer_model_setting_accp1,adapter_retailer_setting_can1.myviewholder> {
 
-
-    public adapter_retailer_setting_accp1(@NonNull FirebaseRecyclerOptions<retailer_model_setting_accp1> options) {
+    public adapter_retailer_setting_can1(@NonNull FirebaseRecyclerOptions<retailer_model_setting_accp1> options) {
         super(options);
     }
 
@@ -31,7 +28,7 @@ public class adapter_retailer_setting_accp1 extends FirebaseRecyclerAdapter<reta
             public void onClick(View view) {
 
                 AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frmlayoutaccp1,new retailer_setting_accp2_Fragment(model.getDate())).addToBackStack(null).commit();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frmlayoutcan1,new retailer_setting_can2_Fragment(model.getDate())).addToBackStack(null).commit();
 
             }
         });
@@ -47,9 +44,7 @@ public class adapter_retailer_setting_accp1 extends FirebaseRecyclerAdapter<reta
     public class myviewholder extends RecyclerView.ViewHolder{
         Button date;
         TextView mode;
-
         public myviewholder(@NonNull View itemView) {
-
             super(itemView);
             date=itemView.findViewById(R.id.datebutton);
             mode=itemView.findViewById(R.id.paymentmodetodip);
