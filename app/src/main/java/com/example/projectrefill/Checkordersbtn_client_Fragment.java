@@ -231,6 +231,20 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                         dateset.child("retname").setValue(rname);
 
+                                        DatabaseReference forpmode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders");
+                                        forpmode.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                String mode=snapshot.child(rname).child("pmode").getValue(String.class);
+                                                dateset.child("pmode").setValue(mode);
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
 
 
 
@@ -290,6 +304,20 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                         DatabaseReference addref=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_accepted").child(formattedDate1);
                                          addref.child("date").setValue(formattedDate1);
+
+                                        DatabaseReference forpmode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders");
+                                        forpmode.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                String mode=snapshot.child(rname).child("pmode").getValue(String.class);
+                                                addref.child("pmode").setValue(mode);
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
 
 
                                     }
@@ -364,6 +392,20 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                         dateset.child("retname").setValue(rname);
 
+                                        DatabaseReference forpmode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders");
+                                        forpmode.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                String mode=snapshot.child(rname).child("pmode").getValue(String.class);
+                                                dateset.child("pmode").setValue(mode);
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
                                         SharedPreferences preferences;
                                         preferences = view.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
                                         String orderId=preferences.getString("username","");
@@ -431,6 +473,20 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                         DatabaseReference addref=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_cancelled").child(formattedDate1);
                                         addref.child("date").setValue(formattedDate1);
 
+                                        DatabaseReference forpmode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders");
+                                        forpmode.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                String mode=snapshot.child(rname).child("pmode").getValue(String.class);
+                                                addref.child("pmode").setValue(mode);
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
                                     }
                                 });
                             }
@@ -490,6 +546,20 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                 dateset.child("retname").setValue(rname);
 
+                                DatabaseReference forpmode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders");
+                                forpmode.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        String mode=snapshot.child(rname).child("pmode").getValue(String.class);
+                                        dateset.child("pmode").setValue(mode);
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
 
                                 FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
@@ -547,6 +617,20 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                                 DatabaseReference addref=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_delivered").child(formattedDate1);
                                 addref.child("date").setValue(formattedDate1);
+
+                                DatabaseReference forpmode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders");
+                                forpmode.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        String mode=snapshot.child(rname).child("pmode").getValue(String.class);
+                                        addref.child("pmode").setValue(mode);
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
 
                             }
                         });
