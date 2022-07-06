@@ -142,9 +142,11 @@ public class Cart_Retailer_Fragment extends Fragment {
         }
 
         totalamounthere = v.findViewById(R.id.totalamountcomeshere);
+        do {
+            LocalBroadcastManager.getInstance(v.getContext())
+                    .registerReceiver(msgbrdrec, new IntentFilter("mytotamt"));
+        }while (1!=1);
 
-        LocalBroadcastManager.getInstance(v.getContext())
-                .registerReceiver(msgbrdrec, new IntentFilter("mytotamt"));
 
         //blocked or not
         SharedPreferences.Editor editor;
@@ -193,7 +195,11 @@ public class Cart_Retailer_Fragment extends Fragment {
 
         adapter = new adapter_retailerside_cart_display(options);
         adapter.startListening();
+
         recyclerView.setAdapter(adapter);
+
+
+
 
         //on scrolled recycler
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -611,4 +617,5 @@ public class Cart_Retailer_Fragment extends Fragment {
         Volley.newRequestQueue(getContext()).add(jsonObjectRequest);
 
     }
+
 }
