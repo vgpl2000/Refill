@@ -16,7 +16,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class settings_client_can1_Fragment extends Fragment {
+public class settings_client_delivere2_Fragment extends Fragment {
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -25,18 +25,21 @@ public class settings_client_can1_Fragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
-
-
     RecyclerView recyclerView;
-    adapter_client_setting_can1 adapter;
+    adapter_client_setting_del2 adapter;
 
-    public settings_client_can1_Fragment() {
+    String name;
+
+    public settings_client_delivere2_Fragment() {
         // Required empty public constructor
     }
 
+    public settings_client_delivere2_Fragment(String name) {
+        this.name = name;
+    }
 
-    public static settings_client_can1_Fragment newInstance(String param1, String param2) {
-        settings_client_can1_Fragment fragment = new settings_client_can1_Fragment();
+    public static settings_client_delivere2_Fragment newInstance(String param1, String param2) {
+        settings_client_delivere2_Fragment fragment = new settings_client_delivere2_Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -57,7 +60,7 @@ public class settings_client_can1_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       View v= inflater.inflate(R.layout.fragment_settings_client_can1_, container, false);
+        View v= inflater.inflate(R.layout.fragment_settings_client_delivere2_, container, false);
 
         recyclerView=v.findViewById(R.id.recyclerViewtodispdateinaccp1);
 
@@ -67,12 +70,12 @@ public class settings_client_can1_Fragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
-        FirebaseRecyclerOptions<client_model_setting_accp1> options =
-                new FirebaseRecyclerOptions.Builder<client_model_setting_accp1>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_cancelled"),client_model_setting_accp1.class)
+        FirebaseRecyclerOptions<client_model_setting_accp2> options =
+                new FirebaseRecyclerOptions.Builder<client_model_setting_accp2>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_delivered").child(name).child("date"),client_model_setting_accp2.class)
                         .build();
 
-        adapter=new adapter_client_setting_can1(options);
+        adapter=new adapter_client_setting_del2(options);
 
 
         recyclerView.setAdapter(adapter);
@@ -85,7 +88,7 @@ public class settings_client_can1_Fragment extends Fragment {
             }
         });
 
-       return v;
+        return v;
     }
     @Override
     public void onStart() {

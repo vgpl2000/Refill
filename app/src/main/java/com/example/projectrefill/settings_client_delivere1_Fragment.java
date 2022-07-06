@@ -1,42 +1,38 @@
 package com.example.projectrefill;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link settings_client_delivere1_Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
+
+
 public class settings_client_delivere1_Fragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
+    adapter_client_setting_del1 adapter;
+    RecyclerView recyclerView;
 
     public settings_client_delivere1_Fragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment settings_client_delivere1_Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static settings_client_delivere1_Fragment newInstance(String param1, String param2) {
         settings_client_delivere1_Fragment fragment = new settings_client_delivere1_Fragment();
         Bundle args = new Bundle();
@@ -59,6 +55,58 @@ public class settings_client_delivere1_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings_client_delivere1_, container, false);
+        View v= inflater.inflate(R.layout.fragment_settings_client_delivere1_, container, false);
+
+        recyclerView=v.findViewById(R.id.recyclerViewtodispdateinaccp1);
+
+        LinearLayoutManager linearLayoutManager=new CustomLinearLayoutManager1(getContext());
+        //linearLayoutManager.setReverseLayout(false);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+
+        FirebaseRecyclerOptions<client_model_setting_accp1> options =
+                new FirebaseRecyclerOptions.Builder<client_model_setting_accp1>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_delivered"),client_model_setting_accp1.class)
+                        .build();
+
+        adapter=new adapter_client_setting_del1(options);
+
+
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+
+
+        return v;
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+    public class CustomLinearLayoutManager1 extends LinearLayoutManager {
+
+        public CustomLinearLayoutManager1(Context context) {
+            super(context);
+        }
+
+
+        @Override
+        public boolean supportsPredictiveItemAnimations() {
+            return false;
+        }
     }
 }
