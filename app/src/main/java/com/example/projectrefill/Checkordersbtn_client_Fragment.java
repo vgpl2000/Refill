@@ -314,6 +314,9 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(view.getContext(), "cancelling", Toast.LENGTH_SHORT).show();
 
+                        AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
+
                         btncan.setVisibility(View.GONE);
                         btnacp.setVisibility(View.GONE);
 
@@ -420,8 +423,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                 });
                 builder.show();
 
-                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
+
 
 
             }
