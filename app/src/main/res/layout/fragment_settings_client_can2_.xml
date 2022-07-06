@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
-    android:id="@+id/frmlayoutclientcan1"
+    android:id="@+id/frmlayoutclientcan2"
     android:background="@color/black"
     android:layout_height="match_parent"
     tools:context=".retailer_setting_accp1_Fragment">
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Orders Cancelled :"
+            android:text="Order Cancelled date :"
             android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
