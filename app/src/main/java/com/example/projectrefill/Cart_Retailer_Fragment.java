@@ -219,7 +219,7 @@ public class Cart_Retailer_Fragment extends Fragment {
                 try {
                     Integer tot = Integer.parseInt(getdueamt);
                     ftot = ftot + tot;
-                    System.out.println(ftot + " some what values");
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -243,7 +243,7 @@ public class Cart_Retailer_Fragment extends Fragment {
                     if (radioGroup.getCheckedRadioButtonId() == -1) {
                         Toast.makeText(getContext(), "Please select a payment mode!", Toast.LENGTH_LONG).show();
                     } else {
-
+                        String totamt=totalamounthere.getText().toString();
                         databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -251,9 +251,11 @@ public class Cart_Retailer_Fragment extends Fragment {
                                     Toast.makeText(getActivity(), "Please wait until delivery of previous orders!", Toast.LENGTH_LONG).show();
                                 } else {
 
-
+                                    //adding total_amt to c_orders
                                     preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
-                                    String username = preferences.getString("username", "");
+                                    String username=preferences.getString("username","");
+                                    DatabaseReference addtot=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username);
+                                    addtot.child("total").setValue(totalamounthere.getText().toString());
 
 
                                     TextView itemname = v.findViewById(R.id.cart_name);
@@ -274,6 +276,7 @@ public class Cart_Retailer_Fragment extends Fragment {
                                     DatabaseReference c_order = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username).child("check_orders").child("Items");
 
                                     c_moveFirebaseRecord(c_cartref, c_order);
+
                                 }
 
                             }
@@ -294,6 +297,7 @@ public class Cart_Retailer_Fragment extends Fragment {
         return v;
     }
 
+    //moves data from r_orders to c_orders
     private void c_moveFirebaseRecord(DatabaseReference c_cartref, DatabaseReference c_order) {
         c_cartref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -330,7 +334,8 @@ public class Cart_Retailer_Fragment extends Fragment {
                                 DatabaseReference mode = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username);
                                 mode.child("pmode").setValue("Credit");
                                 //setting total amount in database in c_orders
-                                mode.child("total").setValue(totalamounthere.getText().toString());
+                                String tamt=totalamounthere.getText().toString();
+                                mode.child("total").setValue(tamt);
                             }
 
 
@@ -379,13 +384,12 @@ public class Cart_Retailer_Fragment extends Fragment {
         String newtot=Integer.toString(totalofall);
         totalamounthere.setText(newtot);
 
-
         }
     };
 
 
 
-
+    //moves data from r_orders to r_history
     public void moveFirebaseRecord(DatabaseReference fromPath, final DatabaseReference toPath) {
         fromPath.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

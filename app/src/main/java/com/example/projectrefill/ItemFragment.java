@@ -38,7 +38,6 @@ public class ItemFragment extends Fragment {
     RecyclerView recyclerViewforitemdisplay;
     adapter_clientside_itemdisplaying adapter;
     SearchView searchView;
-    ProgressBar progressBar;
     TextView nosearch;
 
 
@@ -71,7 +70,6 @@ public class ItemFragment extends Fragment {
 
         }
 
-        progressBar=v.findViewById(R.id.progressBar);
         nosearch=v.findViewById(R.id.textviewfornosearchresult);
 
         recyclerViewforitemdisplay=v.findViewById(R.id.recyclerView_items);
@@ -88,7 +86,6 @@ public class ItemFragment extends Fragment {
         recyclerViewforitemdisplay.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                progressBar.setVisibility(View.GONE);
                 nosearch.setVisibility(View.INVISIBLE);
                 super.onScrolled(recyclerView, dx, dy);
             }
@@ -143,7 +140,7 @@ public class ItemFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
                 try{
-                    progressBar.setVisibility(View.VISIBLE);
+
                     String output = s.substring(0, 1).toUpperCase() + s.substring(1);
                     mySearch(output);
                 }catch (Exception e){
@@ -169,9 +166,9 @@ public class ItemFragment extends Fragment {
         adapter=new adapter_clientside_itemdisplaying(options);
         if(adapter.getItemCount()!=0){
             nosearch.setVisibility(View.INVISIBLE);
-            progressBar.setVisibility(View.GONE);
+
         }else if (adapter.getItemCount()==0){
-            progressBar.setVisibility(View.GONE);
+
             nosearch.setText("No such item named as "+s);
             nosearch.setVisibility(View.VISIBLE);
         }

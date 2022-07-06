@@ -69,7 +69,7 @@
                 android:layout_height="35dp"
                 android:background="@drawable/background_button"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Transactions"
+                android:text="All Orders"
                 android:id="@+id/buttontoopentransactions"
                 android:textColor="@color/black" />
 
