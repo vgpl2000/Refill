@@ -70,7 +70,7 @@ public class settings_client_accp2_Fragment extends Fragment {
 
         FirebaseRecyclerOptions<client_model_setting_accp2> options =
                 new FirebaseRecyclerOptions.Builder<client_model_setting_accp2>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_accepted").child(rname),client_model_setting_accp2.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_accepted").child(rname).child("date"),client_model_setting_accp2.class)
                         .build();
 
         adapter=new adapter_client_setting_accp2(options);
