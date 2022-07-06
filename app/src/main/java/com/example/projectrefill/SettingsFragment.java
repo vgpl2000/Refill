@@ -33,17 +33,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SettingsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 
 
 public class SettingsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -68,7 +63,7 @@ public class SettingsFragment extends Fragment {
         }
     }
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
 
@@ -77,20 +72,6 @@ public class SettingsFragment extends Fragment {
 
 
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SettingsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-
-
-
-
 
 
     public static SettingsFragment newInstance(String param1, String param2) {
@@ -129,31 +110,11 @@ public class SettingsFragment extends Fragment {
        }
 
 
-
-        //Disable back button for this fragment
-        /*
-        v.setFocusableInTouchMode(true);
-        v.requestFocus();
-        v.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    if (keyCode == KeyEvent.KEYCODE_BACK) {
-                return true;
-            }
-                }
-                return false;
-            }
-        });*/
-
         btn_add_r=v.findViewById(R.id.btn_addretailer);
         logout=v.findViewById(R.id.logout);
         accepted=v.findViewById(R.id.btn_accepted);
         cancelled=v.findViewById(R.id.btn_cancelled);
         delivered=v.findViewById(R.id.btn_delivered);
-
-
-
 
 
          txtchngpassword=v.findViewById(R.id.txtchngpassword);
@@ -224,21 +185,27 @@ public class SettingsFragment extends Fragment {
         accepted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),  "Accepted Orders", Toast.LENGTH_SHORT).show();
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.settings1,new settings_client_accp1_Fragment()).addToBackStack(null);
+                fr.commit();
             }
         });
 
         cancelled.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),  "Cancelled Orders", Toast.LENGTH_SHORT).show();
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.settings1,new settings_client_can1_Fragment()).addToBackStack(null);
+                fr.commit();
             }
         });
 
         delivered.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),  "Delivered Orders", Toast.LENGTH_SHORT).show();
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.settings1,new settings_client_delivere1_Fragment()).addToBackStack(null);
+                fr.commit();
             }
         });
 

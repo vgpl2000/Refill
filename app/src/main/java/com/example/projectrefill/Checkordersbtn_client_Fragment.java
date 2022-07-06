@@ -207,7 +207,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                         DatabaseReference fromp = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
 
 
-                        DatabaseReference top = FirebaseDatabase.getInstance().getReference("Client").child("c_accepted").child(rname).child(formattedDate1);
+                        DatabaseReference top = FirebaseDatabase.getInstance().getReference("Client").child("c_accepted").child(rname).child("date").child(formattedDate1);
 
                         DatabaseReference fromforretailer = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
 
@@ -226,7 +226,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                         DatabaseReference nameset=FirebaseDatabase.getInstance().getReference("Client").child("c_accepted").child(rname);
                                         nameset.child("rname").setValue(rname);
 
-                                        DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_accepted").child(rname).child(formattedDate1);
+                                        DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_accepted").child(rname).child("date").child(formattedDate1);
                                         dateset.child("date").setValue(formattedDate1);
 
 
@@ -343,7 +343,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                         DatabaseReference fromp = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
 
 
-                        DatabaseReference top = FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(rname).child(formattedDate1);
+                        DatabaseReference top = FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(rname).child("date").child(formattedDate1);
 
                         fromp.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -357,7 +357,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                         DatabaseReference nameset=FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(name);
                                         nameset.child("rname").setValue(name);
 
-                                        DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(name).child(formattedDate1);
+                                        DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(name).child("date").child(formattedDate1);
                                         dateset.child("date").setValue(formattedDate1);
 
                                         SharedPreferences preferences;
@@ -467,7 +467,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                 DatabaseReference fromp = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
 
 
-                DatabaseReference top = FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(rname).child(formattedDate1);
+                DatabaseReference top = FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(rname).child("date").child(formattedDate1);
 
                 fromp.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -481,7 +481,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                 DatabaseReference nameset=FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(name);
                                 nameset.child("rname").setValue(name);
 
-                                DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(name).child(formattedDate1);
+                                DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(name).child("date").child(formattedDate1);
                                 dateset.child("date").setValue(formattedDate1);
 
 
