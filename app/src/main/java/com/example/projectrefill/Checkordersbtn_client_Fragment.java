@@ -229,6 +229,8 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                         DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_accepted").child(rname).child("date").child(formattedDate1);
                                         dateset.child("date").setValue(formattedDate1);
 
+                                        dateset.child("retname").setValue(rname);
+
 
 
 
@@ -360,6 +362,8 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                         DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(name).child("date").child(formattedDate1);
                                         dateset.child("date").setValue(formattedDate1);
 
+                                        dateset.child("retname").setValue(rname);
+
                                         SharedPreferences preferences;
                                         preferences = view.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
                                         String orderId=preferences.getString("username","");
@@ -483,6 +487,8 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                 DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(name).child("date").child(formattedDate1);
                                 dateset.child("date").setValue(formattedDate1);
+
+                                dateset.child("retname").setValue(rname);
 
 
                                 FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
