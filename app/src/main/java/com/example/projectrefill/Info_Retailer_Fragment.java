@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -98,6 +99,8 @@ public class Info_Retailer_Fragment extends Fragment {
 
         }
 
+        FragmentManager fm=getFragmentManager();
+        fm.popBackStack("r_date",FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
         //blocked or not
         SharedPreferences preferences;

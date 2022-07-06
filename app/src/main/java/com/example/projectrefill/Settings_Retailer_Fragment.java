@@ -96,6 +96,10 @@ public class Settings_Retailer_Fragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_settings__retailer_, container, false);
 
 
+        //clear backstack
+        FragmentManager fm=getFragmentManager();
+        fm.popBackStack("r_changepass",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
         //check internet
         if(!isNetworkConnected()){
             Intent intent = new Intent(getActivity().getApplication(), no_internet_retailer.class);
@@ -216,7 +220,7 @@ public class Settings_Retailer_Fragment extends Fragment {
             public void onClick(View view) {
 
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.settings_retailer,new change_pswrd_retailer_Fragment()).addToBackStack(null);
+                fr.replace(R.id.settings_retailer,new change_pswrd_retailer_Fragment()).addToBackStack("r_changepass");
                 fr.commit();
 
             }
