@@ -209,7 +209,7 @@ public class Cart_Retailer_Fragment extends Fragment {
         radioGroup = v.findViewById(R.id.rgroup);
 
 
-        databaseReference.child("Retailer").addValueEventListener(new ValueEventListener() {
+       /* databaseReference.child("Retailer").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -231,7 +231,7 @@ public class Cart_Retailer_Fragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), "good", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
         placeorder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,7 +243,7 @@ public class Cart_Retailer_Fragment extends Fragment {
                     if (radioGroup.getCheckedRadioButtonId() == -1) {
                         Toast.makeText(getContext(), "Please select a payment mode!", Toast.LENGTH_LONG).show();
                     } else {
-                        String totamt=totalamounthere.getText().toString();
+
                         databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -333,9 +333,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                                 DatabaseReference mode = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username);
                                 mode.child("pmode").setValue("Credit");
-                                //setting total amount in database in c_orders
-                                String tamt=totalamounthere.getText().toString();
-                                mode.child("total").setValue(tamt);
+
                             }
 
 
