@@ -40,23 +40,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ProgressBar
-            android:id="@+id/progressBarHome"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="28dp"
-            android:layout_height="31dp"
-            android:layout_marginStart="193dp"
-            android:layout_marginEnd="189dp"
-            android:layout_marginBottom="484dp"
-            android:indeterminate="true"
-            android:indeterminateDrawable="@drawable/progress_bar"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/recyclerView"
-            app:layout_constraintVertical_bias="1.0" />
+
 
         <TextView
             android:id="@+id/textviewfornosearchresult2"

@@ -34,7 +34,6 @@ public class RetailerFragment extends Fragment {
     private String mParam2;
     RecyclerView recyclerView;
     SearchView searchView;
-    ProgressBar progressBar;
     adapter_clientside_retailerdetailesdisplying adapter;
     TextView noresult;
 
@@ -88,7 +87,6 @@ public class RetailerFragment extends Fragment {
 
         }
 
-        progressBar=v.findViewById(R.id.progressBar1);
 
         searchView=v.findViewById(R.id.searchViewforretailerlist);
         noresult=v.findViewById(R.id.textviewfornosearchresult3);
@@ -101,15 +99,17 @@ public class RetailerFragment extends Fragment {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer"),client_model_fordisplayingretailerstoupdatedue.class)
                         .build();
         adapter=new adapter_clientside_retailerdetailesdisplying(options);
+        //when count is 0
         if(adapter.getItemCount()!=0){
-            progressBar.setVisibility(View.GONE);
+            noresult.setVisibility(View.VISIBLE);
+
         }
         recyclerView.setAdapter(adapter);
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                progressBar.setVisibility(View.GONE);
+
                 noresult.setVisibility(View.INVISIBLE);
                 super.onScrolled(recyclerView, dx, dy);
             }
@@ -136,7 +136,7 @@ public class RetailerFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
                 try{
-                    progressBar.setVisibility(View.VISIBLE);
+                    noresult.setVisibility(View.VISIBLE);
                     String output = s.substring(0, 1).toUpperCase() + s.substring(1);
                     mySearch(output);
                 }catch (Exception e){
@@ -163,7 +163,6 @@ public class RetailerFragment extends Fragment {
         adapter=new adapter_clientside_retailerdetailesdisplying(options);
 
         if (adapter.getItemCount()==0){
-            progressBar.setVisibility(View.GONE);
             noresult.setText("No such retailer named as "+s);
             noresult.setVisibility(View.VISIBLE);
         }

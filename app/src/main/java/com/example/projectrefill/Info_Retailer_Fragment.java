@@ -44,7 +44,6 @@ public class Info_Retailer_Fragment extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     TextView dueamount;
     RecyclerView recyclerView;
-    ProgressBar progressBar;
     adapter_retailerside_datedisplay adapter;
 
 
@@ -156,7 +155,6 @@ public class Info_Retailer_Fragment extends Fragment {
             }
         });
 
-        progressBar=v.findViewById(R.id.progressBardate);
 
         recyclerView=(RecyclerView) v.findViewById(R.id.recyclerViewtodispdate);
         LinearLayoutManager linearLayoutManager=new CustomLinearLayoutManager1(getContext());
@@ -178,7 +176,7 @@ public class Info_Retailer_Fragment extends Fragment {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                progressBar.setVisibility(View.GONE);
+
                 super.onScrolled(recyclerView, dx, dy);
             }
         });

@@ -47,7 +47,7 @@ public class Home_Retailer_Fragment extends Fragment {
     DatabaseReference databaseReference = database.getInstance().getReference();
     adapter_retailerside_homepage_itemdisplay adapter;
     SearchView searchView;
-    ProgressBar progressBar;
+
     TextView noresult;
 
     protected boolean isNetworkConnected() {
@@ -100,7 +100,6 @@ public class Home_Retailer_Fragment extends Fragment {
 
         }
 
-        progressBar=v.findViewById(R.id.progressBarHomerthome);
 
         noresult=v.findViewById(R.id.textviewfornosearchresultrt1);
         noresult.setVisibility(View.INVISIBLE);
@@ -161,7 +160,7 @@ public class Home_Retailer_Fragment extends Fragment {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                progressBar.setVisibility(View.GONE);
+
                 noresult.setVisibility(View.INVISIBLE);
                 super.onScrolled(recyclerView, dx, dy);
             }
@@ -189,7 +188,7 @@ public class Home_Retailer_Fragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
                 try{
-                    progressBar.setVisibility(View.VISIBLE);
+
                     String output = s.substring(0, 1).toUpperCase() + s.substring(1);
                     mySearch(output);
                 }catch (Exception e){
@@ -213,7 +212,7 @@ public class Home_Retailer_Fragment extends Fragment {
         adapter=new adapter_retailerside_homepage_itemdisplay(options);
 
          if (adapter.getSnapshots().isEmpty()){
-            progressBar.setVisibility(View.GONE);
+
             noresult.setText("No such item named as "+s);
             noresult.setVisibility(View.VISIBLE);
         }

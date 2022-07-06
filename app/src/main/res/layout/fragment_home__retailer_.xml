@@ -53,21 +53,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/searchViewrthome" />
 
-        <ProgressBar
-            android:id="@+id/progressBarHomerthome"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="28dp"
-            android:layout_height="31dp"
-            android:indeterminate="true"
-            android:indeterminateDrawable="@drawable/progress_bar"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.524"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.37" />
-
 
         <TextView
             android:id="@+id/textviewfornosearchresultrt1"

@@ -81,7 +81,6 @@ public class Cart_Retailer_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
     RecyclerView recyclerView;
-    ProgressBar progressBar;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     adapter_retailerside_cart_display adapter;
@@ -184,8 +183,6 @@ public class Cart_Retailer_Fragment extends Fragment {
         String username = preferences.getString("username", "");
 
 
-        progressBar = v.findViewById(R.id.progressBarcart);
-
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerViewtoshowcart);
         recyclerView.setLayoutManager(new CustomLinearLayoutManager1(getContext()));
 
@@ -198,10 +195,11 @@ public class Cart_Retailer_Fragment extends Fragment {
         adapter.startListening();
         recyclerView.setAdapter(adapter);
 
+        //on scrolled recycler
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                progressBar.setVisibility(View.GONE);
+
                 super.onScrolled(recyclerView, dx, dy);
             }
         });

@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView1;
     adapter_clientside_order_list adapter;
     SearchView searchView;
-    ProgressBar progressBar;
+
     TextView noresult;
 
     protected boolean isNetworkConnected() {
@@ -117,7 +117,7 @@ public class HomeFragment extends Fragment {
         }
 
 
-        progressBar=v.findViewById(R.id.progressBarHome);
+
         //recycler added
         noresult=v.findViewById(R.id.textviewfornosearchresult2);
         //To search
@@ -136,10 +136,12 @@ public class HomeFragment extends Fragment {
         adapter=new adapter_clientside_order_list(options);
         adapter.startListening();
         recyclerView1.setAdapter(adapter);
+
+        //on scroll recycler
         recyclerView1.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                progressBar.setVisibility(View.GONE);
+
                 noresult.setVisibility(View.INVISIBLE);
                 super.onScrolled(recyclerView, dx, dy);
             }
@@ -165,7 +167,6 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
                 try{
-                    progressBar.setVisibility(View.VISIBLE);
                     String output = s.substring(0, 1).toUpperCase() + s.substring(1);
                     mySearch(output);
                 }catch (Exception e){
@@ -193,7 +194,6 @@ public class HomeFragment extends Fragment {
 
         adapter=new adapter_clientside_order_list(options);
         if (adapter.getItemCount()==0){
-            progressBar.setVisibility(View.GONE);
             noresult.setText("No such retailer named as "+s);
             noresult.setVisibility(View.VISIBLE);
         }

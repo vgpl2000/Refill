@@ -29,10 +29,9 @@
             app:layout_constraintVertical_bias="0.031" />
 
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewdatewisedipofdetailsfrc"
-            android:layout_width="match_parent"
+            android:layout_width="398dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="384dp"
             android:fadeScrollbars="true"
@@ -41,7 +40,7 @@
             android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.551"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/texttodispdateforreffrc"
             app:layout_constraintVertical_bias="0.0" />

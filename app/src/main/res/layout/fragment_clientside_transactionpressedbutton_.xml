@@ -28,18 +28,18 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewfortransactionsdisplay"
-            android:layout_width="match_parent"
+            android:layout_width="398dp"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
             android:paddingBottom="93dp"
             android:scrollbars="vertical"
-            app:stackFromEnd="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.461"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewtodispnamefortrans"
-            app:layout_constraintVertical_bias="0.293" />
+            app:layout_constraintVertical_bias="0.292"
+            app:stackFromEnd="false" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
