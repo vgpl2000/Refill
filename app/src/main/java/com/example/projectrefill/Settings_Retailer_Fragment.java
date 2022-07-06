@@ -28,15 +28,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Settings_Retailer_Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class Settings_Retailer_Fragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -48,6 +43,8 @@ public class Settings_Retailer_Fragment extends Fragment {
     TextView txtchngpassword_r;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getInstance().getReference();
+    Button accp,can,delivered;
+
 
 
     protected boolean isNetworkConnected() {
@@ -64,7 +61,7 @@ public class Settings_Retailer_Fragment extends Fragment {
 
 
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
 
@@ -72,15 +69,7 @@ public class Settings_Retailer_Fragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Settings_Retailer_Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static Settings_Retailer_Fragment newInstance(String param1, String param2) {
         Settings_Retailer_Fragment fragment = new Settings_Retailer_Fragment();
         Bundle args = new Bundle();
@@ -146,22 +135,6 @@ public class Settings_Retailer_Fragment extends Fragment {
         });
 
 
-
-        //Disable back button for this fragment
-        /*v.setFocusableInTouchMode(true);
-        v.requestFocus();
-        v.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    if (keyCode == KeyEvent.KEYCODE_BACK) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });*/
-
         //preferences
         preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
         editor=preferences.edit();
@@ -206,6 +179,8 @@ public class Settings_Retailer_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Profile Image goes here...", Toast.LENGTH_SHORT).show();
+
+
             }
         });
         //Shared preferences
@@ -243,6 +218,38 @@ public class Settings_Retailer_Fragment extends Fragment {
                 fr.replace(R.id.settings_retailer,new change_pswrd_retailer_Fragment()).addToBackStack(null);
                 fr.commit();
 
+            }
+        });
+
+
+        accp=v.findViewById(R.id.btn_accepted);
+        can=v.findViewById(R.id.btn_cancelled);
+        delivered=v.findViewById(R.id.btn_delivered);
+
+        accp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.settings_retailer,new retailer_setting_accp1_Fragment()).addToBackStack(null);
+                fr.commit();
+            }
+        });
+
+        can.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.settings_retailer,new retailer_setting_can1_Fragment()).addToBackStack(null);
+                fr.commit();
+            }
+        });
+
+        delivered.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.settings_retailer,new retailer_setting_delivere1_Fragment()).addToBackStack(null);
+                fr.commit();
             }
         });
 
