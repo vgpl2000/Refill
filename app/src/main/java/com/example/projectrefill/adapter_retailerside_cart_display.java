@@ -26,8 +26,11 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -48,15 +51,21 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
         holder.name.setText(model.getName());
         holder.price.setText(model.getPrice());
         holder.quan.setText(model.getQuan());
+
+        Integer pr,qu,tot;
         String price2=holder.price.getText().toString();
         String quan2=holder.quan.getText().toString();
-        Integer pr,qu,tot;
+
         pr=Integer.parseInt(price2);
         qu=Integer.parseInt(quan2);
+
         tot=pr*qu;
+
         String totalamt=Integer.toString(tot);
 
         holder.totalamtofitem.setText(totalamt);
+
+        //prblm here is recycler loads only some items and further are added when scrolled....
 
 
         totalamtcheck=totalamtcheck+tot;

@@ -375,10 +375,12 @@ public class Cart_Retailer_Fragment extends Fragment {
             return false;
         }
     }
+
     public BroadcastReceiver msgbrdrec=new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-        int totalofall=intent.getIntExtra("totalamount",0);
+
+            int totalofall=intent.getIntExtra("totalamount",0);
         String newtot=Integer.toString(totalofall);
         totalamounthere.setText(newtot);
 
