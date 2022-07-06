@@ -1,12 +1,23 @@
 package com.example.projectrefill;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class setting_client_accp3_Fragment extends Fragment {
@@ -18,15 +29,19 @@ public class setting_client_accp3_Fragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    String date;
+    String date,retname;
+    RecyclerView recyclerView;
+    TextView headtext;
+    adapter_client_setting_accp3 adapter;
 
 
     public setting_client_accp3_Fragment() {
         // Required empty public constructor
     }
 
-    public setting_client_accp3_Fragment(String date) {
+    public setting_client_accp3_Fragment(String date,String retname) {
         this.date = date;
+        this.retname=retname;
     }
 
     public static setting_client_accp3_Fragment newInstance(String param1, String param2) {
@@ -53,6 +68,63 @@ public class setting_client_accp3_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_setting_client_accp3_, container, false);
 
+        recyclerView=v.findViewById(R.id.recyclerViewtodispdateinaccp2);
+
+        LinearLayoutManager linearLayoutManager=new CustomLinearLayoutManager1(getContext());
+        //linearLayoutManager.setReverseLayout(false);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        SharedPreferences preferences;
+        preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        String username=preferences.getString("username","");
+
+
+        FirebaseRecyclerOptions<client_model_setting_accp3> options =
+                new FirebaseRecyclerOptions.Builder<client_model_setting_accp3>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_accepted").child(retname).child("date").child(date).child("Items"),client_model_setting_accp3.class)
+                        .build();
+
+        adapter=new adapter_client_setting_accp3(options);
+
+
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+
+        headtext=v.findViewById(R.id.headtext);
+        headtext.setText("Details of accepted orders on "+date);
+
+
         return v;
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+    public class CustomLinearLayoutManager1 extends LinearLayoutManager {
+
+        public CustomLinearLayoutManager1(Context context) {
+            super(context);
+        }
+
+
+        @Override
+        public boolean supportsPredictiveItemAnimations() {
+            return false;
+        }
     }
 }
