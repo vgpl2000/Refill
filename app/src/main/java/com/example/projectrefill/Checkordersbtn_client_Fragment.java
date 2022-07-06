@@ -227,7 +227,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                         nameset.child("rname").setValue(rname);
 
                                         DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_accepted").child(rname).child(formattedDate1);
-                                        dateset.child("date").setValue(rname);
+                                        dateset.child("date").setValue(formattedDate1);
 
 
 
@@ -284,8 +284,10 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                 toretailer.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
                                     @Override
                                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                                    DatabaseReference addref=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_accepted").child(formattedDate1);
-                                    addref.child("date").setValue(formattedDate1);
+
+
+                                        DatabaseReference addref=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_accepted").child(formattedDate1);
+                                         addref.child("date").setValue(formattedDate1);
 
 
                                     }
@@ -356,7 +358,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                         nameset.child("rname").setValue(name);
 
                                         DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(name).child(formattedDate1);
-                                        dateset.child("date").setValue(name);
+                                        dateset.child("date").setValue(formattedDate1);
 
                                         SharedPreferences preferences;
                                         preferences = view.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
@@ -480,7 +482,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                 nameset.child("rname").setValue(name);
 
                                 DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(name).child(formattedDate1);
-                                dateset.child("date").setValue(name);
+                                dateset.child("date").setValue(formattedDate1);
 
 
                                 FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
