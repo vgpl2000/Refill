@@ -27,21 +27,32 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewtoshowcart"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested"
             android:layout_width="match_parent"
             android:layout_height="350dp"
-            android:paddingTop="5dip"
-            android:paddingBottom="5dip"
-            android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/selectpaymenttext"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView5"
-            app:layout_constraintVertical_bias="0.308" />
+            android:layout_marginTop="6dp"
+            app:layout_constraintBottom_toTopOf="@+id/totamt"
+            app:layout_constraintTop_toBottomOf="@+id/textView10">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewtoshowcart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dip"
+                android:paddingBottom="5dip"
+                android:scrollbars="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/selectpaymenttext"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView5"
+                app:layout_constraintVertical_bias="0.308" />
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
 
         <TextView
             android:id="@+id/totamt"
@@ -56,7 +67,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.127"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewtoshowcart" />
+            app:layout_constraintTop_toBottomOf="@+id/nested" />
 
 
         <TextView
@@ -73,7 +84,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.445"
             app:layout_constraintStart_toEndOf="@+id/totamt"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewtoshowcart"
+            app:layout_constraintTop_toBottomOf="@+id/nested"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
@@ -135,14 +146,15 @@
             app:layout_constraintVertical_bias="0.27" />
 
         <TextView
+            android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:fontFamily="@font/poppins_medium"
             android:text="Items In Cart:"
             android:textColor="@color/white"
-            android:enabled="false"
             android:textSize="18dp"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerViewtoshowcart"
+            app:layout_constraintBottom_toTopOf="@+id/nested"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.055"
             app:layout_constraintStart_toStartOf="parent"
