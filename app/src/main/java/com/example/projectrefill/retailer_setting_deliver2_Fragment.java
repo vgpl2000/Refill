@@ -14,12 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class retailer_setting_delivere1_Fragment extends Fragment {
+public class retailer_setting_deliver2_Fragment extends Fragment {
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -28,16 +29,21 @@ public class retailer_setting_delivere1_Fragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    adapter_retailer_setting_delivere1 adapter;
+    String date;
     RecyclerView recyclerView;
+    adapter_retailer_setting_accp2 adapter;
+    TextView headtext;
 
-    public retailer_setting_delivere1_Fragment() {
+    public retailer_setting_deliver2_Fragment() {
         // Required empty public constructor
     }
 
+    public retailer_setting_deliver2_Fragment(String date) {
+        this.date = date;
+    }
 
-    public static retailer_setting_delivere1_Fragment newInstance(String param1, String param2) {
-        retailer_setting_delivere1_Fragment fragment = new retailer_setting_delivere1_Fragment();
+    public static retailer_setting_deliver2_Fragment newInstance(String param1, String param2) {
+        retailer_setting_deliver2_Fragment fragment = new retailer_setting_deliver2_Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,9 +64,8 @@ public class retailer_setting_delivere1_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       View v= inflater.inflate(R.layout.fragment_retailer_setting_delivere1_, container, false);
-
-        recyclerView=v.findViewById(R.id.recyclerViewtodispdateinaccp1);
+        View v=inflater.inflate(R.layout.fragment_retailer_setting_deliver2_, container, false);
+        recyclerView=v.findViewById(R.id.recyclerViewtodispdateinaccp2);
 
         LinearLayoutManager linearLayoutManager=new CustomLinearLayoutManager1(getContext());
         //linearLayoutManager.setReverseLayout(false);
@@ -72,12 +77,12 @@ public class retailer_setting_delivere1_Fragment extends Fragment {
         String username=preferences.getString("username","");
 
 
-        FirebaseRecyclerOptions<retailer_model_setting_accp1> options =
-                new FirebaseRecyclerOptions.Builder<retailer_model_setting_accp1>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").child(username).child("r_delivered"),retailer_model_setting_accp1.class)
+        FirebaseRecyclerOptions<retailer_model_setting_accp2> options =
+                new FirebaseRecyclerOptions.Builder<retailer_model_setting_accp2>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Retailer").child(username).child("r_delivered").child(date).child("Items"),retailer_model_setting_accp2.class)
                         .build();
 
-        adapter=new adapter_retailer_setting_delivere1(options);
+        adapter=new adapter_retailer_setting_accp2(options);
 
 
         recyclerView.setAdapter(adapter);
@@ -90,7 +95,10 @@ public class retailer_setting_delivere1_Fragment extends Fragment {
             }
         });
 
-       return v;
+        headtext=v.findViewById(R.id.headtext);
+        headtext.setText("Details of accepted orders on "+date);
+
+        return v;
     }
     @Override
     public void onStart() {
@@ -103,8 +111,6 @@ public class retailer_setting_delivere1_Fragment extends Fragment {
         super.onStop();
         adapter.stopListening();
     }
-
-
     public class CustomLinearLayoutManager1 extends LinearLayoutManager {
 
         public CustomLinearLayoutManager1(Context context) {
