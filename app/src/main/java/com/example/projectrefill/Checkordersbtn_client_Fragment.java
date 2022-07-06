@@ -223,6 +223,14 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                         Toast.makeText(view.getContext(), "Accepted", Toast.LENGTH_SHORT).show();
 
+                                        DatabaseReference nameset=FirebaseDatabase.getInstance().getReference("Client").child("c_accepted").child(rname);
+                                        nameset.child("rname").setValue(rname);
+
+                                        DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_accepted").child(rname).child(formattedDate1);
+                                        dateset.child("date").setValue(rname);
+
+
+
 
                                         //notification testing
 
@@ -276,6 +284,9 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                 toretailer.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
                                     @Override
                                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                    DatabaseReference addref=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_accepted").child(formattedDate1);
+                                    addref.child("date").setValue(formattedDate1);
+
 
                                     }
                                 });
@@ -317,6 +328,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                         AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
                         appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
 
+
                         btncan.setVisibility(View.GONE);
                         btnacp.setVisibility(View.GONE);
 
@@ -338,6 +350,13 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                     @Override
                                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                                         Toast.makeText(view.getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+
+
+                                        DatabaseReference nameset=FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(name);
+                                        nameset.child("rname").setValue(name);
+
+                                        DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(name).child(formattedDate1);
+                                        dateset.child("date").setValue(name);
 
                                         SharedPreferences preferences;
                                         preferences = view.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
@@ -403,6 +422,9 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                     @Override
                                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
 
+                                        DatabaseReference addref=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_cancelled").child(formattedDate1);
+                                        addref.child("date").setValue(formattedDate1);
+
                                     }
                                 });
                             }
@@ -453,6 +475,12 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                                 Toast.makeText(view.getContext(), "Delivered", Toast.LENGTH_SHORT).show();
 
+
+                                DatabaseReference nameset=FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(name);
+                                nameset.child("rname").setValue(name);
+
+                                DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(name).child(formattedDate1);
+                                dateset.child("date").setValue(name);
 
 
                                 FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -509,6 +537,8 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                         toretailer2.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
                             @Override
                             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                DatabaseReference addref=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_delivered").child(formattedDate1);
+                                addref.child("date").setValue(formattedDate1);
 
                             }
                         });
