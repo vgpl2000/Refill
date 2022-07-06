@@ -98,7 +98,11 @@ public class Settings_Retailer_Fragment extends Fragment {
 
         //clear backstack
         FragmentManager fm=getFragmentManager();
+        fm.popBackStack("retailer_acc",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fm.popBackStack("retailer_can",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fm.popBackStack("retailer_deli",FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fm.popBackStack("r_changepass",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
 
         //check internet
         if(!isNetworkConnected()){

@@ -102,6 +102,13 @@ public class SettingsFragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_settings, container, false);
 
+        //clear backstack
+        FragmentManager fm=getFragmentManager();
+        fm.popBackStack("client_acc",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fm.popBackStack("client_can",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fm.popBackStack("client_deli",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fm.popBackStack("add_retailer",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fm.popBackStack("c_chng_pass",FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
         //check internet
        if(!isNetworkConnected()){
@@ -138,7 +145,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.settings1,new clientside_add_retailer_Fragment()).addToBackStack(null);
+                fr.replace(R.id.settings1,new clientside_add_retailer_Fragment()).addToBackStack("add_retailer");
                 fr.commit();
 
             }
@@ -176,7 +183,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
 
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.settings1,new change_pswrd_Fragment()).addToBackStack(null);
+                fr.replace(R.id.settings1,new change_pswrd_Fragment()).addToBackStack("c_chng_pass");
                 fr.commit();
 
             }

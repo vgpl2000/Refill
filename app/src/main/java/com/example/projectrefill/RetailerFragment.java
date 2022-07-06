@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -79,6 +80,9 @@ public class RetailerFragment extends Fragment {
 
         View v= inflater.inflate(R.layout.fragment_retailer, container, false);
 
+        //clear backstack
+        FragmentManager fm=getFragmentManager();
+        fm.popBackStack("r_trans",FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
         //check internet
         if(!isNetworkConnected()){

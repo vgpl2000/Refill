@@ -34,7 +34,7 @@ public class adapter_clientside_transactionbuttonpressed extends FirebaseRecycle
             @Override
             public void onClick(View view) {
                 AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrappernewforclient,new clientside_datebutton_pressed_detaildisp_Fragment(model.getDate(),model.getNameofretailer())).addToBackStack(null).commit();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrappernewforclient,new clientside_datebutton_pressed_detaildisp_Fragment(model.getDate(),model.getNameofretailer())).addToBackStack("r_trans").commit();
 
             }
         });

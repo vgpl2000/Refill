@@ -38,7 +38,7 @@
             app:layout_constraintHorizontal_bias="0.461"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewtodispnamefortrans"
-            app:layout_constraintVertical_bias="0.292"
+            app:layout_constraintVertical_bias="0.1"
             app:stackFromEnd="false" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

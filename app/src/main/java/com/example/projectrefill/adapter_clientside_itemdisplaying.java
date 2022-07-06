@@ -46,7 +46,7 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
         public void onClick(View view) {
             //to open fragment to edit or delete items
             AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
-            appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper4,new client_itemeditbuttonpressed_fragment(model.name)).addToBackStack(null).commit();
+            appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper4,new client_itemeditbuttonpressed_fragment(model.name)).addToBackStack("edit_item").commit();
         }
     });
 

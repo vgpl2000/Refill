@@ -62,6 +62,11 @@ public class ItemFragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_item, container, false);
 
+        //clear backstack
+        FragmentManager fm=getFragmentManager();
+        fm.popBackStack("add_item",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fm.popBackStack("edit_item",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
         //check internet
 
         if(!isNetworkConnected()){
@@ -110,7 +115,7 @@ public class ItemFragment extends Fragment {
 
 
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.wrapper4,new client_btnplus_add_item_Fragment()).addToBackStack(null);
+                fr.replace(R.id.wrapper4,new client_btnplus_add_item_Fragment()).addToBackStack("add_item");
                 fr.commit();
 
 

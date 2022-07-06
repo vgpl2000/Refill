@@ -123,7 +123,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             public void onClick(View view) {
                 //change fragment which displays date wise r_history to click
                 AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper5, new clientside_transactionpressedbutton_Fragment(model.getName())).addToBackStack(null).commit();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper5, new clientside_transactionpressedbutton_Fragment(model.getName())).addToBackStack("r_trans").commit();
             }
         });
 
