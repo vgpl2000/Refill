@@ -40,10 +40,10 @@ public class firebasenotificationsendertesting {
 
     public void sendnotifications(){
 
-
+        try {
         requestQueue= Volley.newRequestQueue(mActivity);
         JSONObject mainobj=new JSONObject();
-        try {
+
             mainobj.put("to",userfcmtoken);
             JSONObject notiobject=new JSONObject();
             notiobject.put("title",title);
@@ -79,8 +79,6 @@ public class firebasenotificationsendertesting {
                 }
             };
             requestQueue.add(jsonObjectRequest);
-
-
 
 
         }catch (Exception e){

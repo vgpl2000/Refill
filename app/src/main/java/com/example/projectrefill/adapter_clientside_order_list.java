@@ -135,7 +135,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                     @Override
                     public void onClick(View view) {
                         AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new Checkordersbtn_client_Fragment(model.getName())).addToBackStack(null).commit();
+                        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new Checkordersbtn_client_Fragment(model.getName())).addToBackStack("home_orders").commit();
                     }
                 });
 
