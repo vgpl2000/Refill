@@ -15,7 +15,9 @@
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
             android:name=".onboard_Activity"
-            android:exported="false" />
+            android:exported="true"
+            android:noHistory="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".settings_retailer_profile_pic_test_activity"
             android:exported="false"

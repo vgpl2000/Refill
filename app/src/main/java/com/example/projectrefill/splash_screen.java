@@ -3,6 +3,7 @@ package com.example.projectrefill;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -52,8 +53,18 @@ public class splash_screen extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 finally {
-                    Intent intent=new Intent(splash_screen.this,MainActivity.class);
-                    startActivity(intent);
+                    SharedPreferences preferences;
+                    preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+
+                    if (preferences.contains("username")) {
+                        Intent intent=new Intent(splash_screen.this,MainActivity.class);
+                        startActivity(intent);
+                    }else{
+                        Intent intent=new Intent(splash_screen.this,onboard_Activity.class);
+                        startActivity(intent);
+                    }
+
+
 
                 }
 
