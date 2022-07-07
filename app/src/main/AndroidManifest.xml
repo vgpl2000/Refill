@@ -16,14 +16,17 @@
         <activity
             android:name=".no_internet_retailer"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:noHistory="true"/>
         <activity
             android:name=".no_internet_client"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:noHistory="true"/>
         <activity
             android:name=".retailer_activity"
             android:exported="false"
+            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".client_activity"
