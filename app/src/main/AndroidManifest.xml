@@ -26,7 +26,7 @@
         <activity
             android:name=".retailer_activity"
             android:exported="false"
-            android:noHistory="true"
+
             android:screenOrientation="portrait" />
         <activity
             android:name=".client_activity"

@@ -12,6 +12,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
@@ -45,7 +46,7 @@ public class settings_retailer_profile_pic_Fragment extends Fragment {
     private String mParam2;
 
     Button chng_image;
-    ImageView profile,btn_close;
+    ImageView profile1,btn_close;
 
     FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
     Uri imageuri1;
@@ -79,7 +80,6 @@ public class settings_retailer_profile_pic_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_settings_retailer_profile_pic_, container, false);
 
-
         preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
         String name1=preferences.getString("username","");
 
@@ -95,11 +95,12 @@ public class settings_retailer_profile_pic_Fragment extends Fragment {
         });
 
 
-        profile=v.findViewById(R.id.imageViewfrprofilepic);
+        profile1=v.findViewById(R.id.imageViewfrprofilepic);
 
-        profile.setOnClickListener(new View.OnClickListener() {
+        profile1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 mgetcontent2.launch("image/*");
             }
         });
@@ -114,7 +115,7 @@ public class settings_retailer_profile_pic_Fragment extends Fragment {
                 dialog.setTitle("File uploader");
                 dialog.show();
 
-                StorageReference reference = firebaseStorage.getReference().child("retailerimages").child("images/" + UUID.randomUUID().toString());
+                StorageReference reference = firebaseStorage.getReference().child("retailerimages").child(name1).child("images/" + UUID.randomUUID().toString());
                 if(imageuri1==null){
                     Toast.makeText(getContext(), "Image not selected", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
@@ -130,7 +131,7 @@ public class settings_retailer_profile_pic_Fragment extends Fragment {
                                 Toast.makeText(getActivity(), "Image added successfully ", Toast.LENGTH_SHORT).show();
 
                                 FragmentTransaction fr = getFragmentManager().beginTransaction();
-                                fr.replace(R.id.change_profile, new Settings_Retailer_Fragment()).addToBackStack(null);
+                                fr.replace(R.id.change_profile, new Settings_Retailer_Fragment());
                                 fr.commit();
 
                                 Toast.makeText(getActivity(), "Please refresh to check new profile picture", Toast.LENGTH_LONG).show();
@@ -180,9 +181,10 @@ public class settings_retailer_profile_pic_Fragment extends Fragment {
         @Override
         public void onActivityResult(Uri result) {
             if(result!=null){
-                profile.setImageURI(result);
+                profile1.setImageURI(result);
                 imageuri1=result;
             }
+
 
         }
     });
