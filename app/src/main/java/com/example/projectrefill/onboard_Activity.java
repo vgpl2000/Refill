@@ -62,7 +62,7 @@ public class onboard_Activity extends AppCompatActivity {
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("&#8226"));
             dots[i].setTextSize(35);
-            dots[i].setTextColor(getResources().getColor(R.color.grey,getApplicationContext().getTheme()));
+            dots[i].setTextColor(getResources().getColor(R.color.light_grey,getApplicationContext().getTheme()));
             mDotLayout.addView(dots[i]);
 
         }
