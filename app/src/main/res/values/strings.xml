@@ -2,4 +2,16 @@
     <string name="app_name">Refill</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //Headings
+    <string name="heading_one">Realtime Updates</string>
+    <string name="heading_two">Instant Notifications</string>
+    <string name="heading_three">Secured Database</string>
+    <string name="heading_fourth">Use Anywhere</string>
+
+    //Description
+    <string name="desc_one">Refill provides real-time updates from Akashadeepa Home Products</string>
+    <string name="desc_two">Refill notifies its users with updates of the orders via instant notifications</string>
+    <string name="desc_three">Refill gurantees proper security and backup of data with cloud storage</string>
+    <string name="desc_fourth">Refill is interactive and userfriendly application that can be used anywhere</string>
 </resources>

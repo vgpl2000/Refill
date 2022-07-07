@@ -14,10 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
-            android:name=".settings_retailer_profile_pic_test_activity"
-            android:screenOrientation="portrait"
-
+            android:name=".onboard_Activity"
             android:exported="false" />
+        <activity
+            android:name=".settings_retailer_profile_pic_test_activity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".no_internet_retailer"
             android:exported="false"
