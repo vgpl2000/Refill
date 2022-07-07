@@ -29,18 +29,33 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/retailer_name"
         android:fontFamily="@font/poppins_medium"
+        android:text="mode"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/totalamt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/ll"
+        android:layout_alignBottom="@+id/pmodeforclient"
+        android:layout_marginRight="-132dp"
+        android:layout_marginBottom="-53dp"
+        android:drawableLeft="@drawable/ic_baseline_currency_rupee_24"
+        android:elevation="100dp"
+        android:fontFamily="@font/poppins_medium"
         android:textColor="@color/white"
-        android:text="mode" />
+        android:textSize="18dp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_width="118dp"
+        android:layout_height="47dp"
         android:layout_below="@+id/retailer_name"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="-2dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="-1dp"
+        android:layout_marginEnd="133dp"
+        android:id="@+id/ll"
         android:gravity="center"
         android:padding="5dp">
 

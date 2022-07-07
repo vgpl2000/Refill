@@ -155,6 +155,11 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                                     Toast.makeText(getActivity(), "Image added successfully", Toast.LENGTH_SHORT).show();
 
 
+                                    FragmentTransaction fr = getFragmentManager().beginTransaction();
+                                    fr.replace(R.id.add_item, new ItemFragment()).addToBackStack(null);
+                                    fr.commit();
+
+
                                 } else {
                                     dialog.dismiss();
                                     Toast.makeText(getActivity(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -192,9 +197,6 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                                         root.child(image_1).setValue(obj1);
 
 
-                                        FragmentTransaction fr = getFragmentManager().beginTransaction();
-                                        fr.replace(R.id.add_item, new ItemFragment()).addToBackStack(null);
-                                        fr.commit();
 
 
                                     }

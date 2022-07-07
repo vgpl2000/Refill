@@ -6,6 +6,7 @@ public class client_model_home_orders {
     String order_state;
     String name;
     String pmode;
+    String total;
 
 
     public client_model_home_orders() {
@@ -16,10 +17,19 @@ public class client_model_home_orders {
         return order_state;
     }
 
-    public client_model_home_orders(String order_state, String name, String pmode) {
+    public client_model_home_orders(String order_state, String name, String pmode,String total) {
         this.order_state = order_state;
         this.name = name;
         this.pmode = pmode;
+        this.total=total;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
     }
 
     public String getPmode() {
