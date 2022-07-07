@@ -44,15 +44,16 @@
             tools:src="@tools:sample/avatars" />
 
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="8dp"
             android:id="@+id/icontoaddprofilepic"
-            android:background="@color/black"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/circle_image"
             android:src="@drawable/ic_baseline_edit_24"
-            app:layout_constraintBottom_toTopOf="@+id/retailer_profile"
+            app:layout_constraintBottom_toBottomOf="@+id/retailer_profile"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.619"
+            app:layout_constraintHorizontal_bias="0.626"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_addretailer"
             app:layout_constraintVertical_bias="1.0" />

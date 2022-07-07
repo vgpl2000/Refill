@@ -151,6 +151,15 @@ public class SettingsFragment extends Fragment {
         
         client_profile=v.findViewById(R.id.retailer_profile);
 
+        client_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.settings1,new setting_profilepic_Fragment()).addToBackStack("add_profile");
+                fr.commit();
+            }
+        });
+
         ImageButton icontoaddprofile=v.findViewById(R.id.icontoaddprofilepic);
 
         icontoaddprofile.setOnClickListener(new View.OnClickListener() {

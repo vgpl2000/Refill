@@ -189,6 +189,14 @@ public class Settings_Retailer_Fragment extends Fragment {
         //To click and change Profile Image
 
         retailer_profile=v.findViewById(R.id.retailer_profile);
+
+        retailer_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity().getApplication(),settings_retailer_profile_pic_test_activity.class);
+                startActivity(intent);
+            }
+        });
         btn_add_r_image=v.findViewById(R.id.icontoaddprofilepic);
 
         btn_add_r_image.setOnClickListener(new View.OnClickListener() {
