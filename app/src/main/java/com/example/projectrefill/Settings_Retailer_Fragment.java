@@ -19,10 +19,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +42,7 @@ public class Settings_Retailer_Fragment extends Fragment {
     ImageView retailer_profile;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    ImageButton btn_add_r_image;
     TextView retailer_name;
     TextView txtchngpassword_r;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -102,6 +105,7 @@ public class Settings_Retailer_Fragment extends Fragment {
         fm.popBackStack("retailer_can",FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fm.popBackStack("retailer_deli",FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fm.popBackStack("r_changepass",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fm.popBackStack("add_profile_ret",FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
 
         //check internet
@@ -153,6 +157,7 @@ public class Settings_Retailer_Fragment extends Fragment {
             String r_name1=preferences.getString("r_name", null);
             retailer_name.setText(r_name1);
 
+
         } else {
 
         //setting retailer name form database
@@ -184,14 +189,37 @@ public class Settings_Retailer_Fragment extends Fragment {
         //To click and change Profile Image
 
         retailer_profile=v.findViewById(R.id.retailer_profile);
-        retailer_profile.setOnClickListener(new View.OnClickListener() {
+        btn_add_r_image=v.findViewById(R.id.icontoaddprofilepic);
+
+        btn_add_r_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Profile Image goes here...", Toast.LENGTH_SHORT).show();
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.settings_retailer,new settings_retailer_profile_pic_Fragment()).addToBackStack("add_profile_ret");
+                fr.commit();
+            }
+        });
 
+        DatabaseReference pimag=FirebaseDatabase.getInstance().getReference("Retailer").child(retailer_name.getText().toString());
+
+        pimag.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChild("pimageurl")){
+                    String pi=snapshot.child("pimageurl").getValue(String.class);
+                    Glide.with(retailer_profile.getContext()).load(pi).into(retailer_profile);
+                }else {
+                    Glide.with(retailer_profile.getContext()).load(R.drawable.ic_baseline_person_outline_24).into(retailer_profile);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
         //Shared preferences
         preferences=this.getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
         editor=preferences.edit();
