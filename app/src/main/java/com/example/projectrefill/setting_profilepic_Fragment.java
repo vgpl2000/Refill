@@ -129,6 +129,7 @@ public class setting_profilepic_Fragment extends Fragment {
 
 
                                 Toast.makeText(getActivity(), "Please refresh to check new profile picture", Toast.LENGTH_LONG).show();
+                                //toast
 
 
                             } else {
