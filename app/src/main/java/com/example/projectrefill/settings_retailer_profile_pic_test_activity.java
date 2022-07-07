@@ -99,6 +99,7 @@ public class settings_retailer_profile_pic_test_activity extends AppCompatActivi
                                 //change to activity
                                 Intent intent=new Intent(settings_retailer_profile_pic_test_activity.this,retailer_activity.class);
                                 startActivity(intent);
+                                settings_retailer_profile_pic_test_activity.this.finish();
 
 
 
@@ -157,11 +158,14 @@ public class settings_retailer_profile_pic_test_activity extends AppCompatActivi
         int count = getSupportFragmentManager().getBackStackEntryCount();
 
         if (count == 0) {
+
             Intent intent = new Intent(settings_retailer_profile_pic_test_activity.this, retailer_activity.class);
+
             startActivity(intent);
             settings_retailer_profile_pic_test_activity.this.finish();
         } else {
             Intent intent = new Intent(settings_retailer_profile_pic_test_activity.this, retailer_activity.class);
+
             startActivity(intent);
             settings_retailer_profile_pic_test_activity.this.finish();
         }
