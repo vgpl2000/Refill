@@ -14,19 +14,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
+            android:name=".settings_retailer_profile_pic_test_activity"
+            android:screenOrientation="portrait"
+            android:noHistory="false"
+            android:exported="false" />
+        <activity
             android:name=".no_internet_retailer"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:noHistory="true"/>
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".no_internet_client"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:noHistory="true"/>
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".retailer_activity"
             android:exported="false"
-
             android:screenOrientation="portrait" />
         <activity
             android:name=".client_activity"

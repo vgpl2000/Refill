@@ -194,9 +194,13 @@ public class Settings_Retailer_Fragment extends Fragment {
         btn_add_r_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                /*FragmentTransaction fr= getFragmentManager().beginTransaction();
                 fr.replace(R.id.settings_retailer,new settings_retailer_profile_pic_Fragment()).addToBackStack("add_profile_ret");
                 fr.commit();
+
+                 */
+                Intent intent=new Intent(getActivity().getApplication(),settings_retailer_profile_pic_test_activity.class);
+                startActivity(intent);
             }
         });
 

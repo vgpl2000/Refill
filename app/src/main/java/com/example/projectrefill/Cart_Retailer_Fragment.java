@@ -142,10 +142,9 @@ public class Cart_Retailer_Fragment extends Fragment {
         }
 
         totalamounthere = v.findViewById(R.id.totalamountcomeshere);
-        do {
             LocalBroadcastManager.getInstance(v.getContext())
                     .registerReceiver(msgbrdrec, new IntentFilter("mytotamt"));
-        }while (1!=1);
+
 
 
         //blocked or not
