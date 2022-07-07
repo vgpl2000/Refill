@@ -8,6 +8,7 @@ public class client_model_home_orders {
     String pmode;
     String total;
 
+    //empty constructor
 
     public client_model_home_orders() {
 
