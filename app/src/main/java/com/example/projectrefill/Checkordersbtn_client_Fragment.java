@@ -128,7 +128,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
         recyclerView2=(RecyclerView) view.findViewById(R.id.recyclerView2);
         recyclerView2.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
+        //btn accept
         btnacp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -358,7 +358,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                         Toast.makeText(view.getContext(), "cancelling", Toast.LENGTH_SHORT).show();
 
                         AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
+                        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).commit();
 
 
                         btncan.setVisibility(View.GONE);
@@ -616,7 +616,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                 frmtode.removeValue();
 
                                 AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
+                                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).commit();
 
                             }
                         });
