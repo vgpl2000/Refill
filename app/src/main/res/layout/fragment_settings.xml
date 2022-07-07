@@ -9,6 +9,11 @@
     android:id="@+id/settings1"
     android:clickable="true"
     tools:context=".SettingsFragment">
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/swipe_container">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -166,4 +171,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </FrameLayout>

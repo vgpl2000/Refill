@@ -1,5 +1,6 @@
 package com.example.projectrefill;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -52,7 +54,7 @@ import com.google.firebase.storage.UploadTask;
 import java.util.UUID;
 
 
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -65,7 +67,7 @@ public class SettingsFragment extends Fragment {
     ImageButton btn_add_r;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
-
+    SwipeRefreshLayout swipeLayout;
 
 
     //check network connected or not function
@@ -115,11 +117,21 @@ public class SettingsFragment extends Fragment {
 
 
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+
+
+
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_settings, container, false);
+
+        swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipe_container);
+        swipeLayout.setOnRefreshListener(this);
+
 
 
         //clear backstack
@@ -302,6 +314,13 @@ public class SettingsFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onRefresh() {
+
+        FragmentTransaction fr= getFragmentManager().beginTransaction();
+        fr.replace(R.id.settings1,new SettingsFragment()).addToBackStack(null);
+        fr.commit();
+    }
 }
 
 
