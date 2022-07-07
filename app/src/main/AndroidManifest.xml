@@ -16,7 +16,7 @@
         <activity
             android:name=".settings_retailer_profile_pic_test_activity"
             android:screenOrientation="portrait"
-            android:noHistory="false"
+
             android:exported="false" />
         <activity
             android:name=".no_internet_retailer"

@@ -154,14 +154,18 @@ Context context;
         if (count == 0) {
             super.onBackPressed();
             Intent startMain = new Intent(Intent.ACTION_MAIN);
+            startMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startMain.addCategory(Intent.CATEGORY_HOME);
             startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(startMain);
+            retailer_activity.this.finish();
         } else {
             Intent startMain = new Intent(Intent.ACTION_MAIN);
+            startMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startMain.addCategory(Intent.CATEGORY_HOME);
             startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(startMain);
+            retailer_activity.this.finish();
         }
     }
 
