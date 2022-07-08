@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -67,6 +68,9 @@ public class settings_client_delivere3_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_settings_client_delivere3_, container, false);
 
+        ProgressBar progressBar;
+        progressBar=v.findViewById(R.id.progressbar1);
+
         recyclerView=v.findViewById(R.id.recyclerViewtodispdateinaccp2);
 
         LinearLayoutManager linearLayoutManager=new CustomLinearLayoutManager1(getContext());
@@ -92,7 +96,7 @@ public class settings_client_delivere3_Fragment extends Fragment {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-
+                progressBar.setVisibility(View.GONE);
                 super.onScrolled(recyclerView, dx, dy);
             }
         });

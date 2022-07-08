@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
@@ -62,6 +63,9 @@ public class settings_client_accp2_Fragment extends Fragment {
         View v= inflater.inflate(R.layout.fragment_settings_client_accp2_, container, false);
         recyclerView=v.findViewById(R.id.recyclerViewtodispdateinaccp1);
 
+        ProgressBar progressBar;
+        progressBar=v.findViewById(R.id.progressbar1);
+
         LinearLayoutManager linearLayoutManager=new CustomLinearLayoutManager1(getContext());
         //linearLayoutManager.setReverseLayout(false);
         linearLayoutManager.setStackFromEnd(true);
@@ -81,7 +85,7 @@ public class settings_client_accp2_Fragment extends Fragment {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-
+                progressBar.setVisibility(View.GONE);
                 super.onScrolled(recyclerView, dx, dy);
             }
         });

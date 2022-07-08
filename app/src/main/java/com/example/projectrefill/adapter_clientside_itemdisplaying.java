@@ -22,6 +22,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Random;
 
@@ -36,8 +41,28 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
         //to display items with images which is in stock
         holder.nm.setText(model.getName());
         holder.pri.setText(model.getPrice());
+
+
         //to display image of item
-        Glide.with(holder.img1.getContext()).load(model.getUrl()).into(holder.img1);
+        DatabaseReference imageref= FirebaseDatabase.getInstance().getReference("Client").child("c_items").child(model.getName());
+        imageref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChild("url")){
+                    Glide.with(holder.img1.getContext()).load(model.getUrl()).into(holder.img1);
+                }else{
+                    Glide.with(holder.img1.getContext()).load(R.drawable.ic_baseline_image_24).into(holder.img1);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
         holder.weight.setText(model.getWeight());
 
         //edit btn to edit item price and weight for client

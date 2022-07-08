@@ -43,9 +43,23 @@
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_info__retailer_.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_item.xml" value="0.18" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_retailer.xml" value="0.1824074074074074" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_retailer_setting_accp1_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_retailer_setting_accp2_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_retailer_setting_can1_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_retailer_setting_can2_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_retailer_setting_deliver2_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_retailer_setting_delivere1_.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_retailerside_datewisetransaction_.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings.xml" value="0.1824074074074074" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings__retailer_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings_client_accp1_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings_client_accp2_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings_client_can1_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings_client_can2_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings_client_can3_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings_client_delivere1_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings_client_delivere2_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings_client_delivere3_.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/single_row_checkorders_clientside.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/single_row_design_date_display.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/single_row_design_retailer_side_cart_displaying.xml" value="0.25" />

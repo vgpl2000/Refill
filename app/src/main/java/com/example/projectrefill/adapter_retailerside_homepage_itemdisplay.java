@@ -22,8 +22,11 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.common.internal.Constants;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -45,8 +48,25 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
             holder.price.setText(model.getPrice());
             holder.weight.setText(model.getWeight());
 
+            //to display image of item
+            DatabaseReference imageref= FirebaseDatabase.getInstance().getReference("Client").child("c_items").child(model.getName());
+            imageref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.hasChild("url")){
+                        Glide.with(holder.imageView.getContext()).load(model.getUrl()).into(holder.imageView);
+                    }else{
+                        Glide.with(holder.imageView.getContext()).load(R.drawable.ic_baseline_image_24).into(holder.imageView);
+                    }
+                }
 
-            Glide.with(holder.imageView.getContext()).load(model.getUrl()).into(holder.imageView);
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
 
           holder.editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
               @Override
