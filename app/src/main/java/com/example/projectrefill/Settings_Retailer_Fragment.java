@@ -151,6 +151,28 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
             }
         });
 
+        //add profile
+        DatabaseReference pimag=FirebaseDatabase.getInstance().getReference("Retailer").child(retailer_name.getText().toString());
+
+        pimag.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChild("pimageurl")){
+                    String pi=snapshot.child("pimageurl").getValue(String.class);
+                    Glide.with(retailer_profile.getContext()).load(pi).into(retailer_profile);
+                }else {
+                    Glide.with(retailer_profile.getContext()).load(R.drawable.ic_baseline_person_outline_24).into(retailer_profile);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
         //preferences
         preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
@@ -216,26 +238,6 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
             }
         });
 
-        //add profile
-        DatabaseReference pimag=FirebaseDatabase.getInstance().getReference("Retailer").child(retailer_name.getText().toString());
-
-        pimag.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.hasChild("pimageurl")){
-                    String pi=snapshot.child("pimageurl").getValue(String.class);
-                    Glide.with(retailer_profile.getContext()).load(pi).into(retailer_profile);
-                }else {
-                    Glide.with(retailer_profile.getContext()).load(R.drawable.ic_baseline_person_outline_24).into(retailer_profile);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         //Shared preferences
         preferences=this.getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);

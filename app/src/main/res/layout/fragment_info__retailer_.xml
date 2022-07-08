@@ -59,7 +59,6 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_baseline_currency_rupee_24_1"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Amount here"
                 android:textColor="@color/red"
                 android:textSize="18dp"
                 app:layout_constraintEnd_toEndOf="parent"

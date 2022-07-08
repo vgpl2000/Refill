@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
-            android:text=""
             android:id="@+id/texttodispdateforref"
             android:textColor="@color/white"
             android:textSize="25dp"

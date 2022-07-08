@@ -137,7 +137,7 @@
         android:layout_marginBottom="68dp"
         android:indeterminate="true"
         android:indeterminateDrawable="@drawable/progress_bar"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

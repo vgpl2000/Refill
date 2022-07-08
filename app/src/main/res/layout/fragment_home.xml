@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <SearchView
             android:id="@+id/searchView"
             android:layout_width="320dp"
@@ -23,9 +24,9 @@
             android:iconifiedByDefault="false"
             android:queryHint="Search for your Retailer"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
 
         <TextView
             android:id="@+id/textView5"
