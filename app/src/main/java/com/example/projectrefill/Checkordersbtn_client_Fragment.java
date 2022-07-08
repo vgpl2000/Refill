@@ -139,7 +139,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(view.getContext(), "accepting", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(view.getContext(), "Accepting Order...", Toast.LENGTH_SHORT).show();
                         String retailername, itemname, quan;
 
                         Date c = Calendar.getInstance().getTime();
@@ -151,7 +151,8 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                         btndel.setVisibility(View.VISIBLE);
                         btnacp.setVisibility(View.GONE);
-                        btncan.setVisibility(View.GONE);
+
+                        //btncan.setVisibility(View.GONE);
 
                         //To set accepted order state value accepted
 
@@ -221,7 +222,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
 
 
-                                        Toast.makeText(view.getContext(), "Accepted", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(view.getContext(), "Order Accepted", Toast.LENGTH_SHORT).show();
 
                                         DatabaseReference nameset=FirebaseDatabase.getInstance().getReference("Client").child("c_accepted").child(rname);
                                         nameset.child("rname").setValue(rname);
@@ -355,7 +356,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(view.getContext(), "cancelling", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(view.getContext(), "Cancelling Order...", Toast.LENGTH_SHORT).show();
 
                         AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
                         appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
@@ -381,7 +382,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                 top.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
                                     @Override
                                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                                        Toast.makeText(view.getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(view.getContext(), "Order Cancelled", Toast.LENGTH_SHORT).show();
 
 
                                         DatabaseReference nameset=FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(name);
@@ -526,7 +527,6 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                 btndel.setVisibility(View.GONE);
                 databaseReference.child("Client").child("c_orders").child(name).child("order_state").setValue("delivered");
-                Toast.makeText(view.getContext(), "delivered", Toast.LENGTH_SHORT).show();
                 String rname=name;
 
                 DatabaseReference fromp = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
@@ -540,7 +540,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                         top.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
                             @Override
                             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                                Toast.makeText(view.getContext(), "Delivered", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(view.getContext(), "Order Delivery Updated", Toast.LENGTH_SHORT).show();
 
 
                                 DatabaseReference nameset=FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(name);
