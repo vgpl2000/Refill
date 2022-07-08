@@ -44,6 +44,7 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
 
         @Override
         protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull retailer_model_home_recycler_itemdisplaying model) {
+            //set name,price,weight
             holder.name.setText(model.getName());
             holder.price.setText(model.getPrice());
             holder.weight.setText(model.getWeight()+"gms");
