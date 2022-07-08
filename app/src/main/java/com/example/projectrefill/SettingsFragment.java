@@ -142,7 +142,6 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
         fm.popBackStack("add_retailer",FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fm.popBackStack("c_chng_pass",FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fm.popBackStack("add_profile",FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        fm.popBackStack("onrefresh",FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
 
         //check internet
@@ -320,7 +319,7 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
     public void onRefresh() {
 
         FragmentTransaction fr= getFragmentManager().beginTransaction();
-        fr.replace(R.id.settings1,new SettingsFragment()).addToBackStack("onrefresh");
+        fr.replace(R.id.settings1,new SettingsFragment());
         fr.commit();
     }
 }

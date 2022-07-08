@@ -110,7 +110,6 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
         fm.popBackStack("retailer_deli",FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fm.popBackStack("r_changepass",FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fm.popBackStack("add_profile_ret",FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        fm.popBackStack("r_refresh",FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
 
         //check internet
@@ -332,7 +331,8 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
     @Override
     public void onRefresh() {
         FragmentTransaction fr= getFragmentManager().beginTransaction();
-        fr.replace(R.id.settings_retailer,new Settings_Retailer_Fragment()).addToBackStack("r_refresh");
+        fr.replace(R.id.settings_retailer,new Settings_Retailer_Fragment());
         fr.commit();
+
     }
 }
