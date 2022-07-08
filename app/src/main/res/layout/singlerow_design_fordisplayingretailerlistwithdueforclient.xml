@@ -50,7 +50,7 @@
             android:fontFamily="@font/poppins_medium"
             android:text="Name Comes here"
             android:textColor="@color/white"
-            android:textSize="25dp" />
+            android:textSize="20dp" />
 
         <ProgressBar
             android:id="@+id/progressBarakasha"
