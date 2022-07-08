@@ -37,7 +37,6 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
     {
         static Integer a=0;
 
-
         public adapter_retailerside_homepage_itemdisplay(@NonNull FirebaseRecyclerOptions<retailer_model_home_recycler_itemdisplaying> options) {
             super(options);
         }
