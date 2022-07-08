@@ -35,9 +35,11 @@
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/activity_splash_screen.xml" value="0.22" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_cart__retailer_.xml" value="0.18888888888888888" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_change_pswrd_.xml" value="0.17777777777777778" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_change_pswrd_retailer_.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_checkordersbtn_client_.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_client_btnplus_add_item_.xml" value="0.17777777777777778" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_client_itemeditbuttonpressed_fragment.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_clientside_add_retailer_.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_clientside_datebutton_pressed_detaildisp_.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_clientside_transactionpressedbutton_.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_home.xml" value="0.1824074074074074" />
@@ -52,6 +54,7 @@
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_retailer_setting_deliver2_.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_retailer_setting_delivere1_.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_retailerside_datewisetransaction_.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_setting_client_accp3_.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_setting_profilepic_.xml" value="0.18" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings.xml" value="0.1824074074074074" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/fragment_settings__retailer_.xml" value="0.209375" />
@@ -74,6 +77,7 @@
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/singlerow_design_fordisplayingretailerlistwithdueforclient.xml" value="0.2" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/singlerow_design_retailerside_datewise_detailsdisp.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/singlerow_design_transactionbuttonpressed.xml" value="0.209375" />
+        <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/slider_layout.xml" value="0.209375" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/layout/welcome_page.xml" value="0.14" />
         <entry key="..\:/BCA/Project Refill/app/src/main/res/menu/bottom_menu.xml" value="0.17777777777777778" />
         <entry key="..\:/bca final year/androidexam/exam2/Project-Refill/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.246" />

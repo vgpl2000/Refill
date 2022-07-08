@@ -5,6 +5,7 @@
     android:id="@+id/edititemclosefrag"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     android:background="@color/transperant_black"
     android:layout_gravity="center"
     tools:context=".change_pswrd_Fragment">
