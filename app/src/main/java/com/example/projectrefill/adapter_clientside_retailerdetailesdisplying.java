@@ -117,37 +117,42 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
         holder.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (holder.duefield.getText().toString().isEmpty()) {
+                    holder.duefield.setError("Cannot be empty!");
+                } else {
 
-                holder.submit.setVisibility(View.GONE);
-                holder.duefield.clearFocus();
-                //to closekeyboard
-                InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    holder.submit.setVisibility(View.GONE);
+                    holder.duefield.clearFocus();
+                    //to closekeyboard
+                    InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
-                String name1=holder.name.getText().toString();
-                String dueamt=holder.duefield.getText().toString();
+                    String name1 = holder.name.getText().toString();
+                    String dueamt = holder.duefield.getText().toString();
 
 
-                HashMap user=new HashMap();
-                user.put("due_amt",dueamt);
+                    HashMap user = new HashMap();
+                    user.put("due_amt", dueamt);
 
-                //changing due amt in database
-                //FirebaseDatabase db = FirebaseDatabase.getInstance();
-                DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Retailer");
-                databaseReference.child(name1).updateChildren(user).addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public void onComplete(@NonNull Task task) {
+                    //changing due amt in database
+                    //FirebaseDatabase db = FirebaseDatabase.getInstance();
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Retailer");
+                    databaseReference.child(name1).updateChildren(user).addOnCompleteListener(new OnCompleteListener() {
+                        @Override
+                        public void onComplete(@NonNull Task task) {
 
-                        if (task.isSuccessful()){
-                            holder.submit.setVisibility(View.GONE);
+                            if (task.isSuccessful()) {
+                                holder.submit.setVisibility(View.GONE);
 
-                          }else {
-                            Toast.makeText(view.getContext(), "If its big error we will make updates", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(view.getContext(), "If its big error we will make updates", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
+
 
         //when transaction btn is pressed of a particular retailer
 
