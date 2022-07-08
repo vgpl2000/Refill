@@ -40,6 +40,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.internal.ParcelableSparseArray;
@@ -59,6 +60,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<client_model_home_orders,adapter_clientside_order_list.myviewholder> implements Filterable
@@ -95,39 +98,6 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             @Override
             protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull client_model_home_orders model) {
 
-                //to change the state of button after clicking accept,cancel and delivered(loads from database)
-                databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        try {
-                            o_state = snapshot.child("c_orders").child(model.getName()).child("order_state").getValue(String.class);
-                            if (o_state.equals("accepted")) {
-                                holder.btnacp.setVisibility(View.GONE);
-                                holder.btncan.setVisibility(View.GONE);
-                                holder.btndel.setVisibility(View.VISIBLE);
-                            } else if (o_state.equals("cancelled")) {
-                                holder.btncan.setVisibility(View.GONE);
-                                holder.btnacp.setVisibility(View.GONE);
-                                holder.btndel.setVisibility(View.GONE);
-                            } else if (o_state.equals("delivered")) {
-                                holder.btndel.setVisibility(View.GONE);
-                                holder.btncan.setVisibility(View.GONE);
-                                holder.btnacp.setVisibility(View.GONE);
-                            } else if (o_state.equals("")) {
-                                holder.btnacp.setVisibility(View.VISIBLE);
-                                holder.btncan.setVisibility(View.VISIBLE);
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-
-                    }
-                });
 
                 //to set name of retailer when recieved order
                 holder.textView.setText(model.getName());
@@ -142,6 +112,25 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                 //to set payment mode of recieved orders
                 holder.modep.setText(model.getPmode());
                 holder.total.setText(model.getTotal());
+
+                DatabaseReference setprofile=FirebaseDatabase.getInstance().getReference("Retailer").child(model.getName());
+                setprofile.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.hasChild("pimageurl")){
+                            String imageurl=snapshot.child("pimageurl").getValue().toString();
+                            Glide.with(holder.imgprofile.getContext()).load(imageurl).into(holder.imgprofile);
+                        }else{
+                            Glide.with(holder.imgprofile.getContext()).load(R.drawable.ic_baseline_person_outline_24).into(holder.imgprofile);
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
             }
 
@@ -167,6 +156,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
              {
                     Button btnchk,btnacp,btncan,btndel;
                     TextView textView,modep,total;
+                    CircleImageView imgprofile;
 
 
         public myviewholder(@NonNull View itemView) {
@@ -180,32 +170,11 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
             progressBar=itemView.findViewById(R.id.progressBar);
             modep=itemView.findViewById(R.id.pmodeforclient);
             total=itemView.findViewById(R.id.totalamt);
+            imgprofile=itemView.findViewById(R.id.imgprofile);
         }
 
 
 
-    }//code which was used to copy the database records from one branch to the other
-            /*private void c_moveFirebaseRecord(DatabaseReference fromp, final DatabaseReference top) {
-                fromp.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        top.setValue(snapshot.getValue(), new DatabaseReference.CompletionListener() {
-                            @Override
-                            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                                Toast.makeText(, "accepted", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
-
-            }*/
-
+    }
 
         }

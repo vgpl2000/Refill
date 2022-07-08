@@ -162,6 +162,7 @@ public class settings_retailer_profile_pic_test_activity extends AppCompatActivi
                                     DatabaseReference pi = FirebaseDatabase.getInstance().getReference("Retailer").child(name1);
                                     pi.child("pimageurl").setValue(uri.toString());
 
+
                                 }
                             });
                         }
