@@ -387,7 +387,6 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                             public void run() {
 
 
-
                                                 firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token3,"Refill","Dear "+rname+" your order has been cancelled!","cancelled", getContext(),getActivity());
                                                 notificationsender2.sendnotifications();
 
@@ -412,14 +411,8 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                             }
                                         });
 
-
-
-
                                         DatabaseReference frmtode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname);
                                         frmtode.removeValue();
-
-
-
 
 
                                     }
@@ -445,7 +438,6 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                         DatabaseReference addref=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_cancelled").child(formattedDate1);
                                         addref.child("date").setValue(formattedDate1);
-
 
 
                                     }
@@ -477,8 +469,6 @@ public class Checkordersbtn_client_Fragment extends Fragment {
         btndel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
 
                 btndel.setVisibility(View.GONE);
                 databaseReference.child("Client").child("c_orders").child(name).child("order_state").setValue("delivered");
