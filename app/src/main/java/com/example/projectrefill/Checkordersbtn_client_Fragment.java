@@ -206,8 +206,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
 
 
-                                        //notification testing
-
+                                        //notification process
                                         SharedPreferences preferences;
                                         preferences = view.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
                                         String username=preferences.getString("username","");
@@ -248,7 +247,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
-                                Toast.makeText(view.getContext(), "Error accepting", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(view.getContext(), "Error while accepting", Toast.LENGTH_SHORT).show();
                             }
                         });
 

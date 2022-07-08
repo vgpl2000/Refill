@@ -1,7 +1,13 @@
 package com.example.projectrefill;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -54,14 +60,6 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
         holder.name.setText(model.getName());
 
 
-
-       /* if(img.isEmpty()){
-            Glide.with(holder.imgprofile.getContext()).load(R.drawable.ic_baseline_person_outline_24).into(holder.imgprofile);
-        }else{
-            Glide.with(holder.imgprofile.getContext()).load(model.getPimageurl()).into(holder.imgprofile);
-        }
-*/
-
             String name2=holder.name.getText().toString();
             //check that retailer is blocked or not to display switch
             databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -113,6 +111,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
                 holder.submit.setVisibility(View.VISIBLE);
             }
         });
+
         //on submitting new due_amt by client
         holder.submit.setOnClickListener(new View.OnClickListener() {
             @Override
