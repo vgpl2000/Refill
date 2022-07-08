@@ -58,7 +58,7 @@
             android:layout_marginTop="136dp"
             android:background="@drawable/entry_field_white"
             android:padding="2dip"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_person_outline_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

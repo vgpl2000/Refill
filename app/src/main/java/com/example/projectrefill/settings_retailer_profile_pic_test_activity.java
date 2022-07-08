@@ -17,11 +17,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -62,6 +66,31 @@ public class settings_retailer_profile_pic_test_activity extends AppCompatActivi
 
 
         profile1=findViewById(R.id.imageViewfrprofilepic);
+
+        //add profile
+        DatabaseReference pimag=FirebaseDatabase.getInstance().getReference("Retailer").child(name1);
+
+        pimag.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChild("pimageurl")){
+                    chng_image.setText("Update Profile Image");
+                    String pi=snapshot.child("pimageurl").getValue(String.class);
+                    Glide.with(profile1.getContext()).load(pi).into(profile1);
+
+                }else {
+                    chng_image.setText("Add Profile Image");
+                    Glide.with(profile1.getContext()).load(R.drawable.ic_baseline_person_outline_24).into(profile1);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         profile1.setOnClickListener(new View.OnClickListener() {
             @Override

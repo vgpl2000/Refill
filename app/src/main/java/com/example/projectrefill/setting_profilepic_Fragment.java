@@ -19,11 +19,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -89,6 +93,30 @@ public class setting_profilepic_Fragment extends Fragment {
 
 
         profile=v.findViewById(R.id.imageViewfrprofilepic);
+
+        //setting profile
+        DatabaseReference pimag=FirebaseDatabase.getInstance().getReference("Client").child("akashadeepa");
+
+        pimag.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChild("pimageurl")){
+                    chng_image.setText("Update Profile Image");
+                    String pi=snapshot.child("pimageurl").getValue(String.class);
+                    Glide.with(profile.getContext()).load(pi).into(profile);
+                }else {
+                    chng_image.setText("Update Profile Image");
+                    Glide.with(profile.getContext()).load(R.drawable.ic_baseline_person_outline_24).into(profile);
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override

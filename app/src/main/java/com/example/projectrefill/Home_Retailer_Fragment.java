@@ -122,7 +122,7 @@ public class Home_Retailer_Fragment extends Fragment {
                 if(state.equals("blocked")){
                     editor.putString("state","blocked");
                     editor.commit();
-                    Toast toast=Toast.makeText(getActivity(),name1+ "can't use Refill right now!", Toast.LENGTH_SHORT);
+                    Toast toast=Toast.makeText(getActivity(),name1+ " can't use Refill right now!", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                     Intent intent=new Intent(getActivity(),MainActivity.class);
