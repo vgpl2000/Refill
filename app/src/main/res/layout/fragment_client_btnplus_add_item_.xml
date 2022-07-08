@@ -56,7 +56,7 @@
             android:background="@drawable/entry_fields"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
-            android:hint="Enter Item Weight"
+            android:hint="Enter Item Weight(gms)"
             android:inputType="number"
             android:paddingLeft="8dp"
             android:paddingRight="10dp"

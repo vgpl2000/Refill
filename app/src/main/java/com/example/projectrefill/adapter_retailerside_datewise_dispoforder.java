@@ -24,7 +24,7 @@ public class adapter_retailerside_datewise_dispoforder extends FirebaseRecyclerA
       holder.price.setText("Price: "+model.getPrice());
       holder.quan.setText("Quan: "+model.getQuan());
       holder.totprice.setText(model.getTotalamount());
-      holder.weight.setText("Weight: "+model.getWeight());
+      holder.weight.setText("Weight(gms): "+model.getWeight());
 
 
     }

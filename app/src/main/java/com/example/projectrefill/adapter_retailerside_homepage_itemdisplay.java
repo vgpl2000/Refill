@@ -46,7 +46,7 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
         protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull retailer_model_home_recycler_itemdisplaying model) {
             holder.name.setText(model.getName());
             holder.price.setText(model.getPrice());
-            holder.weight.setText(model.getWeight());
+            holder.weight.setText(model.getWeight()+"gms");
 
             //to display image of item
             DatabaseReference imageref= FirebaseDatabase.getInstance().getReference("Client").child("c_items").child(model.getName());

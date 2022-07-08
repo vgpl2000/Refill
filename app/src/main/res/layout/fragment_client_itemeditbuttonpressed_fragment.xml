@@ -90,7 +90,7 @@
             android:background="@drawable/entry_fields"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
-            android:hint="Enter New Weight"
+            android:hint="Enter New Weight(gms)"
             android:inputType="number"
             android:padding="10dp"
             android:textSize="18dp"

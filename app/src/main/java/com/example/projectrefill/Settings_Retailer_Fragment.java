@@ -257,8 +257,8 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
             public void onClick(View view) {
 
                 AlertDialog.Builder builder= new AlertDialog.Builder(view.getContext());
-                builder.setTitle("Logging out...");
-                builder.setMessage("Do you remember your password? Are you sure you want to logout?");
+                builder.setTitle("Refill");
+                builder.setMessage("Are you sure you want to logout?");
                 builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
