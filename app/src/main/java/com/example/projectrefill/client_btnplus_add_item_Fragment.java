@@ -123,7 +123,7 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
                 ProgressDialog dialog = new ProgressDialog(getActivity());
 
-                dialog.setTitle("File uploader");
+                dialog.setTitle("Image Uploading...");
                 dialog.show();
 
 
@@ -134,9 +134,6 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                     i_weight.setError("Weight cannot be empty");
                     dialog.dismiss();
                 }else {
-
-
-                    System.out.println("Else part!");
 
                     if(imageuri==null){
                         Toast.makeText(getContext(), "Image not selected", Toast.LENGTH_SHORT).show();
