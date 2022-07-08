@@ -384,7 +384,6 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                                         Toast.makeText(view.getContext(), "Order Cancelled", Toast.LENGTH_SHORT).show();
 
-
                                         DatabaseReference nameset=FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(name);
                                         nameset.child("rname").setValue(name);
 
@@ -431,7 +430,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                             @Override
                                             public void run() {
 
-                                                System.out.println("inside postdelay");
+
 
                                                 firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token3,"Refill","Dear "+rname+" your order has been cancelled!","cancelled", getContext(),getActivity());
                                                 notificationsender2.sendnotifications();
