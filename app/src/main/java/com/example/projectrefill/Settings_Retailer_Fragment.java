@@ -2,7 +2,9 @@ package com.example.projectrefill;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -254,16 +256,32 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
             @Override
             public void onClick(View view) {
 
-                Toast toast=Toast.makeText(getActivity(), "Logged out!", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                toast.show();
+                AlertDialog.Builder builder= new AlertDialog.Builder(view.getContext());
+                builder.setTitle("Logging out...");
+                builder.setMessage("Do you remember your password? Are you sure you want to logout?");
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                editor.clear();
-                editor.commit();
+                    }
+                });
+                builder.setPositiveButton("LOGOUT", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast toast=Toast.makeText(getActivity(), "Logged out!", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                        toast.show();
 
-                Intent intent=new Intent(getActivity(),MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                        editor.clear();
+                        editor.commit();
+
+                        Intent intent=new Intent(getActivity(),MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                });
+                builder.show();
+
             }
         });
 
