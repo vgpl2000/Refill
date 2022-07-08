@@ -304,6 +304,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
         btncan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String rname=name;
 
 
                 android.app.AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
@@ -313,6 +314,43 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(view.getContext(), "Cancelling Order...", Toast.LENGTH_SHORT).show();
+
+
+                        //noti
+                        SharedPreferences preferences;
+                        preferences = view.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                        String orderId=preferences.getString("username","");
+                        String owner="akashadeepa";
+
+
+                        FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                token3=snapshot.getValue(String.class);
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+
+                                firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token3,"Refill","Dear "+rname+" your order has been cancelled!","accepted", getContext(),getActivity());
+                                notificationsender2.sendnotifications();
+
+
+                            }
+                        },1000);
+
+
+
 
                         AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
                         appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2, new HomeFragment()).addToBackStack(null).commit();
@@ -325,7 +363,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                         databaseReference.child("Client").child("c_orders").child(name).child("order_state").setValue("cancelled");
 
 
-                        String rname=name;
+
 
                         DatabaseReference fromp = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
 
@@ -362,37 +400,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                             }
                                         });
 
-                                        SharedPreferences preferences;
-                                        preferences = view.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
-                                        String orderId=preferences.getString("username","");
-                                        String owner="akashadeepa";
 
-
-                                        FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                token3=snapshot.getValue(String.class);
-
-                                            }
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError error) {
-
-                                            }
-                                        });
-
-                                        Handler handler=new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            @Override
-                                            public void run() {
-
-
-                                                firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token3,"Refill","Dear "+rname+" your order has been cancelled!","cancelled", getContext(),getActivity());
-                                                notificationsender2.sendnotifications();
-
-
-                                            }
-                                        },1000);
 
 
                                         DatabaseReference addref=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_cancelled").child(formattedDate1);
@@ -414,7 +422,6 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                         DatabaseReference frmtode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname);
                                         frmtode.removeValue();
 
-
                                     }
                                 });
                             }
@@ -424,6 +431,9 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                 Toast.makeText(view.getContext(), "Error cancelling", Toast.LENGTH_SHORT).show();
                             }
                         });
+
+
+
 
                         DatabaseReference fromforretailer2 = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
 
@@ -577,7 +587,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                         System.out.println("inside postdelay");
 
-                                        firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token4,"Refill","Dear "+rname+" your order has been delivered!","delivered", getContext(),getActivity());
+                                        firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token4,"Refill","Dear "+rname+" your order has been delivered!","accepted", getContext(),getActivity());
                                         notificationsender2.sendnotifications();
 
 
