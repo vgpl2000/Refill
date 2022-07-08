@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -32,7 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class Settings_Retailer_Fragment extends Fragment {
+public class Settings_Retailer_Fragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -48,6 +49,7 @@ public class Settings_Retailer_Fragment extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getInstance().getReference();
     Button accp,can,delivered;
+    SwipeRefreshLayout swipeLayout;
 
 
 
@@ -98,6 +100,8 @@ public class Settings_Retailer_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_settings__retailer_, container, false);
 
+        swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipe_container1);
+        swipeLayout.setOnRefreshListener(this);
 
         //clear backstack
         FragmentManager fm=getFragmentManager();
@@ -319,6 +323,15 @@ public class Settings_Retailer_Fragment extends Fragment {
 
 
 
+
+
         return v;
+    }
+
+    @Override
+    public void onRefresh() {
+        FragmentTransaction fr= getFragmentManager().beginTransaction();
+        fr.replace(R.id.settings_retailer,new Settings_Retailer_Fragment()).addToBackStack(null);
+        fr.commit();
     }
 }

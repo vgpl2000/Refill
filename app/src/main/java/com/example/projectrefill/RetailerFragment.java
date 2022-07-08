@@ -37,6 +37,7 @@ public class RetailerFragment extends Fragment {
     SearchView searchView;
     adapter_clientside_retailerdetailesdisplying adapter;
     TextView noresult;
+    ProgressBar progressBar;
 
 
     protected boolean isNetworkConnected() {
@@ -94,6 +95,7 @@ public class RetailerFragment extends Fragment {
 
         searchView=v.findViewById(R.id.searchViewforretailerlist);
         noresult=v.findViewById(R.id.textviewfornosearchresult3);
+        progressBar=v.findViewById(R.id.progressbar1);
 
         recyclerView=v.findViewById(R.id.recyclerviewtodispretailerlist);
         recyclerView.setLayoutManager(new RetailerFragment.CustomLinearLayoutManager1(getContext()));
@@ -113,7 +115,7 @@ public class RetailerFragment extends Fragment {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-
+                progressBar.setVisibility(View.GONE);
                 noresult.setVisibility(View.INVISIBLE);
                 super.onScrolled(recyclerView, dx, dy);
             }

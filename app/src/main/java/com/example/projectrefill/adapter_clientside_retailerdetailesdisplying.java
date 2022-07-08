@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +33,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecyclerAdapter<client_model_fordisplayingretailerstoupdatedue,adapter_clientside_retailerdetailesdisplying.myviewholder> {
     //declaration of database to display retailers
@@ -49,6 +53,16 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
         holder.duefield.setText(model.getDue_amt());
         holder.name.setText(model.getName());
 
+
+
+       /* if(img.isEmpty()){
+            Glide.with(holder.imgprofile.getContext()).load(R.drawable.ic_baseline_person_outline_24).into(holder.imgprofile);
+        }else{
+            Glide.with(holder.imgprofile.getContext()).load(model.getPimageurl()).into(holder.imgprofile);
+        }
+*/
+
+            String name2=holder.name.getText().toString();
             //check that retailer is blocked or not to display switch
             databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -63,6 +77,25 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
 
                     }else if(state.equals("notblocked")){
                         holder.switchCompat.setChecked(false);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
+            //setting profile
+            DatabaseReference profile=FirebaseDatabase.getInstance().getReference("Retailer");
+            profile.child(name2).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.hasChild("pimageurl")){
+                        Glide.with(holder.imgprofile.getContext()).load(model.getPimageurl()).into(holder.imgprofile);
+                    }else{
+                        Glide.with(holder.imgprofile.getContext()).load(R.drawable.ic_baseline_person_outline_24).into(holder.imgprofile);
                     }
                 }
 
@@ -198,6 +231,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
         EditText duefield;
         SwitchCompat switchCompat;
         ProgressBar progressBar;
+        CircleImageView imgprofile;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -207,6 +241,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             duefield=itemView.findViewById(R.id.edittexttoeditdueamount);
             switchCompat=itemView.findViewById(R.id.switchview);
             progressBar=itemView.findViewById(R.id.progressBarakasha);
+            imgprofile=itemView.findViewById(R.id.imgprofile);
 
 
         }

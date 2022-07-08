@@ -16,6 +16,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -87,6 +88,7 @@ public class Cart_Retailer_Fragment extends Fragment {
     Button placeorder;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     retailer_model_placeorder_pressed model=null;
+    TextView nocartitems;
     Integer ftot=0;
     TextView totalamounthere;
     RadioGroup radioGroup;
@@ -134,6 +136,8 @@ public class Cart_Retailer_Fragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_cart__retailer_, container, false);
 
+
+        nocartitems=v.findViewById(R.id.nocartitems);
         //check internet
         if(!isNetworkConnected()){
             Intent intent = new Intent(getActivity().getApplication(), no_internet_retailer.class);
@@ -141,6 +145,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
         }
 
+        //recives total amount from adapter thorugh braodcasting
         totalamounthere = v.findViewById(R.id.totalamountcomeshere);
             LocalBroadcastManager.getInstance(v.getContext())
                     .registerReceiver(msgbrdrec, new IntentFilter("mytotamt"));
@@ -200,14 +205,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
 
 
-        //on scrolled recycler
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
 
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });
 
         placeorder = v.findViewById(R.id.buttontoplaceorder);
 
@@ -388,6 +386,14 @@ public class Cart_Retailer_Fragment extends Fragment {
             int totalofall=intent.getIntExtra("totalamount",0);
         String newtot=Integer.toString(totalofall);
         totalamounthere.setText(newtot);
+
+
+            //visibility of no cart items text
+            if (totalamounthere.getText().toString().equals("0")) {
+                nocartitems.setVisibility(View.VISIBLE);
+            }else{
+                nocartitems.setVisibility(View.GONE);
+            }
 
         }
     };

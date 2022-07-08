@@ -8,7 +8,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardUseCompatPadding="true">
 
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:elevation="100dp">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgprofile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="100dp"
+        android:src="@drawable/ic_baseline_person_outline_24"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/white"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
     <RelativeLayout
+        android:id="@+id/rell"
         android:layout_width="match_parent"
         android:background="@drawable/entry_field_white"
         android:layout_height="wrap_content"
@@ -17,8 +41,11 @@
 
         <TextView
             android:id="@+id/retailer_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_toLeftOf="@+id/switchview"
+            android:layout_toEndOf="@+id/progressBarakasha"
             android:fontFamily="@font/poppins_medium"
             android:text="Name Comes here"
             android:textColor="@color/white"
@@ -28,7 +55,7 @@
             android:id="@+id/progressBarakasha"
             style="?android:attr/progressBarStyle"
             android:layout_width="28dp"
-            android:layout_height="31dp"
+            android:layout_height="28dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="114dp"
             android:indeterminate="true"
@@ -65,12 +92,12 @@
             android:padding="5dp">
 
             <Button
+                android:id="@+id/buttontoopentransactions"
                 android:layout_width="120dp"
                 android:layout_height="35dp"
                 android:background="@drawable/background_button"
                 android:fontFamily="@font/poppins_medium"
                 android:text="All Orders"
-                android:id="@+id/buttontoopentransactions"
                 android:textColor="@color/black" />
 
             <TextView
@@ -83,31 +110,31 @@
                 android:textSize="18dp" />
 
             <EditText
+                android:id="@+id/edittexttoeditdueamount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:text="0"
-                android:drawableLeft="@drawable/ic_baseline_currency_rupee_24"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
                 android:background="@drawable/entry_field_white"
+                android:drawableLeft="@drawable/ic_baseline_currency_rupee_24"
+                android:fontFamily="@font/poppins_medium"
                 android:inputType="number"
-                android:id="@+id/edittexttoeditdueamount"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="5dp"
+                android:text="0"
                 android:textColor="@color/white"
-                android:textSize="18dp"/>
+                android:textSize="18dp" />
 
             <Button
+                android:id="@+id/buttontosubmitdue"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:text="Submit"
-                android:fontFamily="@font/poppins_medium"
-                android:textSize="15dp"
-                android:id="@+id/buttontosubmitdue"
                 android:layout_marginLeft="15dp"
-                android:visibility="gone"
-                android:background="@drawable/entry_fields"/>
+                android:background="@drawable/entry_fields"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Submit"
+                android:textSize="15dp"
+                android:visibility="gone" />
 
 
         </LinearLayout>

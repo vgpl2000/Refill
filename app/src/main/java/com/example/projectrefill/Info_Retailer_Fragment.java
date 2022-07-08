@@ -46,6 +46,7 @@ public class Info_Retailer_Fragment extends Fragment {
     TextView dueamount;
     RecyclerView recyclerView;
     adapter_retailerside_datedisplay adapter;
+    ProgressBar progressBar;
 
 
     protected boolean isNetworkConnected() {
@@ -91,6 +92,8 @@ public class Info_Retailer_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_info__retailer_, container, false);
+
+        progressBar=v.findViewById(R.id.progressbar1);
 
         //check internet
         if(!isNetworkConnected()){
@@ -179,6 +182,7 @@ public class Info_Retailer_Fragment extends Fragment {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                progressBar.setVisibility(View.GONE);
 
                 super.onScrolled(recyclerView, dx, dy);
             }

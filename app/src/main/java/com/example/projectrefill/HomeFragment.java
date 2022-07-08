@@ -64,6 +64,7 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView1;
     adapter_clientside_order_list adapter;
     SearchView searchView;
+    TextView noorders;
 
     TextView noresult;
 
@@ -126,6 +127,7 @@ public class HomeFragment extends Fragment {
         noresult=v.findViewById(R.id.textviewfornosearchresult2);
         //To search
         searchView=v.findViewById(R.id.searchView);
+        noorders=v.findViewById(R.id.textviewfornoorders);
 
 
         recyclerView1=(RecyclerView) v.findViewById(R.id.recyclerView);
@@ -145,6 +147,7 @@ public class HomeFragment extends Fragment {
         recyclerView1.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                noorders.setVisibility(View.GONE);
 
                 noresult.setVisibility(View.INVISIBLE);
                 super.onScrolled(recyclerView, dx, dy);

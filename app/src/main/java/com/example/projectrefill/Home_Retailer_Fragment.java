@@ -47,6 +47,7 @@ public class Home_Retailer_Fragment extends Fragment {
     DatabaseReference databaseReference = database.getInstance().getReference();
     adapter_retailerside_homepage_itemdisplay adapter;
     SearchView searchView;
+    ProgressBar progressBar;
 
     TextView noresult;
 
@@ -103,7 +104,7 @@ public class Home_Retailer_Fragment extends Fragment {
 
         noresult=v.findViewById(R.id.textviewfornosearchresultrt1);
         noresult.setVisibility(View.INVISIBLE);
-
+        progressBar=v.findViewById(R.id.progressbar1);
         searchView=v.findViewById(R.id.searchViewrthome);
 
 
@@ -160,7 +161,7 @@ public class Home_Retailer_Fragment extends Fragment {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-
+                progressBar.setVisibility(View.GONE);
                 noresult.setVisibility(View.INVISIBLE);
                 super.onScrolled(recyclerView, dx, dy);
             }

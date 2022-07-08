@@ -39,6 +39,7 @@ public class ItemFragment extends Fragment {
     adapter_clientside_itemdisplaying adapter;
     SearchView searchView;
     TextView nosearch;
+    ProgressBar progressBar;
 
 
 
@@ -76,6 +77,7 @@ public class ItemFragment extends Fragment {
         }
 
         nosearch=v.findViewById(R.id.textviewfornosearchresult);
+        progressBar=v.findViewById(R.id.progressbar1);
 
         recyclerViewforitemdisplay=v.findViewById(R.id.recyclerView_items);
         recyclerViewforitemdisplay.setLayoutManager(new CustomLinearLayoutManager(getContext()));
@@ -91,6 +93,7 @@ public class ItemFragment extends Fragment {
         recyclerViewforitemdisplay.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                progressBar.setVisibility(View.GONE);
                 nosearch.setVisibility(View.INVISIBLE);
                 super.onScrolled(recyclerView, dx, dy);
             }
