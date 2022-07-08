@@ -48,6 +48,7 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
     String date;
     TextView dateval;
     RecyclerView recyclerView;
+    ProgressBar progressBar;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getInstance().getReference();
@@ -85,6 +86,8 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_retailerside_datewisetransaction_, container, false);
 
+
+        progressBar= view.findViewById(R.id.progressbar1);
         SharedPreferences preferences;
         SharedPreferences.Editor editor;
         preferences = getActivity().getSharedPreferences("MyPreferences",MODE_PRIVATE);
@@ -146,7 +149,7 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-
+                        progressBar.setVisibility(View.GONE);
                     super.onScrolled(recyclerView, dx, dy);
                 }
             });

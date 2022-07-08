@@ -3,6 +3,7 @@ package com.example.projectrefill;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -28,6 +30,7 @@ public class clientside_datebutton_pressed_detaildisp_Fragment extends Fragment 
     String date;
     String nameforretailer;
     adapter_clientside_ultimate_displaying_retailerinfo adapter;
+
 
 
 
@@ -65,11 +68,22 @@ public class clientside_datebutton_pressed_detaildisp_Fragment extends Fragment 
         // Inflate the layout for this fragment
        View view= inflater.inflate(R.layout.fragment_clientside_datebutton_pressed_detaildisp_, container, false);
 
+
+
         recyclerView4=(RecyclerView) view.findViewById(R.id.recyclerViewdatewisedipofdetailsfrc);
         recyclerView4.setLayoutManager(new CustomLinearLayoutManager1(getContext()));
         TextView datedisp=view.findViewById(R.id.texttodispdateforreffrc);
 
         datedisp.setText(date);
+        ProgressBar progressBar;
+        progressBar=view.findViewById(R.id.progressbar1);
+        recyclerView4.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                progressBar.setVisibility(View.GONE);
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
 
 
         //TextView nameofuser=view.findViewById(R.id.itshouldnotbevisibleatanycost);
