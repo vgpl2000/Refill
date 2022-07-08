@@ -113,7 +113,7 @@ public class adapter_clientside_order_list extends FirebaseRecyclerAdapter<clien
                 holder.modep.setText(model.getPmode());
                 holder.total.setText(model.getTotal());
 
-                DatabaseReference setprofile=FirebaseDatabase.getInstance().getReference("Retailer").child(model.getName());
+                DatabaseReference setprofile=FirebaseDatabase.getInstance().getReference("Retailer").child(holder.textView.getText().toString());
                 setprofile.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
