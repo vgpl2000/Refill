@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,7 @@ import com.example.projectrefill.databinding.ActivityClientBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.errorprone.annotations.Var;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -43,6 +45,11 @@ Context context;
                 Intent intent = new Intent(client_activity.this, no_internet_client.class);
                 startActivity(intent);
             }
+
+
+        //logged in sets in database
+        DatabaseReference logstatus=FirebaseDatabase.getInstance().getReference("Client").child("akashadeepa");
+            logstatus.child("logstatus").setValue("loggedin");
 
 
         FirebaseMessaging.getInstance().getToken()

@@ -76,9 +76,10 @@ public class MainActivity extends AppCompatActivity {
             if (resText.equals("akashadeepa")) {
                 Intent intent = new Intent(MainActivity.this, client_activity.class);
                 startActivity(intent);
+
             } else {
                 if (preferences.getString("state", "").equals("blocked")) {
-
+                    Toast.makeText(this, resText+" can't use Refill right now!", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(MainActivity.this, retailer_activity.class);
                     startActivity(intent);
@@ -129,19 +130,48 @@ public class MainActivity extends AppCompatActivity {
 
                                     if (ePassword.equals(getPassword)) {
 
-                                        //save to shared preferences
 
-                                        editor.putString("username", eUser);
-                                        editor.putString("password", ePassword);
-                                        editor.commit();
+                                        //check logged in or not in other devices
+                                        DatabaseReference checkref=FirebaseDatabase.getInstance().getReference("Client").child("akashadeepa");
+                                        checkref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                String logstatus=snapshot.child("logstatus").getValue(String.class);
+                                                if(logstatus.equals("loggedout")){
+                                                    
+                                                    //logs in
+                                                    Toast toast = Toast.makeText(MainActivity.this, "Welcome Akashadeepa...", Toast.LENGTH_SHORT);
+                                                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                                    toast.show();
+                                                    Intent intent = new Intent(MainActivity.this, client_activity.class);
+                                                    startActivity(intent);
+
+                                                    //save to shared preferences
+
+                                                    editor.putString("username", eUser);
+                                                    editor.putString("password", ePassword);
+                                                    editor.commit();
 
 
-                                        Toast toast = Toast.makeText(MainActivity.this, "Welcome Akashadeepa...", Toast.LENGTH_SHORT);
-                                        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                                        toast.show();
-                                        Intent intent = new Intent(MainActivity.this, client_activity.class);
-                                        startActivity(intent);
-                                        progressBar.setVisibility(View.GONE);
+                                                    progressBar.setVisibility(View.GONE);
+                                                    
+                                                }else if(logstatus.equals("loggedin")){
+                                                    Toast toast = Toast.makeText(MainActivity.this, "User can only log in from one device. Please log out from other device!", Toast.LENGTH_LONG);
+                                                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                                    toast.show();
+                                                    progressBar.setVisibility(View.GONE);
+
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
+
+                                       
                                     } else {
                                         txtPassword.setError("Credentials do not match");
                                         progressBar.setVisibility(View.GONE);
@@ -180,15 +210,44 @@ public class MainActivity extends AppCompatActivity {
                                         Toast toast = Toast.makeText(MainActivity.this, eUser + " Logging In...", Toast.LENGTH_SHORT);
                                         toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                                         toast.show();
-                                        //shared preferences
-                                        editor.putString("username", eUser);
-                                        editor.putString("password", ePassword);
-                                        editor.commit();
+
 
                                         progressBar.setVisibility(View.GONE);
                                         if (state.equals("notblocked")) {
-                                            Intent intent = new Intent(MainActivity.this, retailer_activity.class);
-                                            startActivity(intent);
+
+
+                                            //check already logged in or not
+                                            DatabaseReference logstatus=FirebaseDatabase.getInstance().getReference("Retailer").child(eUser);
+                                            logstatus.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    String logstat = snapshot.child("logstatus").getValue(String.class);
+                                                    if (logstat.equals("loggedin")) {
+                                                        Toast toast = Toast.makeText(MainActivity.this, "User can only log in from one device. Please log out from other device!", Toast.LENGTH_LONG);
+                                                        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                                        toast.show();
+
+                                                    } else if (logstat.equals("loggedout")) {
+
+                                                        //shared preferences
+                                                        editor.putString("username", eUser);
+                                                        editor.putString("password", ePassword);
+                                                        editor.commit();
+
+                                                        Intent intent = new Intent(MainActivity.this, retailer_activity.class);
+                                                        startActivity(intent);
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+
+
+
+
+
                                         } else {
                                             Toast toast1 = Toast.makeText(MainActivity.this, eUser + " can't use Refill right now!", Toast.LENGTH_LONG);
                                             toast1.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);

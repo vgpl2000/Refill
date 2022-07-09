@@ -249,6 +249,9 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
                         editor.clear();
                         editor.commit();
 
+                        //to set log status in database
+                        DatabaseReference logref=FirebaseDatabase.getInstance().getReference("Client").child("akashadeepa");
+                        logref.child("logstatus").setValue("loggedout");
 
                         Intent intent=new Intent(getActivity(),MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -316,38 +316,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                         Toast.makeText(view.getContext(), "Cancelling Order...", Toast.LENGTH_SHORT).show();
 
 
-                        //noti
-                        SharedPreferences preferences;
-                        preferences = view.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
-                        String orderId=preferences.getString("username","");
-                        String owner="akashadeepa";
 
-
-                        FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                token3=snapshot.getValue(String.class);
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-
-                        Handler handler=new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-
-
-                                firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token3,"Refill","Dear "+rname+" your order has been cancelled!","accepted", getContext(),getActivity());
-                                notificationsender2.sendnotifications();
-
-
-                            }
-                        },1000);
 
 
 
@@ -377,6 +346,40 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                     @Override
                                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                                         Toast.makeText(view.getContext(), "Order Cancelled", Toast.LENGTH_SHORT).show();
+
+                                        //noti
+                                        SharedPreferences preferences;
+                                        preferences = view.getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                                        String orderId=preferences.getString("username","");
+                                        String owner="akashadeepa";
+
+
+                                        FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                token3=snapshot.getValue(String.class);
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
+                                        Handler handler=new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+
+                                                firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token3,"Refill","Dear "+rname+" your order has been cancelled!","cancelled", getContext(),getActivity());
+                                                notificationsender2.sendnotifications();
+
+
+                                            }
+                                        },1000);
+
 
                                         DatabaseReference nameset=FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(name);
                                         nameset.child("rname").setValue(name);
@@ -544,6 +547,35 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                 Toast.makeText(view.getContext(), "Order Delivery Updated", Toast.LENGTH_SHORT).show();
 
 
+                                //noti
+                                FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        token4=snapshot.getValue(String.class);
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
+                                Handler handler=new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        System.out.println("inside postdelay");
+
+                                        firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token4,"Refill","Dear "+rname+" your order has been delivered!","delivered", getContext(),getActivity());
+                                        notificationsender2.sendnotifications();
+
+
+                                    }
+                                },1000);
+
+
                                 DatabaseReference nameset=FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(name);
                                 nameset.child("rname").setValue(name);
 
@@ -567,32 +599,6 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                 });
 
 
-                                FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        token4=snapshot.getValue(String.class);
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-
-                                Handler handler=new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-
-                                        System.out.println("inside postdelay");
-
-                                        firebasenotificationsendertesting notificationsender2=new firebasenotificationsendertesting(token4,"Refill","Dear "+rname+" your order has been delivered!","accepted", getContext(),getActivity());
-                                        notificationsender2.sendnotifications();
-
-
-                                    }
-                                },1000);
 
 
 

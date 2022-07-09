@@ -275,6 +275,10 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
                         editor.clear();
                         editor.commit();
 
+                        //to set log status in database
+                        DatabaseReference logref=FirebaseDatabase.getInstance().getReference("Retailer").child(retailer_name.getText().toString());
+                        logref.child("logstatus").setValue("loggedout");
+
                         Intent intent=new Intent(getActivity(),MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
