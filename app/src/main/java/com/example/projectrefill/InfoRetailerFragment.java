@@ -138,6 +138,9 @@ public class InfoRetailerFragment extends Fragment {
                                             Toast.makeText(getContext(), "Thanks for the feedback!", Toast.LENGTH_SHORT).show();
                                             ratingref.child(r_name).setValue(v);
                                         }
+
+                                    }else{
+                                        ratingref.child(r_name).setValue(v);
                                     }
                                 }
 
