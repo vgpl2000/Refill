@@ -97,7 +97,7 @@ public class InfoRetailerFragment extends Fragment {
         setrate.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.hasChild("Ratings")){
+                if(snapshot.child("Ratings").hasChild(r_name)){
                     //if has ratings, then set it
                     setrate.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
