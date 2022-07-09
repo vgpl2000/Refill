@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
@@ -31,6 +32,7 @@ public class settings_client_accp1_Fragment extends Fragment {
     private String mParam2;
     RecyclerView recyclerView;
     adapter_client_setting_accp1 adapter;
+
 
 
     public settings_client_accp1_Fragment() {
@@ -66,6 +68,7 @@ public class settings_client_accp1_Fragment extends Fragment {
         progressBar=v.findViewById(R.id.progressbar1);
         recyclerView=v.findViewById(R.id.recyclerViewtodispdateinaccp1);
 
+
         LinearLayoutManager linearLayoutManager=new CustomLinearLayoutManager1(getContext());
         //linearLayoutManager.setReverseLayout(false);
         linearLayoutManager.setStackFromEnd(true);
@@ -78,6 +81,7 @@ public class settings_client_accp1_Fragment extends Fragment {
                         .build();
 
         adapter=new adapter_client_setting_accp1(options);
+
 
 
         recyclerView.setAdapter(adapter);
@@ -115,4 +119,5 @@ public class settings_client_accp1_Fragment extends Fragment {
             return false;
         }
     }
+
 }

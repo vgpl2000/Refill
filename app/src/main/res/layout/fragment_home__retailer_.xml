@@ -48,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/poppins_medium"
+            android:paddingLeft="10dp"
             android:text="Add Items to Cart"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"

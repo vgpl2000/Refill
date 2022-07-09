@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
@@ -89,6 +90,11 @@ public class retailer_setting_can1_Fragment extends Fragment {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+
+                TextView noresult;
+                noresult=v.findViewById(R.id.textviewfornosearchresult);
+                noresult.setVisibility(View.GONE);
+
                 progressBar.setVisibility(View.GONE);
                 super.onScrolled(recyclerView, dx, dy);
             }

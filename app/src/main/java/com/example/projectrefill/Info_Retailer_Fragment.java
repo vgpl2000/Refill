@@ -184,6 +184,10 @@ public class Info_Retailer_Fragment extends Fragment {
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 progressBar.setVisibility(View.GONE);
 
+                TextView noresult;
+                noresult=v.findViewById(R.id.textviewfornosearchresult);
+                noresult.setVisibility(View.GONE);
+
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
