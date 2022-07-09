@@ -19,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -111,9 +112,44 @@ public class InfoRetailerFragment extends Fragment {
 
                         }
                     });
-                }else{
-                    ratingbar.setRating(0);
                 }
+
+                    //when rating changes
+                    ratingbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+                        @Override
+                        public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+
+                            SharedPreferences preferences;
+                            preferences=getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                            String r_name=preferences.getString("username","");
+                            DatabaseReference ratingref= FirebaseDatabase.getInstance().getReference("Ratings");
+
+
+
+                            //to display toast
+                            ratingref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if(snapshot.hasChild(r_name)){
+                                        if(snapshot.child(r_name).getValue(Float.class)==v){
+
+                                        }else{
+                                            Toast.makeText(getContext(), "Thanks for the feedback!", Toast.LENGTH_SHORT).show();
+                                            ratingref.child(r_name).setValue(v);
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                        }
+                    });
+
+
             }
 
             @Override
@@ -122,17 +158,7 @@ public class InfoRetailerFragment extends Fragment {
             }
         });
 
-        //when rating changes
-        ratingbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                SharedPreferences preferences;
-                preferences=getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
-                String r_name=preferences.getString("username","");
-                DatabaseReference ratingref= FirebaseDatabase.getInstance().getReference("Ratings");
-                ratingref.child(r_name).setValue(v);
-            }
-        });
+
 
         return v;
     }

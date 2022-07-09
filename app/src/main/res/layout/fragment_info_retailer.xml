@@ -57,27 +57,29 @@
             android:layout_height="250dp"
             android:scrollbarSize="5dp"
             android:scrollbarStyle="outsideOverlay"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/textView6">
 
-        <TextView
-            android:id="@+id/abttxt"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="15dp"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:textAlignment="center"
-            android:text="Akashadeepa Home Products is one of the leading businesses in locality of Puttur. Thank you for being with us and let's make the business better together.
+            <TextView
+                android:id="@+id/abttxt"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="15dp"
+                android:text="Akashadeepa Home Products is one of the leading businesses in locality of Puttur. Thank you for being with us and let's make the business better together.
 This application is developed for the purpose of fulfilling the requirements like, keeping track of orders, placing orders, and real-time updates of the order and items available to Refill.
 This application is powered by Firebase real-time database, Firebase Cloud Storage, Firebase Cloud Messaging for real-time notifications. To provide better security, users of this application can change the password, can only login from only one device at a time.
-Also don't forget to give feedback and ratings. Thank you once again!"/>
+Also don't forget to give feedback and ratings. Thank you once again!"
+                android:textAlignment="center"
+                android:textSize="15dp" />
 
         </ScrollView>
+
         <TextView
             android:id="@+id/ratetxt"
             android:layout_width="wrap_content"
