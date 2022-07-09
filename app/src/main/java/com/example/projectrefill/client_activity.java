@@ -47,9 +47,6 @@ Context context;
             }
 
 
-        //logged in sets in database
-        DatabaseReference logstatus=FirebaseDatabase.getInstance().getReference("Client").child("akashadeepa");
-            logstatus.child("logstatus").setValue("loggedin");
 
 
         FirebaseMessaging.getInstance().getToken()

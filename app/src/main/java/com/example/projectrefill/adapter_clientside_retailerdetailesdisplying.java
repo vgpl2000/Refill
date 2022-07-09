@@ -195,7 +195,6 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
                     String name1=holder.name.getText().toString();
                     HashMap hashstate=new HashMap();
                     hashstate.put("state",state);
-                    hashstate.put("logstatus","loggedout");
                     
 
                     DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Retailer");
