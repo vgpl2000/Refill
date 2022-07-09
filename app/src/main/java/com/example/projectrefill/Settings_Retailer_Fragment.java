@@ -52,6 +52,7 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
     DatabaseReference databaseReference = database.getInstance().getReference();
     Button accp,can,delivered;
     SwipeRefreshLayout swipeLayout;
+    ImageButton infobtn;
 
 
 
@@ -102,6 +103,8 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_settings__retailer_, container, false);
 
+        infobtn=v.findViewById(R.id.infobtn);
+
         swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipe_container1);
         swipeLayout.setOnRefreshListener(this);
 
@@ -112,6 +115,7 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
         fm.popBackStack("retailer_deli",FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fm.popBackStack("r_changepass",FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fm.popBackStack("add_profile_ret",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fm.popBackStack("r_info",FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
 
         //check internet
@@ -153,7 +157,14 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
             }
         });
 
-
+        infobtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.settings_retailer,new InfoRetailerFragment()).addToBackStack("r_info");
+                fr.commit();
+            }
+        });
 
 
 

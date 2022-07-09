@@ -14,4 +14,5 @@
     <string name="desc_two">Refill notifies its users with updates of the orders via instant notifications</string>
     <string name="desc_three">Refill gurantees proper security and backup of data with cloud storage. Once logged In, please change your password for security purpose</string>
     <string name="desc_fourth">Refill is interactive and userfriendly application that can be used anywhere</string>
+
 </resources>
