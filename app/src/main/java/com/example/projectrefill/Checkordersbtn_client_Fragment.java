@@ -237,7 +237,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
 
                                             }
-                                        },1000);
+                                        },100);
 
 
 

@@ -212,29 +212,7 @@ public class Cart_Retailer_Fragment extends Fragment {
         radioGroup = v.findViewById(R.id.rgroup);
 
 
-       /* databaseReference.child("Retailer").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-
-                final String getdueamt = snapshot.child(username).child("r_orders").child("Benne Murku").child("totalamount").getValue(String.class);
-
-                try {
-                    Integer tot = Integer.parseInt(getdueamt);
-                    ftot = ftot + tot;
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "good", Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
         placeorder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -435,29 +413,6 @@ public class Cart_Retailer_Fragment extends Fragment {
                                 DatabaseReference mode=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history");
                                 mode.child(formattedDate).child("Pmode").setValue("Credit");
                                 totalamounthere.setText("0");
-/*
-                                //Credit adding
-                                DatabaseReference dataref=database.getReference("Retailer");
-                                dataref.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        String due=snapshot.child(username).child("due_amt").getValue(String.class);
-                                        Integer i_due=Integer.parseInt(due);
-                                        String s_due=totalamounthere.getText().toString();
-                                        Integer s_due1=Integer.parseInt(s_due);
-                                        Integer f_due=i_due+s_due1;
-                                        String final_due=Integer.toString(f_due);
-                                        DatabaseReference dueref=dataref.child(username);
-                                        dueref.child("due_amt").setValue(final_due);
-
-                                        totalamounthere.setText("0");
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });*/
 
                             }
                             DatabaseReference date=FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate);
@@ -507,7 +462,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
 
                                         }
-                                    },1000);
+                                    },100);
 
                                 }
                             });
