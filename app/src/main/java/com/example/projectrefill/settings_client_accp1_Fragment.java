@@ -89,6 +89,9 @@ public class settings_client_accp1_Fragment extends Fragment {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                TextView noresult;
+                noresult=v.findViewById(R.id.textviewfornosearchresult);
+                noresult.setVisibility(View.GONE);
                 progressBar.setVisibility(View.GONE);
                 super.onScrolled(recyclerView, dx, dy);
             }
