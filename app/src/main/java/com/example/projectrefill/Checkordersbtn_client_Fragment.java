@@ -99,7 +99,6 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                     o_state=snapshot.child("c_orders").child(name).child("order_state").getValue(String.class);
                     if(o_state.equals("accepted")){
                         btnacp.setVisibility(View.GONE);
-                        btncan.setVisibility(View.GONE);
                         btndel.setVisibility(View.VISIBLE);
                     }else if(o_state.equals("cancelled")){
                         btncan.setVisibility(View.GONE);
@@ -151,8 +150,6 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                         btndel.setVisibility(View.VISIBLE);
                         btnacp.setVisibility(View.GONE);
-
-                        //btncan.setVisibility(View.GONE);
 
                         //To set accepted order state value accepted
 
