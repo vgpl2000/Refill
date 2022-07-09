@@ -41,7 +41,8 @@ public class firebasenotificationsendertesting {
     public void sendnotifications(){
 
         try {
-        requestQueue= Volley.newRequestQueue(mActivity);
+            System.out.println("Inside sendnotifications()");
+        requestQueue= Volley.newRequestQueue(mActivity.getApplicationContext());
         JSONObject mainobj=new JSONObject();
 
             mainobj.put("to",userfcmtoken);
