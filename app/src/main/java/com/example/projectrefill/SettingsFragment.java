@@ -55,6 +55,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.UUID;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -64,7 +66,7 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
     Button logout,accepted,cancelled,delivered;
-    ImageView client_profile;
+    CircleImageView client_profile;
     TextView txtchngpassword;
     ImageButton btn_add_r;
     SharedPreferences preferences;
@@ -175,16 +177,6 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
             }
         });
 
-        ImageButton icontoaddprofile=v.findViewById(R.id.icontoaddprofilepic);
-
-        icontoaddprofile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.settings1,new setting_profilepic_Fragment()).addToBackStack("add_profile");
-                fr.commit();
-            }
-        });
 
         //setting profile
         DatabaseReference pimag=FirebaseDatabase.getInstance().getReference("Client").child("akashadeepa");

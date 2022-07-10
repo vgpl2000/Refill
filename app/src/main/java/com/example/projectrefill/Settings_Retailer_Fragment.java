@@ -34,6 +34,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class Settings_Retailer_Fragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -42,7 +44,7 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
     private static final String ARG_PARAM2 = "param2";
 
     Button logout;
-    ImageView retailer_profile;
+    CircleImageView retailer_profile;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     ImageButton btn_add_r_image;
@@ -201,7 +203,7 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
 
         } else {
 
-        //setting retailer name form database
+        //setting retailer name from database
         databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -240,20 +242,7 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
                 startActivity(intent);
             }
         });
-        btn_add_r_image=v.findViewById(R.id.icontoaddprofilepic);
 
-        btn_add_r_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*FragmentTransaction fr= getFragmentManager().beginTransaction();
-                fr.replace(R.id.settings_retailer,new settings_retailer_profile_pic_Fragment()).addToBackStack("add_profile_ret");
-                fr.commit();
-
-                 */
-                Intent intent=new Intent(getActivity().getApplication(),settings_retailer_profile_pic_test_activity.class);
-                startActivity(intent);
-            }
-        });
 
 
         //Shared preferences

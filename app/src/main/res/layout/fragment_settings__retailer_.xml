@@ -44,11 +44,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.361" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/retailer_profile"
             android:layout_width="131dp"
             android:layout_height="119dp"
             android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline_person_outline_24"
             android:soundEffectsEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -59,20 +60,7 @@
             tools:ignore="SpeakableTextPresentCheck"
             tools:src="@tools:sample/avatars" />
 
-        <ImageButton
-            android:id="@+id/icontoaddprofilepic"
-            android:layout_width="33dp"
-            android:layout_height="33dp"
-            android:layout_marginBottom="2dp"
-            android:layout_marginRight="2dp"
-            android:background="@drawable/circle_image"
-            android:src="@drawable/ic_baseline_edit_24"
-            app:layout_constraintBottom_toBottomOf="@+id/retailer_profile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.629"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+
 
         <TextView
             android:id="@+id/txtchngpassword_r"

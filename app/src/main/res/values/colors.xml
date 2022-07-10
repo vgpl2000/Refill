@@ -20,4 +20,5 @@
     <color name="red">#FF0000</color>
     <color name="light_black">#77000000</color>
     <color name="light_grey">#77757575</color>
+    <color name="light_white1">#77FFFFFF</color>
 </resources>

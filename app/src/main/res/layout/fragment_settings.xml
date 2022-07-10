@@ -33,11 +33,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/retailer_profile"
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline_person_outline_24"
             android:soundEffectsEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,20 +49,6 @@
             app:srcCompat="@drawable/ic_baseline_person_outline_24"
             tools:src="@tools:sample/avatars" />
 
-        <ImageButton
-            android:id="@+id/icontoaddprofilepic"
-            android:layout_width="33dp"
-            android:layout_height="33dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginBottom="2dp"
-            android:background="@drawable/circle_image"
-            android:src="@drawable/ic_baseline_edit_24"
-            app:layout_constraintBottom_toBottomOf="@+id/retailer_profile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.626"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_addretailer"
-            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/txtrname"
