@@ -63,7 +63,7 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
 
 
 
-        holder.weight.setText(model.getWeight());
+        holder.weight.setText(model.getWeight()+"gms");
 
         //edit btn to edit item price and weight for client
         holder.btnedititems.setOnClickListener(new View.OnClickListener() {
