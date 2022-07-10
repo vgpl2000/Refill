@@ -27,6 +27,11 @@ public class firebasetestmessaging extends FirebaseMessagingService {
     public void onMessageReceived(@NonNull RemoteMessage message) {
         super.onMessageReceived(message);
 
+        System.out.println("inside onmsgrecieved");
+
+
+
+
             //if (notificationtype.equals("orderplaced")) {
                 Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);

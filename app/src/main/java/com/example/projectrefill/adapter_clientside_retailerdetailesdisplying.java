@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -265,9 +266,9 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
         });
 
         //to send noti about due
-        holder.retailer_name.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.notisending.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public void onClick(View view) {
 
                 if(model.getDue_amt().equals("0")){
                     Toast.makeText(view.getContext(), "You cannot notify "+model.getName()+" when due amount is: "+model.getDue_amt(), Toast.LENGTH_SHORT).show();
@@ -317,11 +318,8 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
                     builder.show();
                 }
 
-                return true;
             }
         });
-
-
 
 
 
@@ -342,6 +340,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
         ProgressBar progressBar;
         CircleImageView imgprofile;
         TextView retailer_name;
+        ImageButton notisending;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -353,6 +352,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             progressBar=itemView.findViewById(R.id.progressBarakasha);
             imgprofile=itemView.findViewById(R.id.imgprofile);
             retailer_name=itemView.findViewById(R.id.retailer_name);
+            notisending=itemView.findViewById(R.id.notificationdue);
 
 
         }
