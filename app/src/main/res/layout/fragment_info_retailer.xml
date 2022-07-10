@@ -124,7 +124,7 @@ Also don't forget to give feedback and ratings. Thank you once again!"
             app:layout_constraintStart_toStartOf="parent"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="Akash C Bhat\nP M Venugoapala"
+            android:text="Akash C Bhat\nP M Venugopala"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/poppins_medium"
             />
