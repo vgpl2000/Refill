@@ -66,6 +66,10 @@ public class onboard_Activity extends AppCompatActivity {
             mDotLayout.addView(dots[i]);
 
         }
+        //to display login btn
+        if(position==3){
+            skipbtn.setText("Get Started !");
+        }
 
         dots[position].setTextColor(getResources().getColor(R.color.yellow,getApplicationContext().getTheme()));
 

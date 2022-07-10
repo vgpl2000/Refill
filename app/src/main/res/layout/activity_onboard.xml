@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:fontFamily="@font/poppins_medium"
+        android:layout_marginRight="10dp"
         android:text="Skip"
         android:id="@+id/skipbutton"
         android:textAllCaps="true"
