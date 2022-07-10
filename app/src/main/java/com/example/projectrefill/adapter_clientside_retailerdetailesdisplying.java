@@ -145,6 +145,51 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
                             if (task.isSuccessful()) {
                                 holder.submit.setVisibility(View.GONE);
 
+                                //send noti
+                                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                                builder.setTitle("Refill");
+                                builder.setMessage("Do you want to send notification to " + model.getName() + " about the due of Rs." + dueamt + " ?");
+                                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                });
+                                builder.setPositiveButton("SEND", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        //notification process
+
+                                        FirebaseDatabase.getInstance().getReference("Retailer").child(model.getName()).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                token2 = snapshot.getValue(String.class);
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+                                                firebasenotificationsendertesting notificationsender2 = new firebasenotificationsendertesting(token2, "Refill", "Dear " + model.getName() + ", Your new Due Amount to Akashadeepa is: Rs." + dueamt, "accepted", view.getContext(), (Activity) view.getContext());
+                                                notificationsender2.sendnotifications();
+                                                Toast.makeText(view.getContext(), "Notification sent!", Toast.LENGTH_SHORT).show();
+
+                                            }
+                                        }, 100);
+                                    }
+
+
+                                });
+                                builder.show();
+
                             } else {
                                 Toast.makeText(view.getContext(), "If its big error we will make updates", Toast.LENGTH_SHORT).show();
                             }
