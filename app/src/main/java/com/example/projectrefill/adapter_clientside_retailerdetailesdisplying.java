@@ -24,6 +24,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,6 +47,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
     //declaration of database to display retailers
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getInstance().getReference();
+    String token2;
 
     private Context context;
 
@@ -217,6 +219,63 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             }
         });
 
+        //to send noti about due
+        holder.retailer_name.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                if(model.getDue_amt().equals("0")){
+                    Toast.makeText(view.getContext(), "You cannot notify "+model.getName()+" when due amount is: "+model.getDue_amt(), Toast.LENGTH_SHORT).show();
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                    builder.setTitle("Refill");
+                    builder.setMessage("Do you want to send notification to " + model.getName() + " about the due of Rs." + model.getDue_amt() + " ?");
+                    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    builder.setPositiveButton("SEND", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //notification process
+
+                            FirebaseDatabase.getInstance().getReference("Retailer").child(model.getName()).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    token2 = snapshot.getValue(String.class);
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    firebasenotificationsendertesting notificationsender2 = new firebasenotificationsendertesting(token2, "Refill", "Dear " + model.getName() + ", Amount of Rs." + model.getDue_amt() + " is due to Akashadeepa!", "accepted", view.getContext(), (Activity) view.getContext());
+                                    notificationsender2.sendnotifications();
+                                    Toast.makeText(view.getContext(), "Notification sent!", Toast.LENGTH_SHORT).show();
+
+                                }
+                            }, 100);
+                        }
+
+
+                    });
+                    builder.show();
+                }
+
+                return true;
+            }
+        });
+
 
 
 
@@ -237,6 +296,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
         SwitchCompat switchCompat;
         ProgressBar progressBar;
         CircleImageView imgprofile;
+        TextView retailer_name;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -247,6 +307,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             switchCompat=itemView.findViewById(R.id.switchview);
             progressBar=itemView.findViewById(R.id.progressBarakasha);
             imgprofile=itemView.findViewById(R.id.imgprofile);
+            retailer_name=itemView.findViewById(R.id.retailer_name);
 
 
         }
