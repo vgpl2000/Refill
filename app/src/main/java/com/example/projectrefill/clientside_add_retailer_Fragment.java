@@ -127,6 +127,7 @@ public class clientside_add_retailer_Fragment extends Fragment {
                                 createref.child(r_name).child("name").setValue(r_name);
                                 createref.child(r_name).child("password").setValue(r_passwrd);
                                 createref.child(r_name).child("state").setValue("notblocked");
+                                createref.child(r_name).child("logstatus").setValue("loggedout");
 
                                 Toast.makeText(getActivity(), r_name+" added!", Toast.LENGTH_SHORT).show();
 
