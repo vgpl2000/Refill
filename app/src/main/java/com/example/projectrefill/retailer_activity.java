@@ -49,12 +49,6 @@ Context context;
             startActivity(intent);
         }
 
-        //logged in sets in database
-        SharedPreferences preferences1;
-        preferences1 = retailer_activity.this.getSharedPreferences("MyPreferences", MODE_PRIVATE);
-        String r_name=preferences1.getString("username","");
-        DatabaseReference logstatus=FirebaseDatabase.getInstance().getReference("Retailer").child(r_name);
-        logstatus.child("logstatus").setValue("loggedin");
 
 
 

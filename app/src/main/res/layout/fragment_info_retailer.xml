@@ -73,7 +73,7 @@
                 android:paddingBottom="15dp"
                 android:text="Akashadeepa Home Products is one of the leading businesses in locality of Puttur. Thank you for being with us and let's make the business better together.
 This application is developed for the purpose of fulfilling the requirements like, keeping track of orders, placing orders, and real-time updates of the order and items available to Refill.
-This application is powered by Firebase real-time database, Firebase Cloud Storage, Firebase Cloud Messaging for real-time notifications. To provide better security, users of this application can change the password, can only login from only one device at a time.
+This application is powered by Firebase real-time database, Firebase Cloud Storage, Firebase Cloud Messaging for real-time notifications. To provide better security, users of this application can change the password.
 Also don't forget to give feedback and ratings. Thank you once again!"
                 android:textAlignment="center"
                 android:textSize="15dp" />
