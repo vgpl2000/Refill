@@ -53,10 +53,10 @@ public class splash_screen extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 finally {
-                    SharedPreferences preferences;
-                    preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                    SharedPreferences preferences_o;
+                    preferences_o = getSharedPreferences("onboardPreferences", MODE_PRIVATE);
 
-                    if (preferences.contains("username")) {
+                    if (preferences_o.contains("onboard")) {
                         Intent intent=new Intent(splash_screen.this,MainActivity.class);
                         startActivity(intent);
                     }else{

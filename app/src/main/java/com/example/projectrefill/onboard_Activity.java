@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -27,6 +28,15 @@ public class onboard_Activity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_onboard);
+
+        //preferences to add
+        SharedPreferences preferences_o;
+        SharedPreferences.Editor editor_o;
+        preferences_o = getSharedPreferences("onboardPreferences", MODE_PRIVATE);
+        editor_o = preferences_o.edit();
+        //adding to preferences that onboard executed once
+        editor_o.putString("onboard","executed");
+        editor_o.commit();
 
         skipbtn = findViewById(R.id.skipbutton);
 
