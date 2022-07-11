@@ -99,6 +99,7 @@ public class clientside_add_retailer_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 r_name=txt_name.getText().toString();
+                String output = r_name.substring(0, 1).toUpperCase() + r_name.substring(1);
                 r_passwrd=txt_passwd.getText().toString();
                 if(r_name.isEmpty()&&r_passwrd.isEmpty()){
                     txt_name.setError("Name cannot be empty");
@@ -124,7 +125,7 @@ public class clientside_add_retailer_Fragment extends Fragment {
 
                                 DatabaseReference createref=FirebaseDatabase.getInstance().getReference("Retailer");
                                 createref.child(r_name).child("due_amt").setValue("0");
-                                createref.child(r_name).child("name").setValue(r_name);
+                                createref.child(r_name).child("name").setValue(output);
                                 createref.child(r_name).child("password").setValue(r_passwrd);
                                 createref.child(r_name).child("state").setValue("notblocked");
                                 createref.child(r_name).child("logstatus").setValue("loggedout");
