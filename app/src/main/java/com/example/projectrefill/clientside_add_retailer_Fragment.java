@@ -116,7 +116,7 @@ public class clientside_add_retailer_Fragment extends Fragment {
                     reference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.child("Retailer").hasChild(r_name)){
+                            if(snapshot.child("Retailer").hasChild(output)){
                                 txt_name.setError("Retailer already exists");
                             }else{
                                 //if there is no retailer as such then create retailer...
@@ -124,11 +124,11 @@ public class clientside_add_retailer_Fragment extends Fragment {
                                 closeKeyboard();
 
                                 DatabaseReference createref=FirebaseDatabase.getInstance().getReference("Retailer");
-                                createref.child(r_name).child("due_amt").setValue("0");
-                                createref.child(r_name).child("name").setValue(output);
-                                createref.child(r_name).child("password").setValue(r_passwrd);
-                                createref.child(r_name).child("state").setValue("notblocked");
-                                createref.child(r_name).child("logstatus").setValue("loggedout");
+                                createref.child(output).child("due_amt").setValue("0");
+                                createref.child(output).child("name").setValue(output);
+                                createref.child(output).child("password").setValue(r_passwrd);
+                                createref.child(output).child("state").setValue("notblocked");
+                                createref.child(output).child("logstatus").setValue("loggedout");
 
                                 Toast.makeText(getActivity(), r_name+" added!", Toast.LENGTH_SHORT).show();
 
