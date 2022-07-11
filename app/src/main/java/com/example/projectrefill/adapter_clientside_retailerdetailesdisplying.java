@@ -265,6 +265,7 @@ public class adapter_clientside_retailerdetailesdisplying extends FirebaseRecycl
             }
         });
 
+
         //to send noti about due
         holder.notisending.setOnClickListener(new View.OnClickListener() {
             @Override
