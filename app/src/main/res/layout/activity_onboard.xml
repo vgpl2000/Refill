@@ -21,6 +21,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_onboard"
+        android:visibility="invisible"
+        android:elevation="10dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:background="@color/transperant_black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_rawRes="@raw/animation_onboard" />
+
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:id="@+id/slideviewpager"

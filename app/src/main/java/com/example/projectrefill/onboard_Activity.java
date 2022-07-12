@@ -10,14 +10,20 @@ import android.text.Html;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 public class onboard_Activity extends AppCompatActivity {
     ViewPager mSLideViewPager;
     LinearLayout mDotLayout;
     Button  skipbtn;
+    LottieAnimationView lottie;
+
 
     TextView[] dots;
    adapter_viewpager_onboard viewPagerAdapter;
@@ -39,14 +45,35 @@ public class onboard_Activity extends AppCompatActivity {
         editor_o.commit();
 
         skipbtn = findViewById(R.id.skipbutton);
+        lottie=findViewById(R.id.lottie_onboard);
 
         skipbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                lottie.setVisibility(View.VISIBLE);
+                Thread thread=new Thread(){
+                    public void run(){
 
-                Intent i = new Intent(onboard_Activity.this,MainActivity.class);
-                startActivity(i);
-                finish();
+                        try{
+                            sleep(1000);
+
+                        }
+                        catch(Exception e){
+                            e.printStackTrace();
+                        }
+                        finally {
+                            //intent
+                            Intent i = new Intent(onboard_Activity.this,MainActivity.class);
+                            startActivity(i);
+                            finish();
+
+                        }
+
+                    }
+
+                };thread.start();
+
+
 
             }
         });
