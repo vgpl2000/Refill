@@ -7,15 +7,14 @@
     android:background="@color/black"
     app:flow_horizontalAlign="center">
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/titleimage"
-        android:layout_width="383dp"
-        android:layout_height="335dp"
-        android:layout_marginTop="10dp"
-        android:scaleX="2"
-        android:layout_gravity="center"
-        android:scaleY="2"
-        android:src="@drawable/o_realtime" />
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="30dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:layout_gravity="center" />
 
     <TextView
         android:layout_width="match_parent"

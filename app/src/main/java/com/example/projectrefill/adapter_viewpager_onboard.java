@@ -11,14 +11,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 public class adapter_viewpager_onboard extends PagerAdapter {
 
     Context context;
     int images[]={
-      R.drawable.o_realtime,
-            R.drawable.o_notification,
-            R.drawable.o_secure,
-            R.drawable.o_anywhere
+      R.raw.onboard_realtime,
+            R.raw.onboard_notification,
+            R.raw.onboard_security,
+            R.raw.onboard_anywhere
     };
 
     int headings[] = {
@@ -59,11 +61,11 @@ public class adapter_viewpager_onboard extends PagerAdapter {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.slider_layout,container,false);
 
-        ImageView slidetitleimage = (ImageView) view.findViewById(R.id.titleimage);
+        LottieAnimationView slidetitleimage = (LottieAnimationView) view.findViewById(R.id.titleimage);
         TextView slideHeading = (TextView) view.findViewById(R.id.texttitle);
         TextView slideDesciption = (TextView) view.findViewById(R.id.textdescription);
 
-        slidetitleimage.setImageResource(images[position]);
+        slidetitleimage.setAnimation(images[position]);
         slideHeading.setText(headings[position]);
         slideDesciption.setText(description[position]);
 

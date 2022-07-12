@@ -10,12 +10,12 @@
 
     <TextView
         android:id="@+id/txt1"
-        android:layout_width="199dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center|center_horizontal|center_vertical"
         android:text="Let's Join !"
-        android:layout_marginLeft="17dp"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,6 +29,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:layout_marginBottom="560dp"
         android:fontFamily="@font/poppins_medium"
         android:foregroundGravity="center_vertical|center_horizontal"
@@ -36,7 +37,7 @@
         android:text="Welcome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt1"
         app:layout_constraintVertical_bias="0.0" />
