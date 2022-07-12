@@ -20,7 +20,7 @@ public class adapter_viewpager_onboard extends PagerAdapter {
       R.raw.onboard_realtime,
             R.raw.onboard_notification,
             R.raw.onboard_security,
-            R.raw.onboard_anywhere
+            R.raw.onbaord_anywhere
     };
 
     int headings[] = {
