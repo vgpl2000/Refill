@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/order_placed"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".OrderPlacedFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transperant_black">
+
+        <TextView
+            android:id="@+id/textview_placed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Placed !"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="25dp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="100dp"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_placed"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="60dp"
+            app:lottie_autoPlay="true"
+            android:elevation="5dp"
+            app:lottie_rawRes="@raw/order_placed"
+            app:layout_constraintTop_toBottomOf="@+id/textview_placed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

@@ -16,8 +16,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -135,6 +137,10 @@ public class Cart_Retailer_Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_cart__retailer_, container, false);
+
+        //clear backstack
+        FragmentManager fm=getFragmentManager();
+        fm.popBackStack("placed",FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
 
         nocartitems=v.findViewById(R.id.nocartitems);
@@ -429,46 +435,40 @@ public class Cart_Retailer_Fragment extends Fragment {
                                 tempmode="Your can pay in the future!";
                             }
 
-                            AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
-                            builder.setTitle("Order Placed!");
-                            builder.setMessage("Your order is placed and will be accepted soon! \n"+tempmode);
-                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            //fragment transaction that order placed
+
+                            AppCompatActivity appCompatActivity = (AppCompatActivity) getContext();
+                            appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.cart_retailer, new OrderPlacedFragment()).addToBackStack("placed").commit();
+
+
+                            //notification that order placed
+
+                            FirebaseDatabase.getInstance().getReference("Client").child("akashadeepa").child("token").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    String uid="akashadeepa";
-                                    //sendnotification(uid,username);
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    token=snapshot.getValue(String.class);
 
-                                    FirebaseDatabase.getInstance().getReference("Client").child("akashadeepa").child("token").addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            token=snapshot.getValue(String.class);
+                                }
 
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
-                                        }
-                                    });
-
-                                    Handler handler=new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-
-
-                                            firebasenotificationsendertesting notificationsender=new firebasenotificationsendertesting(token,"Refill","New Order placed by "+username,"orderplaced",getContext() ,getActivity());
-                                            notificationsender.sendnotifications();
-
-
-                                        }
-                                    },100);
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
 
                                 }
                             });
-                            builder.show();
 
-                            //preparenotificationmessage(username);
+
+                            Handler handler=new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+
+                                    firebasenotificationsendertesting notificationsender=new firebasenotificationsendertesting(token,"Refill","New Order placed by "+username,"orderplaced",getContext() ,getActivity());
+                                    notificationsender.sendnotifications();
+
+
+                                }
+                            },100);
 
 
 
