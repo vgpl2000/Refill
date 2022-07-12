@@ -103,7 +103,7 @@
             android:elevation="-100dp"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
-            android:text="No Delivered Orders as of now!"
+            android:text="No Orders as of now!"
             android:textColor="@color/white"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
