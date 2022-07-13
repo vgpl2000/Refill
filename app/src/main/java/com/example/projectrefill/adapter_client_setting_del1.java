@@ -21,6 +21,8 @@ public class adapter_client_setting_del1 extends FirebaseRecyclerAdapter<client_
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull client_model_setting_accp1 model) {
         holder.rname.setText(model.getRname());
+
+        //while retailer name is clicked in client side delivered orders
         holder.rname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

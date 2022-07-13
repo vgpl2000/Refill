@@ -49,8 +49,10 @@ public class adapter_clientside_itemdisplaying extends FirebaseRecyclerAdapter<c
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.hasChild("url")){
+                    //if image exists of item, then display that
                     Glide.with(holder.img1.getContext()).load(model.getUrl()).into(holder.img1);
                 }else{
+                    //if not then display the default image from drawable
                     Glide.with(holder.img1.getContext()).load(R.drawable.ic_baseline_image_24).into(holder.img1);
                 }
             }

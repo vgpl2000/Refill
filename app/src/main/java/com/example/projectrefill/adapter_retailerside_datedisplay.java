@@ -51,12 +51,13 @@ public class adapter_retailerside_datedisplay extends FirebaseRecyclerAdapter<re
         holder.pmode.bringToFront();
         holder.pmode.setText(model.getPmode());
 
+        //displaying all orders in 3rd fragment of retailer as per date
         holder.date.setText(model.getDate());
         datefinal=holder.date.getText().toString();
         holder.date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //replace the fragment of that date
 
                 AppCompatActivity appCompatActivity=(AppCompatActivity) view.getContext();
                 appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper7,new retailerside_datewisetransaction_Fragment(model.getDate())).addToBackStack("r_date").commit();

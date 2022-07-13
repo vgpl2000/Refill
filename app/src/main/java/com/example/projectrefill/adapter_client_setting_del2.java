@@ -23,6 +23,7 @@ public class adapter_client_setting_del2  extends FirebaseRecyclerAdapter<client
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull client_model_setting_accp2 model) {
         holder.date.setText(model.getDate());
         holder.mode.setText(model.getPmode());
+        //when  date is clicked in client side delivered orders
         holder.date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

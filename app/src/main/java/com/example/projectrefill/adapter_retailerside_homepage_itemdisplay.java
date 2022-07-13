@@ -67,7 +67,7 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
             });
 
 
-
+            //when quantity edittext is clicked, make visible the add to cart button
           holder.editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
               @Override
               public void onFocusChange(View view, boolean b) {
@@ -75,7 +75,7 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
               }
           });
 
-
+            //when add to cart is clicked
             holder.cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -95,12 +95,14 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
 
                     String rname=holder.stext.getText().toString();
 
+                    //total of each items
                     Integer p,q,tot;
                     p=Integer.parseInt(price);
                     q=Integer.parseInt(quan);
                     tot=p*q;
                     String total=Integer.toString(tot);
 
+                    //when no quan is entered
                     if(quan.isEmpty()||quan.equals("0")){
                         holder.editText.setError("Specify the quantity");
                     }else   {
@@ -118,6 +120,7 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
                         Toast.makeText(view.getContext(), "Successfully added", Toast.LENGTH_SHORT).show();
                         holder.editText.setText("");
                         holder.editText.clearFocus();
+                        //close keyboard
                         InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                         inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
                         holder.cart.setVisibility(View.GONE);

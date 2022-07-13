@@ -24,6 +24,7 @@ public class adapter_client_setting_can2  extends FirebaseRecyclerAdapter<client
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull client_model_setting_accp2 model) {
         holder.date.setText(model.getDate());
         holder.mode.setText(model.getPmode());
+        //while date is clicked in client side after clicking retailer name in client side
         holder.date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

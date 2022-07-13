@@ -68,7 +68,7 @@ public class Cart_Retailer_Fragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-
+    //method to check user is offline or not
     protected boolean isNetworkConnected() {
         try {
             ConnectivityManager mConnectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -97,7 +97,6 @@ public class Cart_Retailer_Fragment extends Fragment {
     String tempmode;
 
     String token;
-
 
 
     Date c = Calendar.getInstance().getTime();
@@ -144,7 +143,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
 
         nocartitems=v.findViewById(R.id.nocartitems);
-        //check internet
+        //check user is online or not
         if(!isNetworkConnected()){
             Intent intent = new Intent(getActivity().getApplication(), no_internet_retailer.class);
             startActivity(intent);
@@ -194,7 +193,7 @@ public class Cart_Retailer_Fragment extends Fragment {
         preferences = getActivity().getSharedPreferences("MyPreferences", MODE_PRIVATE);
         String username = preferences.getString("username", "");
 
-
+        //setting recyclerview layout and adapter to display in cart
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerViewtoshowcart);
         recyclerView.setLayoutManager(new CustomLinearLayoutManager1(getContext()));
 
@@ -209,31 +208,31 @@ public class Cart_Retailer_Fragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
-
-
-
-
+        //place order btn
         placeorder = v.findViewById(R.id.buttontoplaceorder);
 
+        //radio group of cash or credit
         radioGroup = v.findViewById(R.id.rgroup);
 
 
-
-
+        //when place order is clicked
         placeorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //if no items is added to cart
                 if (totalamounthere.getText().toString().equals("0")) {
                     Toast.makeText(getContext(), "Please add at least one item to cart", Toast.LENGTH_SHORT).show();
 
                 } else {
+                    //if payment mode is not selected
                     if (radioGroup.getCheckedRadioButtonId() == -1) {
                         Toast.makeText(getContext(), "Please select a payment mode!", Toast.LENGTH_LONG).show();
                     } else {
-
+                        //if cart has items and payment mode is selected
                         databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                //check user already ordered or not
                                 if (snapshot.child("c_orders").child(username).hasChild("order_state")) {
                                     Toast.makeText(getActivity(), "Please wait until delivery of previous orders!", Toast.LENGTH_LONG).show();
                                 } else {
@@ -253,7 +252,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                                     DatabaseReference order = FirebaseDatabase.getInstance().getReference("Retailer").child(username).child("r_history").child(formattedDate).child("Items");
 
-
+                                    //to move data from orders to order history of retailer
                                     moveFirebaseRecord(cartref, order);
 
                                     //check orders
@@ -262,6 +261,7 @@ public class Cart_Retailer_Fragment extends Fragment {
 
                                     DatabaseReference c_order = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(username).child("check_orders").child("Items");
 
+                                    //to move data from orders to order recieved for client
                                     c_moveFirebaseRecord(c_cartref, c_order);
 
                                 }
@@ -363,6 +363,7 @@ public class Cart_Retailer_Fragment extends Fragment {
         }
     }
 
+    //broadcast reciever recieves total amount from adapter
     public BroadcastReceiver msgbrdrec=new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -456,7 +457,7 @@ public class Cart_Retailer_Fragment extends Fragment {
                                 }
                             });
 
-
+                            //handle to delay in sending notification to owner
                             Handler handler=new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
@@ -485,97 +486,5 @@ public class Cart_Retailer_Fragment extends Fragment {
         });
     }
 
-
-    private  void sendnotification(String uid,String name){
-
-        FirebaseDatabase.getInstance().getReference("Client").child("akashadeepa").child("token").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                token=snapshot.getValue(String.class);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        Handler handler=new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-
-                firebasenotificationsendertesting notificationsender=new firebasenotificationsendertesting(token,"Refill","New Order placed by "+name,"orderplaced",getContext() ,getActivity());
-                notificationsender.sendnotifications();
-
-
-            }
-        },1000);
-    }
-
-    public void preparenotificationmessage(String orderId){
-        System.out.println("inside prepare()");
-        String NOTIFICATION_TOPIC="/topics/"+constantsforuse.FCM_KEY;
-        String NOTIFICATION_TITILE="New Order from"+orderId;
-        String NOTIFICATION_MESSAGE="New order is placed!";
-        String NOTIFICATION_TYPE="neworder";
-
-        SharedPreferences preferences;
-        preferences = getContext().getSharedPreferences("MyPreferences", MODE_PRIVATE);
-        String name1=preferences.getString("username","");
-        String owner="akashadeepa";
-
-        JSONObject notificationjo=new JSONObject();
-        JSONObject notificationBodyjo=new JSONObject();
-        try {
-            System.out.println("inside prepare and try");
-            notificationBodyjo.put("notificationtype",NOTIFICATION_TYPE);
-            notificationBodyjo.put("buyeruid",name1);
-            notificationBodyjo.put("selleruid",owner);
-            notificationBodyjo.put("orderid",orderId);
-            notificationBodyjo.put("notificationtitile",NOTIFICATION_TITILE);
-            notificationBodyjo.put("notificationmessage",NOTIFICATION_MESSAGE);
-
-            //where to send
-            notificationjo.put("to",NOTIFICATION_TOPIC);
-            notificationjo.put("data",notificationBodyjo);
-
-
-        }catch (Exception e){
-            Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-       //sendfcmnotification(notificationjo,orderId);
-    }
-
-    private void sendfcmnotification(JSONObject notificationjo, String orderId) {
-        System.out.println("inside sendfcmnotification");
-        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationjo, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                //after sending fcm start order details activity
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                //if failed sending fcm
-
-            }
-        }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                //put required headers
-                Map<String,String> headers=new HashMap<>();
-                headers.put("Content_Type","application/json");
-                headers.put("Authorization","key="+constantsforuse.FCM_KEY);
-
-                return headers;
-            }
-        };
-        Volley.newRequestQueue(getContext()).add(jsonObjectRequest);
-
-    }
 
 }

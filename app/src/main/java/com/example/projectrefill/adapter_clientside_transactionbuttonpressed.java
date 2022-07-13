@@ -41,7 +41,7 @@ public class adapter_clientside_transactionbuttonpressed extends FirebaseRecycle
 
             }
         });
-
+        //when date is long pressed in client fragment, orders of each retailer, delete btn is to be displayed
         holder.date.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {

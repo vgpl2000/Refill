@@ -52,6 +52,7 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
         holder.price.setText(model.getPrice());
         holder.quan.setText(model.getQuan());
 
+        //multiplying price of each item in cart with changing quantity
         Integer pr,qu,tot;
         String price2=holder.price.getText().toString();
         String quan2=holder.quan.getText().toString();
@@ -63,20 +64,18 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
 
         String totalamt=Integer.toString(tot);
 
+        //setting text to total amount of each items
         holder.totalamtofitem.setText(totalamt);
 
-        //prblm here is recycler loads only some items and further are added when scrolled....
-
-
         totalamtcheck=totalamtcheck+tot;
-        System.out.println(totalamtcheck+" final price here is");
 
         Intent intent=new Intent("mytotamt");
         intent.putExtra("totalamount",totalamtcheck);
 
+        //sending total amount to local broadcast to display the same in the fragment
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
-
+        //when focus changes of quan in cart
         holder.quan.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -84,6 +83,7 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
 
             }
         });
+        //when update is pressed after changing quan in cart
         holder.update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,6 +91,7 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
                 holder.update.setVisibility(View.GONE);
                 holder.quan.clearFocus();
 
+                //closing keyboard
                 InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
@@ -118,7 +119,7 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
 
                             Intent intent=new Intent("mytotamt");
                             intent.putExtra("totalamount",totalamtcheck);
-
+                            //when quan changes, update the price for total amount
                             LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
                             holder.update.setVisibility(View.GONE);
@@ -134,7 +135,7 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
             }
 
         });
-
+        //to delete items from cart
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,7 +150,7 @@ public class adapter_retailerside_cart_display extends FirebaseRecyclerAdapter<r
 
                     Intent intent = new Intent("mytotamt");
                     intent.putExtra("totalamount", totalamtcheck);
-
+                    //update to broadcast manager that item is deleted to change price
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
             }
         });

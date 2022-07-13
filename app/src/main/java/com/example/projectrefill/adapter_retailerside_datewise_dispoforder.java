@@ -19,7 +19,7 @@ public class adapter_retailerside_datewise_dispoforder extends FirebaseRecyclerA
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull retailer_model_datewise_dispwhenpressed model) {
-
+        //orders made on the clicked date retailer side
       holder.name.setText("Name: "+model.getName());
       holder.price.setText("Price: "+model.getPrice());
       holder.quan.setText("Quan: "+model.getQuan());

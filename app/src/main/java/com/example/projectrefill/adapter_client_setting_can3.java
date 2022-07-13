@@ -19,6 +19,7 @@ public class adapter_client_setting_can3 extends FirebaseRecyclerAdapter<client_
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull client_model_setting_accp3 model) {
+        //ultimate details display in client side cancelled orders
         holder.name.setText("Name: "+model.getName());
         holder.price.setText("Price: "+model.getPrice());
         holder.weight.setText("Weight(gms): "+model.getWeight());

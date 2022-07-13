@@ -68,7 +68,7 @@ public class change_pswrd_retailer_Fragment extends Settings_Retailer_Fragment {
             }
         });
 
-
+        //changing password of retailer
         btn_chng_passwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,7 +130,7 @@ public class change_pswrd_retailer_Fragment extends Settings_Retailer_Fragment {
         return v;
 
     }
-
+    //method to close keyboard
     private void closeKeyboard() {
         View view = this.getActivity().getCurrentFocus();
         if (view != null) {

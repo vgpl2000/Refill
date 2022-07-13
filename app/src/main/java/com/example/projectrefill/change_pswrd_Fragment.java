@@ -37,9 +37,6 @@ public class change_pswrd_Fragment extends SettingsFragment {
 
 
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,11 +64,10 @@ public class change_pswrd_Fragment extends SettingsFragment {
         });
 
 
-
+        //when change password is hit
         btn_chng_passwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 c_passwrd = txt_c_psswd.getText().toString();
                 n_passwrd = txt_n_passwd.getText().toString();
@@ -84,7 +80,7 @@ public class change_pswrd_Fragment extends SettingsFragment {
 
                     closeKeyboard();
 
-                    //checking
+                    //checking the password is same or not
                     if (c_passwrd.equals(n_passwrd)) {
                         txt_n_passwd.setError("New Password cannot be same as Current Password");
                     }else{
@@ -93,6 +89,7 @@ public class change_pswrd_Fragment extends SettingsFragment {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             String d_c_passwd = snapshot.child("akashadeepa").child("password").getValue(String.class);
 
+                            //if old password matches the old password entered
                             if (c_passwrd.equals(d_c_passwd)) {
                                 databaseReference.child("Client").child("akashadeepa").child("password").setValue(n_passwrd);
 
@@ -101,12 +98,13 @@ public class change_pswrd_Fragment extends SettingsFragment {
                                 txt_c_psswd.setText("");
                                 txt_n_passwd.setText("");
 
-
+                                //when password updated, change the fragment
                                 FragmentTransaction fr = getFragmentManager().beginTransaction();
                                 fr.replace(R.id.chng_passwd, new SettingsFragment());
                                 fr.commit();
 
                             } else {
+                                //when password doesn't match
                                 txt_c_psswd.setError("Password is wrong!");
                             }
                         }
@@ -129,7 +127,7 @@ public class change_pswrd_Fragment extends SettingsFragment {
 
     }
 
-
+    //method to close the keyboard
     private void closeKeyboard() {
         View view=this.getActivity().getCurrentFocus();
         if(view!=null){

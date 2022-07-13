@@ -91,7 +91,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
         btncan=view.findViewById(R.id.btn_cancl);
         btndel=view.findViewById(R.id.btn_deli);
 
-
+        //to change the visibility of the buttons in orders received
         databaseReference.child("Client").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -123,7 +123,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
             }
         });
-
+        //setting recyclerview layout,adapter
         recyclerView2=(RecyclerView) view.findViewById(R.id.recyclerView2);
         recyclerView2.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -132,6 +132,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                //alert dialog while accepting orders
                 android.app.AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
                 builder.setTitle("Accept!");
                 builder.setMessage("Are you sure you want to accept new order from "+name+" ?");
@@ -143,7 +144,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                         Date c = Calendar.getInstance().getTime();
 
-
+                        //recieving date of accepted order
                         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
                         String formattedDate = df.format(c).toString();
                         System.out.println("date to display for the system   " + formattedDate);
@@ -158,7 +159,6 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                         String rname=name;
 
 
-
                         DatabaseReference fromp = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
 
 
@@ -168,6 +168,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                         DatabaseReference toretailer=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_accepted").child(formattedDate1);
 
+                        //move from c_orders to c_accepted
                         fromp.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -222,7 +223,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                             }
                                         });
-
+                                        //send notification to retailer when accepted
                                         Handler handler=new Handler();
                                         handler.postDelayed(new Runnable() {
                                             @Override
@@ -248,6 +249,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                             }
                         });
 
+                        //from c_orders to r_accepted
                         fromforretailer.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -297,13 +299,13 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
             }
         });
-
+        //when order is cancelled btn is clicked
         btncan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String rname=name;
 
-
+                //displaying alert dialog while cancel is hit
                 android.app.AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
                 builder.setTitle("Cancel!");
                 builder.setMessage("Are you sure you want to cancel new order from "+name+" ?");
@@ -311,8 +313,6 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(view.getContext(), "Cancelling Order...", Toast.LENGTH_SHORT).show();
-
-
 
                         btncan.setVisibility(View.GONE);
                         btnacp.setVisibility(View.GONE);
@@ -328,6 +328,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                         DatabaseReference top = FirebaseDatabase.getInstance().getReference("Client").child("c_cancelled").child(rname).child("date").child(formattedDate1);
 
+                        //from c_orders to c_cancelled
                         fromp.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -369,7 +370,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                             }
                                         },100);
 
-                                        //to shift fragment
+                                        //to replace fragment after notification and after cancelled
                                         Handler handler1=new Handler();
                                         handler1.postDelayed(new Runnable() {
                                             @Override
@@ -394,6 +395,8 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                         dateset.child("retname").setValue(rname);
 
                                         DatabaseReference forpmode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders");
+
+                                        //to update pmode in c_orders inside that retailer
                                         forpmode.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -409,10 +412,11 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
 
 
-
                                         DatabaseReference addref=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_cancelled").child(formattedDate1);
 
                                         DatabaseReference forpmode2=FirebaseDatabase.getInstance().getReference("Client").child("c_orders");
+
+                                        //setting pmode in c_orders
                                         forpmode2.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -426,6 +430,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
                                             }
                                         });
 
+                                        //to remove c_orders of that retailer
                                         DatabaseReference frmtode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname);
                                         frmtode.removeValue();
 
@@ -549,9 +554,9 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                 DatabaseReference fromp = FirebaseDatabase.getInstance().getReference("Client").child("c_orders").child(rname).child("check_orders");
 
-
                                 DatabaseReference top = FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(rname).child("date").child(formattedDate1);
 
+                                //chekc_orders to c_delivered
                                 fromp.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -606,19 +611,22 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
 
 
-
+                                                //to set retailer name in delivered
                                                 DatabaseReference nameset=FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(name);
                                                 nameset.child("rname").setValue(name);
 
+                                                //to set date in delivered
                                                 DatabaseReference dateset=FirebaseDatabase.getInstance().getReference("Client").child("c_delivered").child(name).child("date").child(formattedDate1);
                                                 dateset.child("date").setValue(formattedDate1);
 
+                                                //to set retailer name
                                                 dateset.child("retname").setValue(rname);
 
                                                 DatabaseReference forpmode=FirebaseDatabase.getInstance().getReference("Client").child("c_orders");
                                                 forpmode.addListenerForSingleValueEvent(new ValueEventListener() {
                                                     @Override
                                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                        //to set pmode
                                                         String mode=snapshot.child(rname).child("pmode").getValue(String.class);
                                                         dateset.child("pmode").setValue(mode);
                                                     }
@@ -628,9 +636,6 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                                     }
                                                 });
-
-
-
 
 
 
@@ -670,6 +675,7 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
                                 DatabaseReference toretailer2=FirebaseDatabase.getInstance().getReference("Retailer").child(rname).child("r_delivered").child(formattedDate1);
 
+                                //check_orders to r_delivered
                                 fromforretailer2.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -709,27 +715,9 @@ public class Checkordersbtn_client_Fragment extends Fragment {
 
 
 
-
-        final DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Client");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snapshot1:snapshot.child("c_orders").getChildren()){
-                    final String rt=snapshot1.getKey().toString();
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
         String retailname=textView.getText().toString();
 
-
-
+        //to display check orders
         FirebaseRecyclerOptions<client_model_btncheckorders> options2 =
                 new FirebaseRecyclerOptions.Builder<client_model_btncheckorders>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Client").child("c_orders").child(retailname).child("check_orders").child("Items"), client_model_btncheckorders.class)
@@ -753,11 +741,4 @@ public class Checkordersbtn_client_Fragment extends Fragment {
         adapter2.stopListening();
     }
 
-
-   public void onBackPressed()
-    {
-        AppCompatActivity appCompatActivity=(AppCompatActivity)getContext();
-        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper2,new HomeFragment()).addToBackStack(null).commit();
-
-    }
 }

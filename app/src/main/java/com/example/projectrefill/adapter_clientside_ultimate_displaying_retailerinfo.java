@@ -19,6 +19,7 @@ public class adapter_clientside_ultimate_displaying_retailerinfo extends Firebas
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder1 holder, int position, @NonNull client_model_ultimatedispofretinfo model) {
+        //setting data from model
         holder.name.setText("Name: "+model.getName());
         holder.quan.setText("Quan: "+model.getQuan());
         holder.price.setText("Price: "+model.getPrice());

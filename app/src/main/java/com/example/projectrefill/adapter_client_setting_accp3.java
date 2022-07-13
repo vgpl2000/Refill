@@ -19,6 +19,7 @@ public class adapter_client_setting_accp3 extends FirebaseRecyclerAdapter<client
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull client_model_setting_accp3 model) {
+        //setting texts from database to ultimate fragment of client side accepted orders
         holder.name.setText("Name: "+model.getName());
         holder.price.setText("Price: "+model.getPrice());
         holder.weight.setText("Weight(gms): "+model.getWeight());
