@@ -10,9 +10,9 @@
     <TextView
 
         android:id="@+id/textView"
-        android:clickable="false"
         android:layout_width="179dp"
         android:layout_height="88dp"
+        android:clickable="false"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center|center_horizontal|center_vertical"
         android:text="Refill"
@@ -22,32 +22,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView2"
-        android:clickable="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="false"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center|center_horizontal|center_vertical"
         android:text="AkashDeepa Home Products"
-        android:textColor="#737373"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.568" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
-        android:clickable="false"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
+        android:clickable="false"
         android:drawableLeft="@drawable/ic_baseline_copyright_24"
+        android:fontFamily="@font/poppins_medium"
         android:gravity="center|center_horizontal|center_vertical"
         android:text=" Copyright Reserved"
         android:textColor="#808080"
@@ -64,14 +63,17 @@
         android:layout_width="103dp"
         android:layout_height="76dp"
         android:clickable="false"
+        android:elevation="100dp"
         android:foregroundGravity="center_vertical|clip_horizontal"
+        android:scaleX="5"
+        android:scaleY="5"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.438"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.398"
-        app:srcCompat="@drawable/logo" />
+        app:layout_constraintVertical_bias="0.402"
+        app:srcCompat="@drawable/newlogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
