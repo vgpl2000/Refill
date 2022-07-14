@@ -82,6 +82,7 @@ public class setting_profilepic_Fragment extends Fragment {
 
         btn_close=v.findViewById(R.id.btn_close_chng);
 
+        //to close the fragment
         btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,11 +102,13 @@ public class setting_profilepic_Fragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.hasChild("pimageurl")){
+                    //if already an image selected
                     chng_image.setText("Update Profile Image");
                     String pi=snapshot.child("pimageurl").getValue(String.class);
                     Glide.with(profile.getContext()).load(pi).into(profile);
                 }else {
-                    chng_image.setText("Update Profile Image");
+                    //if no image is in profile
+                    chng_image.setText("Add Profile Image");
                     Glide.with(profile.getContext()).load(R.drawable.ic_baseline_person_outline_24).into(profile);
                 }
 
@@ -118,6 +121,7 @@ public class setting_profilepic_Fragment extends Fragment {
             }
         });
 
+        //when image is clicked
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,6 +131,7 @@ public class setting_profilepic_Fragment extends Fragment {
 
         chng_image=v.findViewById(R.id.btn_chng_passwrd);
 
+        //when add/update image is clicked
         chng_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,6 +145,7 @@ public class setting_profilepic_Fragment extends Fragment {
                     Toast.makeText(getContext(), "Image not selected", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 }else {
+                    //if an image is selected from gallery
                     reference.putFile(imageuri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -147,18 +153,15 @@ public class setting_profilepic_Fragment extends Fragment {
 
                                 dialog.dismiss();
 
-
                                 Toast.makeText(getActivity(), "Image added successfully ", Toast.LENGTH_SHORT).show();
 
-
-
+                                //fragment replace after adding profile
                                 FragmentTransaction fr = getFragmentManager().beginTransaction();
                                 fr.replace(R.id.change_profile, new SettingsFragment()).addToBackStack(null);
                                 fr.commit();
 
 
                                 Toast.makeText(getActivity(), "Please refresh to check new profile picture", Toast.LENGTH_LONG).show();
-                                //toast
 
 
                             } else {
@@ -169,7 +172,7 @@ public class setting_profilepic_Fragment extends Fragment {
 
                     });
 
-
+                    //to display progress of uploading
                     reference.putFile(imageuri).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
@@ -181,6 +184,7 @@ public class setting_profilepic_Fragment extends Fragment {
                     });
 
 
+                    //upon adding image to storage, add it's url to realtime database
                     reference.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -191,11 +195,6 @@ public class setting_profilepic_Fragment extends Fragment {
 
                                     DatabaseReference pi = FirebaseDatabase.getInstance().getReference("Client").child("akashadeepa");
                                     pi.child("pimageurl").setValue(uri.toString());
-
-
-
-
-
 
 
                                 }
@@ -210,6 +209,7 @@ public class setting_profilepic_Fragment extends Fragment {
       return v;
     }
 
+    //to handle gallery opening
     ActivityResultLauncher<String> mgetcontent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
         public void onActivityResult(Uri result) {

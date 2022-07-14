@@ -94,6 +94,7 @@ public class retailerside_datewisetransaction_Fragment extends Fragment {
         editor=preferences.edit();
         String name1=preferences.getString("username","");
 
+        //blocked or not
         databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

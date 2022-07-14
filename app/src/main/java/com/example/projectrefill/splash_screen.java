@@ -16,6 +16,7 @@ public class splash_screen extends AppCompatActivity {
     TextView title_text,textView2;
     ImageView imageView,imageView2;
 
+    //method to perform backpressed to navigate to home screen of phone
     @Override
     public void onBackPressed() {
         Intent startMain = new Intent(Intent.ACTION_MAIN);
@@ -35,7 +36,7 @@ public class splash_screen extends AppCompatActivity {
         title_text=findViewById(R.id.textView);
         textView2=findViewById(R.id.textView2);
 
-
+        //stay in splash screen for 3000ms(3sec)
         Thread thread=new Thread(){
             public void run(){
                 Animation animation= AnimationUtils.loadAnimation(splash_screen.this,R.anim.anim);
@@ -53,17 +54,19 @@ public class splash_screen extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 finally {
+                    //after 3 sec
                     SharedPreferences preferences_o;
                     preferences_o = getSharedPreferences("onboardPreferences", MODE_PRIVATE);
 
+                    //if onboarding is not already shown
                     if (preferences_o.contains("onboard")) {
                         Intent intent=new Intent(splash_screen.this,MainActivity.class);
                         startActivity(intent);
                     }else{
+                        //if onboarding is shown, redirect to login screen
                         Intent intent=new Intent(splash_screen.this,onboard_Activity.class);
                         startActivity(intent);
                     }
-
 
 
                 }

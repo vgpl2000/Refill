@@ -47,16 +47,17 @@ public class settings_retailer_profile_pic_test_activity extends AppCompatActivi
         setContentView(R.layout.activity_settings_retailer_profile_pic_test);
 
 
-
         preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
         String name1=preferences.getString("username","");
 
         btn_close=findViewById(R.id.btn_close_chng);
 
+        //to close the update profile picture activity
         btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                //return to retailer_activity if closed
                Intent intent=new Intent(settings_retailer_profile_pic_test_activity.this,retailer_activity.class);
                startActivity(intent);
 
@@ -67,18 +68,20 @@ public class settings_retailer_profile_pic_test_activity extends AppCompatActivi
 
         profile1=findViewById(R.id.imageViewfrprofilepic);
 
-        //add profile
+        //add/update profile
         DatabaseReference pimag=FirebaseDatabase.getInstance().getReference("Retailer").child(name1);
 
         pimag.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //if profile is already added
                 if(snapshot.hasChild("pimageurl")){
                     chng_image.setText("Update Profile Image");
                     String pi=snapshot.child("pimageurl").getValue(String.class);
                     Glide.with(profile1.getContext()).load(pi).into(profile1);
 
                 }else {
+                    //if there is no profile picture
                     chng_image.setText("Add Profile Image");
                     Glide.with(profile1.getContext()).load(R.drawable.ic_baseline_person_outline_24).into(profile1);
 
@@ -92,6 +95,7 @@ public class settings_retailer_profile_pic_test_activity extends AppCompatActivi
             }
         });
 
+        //on clicking the profile image inside activity open gallery
         profile1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +106,7 @@ public class settings_retailer_profile_pic_test_activity extends AppCompatActivi
 
         chng_image=findViewById(R.id.btn_chng_passwrd);
 
+        //when update/add image is clicked
         chng_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,9 +116,11 @@ public class settings_retailer_profile_pic_test_activity extends AppCompatActivi
                 dialog.show();
 
                 StorageReference reference = firebaseStorage.getReference().child("retailerimages").child(name1).child("images/" + UUID.randomUUID().toString());
+                //if no image is selected
                 if(imageuri1==null){
                     Toast.makeText(settings_retailer_profile_pic_test_activity.this, "Image not selected", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
+                    //if image is selected from gallery
                 }else {
                     reference.putFile(imageuri1).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -125,11 +132,10 @@ public class settings_retailer_profile_pic_test_activity extends AppCompatActivi
 
                                 Toast.makeText(settings_retailer_profile_pic_test_activity.this, "Image added successfully ", Toast.LENGTH_SHORT).show();
 
-                                //change to activity
+                                //change to retailer_activity
                                 Intent intent=new Intent(settings_retailer_profile_pic_test_activity.this,retailer_activity.class);
                                 startActivity(intent);
                                 settings_retailer_profile_pic_test_activity.this.finish();
-
 
 
 
@@ -142,6 +148,7 @@ public class settings_retailer_profile_pic_test_activity extends AppCompatActivi
                     });
 
 
+                    //to display upload status
                     reference.putFile(imageuri1).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
@@ -153,6 +160,7 @@ public class settings_retailer_profile_pic_test_activity extends AppCompatActivi
                     });
 
 
+                    //upon uploading image to firebase storage, add the url to realtime database
                     reference.putFile(imageuri1).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -172,6 +180,7 @@ public class settings_retailer_profile_pic_test_activity extends AppCompatActivi
             }
         });
     }
+    //method of opening gallery
     ActivityResultLauncher<String> mgetcontent23=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
         public void onActivityResult(Uri result) {
@@ -183,6 +192,7 @@ public class settings_retailer_profile_pic_test_activity extends AppCompatActivi
 
         }
     });
+    //to perform back pressed of this activity
     @Override
     public void onBackPressed () {
         int count = getSupportFragmentManager().getBackStackEntryCount();

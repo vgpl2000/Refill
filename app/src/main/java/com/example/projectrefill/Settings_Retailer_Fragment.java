@@ -58,6 +58,7 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
 
 
 
+    //method to check network is connected or not
     protected boolean isNetworkConnected() {
         try {
             ConnectivityManager mConnectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -107,6 +108,7 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
 
         infobtn=v.findViewById(R.id.infobtn);
 
+        //when swiped to refresh the fragment
         swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipe_container1);
         swipeLayout.setOnRefreshListener(this);
 
@@ -159,6 +161,7 @@ public class Settings_Retailer_Fragment extends Fragment implements SwipeRefresh
             }
         });
 
+        //to display info of Refill fragment
         infobtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

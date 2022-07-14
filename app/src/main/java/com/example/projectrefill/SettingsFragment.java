@@ -74,7 +74,7 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
     SwipeRefreshLayout swipeLayout;
 
 
-    //check network connected or not function
+    //method to check network is connected or not
     protected boolean isNetworkConnected() {
         try {
             ConnectivityManager mConnectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -127,9 +127,6 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
                              Bundle savedInstanceState) {
 
 
-
-
-
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_settings, container, false);
 
@@ -168,6 +165,7 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
         
         client_profile=v.findViewById(R.id.retailer_profile);
 
+        //fragment to change profile of owner
         client_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -186,9 +184,10 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.hasChild("pimageurl")){
                     String pi=snapshot.child("pimageurl").getValue(String.class);
+                    //set profile picture if already uploaded
                     Glide.with(client_profile.getContext()).load(pi).into(client_profile);
                 }else {
-
+                    //set default profile from drawable
                     Glide.with(client_profile.getContext()).load(R.drawable.ic_baseline_person_outline_24).into(client_profile);
                 }
 
@@ -246,6 +245,7 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
                         logref.child("logstatus").setValue("loggedout");
                         logref.child("token").removeValue();
 
+                        //so that it must not return to logout screen once logged out
                         Intent intent=new Intent(getActivity(),MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
@@ -267,7 +267,7 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
         });
 
 
-
+        //to open a fragment to change password of owner
         txtchngpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -279,7 +279,7 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
             }
         });
 
-
+        //btn accepted orders of all retailers
         accepted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -295,6 +295,7 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
             }
         });
 
+        //btn cancelled orders of all retailers
         cancelled.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -309,6 +310,7 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
             }
         });
 
+        //btn delivered orders of all retailers
         delivered.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -327,6 +329,7 @@ public class SettingsFragment extends Fragment implements SwipeRefreshLayout.OnR
         return v;
     }
 
+    //when slide from top to refresh the fragment
     @Override
     public void onRefresh() {
 
