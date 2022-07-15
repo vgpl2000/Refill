@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class splash_screen extends AppCompatActivity {
     TextView title_text,textView2;
-    ImageView imageView,imageView2;
+    ImageView imageView;
 
     //method to perform backpressed to navigate to home screen of phone
     @Override
@@ -43,6 +43,8 @@ public class splash_screen extends AppCompatActivity {
                 Animation animation2= AnimationUtils.loadAnimation(splash_screen.this,R.anim.fade_in);
                 title_text.startAnimation(animation);
                 textView2.startAnimation(animation2);
+                imageView=findViewById(R.id.imageView4);
+                imageView.startAnimation(animation2);
 
 
                 try{
