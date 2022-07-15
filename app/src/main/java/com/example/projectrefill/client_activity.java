@@ -14,8 +14,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
@@ -40,6 +42,8 @@ Context context;
 
             binding = ActivityClientBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
+
+
 
             if(!isConnected()){
                 Intent intent = new Intent(client_activity.this, no_internet_client.class);
@@ -103,7 +107,9 @@ Context context;
 
 
         }
-        private void replacefragment (Fragment fragment){
+
+
+    private void replacefragment (Fragment fragment){
             FragmentManager fragmentManager=getSupportFragmentManager();
             FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
 
