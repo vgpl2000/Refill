@@ -58,7 +58,7 @@ Context context;
 
 
 
-        //blocked or not
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getInstance().getReference();
         SharedPreferences preferences;
@@ -89,7 +89,7 @@ Context context;
 
 
 
-
+        //blocked or not
         databaseReference.child("Retailer").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
