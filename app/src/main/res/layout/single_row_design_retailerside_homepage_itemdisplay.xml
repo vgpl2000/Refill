@@ -15,11 +15,11 @@
 
         <LinearLayout
             android:id="@+id/melanalayout"
-            android:layout_width="161dp"
+            android:layout_width="200dp"
             android:layout_height="91dp"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:paddingLeft="-50dp"
+            android:paddingLeft="-80dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -117,9 +117,10 @@
 
         <LinearLayout
             android:id="@+id/ll1"
-            android:layout_width="120dp"
+            android:layout_width="110dp"
             android:layout_height="91dp"
             android:gravity="center_vertical"
+            android:paddingLeft="-100dp"
             android:orientation="vertical"
             android:paddingRight="-50dp"
             app:layout_constraintBottom_toBottomOf="parent"

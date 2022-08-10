@@ -32,7 +32,7 @@
         android:clickable="false"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center|center_horizontal|center_vertical"
-        android:text="AkashDeepa Home Products"
+        android:text="AkashaDeepa Home Products"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:visibility="visible"

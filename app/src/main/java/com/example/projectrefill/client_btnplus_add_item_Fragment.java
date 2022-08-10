@@ -218,11 +218,6 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                         });
                     }
 
-
-                    //i_name.setText("");
-                    //i_price.setText("");
-                    //i_quan.setText("");
-                    //i_weight.setText("");
                 }
 
 
