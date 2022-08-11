@@ -115,7 +115,14 @@ public class MainActivity extends AppCompatActivity {
                         txtUser.setError("Username cannot be empty");
                         txtPassword.setError("Password cannot be empty");
 
-                    } else if (eUser.equals("akashadeepa")) {
+                    } else if(eUser.isEmpty()){
+                        txtUser.setError("Username cannot be empty");
+
+                    }else if(ePassword.isEmpty()){
+                        txtPassword.setError("Password cannot be empty");
+                    }
+
+                    else if (eUser.equals("akashadeepa")) {
                         editor.clear();
                         editor.commit();
                         progressBar.setVisibility(View.VISIBLE);

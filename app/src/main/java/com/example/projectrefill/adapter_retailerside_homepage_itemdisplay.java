@@ -80,40 +80,45 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
                 @Override
                 public void onClick(View view) {
 
+                    if (holder.editText.getText().toString().isEmpty()) {
+                        holder.editText.setError("Quantity cannot be empty!");
+                    } else {
+
+
                     Date c = Calendar.getInstance().getTime();
 
                     SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
                     String formattedDate = df.format(c);
 
 
-                    String quan=holder.editText.getText().toString();
+                    String quan = holder.editText.getText().toString();
 
 
-                    String iname=holder.name.getText().toString();
-                    String price=holder.price.getText().toString();
-                    String weight=holder.weight.getText().toString();
+                    String iname = holder.name.getText().toString();
+                    String price = holder.price.getText().toString();
+                    String weight = holder.weight.getText().toString();
 
-                    String rname=holder.stext.getText().toString();
+                    String rname = holder.stext.getText().toString();
 
                     //total of each items
-                    Integer p,q,tot;
-                    p=Integer.parseInt(price);
-                    q=Integer.parseInt(quan);
-                    tot=p*q;
-                    String total=Integer.toString(tot);
+                    Integer p, q, tot;
+                    p = Integer.parseInt(price);
+                    q = Integer.parseInt(quan);
+                    tot = p * q;
+                    String total = Integer.toString(tot);
 
                     //when no quan is entered
-                    if(quan.isEmpty()||quan.equals("0")){
+                    if (quan.isEmpty() || quan.equals("0")) {
                         holder.editText.setError("Specify the quantity");
-                    }else   {
+                    } else {
 
                         FirebaseDatabase db = FirebaseDatabase.getInstance();
                         DatabaseReference root = db.getReference("Retailer").child(rname).child("r_orders");
 
-                        a=a+1;
-                        String b=Integer.toString(a);
+                        a = a + 1;
+                        String b = Integer.toString(a);
 
-                        retailer_model_button_addtocart_pressed obj1 = new retailer_model_button_addtocart_pressed(iname, quan, weight, formattedDate,price,total);
+                        retailer_model_button_addtocart_pressed obj1 = new retailer_model_button_addtocart_pressed(iname, quan, weight, formattedDate, price, total);
                         root.child(iname).setValue(obj1);
 
 
@@ -127,6 +132,7 @@ public class adapter_retailerside_homepage_itemdisplay extends FirebaseRecyclerA
 
                     }
                 }
+            }
             });
         }
 
