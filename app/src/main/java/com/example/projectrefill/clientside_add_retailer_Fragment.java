@@ -99,7 +99,7 @@ public class clientside_add_retailer_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 r_name=txt_name.getText().toString();
-                String output = r_name.substring(0, 1).toUpperCase() + r_name.substring(1);
+
                 r_passwrd=txt_passwd.getText().toString();
                 if(r_name.isEmpty()&&r_passwrd.isEmpty()){
                     txt_name.setError("Name cannot be empty");
@@ -110,7 +110,7 @@ public class clientside_add_retailer_Fragment extends Fragment {
 
                 }else{
                     //if no field is empty...
-
+                    String output = r_name.substring(0, 1).toUpperCase() + r_name.substring(1);
 
                     DatabaseReference reference=FirebaseDatabase.getInstance().getReference();
                     reference.addListenerForSingleValueEvent(new ValueEventListener() {

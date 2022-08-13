@@ -108,7 +108,7 @@ public class client_btnplus_add_item_Fragment extends Fragment {
 
 
                 String str_iname = i_name.getText().toString();
-                String output = str_iname.substring(0, 1).toUpperCase() + str_iname.substring(1);
+
 
                 String str_iprice=i_price.getText().toString();
 
@@ -140,6 +140,7 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                         Toast.makeText(getContext(), "Image not selected", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }else {
+
                         StorageReference reference = firebaseStorage.getReference().child("images/" + UUID.randomUUID().toString());
 
                         reference.putFile(imageuri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
@@ -185,17 +186,13 @@ public class client_btnplus_add_item_Fragment extends Fragment {
                                     @Override
                                     public void onSuccess(Uri uri) {
 
-                                        String image_1 = i_name.getText().toString();
-
+                                        String output1 = str_iname.substring(0, 1).toUpperCase() + str_iname.substring(1);
 
                                         FirebaseDatabase db = FirebaseDatabase.getInstance();
                                         DatabaseReference root = db.getReference("Client").child("c_items");
 
-                                        dataholder_for_additem_test obj1 = new dataholder_for_additem_test(str_iprice, str_iweight, output, uri.toString());
-                                        root.child(image_1).setValue(obj1);
-
-
-
+                                        dataholder_for_additem_test obj1 = new dataholder_for_additem_test(str_iprice, str_iweight, output1, uri.toString());
+                                        root.child(output1).setValue(obj1);
 
                                     }
                                 });

@@ -133,9 +133,9 @@ public class client_itemeditbuttonpressed_fragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-
                 AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
                 builder.setTitle("Delete!!");
+
                 builder.setMessage("Are you sure you want to delete "+name11+" ?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
